@@ -1,22 +1,1026 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Homebrew for Pathfinder 1e</title>
+    <title>IceCubez' Character Sheets</title>
 	<meta name="theme-color" content="black">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Homebrew for Pathfinder 1e">
-	<link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="sstyles.css" />
 	<link rel="shortcut icon" href="favicon.ico">
 	<script src="process.js" charset="utf-8"></script>
-	<style>h2{font-size:1.8em;text-align:center;margin-top:0px;}</style>
 </head>
-
 <body>
-	<h1 style="text-align:center;">IceCubez' Character Sheets</h1><hr />
-	
-	Have a character sheet from <u><a href="https://charactersheet.co.uk/">charactersheet.co.uk</a></u>?<br />Upload it here:
-	<input type="file" id="charsheet" name="charsheet" accept="application/json" multiple>
-	<input type="submit" onclick="Process()">
+    <div id="wrapper">
+        <h1><u>IceCubez' Character Sheets</u></h1>
+
+		<section>
+		Have existing character sheets from <u><a href="https://charactersheet.co.uk/">charactersheet.co.uk</a></u>?<br />
+		Upload it here:
+		<input type="file" id="charsheet" name="charsheet" accept="application/json" style="padding:0px;font-size:15px;" multiple>
+		<input type="submit" onclick="Process()"style="padding:1px;">
+		</section>
+
+        <article id="General">
+            <h2>General</h2>
+            <section>
+                <div style="width:500px; float:left;">
+                    <label>Character Name</label>
+                    <!--<textarea type="text" rows="2" contenteditable="false" name="CharacterName" style="height:98px;margin-bottom:-20px;"></textarea>-->
+                    <input type="text" name="CharacterName" style="text-align:left;" />
+                </div>
+                <div style="width: 500px; float: left;">
+                    <label>Player Name</label>
+                    <input type="text" name="PlayerName" style="text-align:left;" />
+                </div>
+				
+                <div style="width: 1020px; float: left;">
+                    <label>Character Class/Archetype & Levels</label>
+                    <input type="text" name="Class" style="text-align:left;" />
+                </div>
+				
+                <div style="width:540px; float:left;">
+                    <label>Race/Subrace</label>
+                    <input type="text" name="Race" style="text-align:left;" />
+                </div>
+                <div style="width:100px; float:left;">
+                    <label>Alignment</label>
+                    <input type="text" name="Alignment" style="text-align:left;" />
+                </div>
+                <div style="width: 100px; float: left;">
+                    <label>Gender</label>
+                    <input type="text" name="Gender" style="text-align:left;" />
+                </div>
+                <div style="width: 100px; float: left;">
+                    <label>Size</label>
+                    <input type="text" name="Size" style="text-align:left;" />
+                </div>
+                <div style="width: 100px; float: left;">
+                    <label>Deity</label>
+                    <input type="text" name="Deity" style="text-align:left;" />
+                </div>
+            </section>
+        </article>
+        <article id="AbilityScores">
+            <h2>Ability Scores</h2>
+            <section>
+                <div class="black" style="width:60px;height:60px;margin-right:8px">
+                    <span>Str</span>
+                    <label class="blackLabel">Strength</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="str" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" type="text" name="str-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="str-temp" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" type="text" name="str-temp-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
+                </div>
+
+                <div class="black" style="width:60px;height:60px;margin-right:8px">
+                    <span>Dex</span>
+                    <label class="blackLabel">Dexterity</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="dex" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" type="text" name="dex-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="dex-temp" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" type="text" name="dex-temp-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
+                </div>
+
+                <div class="black" style="width:60px;height:60px;margin-right:8px">
+                    <span>Con</span>
+                    <label class="blackLabel">Constitution</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="con" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" type="text" name="con-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="con-temp" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" type="text" name="con-temp-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
+                </div>
+
+                <div class="black" style="width:60px;height:60px;margin-right:8px">
+                    <span>Int</span>
+                    <label class="blackLabel">Intelligence</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="int" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" type="text" name="int-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="int-temp" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" type="text" name="int-temp-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
+                </div>
+
+                <div class="black" style="width:60px;height:60px;margin-right:8px">
+                    <span>Wis</span>
+                    <label class="blackLabel">Wisdom</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="wis" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" type="text" name="wis-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="wis-temp" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" type="text" name="wis-temp-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
+                </div>
+
+                <div class="black" style="width:60px;height:60px;margin-right:8px">
+                    <span>Cha</span>
+                    <label class="blackLabel">Charisma</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="cha" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" type="text" name="cha-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="cha-temp" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" type="text" name="cha-temp-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
+                </div>
+            </section>
+        </article>
+        <article id="Defense">
+            <h2>Defense</h2>
+            <section>
+                <div class="black" style="width:60px;height:60px;margin-right:8px">
+                    <span>AC</span>
+                    <label class="blackLabel">Armor Class</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input type="text" name="Total-AC" style="border-width:3px;" />
+                    <label style="font-size:12px;line-height:20px;width:62px">Total =</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;margin-left:-10px;">
+                    <label style="font-size:30px;line-height:40px;width:62px;height:45px">10+</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input type="text" name="Armor-Bonus" />
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Armor Bonus</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input type="text" name="Shield-Bonus" />
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Shield Bonus</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input class="green" type="text" name="dex-temp-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Dex Modifier</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input type="text" name="Size-Mod" />
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Size Modifier</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input type="text" name="Natural-Armor" />
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Natural Armor</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input type="text" name="Deflection"/>
+                    <label style="font-size:12px;line-height:20px;width:80px">Deflection</label>
+                </div>
+                <div style="width:320px;height:60px;float:left;">
+                    <input type="text" name="AC-Misc"/>
+                    <label style="font-size:12px;line-height:20px;width:80px">Misc Modifier</label>
+                </div>
+				
+                <div class="black" style="width:80px;height:60px;margin-right:8px">
+                    <span>Touch</span>
+                    <label class="blackLabel">Armor Class</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input type="text" name="Touch-AC"/>
+                    <label style="font-size:12px;line-height:20px;width:60px">Touch</label>
+                </div>
+				
+                <div class="black" style="width:150px;height:60px;margin-right:8px">
+                    <span>Flat-Footed</span>
+                    <label class="blackLabel">Armor Class</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input type="text" name="FlatFooted-AC"/>
+                    <label style="font-size:12px;line-height:20px;width:70px">Flat-Footed</label>
+                </div>
+                <div style="width:600px;height:60px;float:left;">
+                    <input type="text" name="Misc-AC"/>
+                    <label style="font-size:12px;line-height:20px;width:120px">Other AC Modifier</label>
+                </div>
+				
+                <div class="black" style="width:60px;height:60px;margin-left:-5px;margin-right:8px">
+                    <span style="font-size:25px;">HP</span>
+                    <label class="blackLabel">Hit Points</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="Current-HP" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Current</label>
+                </div>
+                <div style="width:20px;height:60px;float:left;margin-left:-5px;margin-right:5px">
+                    <label style="font-size:40px;line-height:40px;height:45px;"><b>+</b></label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="Temp-HP" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Temp</label>
+                </div>
+                <div style="width:20px;height:60px;float:left;margin-left:-5px;margin-right:5px">
+                    <label style="font-size:40px;line-height:40px;height:45px;"><b>-</b></label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="Temp-HP" />
+                    <label style="font-size:12px;line-height:12px;width:62px">Non-Lethal Damage</label>
+                </div>
+                <div style="width:20px;height:60px;float:left;margin-left:-5px;margin-right:10px">
+                    <label style="font-size:40px;line-height:40px;height:45px;"><b>=</b></label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input class="green" type="text" name="Total-HP" readonly="readonly" />
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:center">Total</label>
+                </div>
+                <div style="width:15px;height:60px;float:left;margin-left:-3px;margin-right:10px;">
+                    <label style="font-size:80px;line-height:40px;height:45px;"><b>/</b></label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="Max-HP"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Maximum</label>
+                </div>
+
+                <div class="black" style="width:120px;height:60px;margin-left:-5px;margin-right:8px">
+                    <span style="font-size:25px;">DR</span>
+                    <label class="blackLabel">Damage Reduction</label>
+                </div>
+                <div style="width:200px;height:60px;float:left;">
+                    <input type="text" name="Damage-Reduction"/>
+                </div>
+                <div class="black" style="width:100px;height:60px;margin-left:-5px;margin-right:8px">
+                    <span style="font-size:25px;">SR</span>
+                    <label class="blackLabel">Spell Resistance</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="Spell-Resistance"/>
+                </div>
+
+
+                <div class="black" style="width:100px;height:60px;margin-left:-5px;margin-right:8px">
+                    <span style="font-size:25px;">Fortitude</span>
+                    <label class="blackLabel">(Constitution)</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="Fortitude-Total" style="border-width:2px;" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Total =</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="Fortitude-Base" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Base</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" type="text" name="con-temp-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:20px;width:62px">Con</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="Fortitude-Item" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Item</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="Fortitude-Misc" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Misc</label>
+                </div>
+                <div style="width:550px;height:60px;float:left;">
+                    <input type="text" name="Fortitude-Notes" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Notes</label>
+                </div>
+
+                <div class="black" style="width:100px;height:60px;margin-left:-5px;margin-right:8px">
+                    <span style="font-size:25px;">Reflex</span>
+                    <label class="blackLabel">(Dexterity)</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="Reflex-Total" style="border-width:2px;" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Total =</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="Reflex-Base" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Base</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" type="text" name="dex-temp-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:20px;width:62px">Dex</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="Reflex-Item" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Item</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="Reflex-Misc" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Misc</label>
+                </div>
+                <div style="width:550px;height:60px;float:left;">
+                    <input type="text" name="Reflex-Notes" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Notes</label>
+                </div>
+
+                <div class="black" style="width:100px;height:60px;margin-left:-5px;margin-right:8px">
+                    <span style="font-size:25px;">Will</span>
+                    <label class="blackLabel">(Wisdom)</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="Will-Total" style="border-width:2px;" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Total =</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="Will-Base" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Base</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" type="text" name="wis-temp-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:20px;width:62px">Wis</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="Will-Item" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Item</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input type="text" name="Will-Misc" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Misc</label>
+                </div>
+                <div style="width:550px;height:60px;float:left;">
+                    <input type="text" name="Will-Notes" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Notes</label>
+                </div>
+				
+                <div class="black" style="width:100px;height:60px;margin-right:8px">
+                    <span>Resist</span>
+                    <label class="blackLabel">Resistances</label>
+                </div>
+                <div style="width:380px;height:60px;float:left;">
+                    <input type="text" name="Resistances" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Resistances</label>
+                </div>
+				
+                <div class="black" style="width:100px;height:60px;margin-right:8px">
+                    <span>Immune</span>
+                    <label class="blackLabel">Immunities</label>
+                </div>
+                <div style="width:390px;height:60px;float:left;">
+                    <input type="text" name="Immunities" />
+                    <label style="font-size:12px;line-height:15px;width:62px">Immunities</label>
+                </div>
+				
+                <div class="black" style="width:130px;height:60px;margin-right:8px">
+                    <span>CMD</span>
+                    <label class="blackLabel">Combat Maneuver Defense</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input type="text" name="Total-AC" style="border-width:3px;" />
+                    <label style="font-size:12px;line-height:20px;width:62px">Total =</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;margin-left:-10px;">
+                    <label style="font-size:30px;line-height:40px;width:72px;height:45px">10+</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input class="green" type="text" name="BAB" readonly="readonly" />
+                    <label style="font-size:12px;line-height:15px;width:70px;text-align:middle">Base Attack Bonus</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input class="green" type="text" name="str-temp-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Str Modifier</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input class="green" type="text" name="dex-temp-mod" readonly="readonly" />
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Dex Modifier</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input type="text" name="Size-Mod" />
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Size Modifier</label>
+                </div>
+                <div style="width:410px;height:60px;float:left;">
+                    <input type="text" name="AC-Misc"/>
+                    <label style="font-size:12px;line-height:20px;width:80px">Misc Modifier</label>
+                </div>
+            </section>
+        </article>
+		
+        <article id="Offense">
+		<h2>Offense</h2>
+			<div class="black" style="width:50px;height:60px;margin-left:-5px;margin-right:8px">
+				<span style="font-size:25px;">Init</span>
+				<label class="blackLabel">Initiative</label>
+			</div>
+			<div style="width:50px;height:60px;float:left;">
+				<input type="text" name="Init-Total" style="border-width:2px;" />
+				<label style="font-size:12px;line-height:15px;width:62px">Total =</label>
+			</div>
+			<div style="width:50px;height:60px;float:left;">
+				<input class="green" type="text" name="dex-temp-mod" readonly="readonly" />
+				<label style="font-size:12px;line-height:20px;width:62px">Dex</label>
+			</div>
+			<div style="width:50px;height:60px;float:left;">
+				<input type="text" name="Misc-Init" />
+				<label style="font-size:12px;line-height:20px;width:62px">Misc</label>
+			</div>
+				
+				
+			<div class="black" style="width:90px;height:60px;margin-left:-5px;margin-right:8px">
+				<span style="font-size:25px;">BAB</span>
+				<label class="blackLabel">Base Attack Bonus</label>
+			</div>
+			<div style="width:90px;height:60px;float:left;">
+				<input type="text" name="BAB" />
+			</div>
+			<div style="width:500px;height:60px;float:left;">
+			</div>
+			
+            <div class="black" style="width:70px;height:60px;margin-right:8px">
+                <span style="font-size:25px;">Speed</span>
+            </div>
+            <div style="width:50px;height:60px;float:left;">
+                <input type="text" name="Base-Speed" />
+                <label style="font-size:12px;line-height:15px;width:62px">Base Speed</label>
+            </div>
+            <div style="width:50px;height:60px;float:left;">
+                <input type="text" name="Armor-Speed" />
+                <label style="font-size:12px;line-height:15px;width:62px">With Armor</label>
+            </div>
+            <div style="width:100px;height:60px;float:left;">
+                <input type="text" name="Fly-Speed" />
+                <label style="font-size:12px;line-height:15px;width:90px">Fly/Maneuverability</label>
+            </div>
+            <div style="width:50px;height:60px;float:left;">
+                <input type="text" name="Swim-Speed" />
+                <label style="font-size:12px;line-height:15px;width:62px">Swim</label>
+            </div>
+            <div style="width:50px;height:60px;float:left;">
+                <input type="text" name="Climb-Speed" />
+                <label style="font-size:12px;line-height:15px;width:62px">Climb</label>
+            </div>
+            <div style="width:50px;height:60px;float:left;">
+                <input type="text" name="Burrow-Speed" />
+                <label style="font-size:12px;line-height:15px;width:62px">Burrow</label>
+            </div>
+            <div style="width:460px;height:60px;float:left;">
+                <input type="text" name="Speed-Notes" />
+                <label style="font-size:12px;line-height:15px;width:100px">Modifiers & Notes</label>
+            </div>
+			
+			<div class="black" style="width:130px;height:60px;margin-right:8px">
+				<span>CMB</span>
+				<label class="blackLabel">Combat Maneuver Bonus</label>
+			</div>
+			<div style="width:60px;height:60px;float:left;">
+				<input type="text" name="Total-AC" style="border-width:3px;" />
+				<label style="font-size:12px;line-height:20px;width:62px">Total =</label>
+			</div>
+			<div style="width:60px;height:60px;float:left;">
+				<input class="green" type="text" name="BAB" readonly="readonly" />
+				<label style="font-size:12px;line-height:15px;width:70px;text-align:middle">Base Attack Bonus</label>
+			</div>
+			<div style="width:60px;height:60px;float:left;">
+				<input class="green" type="text" name="str-temp-mod" readonly="readonly" />
+				<label style="font-size:12px;line-height:20px;width:80px;text-align:left">Str Modifier</label>
+			</div>
+			<div style="width:60px;height:60px;float:left;">
+				<input type="text" name="Size-Mod" />
+				<label style="font-size:12px;line-height:20px;width:80px;text-align:left">Size Modifier</label>
+			</div>
+			<div style="width:550px;height:60px;float:left;">
+				<input type="text" name="AC-Misc"/>
+				<label style="font-size:12px;line-height:20px;width:80px">Misc Modifier</label>
+			</div>
+
+            <div style="clear:both">
+                <button type="button" onclick="">
+                    +Melee Attack
+                </button>
+                <button type="button" onclick="">
+                    +Ranged Attack
+                </button>
+            </div>
+        </article>
+
+
+        <article id="Skills">
+            <h2>Skills</h2>
+			<section>
+				<table style="width:99%">
+					<tr>
+						<th style="width:50px">Class Skill</th>
+						<th style="width:300px">Skill Name</th>
+						<th>Total</th>
+						<th>Ability</th>
+						<th>Modifier</th>
+						<th>Ranks</th>
+						<th>Class</th>
+						<th>Racial</th>
+						<th>Trait</th>
+						<th style="width:50px">Misc</th>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="acrobatics-class-skill"></td>
+						<td>Acrobatics</td>
+						<td><input type="text" name="acrobatics-total" style="width:50px"/></td>
+						<td>Dex</td>
+						<td><input class="green" type="text" name="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="acrobatics-rank" style="width:50px"/></td>
+						<td><input type="text" name="acrobatics-class" style="width:50px"/></td>
+						<td><input type="text" name="acrobatics-racial" style="width:50px"/></td>
+						<td><input type="text" name="acrobatics-trait" style="width:50px"/></td>
+						<td><input type="text" name="acrobatics-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Appraise</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Bluff</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Climb</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Craft</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Diplomacy</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Disable Device*</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Disguise</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Escape Artist</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Fly</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Handle Animal*</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Heal</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Intimidate</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Knowledge (Arcana)*</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Knowledge (Dungeoneering)*</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Knowledge (Engineering)*</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Knowledge (Geography)*</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Knowledge (History)*</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Knowledge (Local)*</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Knowledge (Nature)*</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Knowledge (Nobility)*</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Knowledge (Planes)*</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Knowledge (Religion)*</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Linguistics*</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Perception</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Perform</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Profession</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Ride</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Sense Motive</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Sleight of Hand*</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Spellcraft*</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Stealth</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Survival</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Swim</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td>Use Magic Device</td>
+						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
+						<td>Int</td>
+						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+					</tr>
+				</table>
+				<div class="w110 new-line"><label>* Trained Only</label></div>
+				
+				<div class="black" style="width:120px;height:60px;margin-left:5px;margin-right:8px">
+					<span style="font-size:25px;">Conditional</span>
+					<label class="blackLabel">Modifiers</label>
+				</div>
+				<div style="width:880px;height:60px;float:left;">
+					<input type="text" name="Skill-Notes"/>
+					<label style="font-size:12px;line-height:20px;width:80px">Other Notes</label>
+				</div>
+
+				<div class="black" style="width:120px;height:60px;margin-left:5px;margin-right:8px">
+					<span style="font-size:25px;">Languages</span>
+					<label class="blackLabel">Known</label>
+				</div>
+				<div style="width:880px;height:60px;float:left;">
+					<input type="text" name="languages"/>
+					<label style="font-size:12px;line-height:20px;width:80px">Spoken/Written</label>
+				</div>
+			</section>
+        </article>
+		
+		<article>
+			<section>
+				<div style="clear:both">
+                <button type="button" onclick="">
+                    +Feat
+                </button>
+                <button type="button" onclick="">
+                    +Special Ability
+                </button>
+                <button type="button" onclick="">
+                    +Trait
+                </button>
+			</section>
+		</article>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

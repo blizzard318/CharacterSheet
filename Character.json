@@ -1,6 +1,7 @@
 {
 	"name": "Character Name",
 	"alignment": "TN",
+	"player": "Player Name",
 	
 	"class": "Class 0",
 	"race": "Halfling",
@@ -67,7 +68,6 @@
 			"base": "0",
 			"magicModifier": "0",
 			"miscModifier": "0",
-			"tempModifier": "0",
 			"otherModifiers": "0"
 		},
 		"reflex": {
@@ -75,7 +75,6 @@
 			"base": "0",
 			"magicModifier": "0",
 			"miscModifier": "0",
-			"tempModifier": "0",
 			"otherModifiers": "0"
 		},
 		"will": {
@@ -83,7 +82,6 @@
 			"base": "0",
 			"magicModifier": "0",
 			"otherModifiers": "0",
-			"tempModifier": "0",
 			"miscModifier": "0"
 		}
 	},
