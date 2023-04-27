@@ -7,7 +7,6 @@ function GetKV (GameName) {
 }
 
 export async function onRequestGet (context) {
-	
 	const KVList = GetKV(context.params.params[0]);
 	const PlayerName = context.params.params[1];
 	const CharacterIndex = context.params.params[2];
