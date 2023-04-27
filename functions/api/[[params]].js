@@ -6,7 +6,7 @@ function GetKV (ctx) {
 	}
 }
 
-export async function onRequestGet (context) {
+export async function onRequestGet (context) { //Get list or single character
 	const KVList = GetKV(context);
 	const PlayerName = context.params.params[1];
 	const CharacterIndex = context.params.params[2];
@@ -23,6 +23,26 @@ export async function onRequestGet (context) {
 		return new Response(character);
 	}
 	return new Response("Invalid Input");
+}
+
+export async function onRequestPost (context) { //Create new character
+	const KVList = GetKV(context);
+	const PlayerName = context.params.params[1];
+	
+	const characters = await KVList.list({ prefix: PlayerName });
+
+	const value = await request.text();
+	let key = PlayerName + "/";
+
+	if (characters.keys.length == 0) {
+		key += 1;
+	} else {
+		const lastIndex = characters.keys.length - 1;
+		const lastKey = characters.keys[lastIndex].name;
+		key += Number(lastKey.split("/")[1]) + 1;
+	}
+	await KVList.put(key, value);
+	return new Response("Created");
 }
 
 /*export async function onRequest (context) {
