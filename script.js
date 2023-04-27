@@ -1,5 +1,5 @@
-document.getElementById('Upload').addEventListener('click', openDialog);
-document.getElementById('FileToUpload').addEventListener('change', getFile);
+//document.getElementById('Upload').addEventListener('click', openDialog);
+//document.getElementById('FileToUpload').addEventListener('change', getFile);
 
 function openDialog() {
     document.getElementById('FileToUpload').click();

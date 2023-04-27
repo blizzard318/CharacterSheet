@@ -7,11 +7,14 @@
 	<meta name="theme-color" content="black">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Homebrew for Pathfinder 1e">
-    <link rel="stylesheet" href="sstyles.css" />
+    <link rel="stylesheet" href="styles.css" />
 	<link rel="shortcut icon" href="favicon.ico">
-	<script src="process.js" charset="utf-8"></script>
+	<script src="LoadFromMottokrosh.js" charset="utf-8"></script>
+	<script src="LoadFromJSON.js" charset="utf-8"></script>
+	<script src="SaveToCloudFlare.js" charset="utf-8"></script>
 </head>
 <body>
+<script>LoadFromJSON();</script>
     <div id="wrapper">
         <h1><u>IceCubez' Character Sheets</u></h1>
 
@@ -19,7 +22,7 @@
 		Have existing character sheets from <u><a href="https://charactersheet.co.uk/">charactersheet.co.uk</a></u>?<br />
 		Upload it here:
 		<input type="file" id="charsheet" name="charsheet" accept="application/json" style="padding:0px;font-size:15px;" multiple>
-		<input type="submit" onclick="Process()"style="padding:1px;">
+		<input type="submit" onclick="LoadFromMottokrosh()"style="padding:1px;">
 		</section>
 
         <article id="General">
@@ -27,38 +30,37 @@
             <section>
                 <div style="width:500px; float:left;">
                     <label>Character Name</label>
-                    <!--<textarea type="text" rows="2" contenteditable="false" name="CharacterName" style="height:98px;margin-bottom:-20px;"></textarea>-->
-                    <input type="text" name="CharacterName" style="text-align:left;" />
+                    <input type="text" name="CharacterName" onfocusout="SaveToCloudFlare()"/>
                 </div>
                 <div style="width: 500px; float: left;">
                     <label>Player Name</label>
-                    <input type="text" name="PlayerName" style="text-align:left;" />
+                    <input type="text" name="PlayerName" onfocusout="SaveToCloudFlare()"/>
                 </div>
 				
                 <div style="width: 1020px; float: left;">
                     <label>Character Class/Archetype & Levels</label>
-                    <input type="text" name="Class" style="text-align:left;" />
+                    <input type="text" name="Class" onfocusout="SaveToCloudFlare()"/>
                 </div>
 				
                 <div style="width:540px; float:left;">
                     <label>Race/Subrace</label>
-                    <input type="text" name="Race" style="text-align:left;" />
+                    <input type="text" name="Race" onfocusout="SaveToCloudFlare()"/>
                 </div>
                 <div style="width:100px; float:left;">
                     <label>Alignment</label>
-                    <input type="text" name="Alignment" style="text-align:left;" />
+                    <input type="text" name="Alignment" onfocusout="SaveToCloudFlare()"/>
                 </div>
                 <div style="width: 100px; float: left;">
                     <label>Gender</label>
-                    <input type="text" name="Gender" style="text-align:left;" />
+                    <input type="text" name="Gender" onfocusout="SaveToCloudFlare()"/>
                 </div>
                 <div style="width: 100px; float: left;">
                     <label>Size</label>
-                    <input type="text" name="Size" style="text-align:left;" />
+                    <input type="text" name="Size" onfocusout="SaveToCloudFlare()"/>
                 </div>
                 <div style="width: 100px; float: left;">
                     <label>Deity</label>
-                    <input type="text" name="Deity" style="text-align:left;" />
+                    <input type="text" name="Deity" onfocusout="SaveToCloudFlare()"/>
                 </div>
             </section>
         </article>
@@ -545,468 +547,467 @@
                 </button>
             </div>
         </article>
-
-
+		<br />
         <article id="Skills">
-            <h2>Skills</h2>
 			<section>
-				<table style="width:99%">
+				<table style="width:97%">
+				<caption style="font-size:150%"><b>Skills<b/></caption>
 					<tr>
-						<th style="width:50px">Class Skill</th>
+						<th style="width:60px">Class Skill</th>
 						<th style="width:300px">Skill Name</th>
 						<th>Total</th>
-						<th>Ability</th>
+						<th style="width:60px">Ability</th>
 						<th>Modifier</th>
 						<th>Ranks</th>
 						<th>Class</th>
 						<th>Racial</th>
 						<th>Trait</th>
-						<th style="width:50px">Misc</th>
+						<th style="width:260px">Misc</th>
 					</tr>
 					<tr>
 						<td><input type="checkbox" name="acrobatics-class-skill"></td>
 						<td>Acrobatics</td>
 						<td><input type="text" name="acrobatics-total" style="width:50px"/></td>
-						<td>Dex</td>
+						<td style="text-align:center">Dex</td>
 						<td><input class="green" type="text" name="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
 						<td><input type="text" name="acrobatics-rank" style="width:50px"/></td>
 						<td><input type="text" name="acrobatics-class" style="width:50px"/></td>
 						<td><input type="text" name="acrobatics-racial" style="width:50px"/></td>
 						<td><input type="text" name="acrobatics-trait" style="width:50px"/></td>
-						<td><input type="text" name="acrobatics-misc" style="width:280px"/></td>
+						<td><input type="text" name="acrobatics-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="appraise-class-skill"></td>
 						<td>Appraise</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
+						<td><input type="text" name="appraise-total" style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
 						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="appraise-rank" style="width:50px"/></td>
+						<td><input type="text" name="appraise-class" style="width:50px"/></td>
+						<td><input type="text" name="appraise-racial" style="width:50px"/></td>
+						<td><input type="text" name="appraise-trait" style="width:50px"/></td>
+						<td><input type="text" name="appraise-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="bluff-class-skill"></td>
 						<td>Bluff</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="bluff-total" style="width:50px"/></td>
+						<td style="text-align:center">Cha</td>
+						<td><input class="green" type="text" name="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="bluff-rank" style="width:50px"/></td>
+						<td><input type="text" name="bluff-class" style="width:50px"/></td>
+						<td><input type="text" name="bluff-racial" style="width:50px"/></td>
+						<td><input type="text" name="bluff-trait" style="width:50px"/></td>
+						<td><input type="text" name="bluff-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="climb-class-skill"></td>
 						<td>Climb</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="climb-total" style="width:50px"/></td>
+						<td style="text-align:center">Str</td>
+						<td><input class="green" type="text" name="str-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="climb-rank" style="width:50px"/></td>
+						<td><input type="text" name="climb-class" style="width:50px"/></td>
+						<td><input type="text" name="climb-racial" style="width:50px"/></td>
+						<td><input type="text" name="climb-trait" style="width:50px"/></td>
+						<td><input type="text" name="climb-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
-						<td>Craft</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
+						<td><input type="checkbox" name="craft-class-skill"></td>
+						<td>Craft <input type="text" name="craft-name" style="width:150px;text-align:left;display:inline"/></td>
+						<td><input type="text" name="craft-total" style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
 						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="craft-rank" style="width:50px"/></td>
+						<td><input type="text" name="craft-class" style="width:50px"/></td>
+						<td><input type="text" name="craft-racial" style="width:50px"/></td>
+						<td><input type="text" name="craft-trait" style="width:50px"/></td>
+						<td><input type="text" name="craft-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="diplomacy-class-skill"></td>
 						<td>Diplomacy</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="diplomacy-total" style="width:50px"/></td>
+						<td style="text-align:center">Cha</td>
+						<td><input class="green" type="text" name="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="diplomacy-rank" style="width:50px"/></td>
+						<td><input type="text" name="diplomacy-class" style="width:50px"/></td>
+						<td><input type="text" name="diplomacy-racial" style="width:50px"/></td>
+						<td><input type="text" name="diplomacy-trait" style="width:50px"/></td>
+						<td><input type="text" name="diplomacy-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="disable-device-class-skill"></td>
 						<td>Disable Device*</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="disable-device-total" style="width:50px"/></td>
+						<td style="text-align:center">Dex</td>
+						<td><input class="green" type="text" name="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="disable-device-rank" style="width:50px"/></td>
+						<td><input type="text" name="disable-device-class" style="width:50px"/></td>
+						<td><input type="text" name="disable-device-racial" style="width:50px"/></td>
+						<td><input type="text" name="disable-device-trait" style="width:50px"/></td>
+						<td><input type="text" name="disable-device-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="disguise-class-skill"></td>
 						<td>Disguise</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="disguise-total" style="width:50px"/></td>
+						<td style="text-align:center">Cha</td>
+						<td><input class="green" type="text" name="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="disguise-rank" style="width:50px"/></td>
+						<td><input type="text" name="disguise-class" style="width:50px"/></td>
+						<td><input type="text" name="disguise-racial" style="width:50px"/></td>
+						<td><input type="text" name="disguise-trait" style="width:50px"/></td>
+						<td><input type="text" name="disguise-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="escape-artist-class-skill"></td>
 						<td>Escape Artist</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="escape-artist-total" style="width:50px"/></td>
+						<td style="text-align:center">Dex</td>
+						<td><input class="green" type="text" name="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="escape-artist-rank" style="width:50px"/></td>
+						<td><input type="text" name="escape-artist-class" style="width:50px"/></td>
+						<td><input type="text" name="escape-artist-racial" style="width:50px"/></td>
+						<td><input type="text" name="escape-artist-trait" style="width:50px"/></td>
+						<td><input type="text" name="escape-artist-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="fly-class-skill"></td>
 						<td>Fly</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="fly-total" style="width:50px"/></td>
+						<td style="text-align:center">Dex</td>
+						<td><input class="green" type="text" name="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="fly-rank" style="width:50px"/></td>
+						<td><input type="text" name="fly-class" style="width:50px"/></td>
+						<td><input type="text" name="fly-racial" style="width:50px"/></td>
+						<td><input type="text" name="fly-trait" style="width:50px"/></td>
+						<td><input type="text" name="fly-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="handle-animal-class-skill"></td>
 						<td>Handle Animal*</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="handle-animal-total" style="width:50px"/></td>
+						<td style="text-align:center">Cha</td>
+						<td><input class="green" type="text" name="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="handle-animal-rank" style="width:50px"/></td>
+						<td><input type="text" name="handle-animal-class" style="width:50px"/></td>
+						<td><input type="text" name="handle-animal-racial" style="width:50px"/></td>
+						<td><input type="text" name="handle-animal-trait" style="width:50px"/></td>
+						<td><input type="text" name="handle-animal-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="heal-class-skill"></td>
 						<td>Heal</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="heal-total" style="width:50px"/></td>
+						<td style="text-align:center">Wis</td>
+						<td><input class="green" type="text" name="wis-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="heal-rank" style="width:50px"/></td>
+						<td><input type="text" name="heal-class" style="width:50px"/></td>
+						<td><input type="text" name="heal-racial" style="width:50px"/></td>
+						<td><input type="text" name="heal-trait" style="width:50px"/></td>
+						<td><input type="text" name="heal-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="intimidate-class-skill"></td>
 						<td>Intimidate</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="intimidate-total" style="width:50px"/></td>
+						<td style="text-align:center">Cha</td>
+						<td><input class="green" type="text" name="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="intimidate-rank" style="width:50px"/></td>
+						<td><input type="text" name="intimidate-class" style="width:50px"/></td>
+						<td><input type="text" name="intimidate-racial" style="width:50px"/></td>
+						<td><input type="text" name="intimidate-trait" style="width:50px"/></td>
+						<td><input type="text" name="intimidate-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="arcana-class-skill"></td>
 						<td>Knowledge (Arcana)*</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
+						<td><input type="text" name="arcana-total" style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
 						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="arcana-rank" style="width:50px"/></td>
+						<td><input type="text" name="arcana-class" style="width:50px"/></td>
+						<td><input type="text" name="arcana-racial" style="width:50px"/></td>
+						<td><input type="text" name="arcana-trait" style="width:50px"/></td>
+						<td><input type="text" name="arcana-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="dungeoneering-class-skill"></td>
 						<td>Knowledge (Dungeoneering)*</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
+						<td><input type="text" name="dungeoneering-total" style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
 						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="dungeoneering-rank" style="width:50px"/></td>
+						<td><input type="text" name="dungeoneering-class" style="width:50px"/></td>
+						<td><input type="text" name="dungeoneering-racial" style="width:50px"/></td>
+						<td><input type="text" name="dungeoneering-trait" style="width:50px"/></td>
+						<td><input type="text" name="dungeoneering-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="engineering-class-skill"></td>
 						<td>Knowledge (Engineering)*</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
+						<td><input type="text" name="engineering-total" style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
 						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="engineering-rank" style="width:50px"/></td>
+						<td><input type="text" name="engineering-class" style="width:50px"/></td>
+						<td><input type="text" name="engineering-racial" style="width:50px"/></td>
+						<td><input type="text" name="engineering-trait" style="width:50px"/></td>
+						<td><input type="text" name="engineering-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="geography-class-skill"></td>
 						<td>Knowledge (Geography)*</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
+						<td><input type="text" name="geography-total" style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
 						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="geography-rank" style="width:50px"/></td>
+						<td><input type="text" name="geography-class" style="width:50px"/></td>
+						<td><input type="text" name="geography-racial" style="width:50px"/></td>
+						<td><input type="text" name="geography-trait" style="width:50px"/></td>
+						<td><input type="text" name="geography-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="history-class-skill"></td>
 						<td>Knowledge (History)*</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
+						<td><input type="text" name="history-total" style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
 						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="history-rank" style="width:50px"/></td>
+						<td><input type="text" name="history-class" style="width:50px"/></td>
+						<td><input type="text" name="history-racial" style="width:50px"/></td>
+						<td><input type="text" name="history-trait" style="width:50px"/></td>
+						<td><input type="text" name="history-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="local-class-skill"></td>
 						<td>Knowledge (Local)*</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
+						<td><input type="text" name="local-total" style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
 						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="local-rank" style="width:50px"/></td>
+						<td><input type="text" name="local-class" style="width:50px"/></td>
+						<td><input type="text" name="local-racial" style="width:50px"/></td>
+						<td><input type="text" name="local-trait" style="width:50px"/></td>
+						<td><input type="text" name="local-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="nature-class-skill"></td>
 						<td>Knowledge (Nature)*</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
+						<td><input type="text" name="nature-total" style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
 						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="nature-rank" style="width:50px"/></td>
+						<td><input type="text" name="nature-class" style="width:50px"/></td>
+						<td><input type="text" name="nature-racial" style="width:50px"/></td>
+						<td><input type="text" name="nature-trait" style="width:50px"/></td>
+						<td><input type="text" name="nature-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="nobility-class-skill"></td>
 						<td>Knowledge (Nobility)*</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
+						<td><input type="text" name="nobility-total" style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
 						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="nobility-rank" style="width:50px"/></td>
+						<td><input type="text" name="nobility-class" style="width:50px"/></td>
+						<td><input type="text" name="nobility-racial" style="width:50px"/></td>
+						<td><input type="text" name="nobility-trait" style="width:50px"/></td>
+						<td><input type="text" name="nobility-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="planes-class-skill"></td>
 						<td>Knowledge (Planes)*</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
+						<td><input type="text" name="planes-total" style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
 						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="planes-rank" style="width:50px"/></td>
+						<td><input type="text" name="planes-class" style="width:50px"/></td>
+						<td><input type="text" name="planes-racial" style="width:50px"/></td>
+						<td><input type="text" name="planes-trait" style="width:50px"/></td>
+						<td><input type="text" name="planes-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="religion-class-skill"></td>
 						<td>Knowledge (Religion)*</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
+						<td><input type="text" name="religion-total" style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
 						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="religion-rank" style="width:50px"/></td>
+						<td><input type="text" name="religion-class" style="width:50px"/></td>
+						<td><input type="text" name="religion-racial" style="width:50px"/></td>
+						<td><input type="text" name="religion-trait" style="width:50px"/></td>
+						<td><input type="text" name="religion-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="linguistics-class-skill"></td>
 						<td>Linguistics*</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
+						<td><input type="text" name="linguistics-total" style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
 						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="linguistics-rank" style="width:50px"/></td>
+						<td><input type="text" name="linguistics-class" style="width:50px"/></td>
+						<td><input type="text" name="linguistics-racial" style="width:50px"/></td>
+						<td><input type="text" name="linguistics-trait" style="width:50px"/></td>
+						<td><input type="text" name="linguistics-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="perception-class-skill"></td>
 						<td>Perception</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="perception-total" style="width:50px"/></td>
+						<td style="text-align:center">Wis</td>
+						<td><input class="green" type="text" name="wis-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="perception-rank" style="width:50px"/></td>
+						<td><input type="text" name="perception-class" style="width:50px"/></td>
+						<td><input type="text" name="perception-racial" style="width:50px"/></td>
+						<td><input type="text" name="perception-trait" style="width:50px"/></td>
+						<td><input type="text" name="perception-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
-						<td>Perform</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="checkbox" name="perform-class-skill"></td>
+						<td>Perform <input type="text" name="perform-name" style="width:150px;text-align:left;display:inline"/></td>
+						<td><input type="text" name="perform-total" style="width:50px"/></td>
+						<td style="text-align:center">Cha</td>
+						<td><input class="green" type="text" name="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="perform-rank" style="width:50px"/></td>
+						<td><input type="text" name="perform-class" style="width:50px"/></td>
+						<td><input type="text" name="perform-racial" style="width:50px"/></td>
+						<td><input type="text" name="perform-trait" style="width:50px"/></td>
+						<td><input type="text" name="perform-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
-						<td>Profession</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="checkbox" name="profession-class-skill"></td>
+						<td>Profession <input type="text" name="profession-name" style="width:150px;text-align:left;display:inline"/></td>
+						<td><input type="text" name="profession-total" style="width:50px"/></td>
+						<td style="text-align:center">Wis</td>
+						<td><input class="green" type="text" name="wis-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="profession-rank" style="width:50px"/></td>
+						<td><input type="text" name="profession-class" style="width:50px"/></td>
+						<td><input type="text" name="profession-racial" style="width:50px"/></td>
+						<td><input type="text" name="profession-trait" style="width:50px"/></td>
+						<td><input type="text" name="profession-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="ride-class-skill"></td>
 						<td>Ride</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="ride-total" style="width:50px"/></td>
+						<td style="text-align:center">Dex</td>
+						<td><input class="green" type="text" name="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="ride-rank" style="width:50px"/></td>
+						<td><input type="text" name="ride-class" style="width:50px"/></td>
+						<td><input type="text" name="ride-racial" style="width:50px"/></td>
+						<td><input type="text" name="ride-trait" style="width:50px"/></td>
+						<td><input type="text" name="ride-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="sense-motive-class-skill"></td>
 						<td>Sense Motive</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="sense-motive-total" style="width:50px"/></td>
+						<td style="text-align:center">Wis</td>
+						<td><input class="green" type="text" name="wis-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="sense-motive-rank" style="width:50px"/></td>
+						<td><input type="text" name="sense-motive-class" style="width:50px"/></td>
+						<td><input type="text" name="sense-motive-racial" style="width:50px"/></td>
+						<td><input type="text" name="sense-motive-trait" style="width:50px"/></td>
+						<td><input type="text" name="sense-motive-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="sleight-of-hand-class-skill"></td>
 						<td>Sleight of Hand*</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="sleight-of-hand-total" style="width:50px"/></td>
+						<td style="text-align:center">Dex</td>
+						<td><input class="green" type="text" name="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="sleight-of-hand-rank" style="width:50px"/></td>
+						<td><input type="text" name="sleight-of-hand-class" style="width:50px"/></td>
+						<td><input type="text" name="sleight-of-hand-racial" style="width:50px"/></td>
+						<td><input type="text" name="sleight-of-hand-trait" style="width:50px"/></td>
+						<td><input type="text" name="sleight-of-hand-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="spellcraft-class-skill"></td>
 						<td>Spellcraft*</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
+						<td><input type="text" name="spellcraft-total" style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
 						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="spellcraft-rank" style="width:50px"/></td>
+						<td><input type="text" name="spellcraft-class" style="width:50px"/></td>
+						<td><input type="text" name="spellcraft-racial" style="width:50px"/></td>
+						<td><input type="text" name="spellcraft-trait" style="width:50px"/></td>
+						<td><input type="text" name="spellcraft-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="stealth-class-skill"></td>
 						<td>Stealth</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="stealth-total" style="width:50px"/></td>
+						<td style="text-align:center">Dex</td>
+						<td><input class="green" type="text" name="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="stealth-rank" style="width:50px"/></td>
+						<td><input type="text" name="stealth-class" style="width:50px"/></td>
+						<td><input type="text" name="stealth-racial" style="width:50px"/></td>
+						<td><input type="text" name="stealth-trait" style="width:50px"/></td>
+						<td><input type="text" name="stealth-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="survival-class-skill"></td>
 						<td>Survival</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="survival-total" style="width:50px"/></td>
+						<td style="text-align:center">Wis</td>
+						<td><input class="green" type="text" name="wis-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="survival-rank" style="width:50px"/></td>
+						<td><input type="text" name="survival-class" style="width:50px"/></td>
+						<td><input type="text" name="survival-racial" style="width:50px"/></td>
+						<td><input type="text" name="survival-trait" style="width:50px"/></td>
+						<td><input type="text" name="survival-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="swim-class-skill"></td>
 						<td>Swim</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="swim-total" style="width:50px"/></td>
+						<td style="text-align:center">Str</td>
+						<td><input class="green" type="text" name="str-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="swim-rank" style="width:50px"/></td>
+						<td><input type="text" name="swim-class" style="width:50px"/></td>
+						<td><input type="text" name="swim-racial" style="width:50px"/></td>
+						<td><input type="text" name="swim-trait" style="width:50px"/></td>
+						<td><input type="text" name="swim-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="Appraise-class-skill"></td>
+						<td><input type="checkbox" name="use-magic-device-class-skill"></td>
 						<td>Use Magic Device</td>
-						<td><input type="text" name="Appraise-total" style="width:50px"/></td>
-						<td>Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="Appraise-misc" style="width:280px"/></td>
+						<td><input type="text" name="use-magic-device-total" style="width:50px"/></td>
+						<td style="text-align:center">Cha</td>
+						<td><input class="green" type="text" name="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" name="use-magic-device-rank" style="width:50px"/></td>
+						<td><input type="text" name="use-magic-device-class" style="width:50px"/></td>
+						<td><input type="text" name="use-magic-device-racial" style="width:50px"/></td>
+						<td><input type="text" name="use-magic-device-trait" style="width:50px"/></td>
+						<td><input type="text" name="use-magic-device-misc" style="width:260px"/></td>
 					</tr>
 				</table>
-				<div class="w110 new-line"><label>* Trained Only</label></div>
+				<label style="text-align:left">* Trained Only</label>
 				
-				<div class="black" style="width:120px;height:60px;margin-left:5px;margin-right:8px">
+				<div class="black" style="width:120px;height:60px;">
 					<span style="font-size:25px;">Conditional</span>
 					<label class="blackLabel">Modifiers</label>
 				</div>
-				<div style="width:880px;height:60px;float:left;">
+				<div style="width:870px;height:60px;float:left;">
 					<input type="text" name="Skill-Notes"/>
 					<label style="font-size:12px;line-height:20px;width:80px">Other Notes</label>
 				</div>
-
-				<div class="black" style="width:120px;height:60px;margin-left:5px;margin-right:8px">
+				
+				<div class="black" style="width:120px;height:60px">
 					<span style="font-size:25px;">Languages</span>
 					<label class="blackLabel">Known</label>
 				</div>
-				<div style="width:880px;height:60px;float:left;">
+				<div style="width:870px;height:60px;float:left;">
 					<input type="text" name="languages"/>
 					<label style="font-size:12px;line-height:20px;width:80px">Spoken/Written</label>
 				</div>
 			</section>
         </article>
-		
-		<article>
+		<br />
+		<article id="Customization">
 			<section>
 				<div style="clear:both">
                 <button type="button" onclick="">
@@ -1018,6 +1019,171 @@
                 <button type="button" onclick="">
                     +Trait
                 </button>
+			</section>
+		</article>
+		<br />
+		<article id="AC Items">
+			<section>
+				<div class="black" style="width:100px;height:60px">
+					<span style="font-size:25px;">AC Items</span>
+				</div>
+				<div style="width:170px;height:60px;float:left;">
+					<input type="text" name="AC-Misc"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Name</label>
+				</div>
+				<div style="width:55px;height:60px;float:left;">
+					<input type="text" name="AC-Misc"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Bonus</label>
+				</div>
+				<div style="width:100px;height:60px;float:left;">
+					<input type="text" name="AC-Misc"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Type</label>
+				</div>
+				<div style="width:55px;height:60px;float:left;">
+					<input type="text" name="AC-Misc"/>
+					<label style="font-size:12px;line-height:20px;width:70px">Check Penalty</label>
+				</div>
+				<div style="width:55px;height:60px;float:left;">
+					<input type="text" name="AC-Misc"/>
+					<label style="font-size:12px;line-height:20px;width:70px">Spell Failure</label>
+				</div>
+				<div style="width:350px;height:60px;float:left;">
+					<input type="text" name="AC-Misc"/>
+					<label style="font-size:12px;line-height:20px;width:70px">Notes</label>
+				</div>
+				
+                <button type="button" onclick="" style="width:100px;float:left">
+                    +AC Item
+                </button>
+				<div style="width:185px;float:left;visibility:hidden"> </div>
+				<div style="width:55px;height:60px;float:left;">
+					<input type="text" name="AC-Misc"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Bonus</label>
+				</div>
+				<div style="width:100px;float:left;visibility:hidden"></div>
+				<div style="width:55px;height:60px;float:left;">
+					<input type="text" name="AC-Misc"/>
+					<label style="font-size:12px;line-height:20px;width:70px">Check Penalty</label>
+				</div>
+				<div style="width:55px;height:60px;float:left;">
+					<input type="text" name="AC-Misc"/>
+					<label style="font-size:12px;line-height:20px;width:70px">Spell Failure</label>
+				</div>
+			</section>
+		</article>
+		<br />
+		<article id="Gear">
+			<section>
+				<div class="black" style="width:40px;height:60px">
+					<span style="font-size:25px;">GP</span>
+					<label class="blackLabel">Gold</label>
+				</div>
+				<div style="width:50px;height:60px;float:left;">
+					<input type="text" name="money"/>
+				</div>
+				<div class="black" style="width:50px;height:60px">
+					<span style="font-size:25px;">Gear</span>
+				</div>
+                <button type="button" onclick="" style="float:left">
+                    +Gear
+                </button>
+			</section>
+		</article>
+		<br />
+		<article id="Spells">
+			<section>
+				<table style="width:97%">
+				<caption style="font-size:150%"><b>Spells<b/></caption>
+					<tr>
+						<th>Spell Level</th>
+						<th>0th</th>
+						<th>1st</th>
+						<th>2nd</th>
+						<th>3rd</th>
+						<th>4th</th>
+						<th>5th</th>
+						<th>6th</th>
+						<th>7th</th>
+						<th>8th</th>
+						<th>9th</th>
+					</tr>
+					<tr>
+						<td style="text-align:center">Spells Known</td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+					</tr>
+					<tr>
+						<td style="text-align:center">Spells DC</td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+					</tr>
+					<tr>
+						<td style="text-align:center">Spells Per Day</td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+					</tr>
+					<tr>
+						<td style="text-align:center">Bonus Spells</td>
+						<td><input type="text" name="Total-AC" style="width:50px;visibility:hidden"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+					</tr>
+				</table>
+				<br />
+				<div class="black" style="width:140px;height:60px;margin-right:8px">
+					<span>Conditional</span>
+					<label class="blackLabel">Modifiers</label>
+				</div>
+				<div style="width:340px;height:60px;float:left;">
+					<input type="text" name="Total-AC" />
+					<label style="font-size:12px;line-height:20px;width:100px">Spell DC Modifiers</label>
+				</div>
+				<div class="black" style="width:140px;height:60px;margin-right:8px">
+					<span>Specialty</span>
+					<label class="blackLabel">Schools/Domains/Bloodlines</label>
+				</div>
+				<div style="width:340px;height:60px;float:left;">
+					<input type="text" name="Total-AC" />
+					<label style="font-size:12px;line-height:20px;width:300px">Specialised & Opposed Schools, Bloodlines, Domains</label>
+				</div>
+			</section>
+		</article>
+		
+		<article id="Notes">
+			<section>
+				<h2>Notes</h2>
+					<textarea name="Notes" style="width:95%;height:500px;text-align:left"></textarea>
 			</section>
 		</article>
     </div>

@@ -1,14 +1,14 @@
-{
+{ 
 	"name": "Character Name",
-	"alignment": "TN",
 	"player": "Player Name",
 	
 	"class": "Class 0",
-	"race": "Halfling",
-	"size": "test",
 	
-	"deity": "test",
+	"race": "Halfling",
+	"alignment": "TN",
 	"gender": "test",
+	"size": "test",
+	"deity": "test",
 	
 	"abilities": {
 		"str": "0",
@@ -275,15 +275,7 @@
 		"notes": "test"
 	}],
 	
-	
-	"money": {
-		"pp": "0",
-		"gp": "0",
-		"sp": "0",
-		"cp": "0",
-		"gems": "0",
-		"other": "test"
-	},
+	"gp": "0",
 		
 	"gear": [{
 		"type": "test",

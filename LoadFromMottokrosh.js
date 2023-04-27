@@ -1,5 +1,5 @@
 //Process json from CharacterSheet.co.uk to CloudFlare KV
-async function Process () {
+async function LoadFromMottokrosh () {
 	const files = document.getElementById("charsheet").files;
 	const text = await files[0].text();
 	const json = JSON.parse(text);
