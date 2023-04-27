@@ -1,4 +1,5 @@
 async function LoadFromCloudFlare () {
+	console.log("Why won't you work");
 	const response = await fetch("../api/Pathfinder1/Andrew/1");
 	const json = await response.json();
 	console.log(json);
