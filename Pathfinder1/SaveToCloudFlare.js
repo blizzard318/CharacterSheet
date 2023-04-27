@@ -14,10 +14,15 @@ async function SaveToCloudFlare () {
 	
 	const response = await fetch("../api/Pathfinder1/Andrew",{
 		method: "POST",
+		mode: "cors",
+		cache: "no-cache",
+		credentials: "same-origin",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(character)
+		redirect: "follow",
+		referrerPolicy: "no-referrer",
+		body: JSON.stringify(character)w
 	});
-	alert(response.text());
+	console.log(response);
 	
 	/*const xhr = new XMLHttpRequest();
 	xhr.open("POST", "https://characters.icecubez.workers.dev/Pathfinder1", true);
