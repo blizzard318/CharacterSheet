@@ -7,17 +7,21 @@ function GetKV (GameName) {
 }
 
 export async function onRequestGet (context) {
+	console.log(context.params.params.length);
 	const KVList = GetKV(context.params.params[0]);
+	console.log(context.params.params[0]);
 	const PlayerName = context.params.params[1];
+	console.log(context.params.params[1]);
 	const CharacterIndex = context.params.params[2];
+	console.log(context.params.params[2]);
 	
-	if (CharacterIndex === undefined) {
+	if (CharacterIndex === undefined || CharacterIndex === null) {
 		const characters = await KVList.list({ prefix: PlayerName });
 		return new Response(characters.keys.length);
 	} else {
 		const key = PlayerName + "/" + CharacterIndex;
 		const character = await KVList.get(key);
-		if (character === null) {
+		if (character === undefined || character === null) {
 			return new Response("No such character exists");
 		} 
 		return new Response(character);
