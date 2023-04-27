@@ -1,8 +1,6 @@
 # CharacterSheet
 For Pathfinder and then maybe more?
 
-Github Page:
-https://blizzard318.github.io/CharacterSheet/
+CloudFlare Page: https://charactersheet.pages.dev/
 
-Cloudflare Worker:
-https://characters.icecubez.workers.dev/
+Do not enable Github Page, it won't work.
