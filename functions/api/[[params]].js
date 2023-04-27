@@ -1,5 +1,5 @@
 function GetKV (ctx) {
-	switch (ctx.functionPath.split("/")[1])
+	switch (ctx.functionPath.split("/")[2])
 	{
 		case "Pathfinder1":
 		  return ctx.env.Pathfinder1;
