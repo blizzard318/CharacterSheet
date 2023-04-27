@@ -1,12 +1,8 @@
 function GetKV (ctx) {
-	switch (ctx.functionPath.split("/")[2])
-	{
-		case "Pathfinder1":
-		  return ctx.env.Pathfinder1;
-		case "Pathfinder2":
-		  return {};
-		case "Nobilis":
-		  return {};
+	switch (ctx.functionPath.split("/")[2]) {
+		case "Pathfinder1": return ctx.env.Pathfinder1;
+		case "Pathfinder2": return {};
+		case "Nobilis": 	return {};
 	}
 }
 
