@@ -5,7 +5,7 @@ export async function onRequest(context) {
   alert(value);
 }
 
-async function LoadFromCloudFlare () {
+async function LoadFromJSON () {
 	const files = document.getElementById("charsheet").files;
 	const text = await files[0].text();
 	const json = JSON.parse(text);
