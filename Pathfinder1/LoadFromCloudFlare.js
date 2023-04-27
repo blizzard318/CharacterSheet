@@ -1,8 +1,6 @@
 async function LoadFromCloudFlare () {
 	const response = await fetch("../api/Pathfinder1/Andrew/1");
-	const json = await response.json();
-	console.log(json);
-	const character = JSON.parse(json);
+	const character = await response.json();
 	
 	document.getElementsByName("CharacterName")[0].value = character.name;
 	document.getElementsByName("PlayerName")[0].value = character.player;
