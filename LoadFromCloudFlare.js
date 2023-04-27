@@ -1,6 +1,7 @@
 async function LoadFromCloudFlare () {
 	const response = await fetch("/LoadFromCloudFlare");
-	alert(response.json());
+	const json = await response.json();
+	console.log(json);
 	
 	/*const files = document.getElementById("charsheet").files;
 	const text = await files[0].text();
