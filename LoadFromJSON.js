@@ -3,6 +3,7 @@ export async function onRequest(context) {
   
   const value = await kv.get("Andrew/1");
   alert(value);
+  return new Response(value);
 }
 
 async function LoadFromCloudFlare () {
