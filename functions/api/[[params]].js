@@ -1,5 +1,5 @@
-function GetKV (GameName) {
-	switch (GameName) {
+function GetKV (ctx) {
+	switch (ctx.params.params[0]) {
 		case "Pathfinder1": return ctx.env.Pathfinder1;
 		case "Pathfinder2": return {};
 		case "Nobilis": 	return {};
@@ -7,13 +7,9 @@ function GetKV (GameName) {
 }
 
 export async function onRequestGet (context) {
-	console.log(context.params.params.length);
-	const KVList = GetKV(context.params.params[0]);
-	console.log(context.params.params[0]);
+	const KVList = GetKV(context);
 	const PlayerName = context.params.params[1];
-	console.log(context.params.params[1]);
 	const CharacterIndex = context.params.params[2];
-	console.log(context.params.params[2]);
 	
 	if (CharacterIndex === undefined || CharacterIndex === null) {
 		const characters = await KVList.list({ prefix: PlayerName });
