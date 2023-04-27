@@ -1,11 +1,6 @@
 async function LoadFromCloudFlare () {
-	var xhr = new XMLHttpRequest();
-    xhr.open('GET', "/LoadFromCloudFlare", true);
-    xhr.responseType = 'json';
-    xhr.onload = function() {
-		alert(xhr.response);
-    };
-    xhr.send();
+	const response = await fetch("/LoadFromCloudFlare");
+	alert(response.json());
 	
 	/*const files = document.getElementById("charsheet").files;
 	const text = await files[0].text();
