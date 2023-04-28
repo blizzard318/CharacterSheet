@@ -3,7 +3,7 @@ async function SaveToCloudFlare1 () {
 	
 	character.name = document.getElementsByName("CharacterName")[0].value;
 	character.player = document.getElementsByName("PlayerName")[0].value;
-	if (character.player === null || character.player === undefined) return;
+	if (!character.player) return;
 	
 	character.class = document.getElementsByName("Class")[0].value;
 	
