@@ -1,4 +1,4 @@
-async function SaveToCloudFlare1 () {
+async function SaveToCloudFlare () {
 	let character = { };
 	
 	character.name = document.getElementsByName("CharacterName")[0].value;
@@ -13,17 +13,15 @@ async function SaveToCloudFlare1 () {
 	character.size = document.getElementsByName("Size")[0].value;
 	character.deity = document.getElementsByName("Deity")[0].value;
 	
-	console.log(JSON.stringify(character));
-	const url = "../api/Pathfinder1/" + character.player;
+	const url = "../api/Pathfinder1/" + character.player + "/2";
 	const response = await fetch(url,{
-		method: "POST",
+		method: "PUT",
 		headers: { 
 		  'Accept': 'application/json',
 		  'Content-Type': 'application/json'
 		},
 		body: JSON.stringify(character)
 	});
-	console.log(response);
 	
 	/*const xhr = new XMLHttpRequest();
 	xhr.open("POST", "https://characters.icecubez.workers.dev/Pathfinder1", true);
