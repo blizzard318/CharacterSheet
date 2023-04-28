@@ -1,4 +1,4 @@
-async function SaveToCloudFlare () {
+async function SaveToCloudFlare1 () {
 	let character = { };
 	
 	character.name = document.getElementsByName("CharacterName")[0].value;
@@ -12,14 +12,13 @@ async function SaveToCloudFlare () {
 	character.size = document.getElementsByName("Size")[0].value;
 	character.deity = document.getElementsByName("Deity")[0].value;
 	
-	const response = await fetch("../api/Pathfinder1/Andrew",{
+	const url = "../api/Pathfinder1/" + character.player;
+	const response = await fetch(url,{
 		method: "POST",
-		mode: "cors",
-		cache: "no-cache",
-		credentials: "same-origin",
-		headers: { "Content-Type": "application/json" },
-		redirect: "follow",
-		referrerPolicy: "no-referrer",
+		headers: { 
+		  'Accept': 'application/json',
+		  'Content-Type': 'application/json'
+		},
 		body: JSON.stringify(character)
 	});
 	console.log(response);
