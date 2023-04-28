@@ -6,7 +6,6 @@ async function LoadFromMottokrosh () {
 	
 	let character = { };
 	
-	character.player = json.user.displayName;
 	character.name = json.name;
 	character.alignment = json.alignment
 	
