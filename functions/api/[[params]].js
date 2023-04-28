@@ -31,7 +31,6 @@ export async function onRequestPost (context) { //Create new character
 	
 	const characters = await KVList.list({ prefix: PlayerName });
 
-	const value = await request.text();
 	let key = PlayerName + "/";
 
 	if (characters.keys.length == 0) {
@@ -41,6 +40,8 @@ export async function onRequestPost (context) { //Create new character
 		const lastKey = characters.keys[lastIndex].name;
 		key += Number(lastKey.split("/")[1]) + 1;
 	}
+	
+	const value = await context.request.text();
 	await KVList.put(key, value);
 	return new Response("Created");
 }
