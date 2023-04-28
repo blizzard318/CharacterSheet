@@ -6,25 +6,6 @@ function GetKV (ctx) {
 	}
 }
 
-export async function onRequestGet (context) { //Get list or single character
-	const KVList = GetKV(context);
-	const PlayerName = context.params.params[1];
-	const CharacterIndex = context.params.params[2];
-	
-	if (CharacterIndex === undefined || CharacterIndex === null) {
-		const characters = await KVList.list({ prefix: PlayerName });
-		return new Response(characters.keys.length);
-	} else {
-		const key = PlayerName + "/" + CharacterIndex;
-		const character = await KVList.get(key);
-		if (character === undefined || character === null) {
-			return new Response("No such character exists");
-		} 
-		return new Response(character);
-	}
-	return new Response("Invalid Input");
-}
-
 export async function onRequestPost (context) { //Create new character
 	const KVList = GetKV(context);
 	const PlayerName = context.params.params[1];
@@ -46,61 +27,44 @@ export async function onRequestPost (context) { //Create new character
 	return new Response("Created");
 }
 
-/*export async function onRequest (context) {
-	switch (context.functionPath.split("/")[1]) {
-		case "Pathfinder1":
-          var kv = context.env.Pathfinder1;
-          break;
-        case "Pathfinder2":
-          break;
-        case "Nobilis":
-          break;
-	}
+export async function onRequestPut (context) { //Updates existing character
+	const KVList = GetKV(context);
+	const PlayerName = context.params.params[1];
+	const CharacterIndex = context.params.params.split("/")[2];
 	
-	const params = context.params.params;
+	const key = PlayerName + "/" + CharacterIndex;
+	const value = await context.request.text();
 	
-	const PlayerName = params.split("/")[2];
-	const CharacterIndex = params.split("/")[3];
+	await KVList.put(key, value);
+	return new Response("Updated");
+}
+
+export async function onRequestGet (context) { //Get list or single character
+	const KVList = GetKV(context);
+	const PlayerName = context.params.params[1];
+	const CharacterIndex = context.params.params[2];
 	
-	if (CharacterIndex === undefined) {
+	if (CharacterIndex === undefined || CharacterIndex === null) {
 		const characters = await KVList.list({ prefix: PlayerName });
-
-		if (request.method === "GET") { //Get characters
-			return new Response(characters.keys.length);
-		} else if (request.method === "POST") { //Create a character
-			const value = await request.text();
-			let key = PlayerName + "/";
-
-			if (characters.keys.length == 0) {
-				key += 1;
-			} else {
-				const lastIndex = characters.keys.length - 1;
-				const lastKey = characters.keys[lastIndex].name;
-				key += Number(lastKey.split("/")[1]) + 1;
-			}
-			await KVList.put(key, value);
-			return new Response("Created");
-		}
+		return new Response(characters.keys.length);
 	} else {
 		const key = PlayerName + "/" + CharacterIndex;
 		const character = await KVList.get(key);
-
-		if (request.method === "GET") { //Get a character
-			const character = await KVList.get(key);
-			if (character === null) {
-				return new Response("No such character exists");
-			} 
-			return new Response(character);
+		if (character === undefined || character === null) {
+			return new Response("No such character exists");
 		} 
-		else if (request.method === "PUT") { //Update a character
-			const value = await request.text();
-			await KVList.put(key, value);
-			return new Response("Updated");
-		} 
-		else if (request.method === "DELETE") { //Delete a character
-			await KVList.delete(key);
-			return new Response("Deleted")
-		}
+		return new Response(character);
 	}
-	return new Response(value);
-}*/
+	return new Response("Invalid Input");
+}
+
+export async function onRequestDelete (context) { //Deletes a character
+	const KVList = GetKV(context);
+	const PlayerName = context.params.params[1];
+	const CharacterIndex = context.params.params.split("/")[2];
+	
+	const key = PlayerName + "/" + CharacterIndex;
+	
+	await KVList.delete(key);
+	return new Response("Deleted");
+}
