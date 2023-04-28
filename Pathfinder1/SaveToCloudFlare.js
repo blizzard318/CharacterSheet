@@ -20,7 +20,7 @@ async function SaveToCloudFlare () {
 		headers: { "Content-Type": "application/json" },
 		redirect: "follow",
 		referrerPolicy: "no-referrer",
-		body: JSON.stringify(character)w
+		body: JSON.stringify(character)
 	});
 	console.log(response);
 	
