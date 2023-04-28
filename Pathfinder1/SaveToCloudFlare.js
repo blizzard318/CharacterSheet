@@ -3,6 +3,7 @@ async function SaveToCloudFlare1 () {
 	
 	character.name = document.getElementsByName("CharacterName")[0].value;
 	character.player = document.getElementsByName("PlayerName")[0].value;
+	if (character.player === null || character.player === undefined) return;
 	
 	character.class = document.getElementsByName("Class")[0].value;
 	
@@ -12,6 +13,7 @@ async function SaveToCloudFlare1 () {
 	character.size = document.getElementsByName("Size")[0].value;
 	character.deity = document.getElementsByName("Deity")[0].value;
 	
+	console.log(JSON.stringify(character));
 	const url = "../api/Pathfinder1/" + character.player;
 	const response = await fetch(url,{
 		method: "POST",
