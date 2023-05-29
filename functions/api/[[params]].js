@@ -52,7 +52,7 @@ export async function onRequestGet (context) { //Get list or single character
 			let character = {};
 			character.name = json.name;
 			character.class = json.class;
-			retval.push(character);
+			retval.push(json);
 		}
 		return new Response(JSON.stringify(retval));
 	} else { //Single character
