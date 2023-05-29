@@ -1,5 +1,6 @@
 async function ShowPart2(name) {
-	document.getElementById("Part2").style.display = "block";
+	const Part2 = document.getElementById("Part2");
+	Part2.style.display = "block";
 	document.getElementById("Name").innerHTML = name;
   
 	if (name != "Stranger") {
@@ -8,13 +9,10 @@ async function ShowPart2(name) {
 		
 		const list = document.getElementById("CharacterList");
 		for (let character of characters) {
-			let li = document.createElement("li");
-			
 			let button = document.createElement("button");
 			button.innerText = "Name: " + character.name + " Class: " + character.class;
 			
-			li.appendChild(button);
-			list.appendChild(li);
+			Part2.appendChild(button);
 		}
 	}
 }
