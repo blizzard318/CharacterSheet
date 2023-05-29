@@ -12,6 +12,7 @@ async function ShowPart2(name) {
 			let button = document.createElement("button");
 			button.innerText = "Name: " + character.name + " Class: " + character.class;
 			
+			Part2.appendChild(document.createElement("br"));
 			Part2.appendChild(button);
 		}
 	}
