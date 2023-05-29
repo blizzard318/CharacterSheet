@@ -3,9 +3,11 @@ async function LoadFromCloudFlare () {
 	  get: (searchParams, prop) => searchParams.get(prop),
 	});
 	// Get the value of "some_key" in eg "https://example.com/?key=value"
-	let value = params.key; // "some_value"
+	const key = params.key; // "value"
 	
-	const response = await fetch("../api/Pathfinder1/Andrew/1");
+	if (key === undefined || key === null) return;
+	
+	const response = await fetch("../api/Pathfinder1/" + key);
 	const character = await response.json();
 	
 	document.getElementsByName("CharacterName")[0].value = character.name;
@@ -19,3 +21,4 @@ async function LoadFromCloudFlare () {
 	document.getElementsByName("Size")[0].value = character.size;
 	document.getElementsByName("Deity")[0].value = character.deity;
 }
+LoadFromCloudFlare();

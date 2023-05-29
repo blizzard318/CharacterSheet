@@ -13,7 +13,7 @@ async function ShowPart2(name) {
 			button.innerText = "Name: " + character.name + " Class: " + character.class;
 			
 			let a = document.createElement("a");
-			a.setAttribute("href","../?key=" + character.key);
+			a.setAttribute("href","./?key=" + character.key);
 			a.appendChild(button);
 			
 			Part2.appendChild(document.createElement("br"));
