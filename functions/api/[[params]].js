@@ -44,10 +44,18 @@ export async function onRequestGet (context) { //Get list or single character
 	const PlayerName = context.params.params[1];
 	const CharacterIndex = context.params.params[2];
 	
-	if (CharacterIndex === undefined || CharacterIndex === null) {
+	if (CharacterIndex === undefined || CharacterIndex === null) { //List of characters
 		const characters = await KVList.list({ prefix: PlayerName });
-		return new Response(characters.keys.length);
-	} else {
+		let retval = [];
+		for (let key in characters.keys) {
+			const character = await KVList.get(key);
+			let summary = {};
+			summary.name = character.name;
+			summary.class = character.class;
+			retval.push(summary);
+		}
+		return new Response(JSON.stringify(retval));
+	} else { //Single character
 		const key = PlayerName + "/" + CharacterIndex;
 		const character = await KVList.get(key);
 		if (character === undefined || character === null) {

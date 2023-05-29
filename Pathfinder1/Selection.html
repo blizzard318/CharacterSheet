@@ -9,6 +9,7 @@
     <meta name="description" content="Homebrew for Pathfinder 1e">
     <link rel="stylesheet" href="../styles.css" />
 	<link rel="shortcut icon" href="../favicon.ico">
+	<script src="Selection.js" charset="utf-8"></script>
 	<script src="LoadFromMottokrosh.js" charset="utf-8"></script>
 	<script src="LoadFromJSON.js" charset="utf-8"></script>
 	<script src="LoadFromCloudFlare.js" charset="utf-8"></script>
@@ -20,19 +21,23 @@
 		
 		<div id="Part1" style="display:block">
 			<div style="text-align:center;font-size:200%">Hello, who are you?</div>
-			<button onclick="">Andrew</button>
-			<button onclick="">Eugene</button>
-			<button onclick="">Indy</button>
-			<button onclick="">Jordan</button>
-			<button onclick="">Laurence</button>
-			<button onclick="">Samuel</button>
-			<button onclick="">A Complete Stranger</button>
+			<button onclick="ShowPart2('Andrew')">Andrew</button>
+			<button onclick="ShowPart2('Eugene')">Eugene</button>
+			<button onclick="ShowPart2('Indy')">Indy</button>
+			<button onclick="ShowPart2('Jordan')">Jordan</button>
+			<button onclick="ShowPart2('Laurence')">Laurence</button>
+			<button onclick="ShowPart2('Samuel')">Samuel</button>
+			<button onclick="ShowPart2('Stranger')">A Complete Stranger</button>
 		</div>
 		
 		<div id="Part2" style="display:none">
-			Hello, <div id="Name">Name</div>
+			<div style="text-align:center;font-size:200%">
+				Hello, <div id="Name" style="display:inline">Name</div>
+			</div>
 			<button onclick="">Upload from JSON</button>
 			<button onclick="">Upload from Mottokrosh</button>
+			<ul id="CharacterList">
+			</ul>
 		</div>
     </div>
 </body>
