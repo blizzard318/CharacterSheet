@@ -49,10 +49,11 @@ export async function onRequestGet (context) { //Get list or single character
 		let retval = [];
 		for (let key of characters.keys) {
 			const json = await KVList.get(key.name);
-			let character = {};
-			character.name = json.name;
-			character.class = json.class;
-			retval.push(json);
+			const character = JSON.parse(json);
+			let input = {};
+			input.name = character.name;
+			input.class = character.class;
+			retval.push(input);
 		}
 		return new Response(JSON.stringify(retval));
 	} else { //Single character
