@@ -50,9 +50,9 @@ export async function onRequestGet (context) { //Get list or single character
 		for (let key of characters.keys) {
 			const fullkey = PlayerName + "/" + key;
 			const json = await KVList.get(fullkey);
-			let character = {};
+			/*let character = {};
 			character.name = json.name;
-			character.class = json.class;
+			character.class = json.class;*/
 			retval.push(fullkey);
 		}
 		return new Response(JSON.stringify(retval));
