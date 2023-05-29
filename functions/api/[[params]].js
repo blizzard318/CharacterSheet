@@ -47,10 +47,13 @@ export async function onRequestGet (context) { //Get list or single character
 	if (CharacterIndex === undefined || CharacterIndex === null) { //List of characters
 		const characters = await KVList.list({ prefix: PlayerName });
 		let retval = [];
-		for (let key in characters.keys) {
+		for (let key of characters.keys) {
 			const fullkey = PlayerName + "/" + key;
-			const character = await KVList.get(fullkey);
-			retval.push(fullkey);
+			const json = await KVList.get(fullkey);
+			let character = {};
+			character.name = json.name;
+			character.class = json.class;
+			retval.push(character);
 		}
 		return new Response(JSON.stringify(retval));
 	} else { //Single character

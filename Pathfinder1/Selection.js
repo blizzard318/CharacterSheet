@@ -7,7 +7,7 @@ async function ShowPart2(name) {
 		const characters = await response.json();
 		
 		const list = document.getElementById("CharacterList");
-		for (let character in characters) {
+		for (let character of characters) {
 			
 		}
 	}
