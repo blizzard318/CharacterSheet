@@ -9,7 +9,11 @@ async function ShowPart2(name) {
 		const list = document.getElementById("CharacterList");
 		for (let character of characters) {
 			let li = document.createElement("li");
-			li.innerText = character;
+			
+			let button = document.createElement("button");
+			button.innerText = "Name: " + character.name + " Class: " + character.class;
+			
+			li.appendChild(button);
 			list.appendChild(li);
 		}
 	}
