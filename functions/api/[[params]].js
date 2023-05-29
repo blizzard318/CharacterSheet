@@ -52,7 +52,7 @@ export async function onRequestGet (context) { //Get list or single character
 			const character = await KVList.get(fullkey);
 			retval.push(fullkey);
 		}
-		return new Response(JSON.stringify(retval)));
+		return new Response(JSON.stringify(retval));
 	} else { //Single character
 		const key = PlayerName + "/" + CharacterIndex;
 		const character = await KVList.get(key);
