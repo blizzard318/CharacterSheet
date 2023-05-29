@@ -48,10 +48,11 @@ export async function onRequestGet (context) { //Get list or single character
 		const characters = await KVList.list({ prefix: PlayerName });
 		let retval = [];
 		for (let key in characters.keys) {
-			const jsoncharacter = await KVList.get(key,{type:"json"});
+			const fullkey = PlayerName + "/" + key;
+			const jsoncharacter = await KVList.get(fullkey,{type:"json"});
 			const character = JSON.parse(jsoncharacter);
 			let summary = {};
-			summary.name = character.name;
+			//summary.name = character.name;
 			summary.class = character.class;
 			retval.push(summary);
 		}
