@@ -1,4 +1,10 @@
 async function LoadFromCloudFlare () {
+	const params = new Proxy(new URLSearchParams(window.location.search), {
+	  get: (searchParams, prop) => searchParams.get(prop),
+	});
+	// Get the value of "some_key" in eg "https://example.com/?key=value"
+	let value = params.key; // "some_value"
+	
 	const response = await fetch("../api/Pathfinder1/Andrew/1");
 	const character = await response.json();
 	
