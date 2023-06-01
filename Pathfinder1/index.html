@@ -4,24 +4,24 @@
 <head>
 	<meta charset="utf-8">
     <title>Pathfinder 1e Character Sheet</title>
-	<meta name="theme-color" content="black">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Homebrew for Pathfinder 1e">
+	<meta id="theme-color" content="black">
+    <meta id="viewport" content="width=device-width, initial-scale=1">
+    <meta id="description" content="Homebrew for Pathfinder 1e">
     <link rel="stylesheet" href="../styles.css" />
 	<link rel="shortcut icon" href="../favicon.ico">
 	<script src="LoadFromMottokrosh.js" charset="utf-8"></script>
 	<script src="LoadFromJSON.js" charset="utf-8"></script>
 	<script src="LoadFromCloudFlare.js" charset="utf-8"></script>
-	<script src="SaveToCloudFlare.js" charset="utf-8"></script>
+	<script src="Saving.js" charset="utf-8"></script>
 </head>
 <body>
     <div id="wrapper">
         <h1><u>Pathfinder 1e Character Sheet</u></h1>
 
 		<section>
-		Have existing character sheets from <u><a href="https://charactersheet.co.uk/">charactersheet.co.uk</a></u>?<br />
+		Have existing character sheets from here or <u><a href="https://charactersheet.co.uk/">charactersheet.co.uk</a></u>?<br />
 		Upload it here:
-		<input type="file" id="charsheet" name="charsheet" accept="application/json" style="padding:0px;font-size:15px;" multiple>
+		<input type="file" id="charsheet" accept="application/json" style="padding:0px;font-size:15px;" multiple>
 		<input type="submit" onclick="LoadFromMottokrosh()"style="padding:1px;">
 		</section>
 
@@ -30,37 +30,37 @@
             <section>
                 <div style="width:500px; float:left;">
                     <label>Character Name</label>
-                    <input type="text" name="CharacterName" onfocusout="SaveToCloudFlare()"/>
+                    <input type="text" id="CharacterName" onfocusout="SaveToCloudFlare()"/>
                 </div>
                 <div style="width: 500px; float: left;">
                     <label>Player Name</label>
-                    <input type="text" name="PlayerName" onfocusout="SaveToCloudFlare()"/>
+                    <input type="text" id="PlayerName" onfocusout="SaveToCloudFlare()"/>
                 </div>
 				
                 <div style="width: 1020px; float: left;">
                     <label>Character Class/Archetype & Levels</label>
-                    <input type="text" name="Class" onfocusout="SaveToCloudFlare()"/>
+                    <input type="text" id="Class" onfocusout="SaveToCloudFlare()"/>
                 </div>
 				
                 <div style="width:540px; float:left;">
                     <label>Race/Subrace</label>
-                    <input type="text" name="Race" onfocusout="SaveToCloudFlare()"/>
+                    <input type="text" id="Race" onfocusout="SaveToCloudFlare()"/>
                 </div>
                 <div style="width:100px; float:left;">
                     <label>Alignment</label>
-                    <input type="text" name="Alignment" onfocusout="SaveToCloudFlare()"/>
+                    <input type="text" id="Alignment" onfocusout="SaveToCloudFlare()"/>
                 </div>
                 <div style="width: 100px; float: left;">
                     <label>Gender</label>
-                    <input type="text" name="Gender" onfocusout="SaveToCloudFlare()"/>
+                    <input type="text" id="Gender" onfocusout="SaveToCloudFlare()"/>
                 </div>
                 <div style="width: 100px; float: left;">
                     <label>Size</label>
-                    <input type="text" name="Size" onfocusout="SaveToCloudFlare()"/>
+                    <input type="text" id="Size" onfocusout="SaveToCloudFlare()"/>
                 </div>
                 <div style="width: 100px; float: left;">
                     <label>Deity</label>
-                    <input type="text" name="Deity" onfocusout="SaveToCloudFlare()"/>
+                    <input type="text" id="Deity" onfocusout="SaveToCloudFlare()"/>
                 </div>
             </section>
         </article>
@@ -72,19 +72,19 @@
                     <label class="blackLabel">Strength</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="str" />
+                    <input type="text" id="str" />
                     <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input class="green" type="text" name="str-mod" readonly="readonly" />
+                    <input class="green" type="text" id="str-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="str-temp" />
+                    <input type="text" id="str-temp" />
                     <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input class="green" type="text" name="str-temp-mod" readonly="readonly" />
+                    <input class="green" type="text" id="str-temp-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
                 </div>
 
@@ -93,19 +93,19 @@
                     <label class="blackLabel">Dexterity</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="dex" />
+                    <input type="text" id="dex" />
                     <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input class="green" type="text" name="dex-mod" readonly="readonly" />
+                    <input class="green" type="text" id="dex-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="dex-temp" />
+                    <input type="text" id="dex-temp" />
                     <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input class="green" type="text" name="dex-temp-mod" readonly="readonly" />
+                    <input class="green" type="text" id="dex-temp-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
                 </div>
 
@@ -114,19 +114,19 @@
                     <label class="blackLabel">Constitution</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="con" />
+                    <input type="text" id="con" />
                     <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input class="green" type="text" name="con-mod" readonly="readonly" />
+                    <input class="green" type="text" id="con-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="con-temp" />
+                    <input type="text" id="con-temp" />
                     <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input class="green" type="text" name="con-temp-mod" readonly="readonly" />
+                    <input class="green" type="text" id="con-temp-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
                 </div>
 
@@ -135,19 +135,19 @@
                     <label class="blackLabel">Intelligence</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="int" />
+                    <input type="text" id="int" />
                     <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input class="green" type="text" name="int-mod" readonly="readonly" />
+                    <input class="green" type="text" id="int-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="int-temp" />
+                    <input type="text" id="int-temp" />
                     <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input class="green" type="text" name="int-temp-mod" readonly="readonly" />
+                    <input class="green" type="text" id="int-temp-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
                 </div>
 
@@ -156,19 +156,19 @@
                     <label class="blackLabel">Wisdom</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="wis" />
+                    <input type="text" id="wis" />
                     <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input class="green" type="text" name="wis-mod" readonly="readonly" />
+                    <input class="green" type="text" id="wis-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="wis-temp" />
+                    <input type="text" id="wis-temp" />
                     <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input class="green" type="text" name="wis-temp-mod" readonly="readonly" />
+                    <input class="green" type="text" id="wis-temp-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
                 </div>
 
@@ -177,19 +177,19 @@
                     <label class="blackLabel">Charisma</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="cha" />
+                    <input type="text" id="cha" />
                     <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input class="green" type="text" name="cha-mod" readonly="readonly" />
+                    <input class="green" type="text" id="cha-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="cha-temp" />
+                    <input type="text" id="cha-temp" />
                     <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input class="green" type="text" name="cha-temp-mod" readonly="readonly" />
+                    <input class="green" type="text" id="cha-temp-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
                 </div>
             </section>
@@ -202,38 +202,38 @@
                     <label class="blackLabel">Armor Class</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" name="Total-AC" style="border-width:3px;" />
+                    <input type="text" id="Total-AC" style="border-width:3px;" />
                     <label style="font-size:12px;line-height:20px;width:62px">Total =</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;margin-left:-10px;">
                     <label style="font-size:30px;line-height:40px;width:62px;height:45px">10+</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" name="Armor-Bonus" />
+                    <input type="text" id="Armor-Bonus" />
                     <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Armor Bonus</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" name="Shield-Bonus" />
+                    <input type="text" id="Shield-Bonus" />
                     <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Shield Bonus</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input class="green" type="text" name="dex-temp-mod" readonly="readonly" />
+                    <input class="green" type="text" id="dex-temp-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Dex Modifier</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" name="Size-Mod" />
+                    <input type="text" id="Size-Mod" />
                     <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Size Modifier</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" name="Natural-Armor" />
+                    <input type="text" id="Natural-Armor" />
                     <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Natural Armor</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" name="Deflection"/>
+                    <input type="text" id="Deflection"/>
                     <label style="font-size:12px;line-height:20px;width:80px">Deflection</label>
                 </div>
                 <div style="width:320px;height:60px;float:left;">
-                    <input type="text" name="AC-Misc"/>
+                    <input type="text" id="AC-Misc"/>
                     <label style="font-size:12px;line-height:20px;width:80px">Misc Modifier</label>
                 </div>
 				
@@ -242,7 +242,7 @@
                     <label class="blackLabel">Armor Class</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" name="Touch-AC"/>
+                    <input type="text" id="Touch-AC"/>
                     <label style="font-size:12px;line-height:20px;width:60px">Touch</label>
                 </div>
 				
@@ -251,11 +251,11 @@
                     <label class="blackLabel">Armor Class</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" name="FlatFooted-AC"/>
+                    <input type="text" id="FlatFooted-AC"/>
                     <label style="font-size:12px;line-height:20px;width:70px">Flat-Footed</label>
                 </div>
                 <div style="width:600px;height:60px;float:left;">
-                    <input type="text" name="Misc-AC"/>
+                    <input type="text" id="Misc-AC"/>
                     <label style="font-size:12px;line-height:20px;width:120px">Other AC Modifier</label>
                 </div>
 				
@@ -264,35 +264,35 @@
                     <label class="blackLabel">Hit Points</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="Current-HP" />
+                    <input type="text" id="Current-HP" />
                     <label style="font-size:12px;line-height:15px;width:62px">Current</label>
                 </div>
                 <div style="width:20px;height:60px;float:left;margin-left:-5px;margin-right:5px">
                     <label style="font-size:40px;line-height:40px;height:45px;"><b>+</b></label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="Temp-HP" />
+                    <input type="text" id="Temp-HP" />
                     <label style="font-size:12px;line-height:15px;width:62px">Temp</label>
                 </div>
                 <div style="width:20px;height:60px;float:left;margin-left:-5px;margin-right:5px">
                     <label style="font-size:40px;line-height:40px;height:45px;"><b>-</b></label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="Temp-HP" />
+                    <input type="text" id="Temp-HP" />
                     <label style="font-size:12px;line-height:12px;width:62px">Non-Lethal Damage</label>
                 </div>
                 <div style="width:20px;height:60px;float:left;margin-left:-5px;margin-right:10px">
                     <label style="font-size:40px;line-height:40px;height:45px;"><b>=</b></label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input class="green" type="text" name="Total-HP" readonly="readonly" />
+                    <input class="green" type="text" id="Total-HP" readonly="readonly" />
                     <label style="font-size:12px;line-height:20px;width:80px;text-align:center">Total</label>
                 </div>
                 <div style="width:15px;height:60px;float:left;margin-left:-3px;margin-right:10px;">
                     <label style="font-size:80px;line-height:40px;height:45px;"><b>/</b></label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="Max-HP"/>
+                    <input type="text" id="Max-HP"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Maximum</label>
                 </div>
 
@@ -301,14 +301,14 @@
                     <label class="blackLabel">Damage Reduction</label>
                 </div>
                 <div style="width:200px;height:60px;float:left;">
-                    <input type="text" name="Damage-Reduction"/>
+                    <input type="text" id="Damage-Reduction"/>
                 </div>
                 <div class="black" style="width:100px;height:60px;margin-left:-5px;margin-right:8px">
                     <span style="font-size:25px;">SR</span>
                     <label class="blackLabel">Spell Resistance</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="Spell-Resistance"/>
+                    <input type="text" id="Spell-Resistance"/>
                 </div>
 
 
@@ -317,27 +317,27 @@
                     <label class="blackLabel">(Constitution)</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="Fortitude-Total" style="border-width:2px;" />
+                    <input type="text" id="Fortitude-Total" style="border-width:2px;" />
                     <label style="font-size:12px;line-height:15px;width:62px">Total =</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="Fortitude-Base" />
+                    <input type="text" id="Fortitude-Base" />
                     <label style="font-size:12px;line-height:15px;width:62px">Base</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input class="green" type="text" name="con-temp-mod" readonly="readonly" />
+                    <input class="green" type="text" id="con-temp-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:20px;width:62px">Con</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="Fortitude-Item" />
+                    <input type="text" id="Fortitude-Item" />
                     <label style="font-size:12px;line-height:15px;width:62px">Item</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="Fortitude-Misc" />
+                    <input type="text" id="Fortitude-Misc" />
                     <label style="font-size:12px;line-height:15px;width:62px">Misc</label>
                 </div>
                 <div style="width:550px;height:60px;float:left;">
-                    <input type="text" name="Fortitude-Notes" />
+                    <input type="text" id="Fortitude-Notes" />
                     <label style="font-size:12px;line-height:15px;width:62px">Notes</label>
                 </div>
 
@@ -346,27 +346,27 @@
                     <label class="blackLabel">(Dexterity)</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="Reflex-Total" style="border-width:2px;" />
+                    <input type="text" id="Reflex-Total" style="border-width:2px;" />
                     <label style="font-size:12px;line-height:15px;width:62px">Total =</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="Reflex-Base" />
+                    <input type="text" id="Reflex-Base" />
                     <label style="font-size:12px;line-height:15px;width:62px">Base</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input class="green" type="text" name="dex-temp-mod" readonly="readonly" />
+                    <input class="green" type="text" id="dex-temp-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:20px;width:62px">Dex</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="Reflex-Item" />
+                    <input type="text" id="Reflex-Item" />
                     <label style="font-size:12px;line-height:15px;width:62px">Item</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="Reflex-Misc" />
+                    <input type="text" id="Reflex-Misc" />
                     <label style="font-size:12px;line-height:15px;width:62px">Misc</label>
                 </div>
                 <div style="width:550px;height:60px;float:left;">
-                    <input type="text" name="Reflex-Notes" />
+                    <input type="text" id="Reflex-Notes" />
                     <label style="font-size:12px;line-height:15px;width:62px">Notes</label>
                 </div>
 
@@ -375,27 +375,27 @@
                     <label class="blackLabel">(Wisdom)</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="Will-Total" style="border-width:2px;" />
+                    <input type="text" id="Will-Total" style="border-width:2px;" />
                     <label style="font-size:12px;line-height:15px;width:62px">Total =</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="Will-Base" />
+                    <input type="text" id="Will-Base" />
                     <label style="font-size:12px;line-height:15px;width:62px">Base</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input class="green" type="text" name="wis-temp-mod" readonly="readonly" />
+                    <input class="green" type="text" id="wis-temp-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:20px;width:62px">Wis</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="Will-Item" />
+                    <input type="text" id="Will-Item" />
                     <label style="font-size:12px;line-height:15px;width:62px">Item</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" name="Will-Misc" />
+                    <input type="text" id="Will-Misc" />
                     <label style="font-size:12px;line-height:15px;width:62px">Misc</label>
                 </div>
                 <div style="width:550px;height:60px;float:left;">
-                    <input type="text" name="Will-Notes" />
+                    <input type="text" id="Will-Notes" />
                     <label style="font-size:12px;line-height:15px;width:62px">Notes</label>
                 </div>
 				
@@ -404,7 +404,7 @@
                     <label class="blackLabel">Resistances</label>
                 </div>
                 <div style="width:380px;height:60px;float:left;">
-                    <input type="text" name="Resistances" />
+                    <input type="text" id="Resistances" />
                     <label style="font-size:12px;line-height:15px;width:62px">Resistances</label>
                 </div>
 				
@@ -413,7 +413,7 @@
                     <label class="blackLabel">Immunities</label>
                 </div>
                 <div style="width:390px;height:60px;float:left;">
-                    <input type="text" name="Immunities" />
+                    <input type="text" id="Immunities" />
                     <label style="font-size:12px;line-height:15px;width:62px">Immunities</label>
                 </div>
 				
@@ -422,30 +422,30 @@
                     <label class="blackLabel">Combat Maneuver Defense</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" name="Total-AC" style="border-width:3px;" />
+                    <input type="text" id="Total-AC" style="border-width:3px;" />
                     <label style="font-size:12px;line-height:20px;width:62px">Total =</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;margin-left:-10px;">
                     <label style="font-size:30px;line-height:40px;width:72px;height:45px">10+</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input class="green" type="text" name="BAB" readonly="readonly" />
+                    <input class="green" type="text" id="BAB" readonly="readonly" />
                     <label style="font-size:12px;line-height:15px;width:70px;text-align:middle">Base Attack Bonus</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input class="green" type="text" name="str-temp-mod" readonly="readonly" />
+                    <input class="green" type="text" id="str-temp-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Str Modifier</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input class="green" type="text" name="dex-temp-mod" readonly="readonly" />
+                    <input class="green" type="text" id="dex-temp-mod" readonly="readonly" />
                     <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Dex Modifier</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" name="Size-Mod" />
+                    <input type="text" id="Size-Mod" />
                     <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Size Modifier</label>
                 </div>
                 <div style="width:410px;height:60px;float:left;">
-                    <input type="text" name="AC-Misc"/>
+                    <input type="text" id="AC-Misc"/>
                     <label style="font-size:12px;line-height:20px;width:80px">Misc Modifier</label>
                 </div>
             </section>
@@ -458,15 +458,15 @@
 				<label class="blackLabel">Initiative</label>
 			</div>
 			<div style="width:50px;height:60px;float:left;">
-				<input type="text" name="Init-Total" style="border-width:2px;" />
+				<input type="text" id="Init-Total" style="border-width:2px;" />
 				<label style="font-size:12px;line-height:15px;width:62px">Total =</label>
 			</div>
 			<div style="width:50px;height:60px;float:left;">
-				<input class="green" type="text" name="dex-temp-mod" readonly="readonly" />
+				<input class="green" type="text" id="dex-temp-mod" readonly="readonly" />
 				<label style="font-size:12px;line-height:20px;width:62px">Dex</label>
 			</div>
 			<div style="width:50px;height:60px;float:left;">
-				<input type="text" name="Misc-Init" />
+				<input type="text" id="Misc-Init" />
 				<label style="font-size:12px;line-height:20px;width:62px">Misc</label>
 			</div>
 				
@@ -476,7 +476,7 @@
 				<label class="blackLabel">Base Attack Bonus</label>
 			</div>
 			<div style="width:90px;height:60px;float:left;">
-				<input type="text" name="BAB" />
+				<input type="text" id="BAB" />
 			</div>
 			<div style="width:500px;height:60px;float:left;">
 			</div>
@@ -485,31 +485,31 @@
                 <span style="font-size:25px;">Speed</span>
             </div>
             <div style="width:50px;height:60px;float:left;">
-                <input type="text" name="Base-Speed" />
+                <input type="text" id="Base-Speed" />
                 <label style="font-size:12px;line-height:15px;width:62px">Base Speed</label>
             </div>
             <div style="width:50px;height:60px;float:left;">
-                <input type="text" name="Armor-Speed" />
+                <input type="text" id="Armor-Speed" />
                 <label style="font-size:12px;line-height:15px;width:62px">With Armor</label>
             </div>
             <div style="width:100px;height:60px;float:left;">
-                <input type="text" name="Fly-Speed" />
+                <input type="text" id="Fly-Speed" />
                 <label style="font-size:12px;line-height:15px;width:90px">Fly/Maneuverability</label>
             </div>
             <div style="width:50px;height:60px;float:left;">
-                <input type="text" name="Swim-Speed" />
+                <input type="text" id="Swim-Speed" />
                 <label style="font-size:12px;line-height:15px;width:62px">Swim</label>
             </div>
             <div style="width:50px;height:60px;float:left;">
-                <input type="text" name="Climb-Speed" />
+                <input type="text" id="Climb-Speed" />
                 <label style="font-size:12px;line-height:15px;width:62px">Climb</label>
             </div>
             <div style="width:50px;height:60px;float:left;">
-                <input type="text" name="Burrow-Speed" />
+                <input type="text" id="Burrow-Speed" />
                 <label style="font-size:12px;line-height:15px;width:62px">Burrow</label>
             </div>
             <div style="width:460px;height:60px;float:left;">
-                <input type="text" name="Speed-Notes" />
+                <input type="text" id="Speed-Notes" />
                 <label style="font-size:12px;line-height:15px;width:100px">Modifiers & Notes</label>
             </div>
 			
@@ -518,23 +518,23 @@
 				<label class="blackLabel">Combat Maneuver Bonus</label>
 			</div>
 			<div style="width:60px;height:60px;float:left;">
-				<input type="text" name="Total-AC" style="border-width:3px;" />
+				<input type="text" id="Total-AC" style="border-width:3px;" />
 				<label style="font-size:12px;line-height:20px;width:62px">Total =</label>
 			</div>
 			<div style="width:60px;height:60px;float:left;">
-				<input class="green" type="text" name="BAB" readonly="readonly" />
+				<input class="green" type="text" id="BAB" readonly="readonly" />
 				<label style="font-size:12px;line-height:15px;width:70px;text-align:middle">Base Attack Bonus</label>
 			</div>
 			<div style="width:60px;height:60px;float:left;">
-				<input class="green" type="text" name="str-temp-mod" readonly="readonly" />
+				<input class="green" type="text" id="str-temp-mod" readonly="readonly" />
 				<label style="font-size:12px;line-height:20px;width:80px;text-align:left">Str Modifier</label>
 			</div>
 			<div style="width:60px;height:60px;float:left;">
-				<input type="text" name="Size-Mod" />
+				<input type="text" id="Size-Mod" />
 				<label style="font-size:12px;line-height:20px;width:80px;text-align:left">Size Modifier</label>
 			</div>
 			<div style="width:550px;height:60px;float:left;">
-				<input type="text" name="AC-Misc"/>
+				<input type="text" id="AC-Misc"/>
 				<label style="font-size:12px;line-height:20px;width:80px">Misc Modifier</label>
 			</div>
 
@@ -565,448 +565,448 @@
 						<th style="width:260px">Misc</th>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="acrobatics-class-skill"></td>
+						<td><input type="checkbox" id="acrobatics-class-skill"></td>
 						<td>Acrobatics</td>
-						<td><input type="text" name="acrobatics-total" style="width:50px"/></td>
+						<td><input type="text" id="acrobatics-total" style="width:50px"/></td>
 						<td style="text-align:center">Dex</td>
-						<td><input class="green" type="text" name="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="acrobatics-rank" style="width:50px"/></td>
-						<td><input type="text" name="acrobatics-class" style="width:50px"/></td>
-						<td><input type="text" name="acrobatics-racial" style="width:50px"/></td>
-						<td><input type="text" name="acrobatics-trait" style="width:50px"/></td>
-						<td><input type="text" name="acrobatics-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="acrobatics-rank" style="width:50px"/></td>
+						<td><input type="text" id="acrobatics-class" style="width:50px"/></td>
+						<td><input type="text" id="acrobatics-racial" style="width:50px"/></td>
+						<td><input type="text" id="acrobatics-trait" style="width:50px"/></td>
+						<td><input type="text" id="acrobatics-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="appraise-class-skill"></td>
+						<td><input type="checkbox" id="appraise-class-skill"></td>
 						<td>Appraise</td>
-						<td><input type="text" name="appraise-total" style="width:50px"/></td>
+						<td><input type="text" id="appraise-total" style="width:50px"/></td>
 						<td style="text-align:center">Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="appraise-rank" style="width:50px"/></td>
-						<td><input type="text" name="appraise-class" style="width:50px"/></td>
-						<td><input type="text" name="appraise-racial" style="width:50px"/></td>
-						<td><input type="text" name="appraise-trait" style="width:50px"/></td>
-						<td><input type="text" name="appraise-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="appraise-rank" style="width:50px"/></td>
+						<td><input type="text" id="appraise-class" style="width:50px"/></td>
+						<td><input type="text" id="appraise-racial" style="width:50px"/></td>
+						<td><input type="text" id="appraise-trait" style="width:50px"/></td>
+						<td><input type="text" id="appraise-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="artistry-class-skill"></td>
-						<td>Artistry <input type="text" name="artistry-name" style="width:150px;text-align:left;display:inline"/></td>
-						<td><input type="text" name="artistry-total" style="width:50px"/></td>
+						<td><input type="checkbox" id="artistry-class-skill"></td>
+						<td>Artistry <input type="text" id="artistry-name" style="width:150px;text-align:left;display:inline"/></td>
+						<td><input type="text" id="artistry-total" style="width:50px"/></td>
 						<td style="text-align:center">Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="artistry-rank" style="width:50px"/></td>
-						<td><input type="text" name="artistry-class" style="width:50px"/></td>
-						<td><input type="text" name="artistry-racial" style="width:50px"/></td>
-						<td><input type="text" name="artistry-trait" style="width:50px"/></td>
-						<td><input type="text" name="artistry-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="artistry-rank" style="width:50px"/></td>
+						<td><input type="text" id="artistry-class" style="width:50px"/></td>
+						<td><input type="text" id="artistry-racial" style="width:50px"/></td>
+						<td><input type="text" id="artistry-trait" style="width:50px"/></td>
+						<td><input type="text" id="artistry-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="bluff-class-skill"></td>
+						<td><input type="checkbox" id="bluff-class-skill"></td>
 						<td>Bluff</td>
-						<td><input type="text" name="bluff-total" style="width:50px"/></td>
+						<td><input type="text" id="bluff-total" style="width:50px"/></td>
 						<td style="text-align:center">Cha</td>
-						<td><input class="green" type="text" name="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="bluff-rank" style="width:50px"/></td>
-						<td><input type="text" name="bluff-class" style="width:50px"/></td>
-						<td><input type="text" name="bluff-racial" style="width:50px"/></td>
-						<td><input type="text" name="bluff-trait" style="width:50px"/></td>
-						<td><input type="text" name="bluff-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="bluff-rank" style="width:50px"/></td>
+						<td><input type="text" id="bluff-class" style="width:50px"/></td>
+						<td><input type="text" id="bluff-racial" style="width:50px"/></td>
+						<td><input type="text" id="bluff-trait" style="width:50px"/></td>
+						<td><input type="text" id="bluff-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="climb-class-skill"></td>
+						<td><input type="checkbox" id="climb-class-skill"></td>
 						<td>Climb</td>
-						<td><input type="text" name="climb-total" style="width:50px"/></td>
+						<td><input type="text" id="climb-total" style="width:50px"/></td>
 						<td style="text-align:center">Str</td>
-						<td><input class="green" type="text" name="str-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="climb-rank" style="width:50px"/></td>
-						<td><input type="text" name="climb-class" style="width:50px"/></td>
-						<td><input type="text" name="climb-racial" style="width:50px"/></td>
-						<td><input type="text" name="climb-trait" style="width:50px"/></td>
-						<td><input type="text" name="climb-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="str-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="climb-rank" style="width:50px"/></td>
+						<td><input type="text" id="climb-class" style="width:50px"/></td>
+						<td><input type="text" id="climb-racial" style="width:50px"/></td>
+						<td><input type="text" id="climb-trait" style="width:50px"/></td>
+						<td><input type="text" id="climb-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="craft-class-skill"></td>
-						<td>Craft <input type="text" name="craft-name" style="width:150px;text-align:left;display:inline"/></td>
-						<td><input type="text" name="craft-total" style="width:50px"/></td>
+						<td><input type="checkbox" id="craft-class-skill"></td>
+						<td>Craft <input type="text" id="craft-name" style="width:150px;text-align:left;display:inline"/></td>
+						<td><input type="text" id="craft-total" style="width:50px"/></td>
 						<td style="text-align:center">Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="craft-rank" style="width:50px"/></td>
-						<td><input type="text" name="craft-class" style="width:50px"/></td>
-						<td><input type="text" name="craft-racial" style="width:50px"/></td>
-						<td><input type="text" name="craft-trait" style="width:50px"/></td>
-						<td><input type="text" name="craft-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="craft-rank" style="width:50px"/></td>
+						<td><input type="text" id="craft-class" style="width:50px"/></td>
+						<td><input type="text" id="craft-racial" style="width:50px"/></td>
+						<td><input type="text" id="craft-trait" style="width:50px"/></td>
+						<td><input type="text" id="craft-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="diplomacy-class-skill"></td>
+						<td><input type="checkbox" id="diplomacy-class-skill"></td>
 						<td>Diplomacy</td>
-						<td><input type="text" name="diplomacy-total" style="width:50px"/></td>
+						<td><input type="text" id="diplomacy-total" style="width:50px"/></td>
 						<td style="text-align:center">Cha</td>
-						<td><input class="green" type="text" name="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="diplomacy-rank" style="width:50px"/></td>
-						<td><input type="text" name="diplomacy-class" style="width:50px"/></td>
-						<td><input type="text" name="diplomacy-racial" style="width:50px"/></td>
-						<td><input type="text" name="diplomacy-trait" style="width:50px"/></td>
-						<td><input type="text" name="diplomacy-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="diplomacy-rank" style="width:50px"/></td>
+						<td><input type="text" id="diplomacy-class" style="width:50px"/></td>
+						<td><input type="text" id="diplomacy-racial" style="width:50px"/></td>
+						<td><input type="text" id="diplomacy-trait" style="width:50px"/></td>
+						<td><input type="text" id="diplomacy-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="disable-device-class-skill"></td>
+						<td><input type="checkbox" id="disable-device-class-skill"></td>
 						<td>Disable Device*</td>
-						<td><input type="text" name="disable-device-total" style="width:50px"/></td>
+						<td><input type="text" id="disable-device-total" style="width:50px"/></td>
 						<td style="text-align:center">Dex</td>
-						<td><input class="green" type="text" name="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="disable-device-rank" style="width:50px"/></td>
-						<td><input type="text" name="disable-device-class" style="width:50px"/></td>
-						<td><input type="text" name="disable-device-racial" style="width:50px"/></td>
-						<td><input type="text" name="disable-device-trait" style="width:50px"/></td>
-						<td><input type="text" name="disable-device-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="disable-device-rank" style="width:50px"/></td>
+						<td><input type="text" id="disable-device-class" style="width:50px"/></td>
+						<td><input type="text" id="disable-device-racial" style="width:50px"/></td>
+						<td><input type="text" id="disable-device-trait" style="width:50px"/></td>
+						<td><input type="text" id="disable-device-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="disguise-class-skill"></td>
+						<td><input type="checkbox" id="disguise-class-skill"></td>
 						<td>Disguise</td>
-						<td><input type="text" name="disguise-total" style="width:50px"/></td>
+						<td><input type="text" id="disguise-total" style="width:50px"/></td>
 						<td style="text-align:center">Cha</td>
-						<td><input class="green" type="text" name="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="disguise-rank" style="width:50px"/></td>
-						<td><input type="text" name="disguise-class" style="width:50px"/></td>
-						<td><input type="text" name="disguise-racial" style="width:50px"/></td>
-						<td><input type="text" name="disguise-trait" style="width:50px"/></td>
-						<td><input type="text" name="disguise-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="disguise-rank" style="width:50px"/></td>
+						<td><input type="text" id="disguise-class" style="width:50px"/></td>
+						<td><input type="text" id="disguise-racial" style="width:50px"/></td>
+						<td><input type="text" id="disguise-trait" style="width:50px"/></td>
+						<td><input type="text" id="disguise-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="escape-artist-class-skill"></td>
+						<td><input type="checkbox" id="escape-artist-class-skill"></td>
 						<td>Escape Artist</td>
-						<td><input type="text" name="escape-artist-total" style="width:50px"/></td>
+						<td><input type="text" id="escape-artist-total" style="width:50px"/></td>
 						<td style="text-align:center">Dex</td>
-						<td><input class="green" type="text" name="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="escape-artist-rank" style="width:50px"/></td>
-						<td><input type="text" name="escape-artist-class" style="width:50px"/></td>
-						<td><input type="text" name="escape-artist-racial" style="width:50px"/></td>
-						<td><input type="text" name="escape-artist-trait" style="width:50px"/></td>
-						<td><input type="text" name="escape-artist-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="escape-artist-rank" style="width:50px"/></td>
+						<td><input type="text" id="escape-artist-class" style="width:50px"/></td>
+						<td><input type="text" id="escape-artist-racial" style="width:50px"/></td>
+						<td><input type="text" id="escape-artist-trait" style="width:50px"/></td>
+						<td><input type="text" id="escape-artist-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="fly-class-skill"></td>
+						<td><input type="checkbox" id="fly-class-skill"></td>
 						<td>Fly</td>
-						<td><input type="text" name="fly-total" style="width:50px"/></td>
+						<td><input type="text" id="fly-total" style="width:50px"/></td>
 						<td style="text-align:center">Dex</td>
-						<td><input class="green" type="text" name="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="fly-rank" style="width:50px"/></td>
-						<td><input type="text" name="fly-class" style="width:50px"/></td>
-						<td><input type="text" name="fly-racial" style="width:50px"/></td>
-						<td><input type="text" name="fly-trait" style="width:50px"/></td>
-						<td><input type="text" name="fly-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="fly-rank" style="width:50px"/></td>
+						<td><input type="text" id="fly-class" style="width:50px"/></td>
+						<td><input type="text" id="fly-racial" style="width:50px"/></td>
+						<td><input type="text" id="fly-trait" style="width:50px"/></td>
+						<td><input type="text" id="fly-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="handle-animal-class-skill"></td>
+						<td><input type="checkbox" id="handle-animal-class-skill"></td>
 						<td>Handle Animal*</td>
-						<td><input type="text" name="handle-animal-total" style="width:50px"/></td>
+						<td><input type="text" id="handle-animal-total" style="width:50px"/></td>
 						<td style="text-align:center">Cha</td>
-						<td><input class="green" type="text" name="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="handle-animal-rank" style="width:50px"/></td>
-						<td><input type="text" name="handle-animal-class" style="width:50px"/></td>
-						<td><input type="text" name="handle-animal-racial" style="width:50px"/></td>
-						<td><input type="text" name="handle-animal-trait" style="width:50px"/></td>
-						<td><input type="text" name="handle-animal-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="handle-animal-rank" style="width:50px"/></td>
+						<td><input type="text" id="handle-animal-class" style="width:50px"/></td>
+						<td><input type="text" id="handle-animal-racial" style="width:50px"/></td>
+						<td><input type="text" id="handle-animal-trait" style="width:50px"/></td>
+						<td><input type="text" id="handle-animal-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="heal-class-skill"></td>
+						<td><input type="checkbox" id="heal-class-skill"></td>
 						<td>Heal</td>
-						<td><input type="text" name="heal-total" style="width:50px"/></td>
+						<td><input type="text" id="heal-total" style="width:50px"/></td>
 						<td style="text-align:center">Wis</td>
-						<td><input class="green" type="text" name="wis-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="heal-rank" style="width:50px"/></td>
-						<td><input type="text" name="heal-class" style="width:50px"/></td>
-						<td><input type="text" name="heal-racial" style="width:50px"/></td>
-						<td><input type="text" name="heal-trait" style="width:50px"/></td>
-						<td><input type="text" name="heal-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="wis-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="heal-rank" style="width:50px"/></td>
+						<td><input type="text" id="heal-class" style="width:50px"/></td>
+						<td><input type="text" id="heal-racial" style="width:50px"/></td>
+						<td><input type="text" id="heal-trait" style="width:50px"/></td>
+						<td><input type="text" id="heal-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="intimidate-class-skill"></td>
+						<td><input type="checkbox" id="intimidate-class-skill"></td>
 						<td>Intimidate</td>
-						<td><input type="text" name="intimidate-total" style="width:50px"/></td>
+						<td><input type="text" id="intimidate-total" style="width:50px"/></td>
 						<td style="text-align:center">Cha</td>
-						<td><input class="green" type="text" name="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="intimidate-rank" style="width:50px"/></td>
-						<td><input type="text" name="intimidate-class" style="width:50px"/></td>
-						<td><input type="text" name="intimidate-racial" style="width:50px"/></td>
-						<td><input type="text" name="intimidate-trait" style="width:50px"/></td>
-						<td><input type="text" name="intimidate-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="intimidate-rank" style="width:50px"/></td>
+						<td><input type="text" id="intimidate-class" style="width:50px"/></td>
+						<td><input type="text" id="intimidate-racial" style="width:50px"/></td>
+						<td><input type="text" id="intimidate-trait" style="width:50px"/></td>
+						<td><input type="text" id="intimidate-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="arcana-class-skill"></td>
+						<td><input type="checkbox" id="arcana-class-skill"></td>
 						<td>Knowledge (Arcana)*</td>
-						<td><input type="text" name="arcana-total" style="width:50px"/></td>
+						<td><input type="text" id="arcana-total" style="width:50px"/></td>
 						<td style="text-align:center">Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="arcana-rank" style="width:50px"/></td>
-						<td><input type="text" name="arcana-class" style="width:50px"/></td>
-						<td><input type="text" name="arcana-racial" style="width:50px"/></td>
-						<td><input type="text" name="arcana-trait" style="width:50px"/></td>
-						<td><input type="text" name="arcana-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="arcana-rank" style="width:50px"/></td>
+						<td><input type="text" id="arcana-class" style="width:50px"/></td>
+						<td><input type="text" id="arcana-racial" style="width:50px"/></td>
+						<td><input type="text" id="arcana-trait" style="width:50px"/></td>
+						<td><input type="text" id="arcana-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="dungeoneering-class-skill"></td>
+						<td><input type="checkbox" id="dungeoneering-class-skill"></td>
 						<td>Knowledge (Dungeoneering)*</td>
-						<td><input type="text" name="dungeoneering-total" style="width:50px"/></td>
+						<td><input type="text" id="dungeoneering-total" style="width:50px"/></td>
 						<td style="text-align:center">Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="dungeoneering-rank" style="width:50px"/></td>
-						<td><input type="text" name="dungeoneering-class" style="width:50px"/></td>
-						<td><input type="text" name="dungeoneering-racial" style="width:50px"/></td>
-						<td><input type="text" name="dungeoneering-trait" style="width:50px"/></td>
-						<td><input type="text" name="dungeoneering-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="dungeoneering-rank" style="width:50px"/></td>
+						<td><input type="text" id="dungeoneering-class" style="width:50px"/></td>
+						<td><input type="text" id="dungeoneering-racial" style="width:50px"/></td>
+						<td><input type="text" id="dungeoneering-trait" style="width:50px"/></td>
+						<td><input type="text" id="dungeoneering-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="engineering-class-skill"></td>
+						<td><input type="checkbox" id="engineering-class-skill"></td>
 						<td>Knowledge (Engineering)*</td>
-						<td><input type="text" name="engineering-total" style="width:50px"/></td>
+						<td><input type="text" id="engineering-total" style="width:50px"/></td>
 						<td style="text-align:center">Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="engineering-rank" style="width:50px"/></td>
-						<td><input type="text" name="engineering-class" style="width:50px"/></td>
-						<td><input type="text" name="engineering-racial" style="width:50px"/></td>
-						<td><input type="text" name="engineering-trait" style="width:50px"/></td>
-						<td><input type="text" name="engineering-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="engineering-rank" style="width:50px"/></td>
+						<td><input type="text" id="engineering-class" style="width:50px"/></td>
+						<td><input type="text" id="engineering-racial" style="width:50px"/></td>
+						<td><input type="text" id="engineering-trait" style="width:50px"/></td>
+						<td><input type="text" id="engineering-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="geography-class-skill"></td>
+						<td><input type="checkbox" id="geography-class-skill"></td>
 						<td>Knowledge (Geography)*</td>
-						<td><input type="text" name="geography-total" style="width:50px"/></td>
+						<td><input type="text" id="geography-total" style="width:50px"/></td>
 						<td style="text-align:center">Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="geography-rank" style="width:50px"/></td>
-						<td><input type="text" name="geography-class" style="width:50px"/></td>
-						<td><input type="text" name="geography-racial" style="width:50px"/></td>
-						<td><input type="text" name="geography-trait" style="width:50px"/></td>
-						<td><input type="text" name="geography-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="geography-rank" style="width:50px"/></td>
+						<td><input type="text" id="geography-class" style="width:50px"/></td>
+						<td><input type="text" id="geography-racial" style="width:50px"/></td>
+						<td><input type="text" id="geography-trait" style="width:50px"/></td>
+						<td><input type="text" id="geography-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="history-class-skill"></td>
+						<td><input type="checkbox" id="history-class-skill"></td>
 						<td>Knowledge (History)*</td>
-						<td><input type="text" name="history-total" style="width:50px"/></td>
+						<td><input type="text" id="history-total" style="width:50px"/></td>
 						<td style="text-align:center">Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="history-rank" style="width:50px"/></td>
-						<td><input type="text" name="history-class" style="width:50px"/></td>
-						<td><input type="text" name="history-racial" style="width:50px"/></td>
-						<td><input type="text" name="history-trait" style="width:50px"/></td>
-						<td><input type="text" name="history-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="history-rank" style="width:50px"/></td>
+						<td><input type="text" id="history-class" style="width:50px"/></td>
+						<td><input type="text" id="history-racial" style="width:50px"/></td>
+						<td><input type="text" id="history-trait" style="width:50px"/></td>
+						<td><input type="text" id="history-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="local-class-skill"></td>
+						<td><input type="checkbox" id="local-class-skill"></td>
 						<td>Knowledge (Local)*</td>
-						<td><input type="text" name="local-total" style="width:50px"/></td>
+						<td><input type="text" id="local-total" style="width:50px"/></td>
 						<td style="text-align:center">Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="local-rank" style="width:50px"/></td>
-						<td><input type="text" name="local-class" style="width:50px"/></td>
-						<td><input type="text" name="local-racial" style="width:50px"/></td>
-						<td><input type="text" name="local-trait" style="width:50px"/></td>
-						<td><input type="text" name="local-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="local-rank" style="width:50px"/></td>
+						<td><input type="text" id="local-class" style="width:50px"/></td>
+						<td><input type="text" id="local-racial" style="width:50px"/></td>
+						<td><input type="text" id="local-trait" style="width:50px"/></td>
+						<td><input type="text" id="local-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="nature-class-skill"></td>
+						<td><input type="checkbox" id="nature-class-skill"></td>
 						<td>Knowledge (Nature)*</td>
-						<td><input type="text" name="nature-total" style="width:50px"/></td>
+						<td><input type="text" id="nature-total" style="width:50px"/></td>
 						<td style="text-align:center">Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="nature-rank" style="width:50px"/></td>
-						<td><input type="text" name="nature-class" style="width:50px"/></td>
-						<td><input type="text" name="nature-racial" style="width:50px"/></td>
-						<td><input type="text" name="nature-trait" style="width:50px"/></td>
-						<td><input type="text" name="nature-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="nature-rank" style="width:50px"/></td>
+						<td><input type="text" id="nature-class" style="width:50px"/></td>
+						<td><input type="text" id="nature-racial" style="width:50px"/></td>
+						<td><input type="text" id="nature-trait" style="width:50px"/></td>
+						<td><input type="text" id="nature-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="nobility-class-skill"></td>
+						<td><input type="checkbox" id="nobility-class-skill"></td>
 						<td>Knowledge (Nobility)*</td>
-						<td><input type="text" name="nobility-total" style="width:50px"/></td>
+						<td><input type="text" id="nobility-total" style="width:50px"/></td>
 						<td style="text-align:center">Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="nobility-rank" style="width:50px"/></td>
-						<td><input type="text" name="nobility-class" style="width:50px"/></td>
-						<td><input type="text" name="nobility-racial" style="width:50px"/></td>
-						<td><input type="text" name="nobility-trait" style="width:50px"/></td>
-						<td><input type="text" name="nobility-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="nobility-rank" style="width:50px"/></td>
+						<td><input type="text" id="nobility-class" style="width:50px"/></td>
+						<td><input type="text" id="nobility-racial" style="width:50px"/></td>
+						<td><input type="text" id="nobility-trait" style="width:50px"/></td>
+						<td><input type="text" id="nobility-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="planes-class-skill"></td>
+						<td><input type="checkbox" id="planes-class-skill"></td>
 						<td>Knowledge (Planes)*</td>
-						<td><input type="text" name="planes-total" style="width:50px"/></td>
+						<td><input type="text" id="planes-total" style="width:50px"/></td>
 						<td style="text-align:center">Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="planes-rank" style="width:50px"/></td>
-						<td><input type="text" name="planes-class" style="width:50px"/></td>
-						<td><input type="text" name="planes-racial" style="width:50px"/></td>
-						<td><input type="text" name="planes-trait" style="width:50px"/></td>
-						<td><input type="text" name="planes-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="planes-rank" style="width:50px"/></td>
+						<td><input type="text" id="planes-class" style="width:50px"/></td>
+						<td><input type="text" id="planes-racial" style="width:50px"/></td>
+						<td><input type="text" id="planes-trait" style="width:50px"/></td>
+						<td><input type="text" id="planes-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="religion-class-skill"></td>
+						<td><input type="checkbox" id="religion-class-skill"></td>
 						<td>Knowledge (Religion)*</td>
-						<td><input type="text" name="religion-total" style="width:50px"/></td>
+						<td><input type="text" id="religion-total" style="width:50px"/></td>
 						<td style="text-align:center">Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="religion-rank" style="width:50px"/></td>
-						<td><input type="text" name="religion-class" style="width:50px"/></td>
-						<td><input type="text" name="religion-racial" style="width:50px"/></td>
-						<td><input type="text" name="religion-trait" style="width:50px"/></td>
-						<td><input type="text" name="religion-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="religion-rank" style="width:50px"/></td>
+						<td><input type="text" id="religion-class" style="width:50px"/></td>
+						<td><input type="text" id="religion-racial" style="width:50px"/></td>
+						<td><input type="text" id="religion-trait" style="width:50px"/></td>
+						<td><input type="text" id="religion-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="linguistics-class-skill"></td>
+						<td><input type="checkbox" id="linguistics-class-skill"></td>
 						<td>Linguistics*</td>
-						<td><input type="text" name="linguistics-total" style="width:50px"/></td>
+						<td><input type="text" id="linguistics-total" style="width:50px"/></td>
 						<td style="text-align:center">Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="linguistics-rank" style="width:50px"/></td>
-						<td><input type="text" name="linguistics-class" style="width:50px"/></td>
-						<td><input type="text" name="linguistics-racial" style="width:50px"/></td>
-						<td><input type="text" name="linguistics-trait" style="width:50px"/></td>
-						<td><input type="text" name="linguistics-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="linguistics-rank" style="width:50px"/></td>
+						<td><input type="text" id="linguistics-class" style="width:50px"/></td>
+						<td><input type="text" id="linguistics-racial" style="width:50px"/></td>
+						<td><input type="text" id="linguistics-trait" style="width:50px"/></td>
+						<td><input type="text" id="linguistics-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="lore-class-skill"></td>
-						<td>Lore* <input type="text" name="lore-name" style="width:150px;text-align:left;display:inline"/></td>
-						<td><input type="text" name="lore-total" style="width:50px"/></td>
+						<td><input type="checkbox" id="lore-class-skill"></td>
+						<td>Lore* <input type="text" id="lore-name" style="width:150px;text-align:left;display:inline"/></td>
+						<td><input type="text" id="lore-total" style="width:50px"/></td>
 						<td style="text-align:center">Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="lore-rank" style="width:50px"/></td>
-						<td><input type="text" name="lore-class" style="width:50px"/></td>
-						<td><input type="text" name="lore-racial" style="width:50px"/></td>
-						<td><input type="text" name="lore-trait" style="width:50px"/></td>
-						<td><input type="text" name="lore-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="lore-rank" style="width:50px"/></td>
+						<td><input type="text" id="lore-class" style="width:50px"/></td>
+						<td><input type="text" id="lore-racial" style="width:50px"/></td>
+						<td><input type="text" id="lore-trait" style="width:50px"/></td>
+						<td><input type="text" id="lore-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="perception-class-skill"></td>
+						<td><input type="checkbox" id="perception-class-skill"></td>
 						<td>Perception</td>
-						<td><input type="text" name="perception-total" style="width:50px"/></td>
+						<td><input type="text" id="perception-total" style="width:50px"/></td>
 						<td style="text-align:center">Wis</td>
-						<td><input class="green" type="text" name="wis-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="perception-rank" style="width:50px"/></td>
-						<td><input type="text" name="perception-class" style="width:50px"/></td>
-						<td><input type="text" name="perception-racial" style="width:50px"/></td>
-						<td><input type="text" name="perception-trait" style="width:50px"/></td>
-						<td><input type="text" name="perception-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="wis-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="perception-rank" style="width:50px"/></td>
+						<td><input type="text" id="perception-class" style="width:50px"/></td>
+						<td><input type="text" id="perception-racial" style="width:50px"/></td>
+						<td><input type="text" id="perception-trait" style="width:50px"/></td>
+						<td><input type="text" id="perception-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="perform-class-skill"></td>
-						<td>Perform <input type="text" name="perform-name" style="width:150px;text-align:left;display:inline"/></td>
-						<td><input type="text" name="perform-total" style="width:50px"/></td>
+						<td><input type="checkbox" id="perform-class-skill"></td>
+						<td>Perform <input type="text" id="perform-name" style="width:150px;text-align:left;display:inline"/></td>
+						<td><input type="text" id="perform-total" style="width:50px"/></td>
 						<td style="text-align:center">Cha</td>
-						<td><input class="green" type="text" name="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="perform-rank" style="width:50px"/></td>
-						<td><input type="text" name="perform-class" style="width:50px"/></td>
-						<td><input type="text" name="perform-racial" style="width:50px"/></td>
-						<td><input type="text" name="perform-trait" style="width:50px"/></td>
-						<td><input type="text" name="perform-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="perform-rank" style="width:50px"/></td>
+						<td><input type="text" id="perform-class" style="width:50px"/></td>
+						<td><input type="text" id="perform-racial" style="width:50px"/></td>
+						<td><input type="text" id="perform-trait" style="width:50px"/></td>
+						<td><input type="text" id="perform-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="profession-class-skill"></td>
-						<td>Profession <input type="text" name="profession-name" style="width:150px;text-align:left;display:inline"/></td>
-						<td><input type="text" name="profession-total" style="width:50px"/></td>
+						<td><input type="checkbox" id="profession-class-skill"></td>
+						<td>Profession <input type="text" id="profession-name" style="width:150px;text-align:left;display:inline"/></td>
+						<td><input type="text" id="profession-total" style="width:50px"/></td>
 						<td style="text-align:center">Wis</td>
-						<td><input class="green" type="text" name="wis-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="profession-rank" style="width:50px"/></td>
-						<td><input type="text" name="profession-class" style="width:50px"/></td>
-						<td><input type="text" name="profession-racial" style="width:50px"/></td>
-						<td><input type="text" name="profession-trait" style="width:50px"/></td>
-						<td><input type="text" name="profession-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="wis-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="profession-rank" style="width:50px"/></td>
+						<td><input type="text" id="profession-class" style="width:50px"/></td>
+						<td><input type="text" id="profession-racial" style="width:50px"/></td>
+						<td><input type="text" id="profession-trait" style="width:50px"/></td>
+						<td><input type="text" id="profession-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="ride-class-skill"></td>
+						<td><input type="checkbox" id="ride-class-skill"></td>
 						<td>Ride</td>
-						<td><input type="text" name="ride-total" style="width:50px"/></td>
+						<td><input type="text" id="ride-total" style="width:50px"/></td>
 						<td style="text-align:center">Dex</td>
-						<td><input class="green" type="text" name="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="ride-rank" style="width:50px"/></td>
-						<td><input type="text" name="ride-class" style="width:50px"/></td>
-						<td><input type="text" name="ride-racial" style="width:50px"/></td>
-						<td><input type="text" name="ride-trait" style="width:50px"/></td>
-						<td><input type="text" name="ride-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="ride-rank" style="width:50px"/></td>
+						<td><input type="text" id="ride-class" style="width:50px"/></td>
+						<td><input type="text" id="ride-racial" style="width:50px"/></td>
+						<td><input type="text" id="ride-trait" style="width:50px"/></td>
+						<td><input type="text" id="ride-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="sense-motive-class-skill"></td>
+						<td><input type="checkbox" id="sense-motive-class-skill"></td>
 						<td>Sense Motive</td>
-						<td><input type="text" name="sense-motive-total" style="width:50px"/></td>
+						<td><input type="text" id="sense-motive-total" style="width:50px"/></td>
 						<td style="text-align:center">Wis</td>
-						<td><input class="green" type="text" name="wis-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="sense-motive-rank" style="width:50px"/></td>
-						<td><input type="text" name="sense-motive-class" style="width:50px"/></td>
-						<td><input type="text" name="sense-motive-racial" style="width:50px"/></td>
-						<td><input type="text" name="sense-motive-trait" style="width:50px"/></td>
-						<td><input type="text" name="sense-motive-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="wis-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="sense-motive-rank" style="width:50px"/></td>
+						<td><input type="text" id="sense-motive-class" style="width:50px"/></td>
+						<td><input type="text" id="sense-motive-racial" style="width:50px"/></td>
+						<td><input type="text" id="sense-motive-trait" style="width:50px"/></td>
+						<td><input type="text" id="sense-motive-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="sleight-of-hand-class-skill"></td>
+						<td><input type="checkbox" id="sleight-of-hand-class-skill"></td>
 						<td>Sleight of Hand*</td>
-						<td><input type="text" name="sleight-of-hand-total" style="width:50px"/></td>
+						<td><input type="text" id="sleight-of-hand-total" style="width:50px"/></td>
 						<td style="text-align:center">Dex</td>
-						<td><input class="green" type="text" name="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="sleight-of-hand-rank" style="width:50px"/></td>
-						<td><input type="text" name="sleight-of-hand-class" style="width:50px"/></td>
-						<td><input type="text" name="sleight-of-hand-racial" style="width:50px"/></td>
-						<td><input type="text" name="sleight-of-hand-trait" style="width:50px"/></td>
-						<td><input type="text" name="sleight-of-hand-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="sleight-of-hand-rank" style="width:50px"/></td>
+						<td><input type="text" id="sleight-of-hand-class" style="width:50px"/></td>
+						<td><input type="text" id="sleight-of-hand-racial" style="width:50px"/></td>
+						<td><input type="text" id="sleight-of-hand-trait" style="width:50px"/></td>
+						<td><input type="text" id="sleight-of-hand-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="spellcraft-class-skill"></td>
+						<td><input type="checkbox" id="spellcraft-class-skill"></td>
 						<td>Spellcraft*</td>
-						<td><input type="text" name="spellcraft-total" style="width:50px"/></td>
+						<td><input type="text" id="spellcraft-total" style="width:50px"/></td>
 						<td style="text-align:center">Int</td>
-						<td><input class="green" type="text" name="int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="spellcraft-rank" style="width:50px"/></td>
-						<td><input type="text" name="spellcraft-class" style="width:50px"/></td>
-						<td><input type="text" name="spellcraft-racial" style="width:50px"/></td>
-						<td><input type="text" name="spellcraft-trait" style="width:50px"/></td>
-						<td><input type="text" name="spellcraft-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="int-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="spellcraft-rank" style="width:50px"/></td>
+						<td><input type="text" id="spellcraft-class" style="width:50px"/></td>
+						<td><input type="text" id="spellcraft-racial" style="width:50px"/></td>
+						<td><input type="text" id="spellcraft-trait" style="width:50px"/></td>
+						<td><input type="text" id="spellcraft-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="stealth-class-skill"></td>
+						<td><input type="checkbox" id="stealth-class-skill"></td>
 						<td>Stealth</td>
-						<td><input type="text" name="stealth-total" style="width:50px"/></td>
+						<td><input type="text" id="stealth-total" style="width:50px"/></td>
 						<td style="text-align:center">Dex</td>
-						<td><input class="green" type="text" name="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="stealth-rank" style="width:50px"/></td>
-						<td><input type="text" name="stealth-class" style="width:50px"/></td>
-						<td><input type="text" name="stealth-racial" style="width:50px"/></td>
-						<td><input type="text" name="stealth-trait" style="width:50px"/></td>
-						<td><input type="text" name="stealth-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="dex-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="stealth-rank" style="width:50px"/></td>
+						<td><input type="text" id="stealth-class" style="width:50px"/></td>
+						<td><input type="text" id="stealth-racial" style="width:50px"/></td>
+						<td><input type="text" id="stealth-trait" style="width:50px"/></td>
+						<td><input type="text" id="stealth-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="survival-class-skill"></td>
+						<td><input type="checkbox" id="survival-class-skill"></td>
 						<td>Survival</td>
-						<td><input type="text" name="survival-total" style="width:50px"/></td>
+						<td><input type="text" id="survival-total" style="width:50px"/></td>
 						<td style="text-align:center">Wis</td>
-						<td><input class="green" type="text" name="wis-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="survival-rank" style="width:50px"/></td>
-						<td><input type="text" name="survival-class" style="width:50px"/></td>
-						<td><input type="text" name="survival-racial" style="width:50px"/></td>
-						<td><input type="text" name="survival-trait" style="width:50px"/></td>
-						<td><input type="text" name="survival-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="wis-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="survival-rank" style="width:50px"/></td>
+						<td><input type="text" id="survival-class" style="width:50px"/></td>
+						<td><input type="text" id="survival-racial" style="width:50px"/></td>
+						<td><input type="text" id="survival-trait" style="width:50px"/></td>
+						<td><input type="text" id="survival-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="swim-class-skill"></td>
+						<td><input type="checkbox" id="swim-class-skill"></td>
 						<td>Swim</td>
-						<td><input type="text" name="swim-total" style="width:50px"/></td>
+						<td><input type="text" id="swim-total" style="width:50px"/></td>
 						<td style="text-align:center">Str</td>
-						<td><input class="green" type="text" name="str-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="swim-rank" style="width:50px"/></td>
-						<td><input type="text" name="swim-class" style="width:50px"/></td>
-						<td><input type="text" name="swim-racial" style="width:50px"/></td>
-						<td><input type="text" name="swim-trait" style="width:50px"/></td>
-						<td><input type="text" name="swim-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="str-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="swim-rank" style="width:50px"/></td>
+						<td><input type="text" id="swim-class" style="width:50px"/></td>
+						<td><input type="text" id="swim-racial" style="width:50px"/></td>
+						<td><input type="text" id="swim-trait" style="width:50px"/></td>
+						<td><input type="text" id="swim-misc" style="width:260px"/></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="use-magic-device-class-skill"></td>
+						<td><input type="checkbox" id="use-magic-device-class-skill"></td>
 						<td>Use Magic Device</td>
-						<td><input type="text" name="use-magic-device-total" style="width:50px"/></td>
+						<td><input type="text" id="use-magic-device-total" style="width:50px"/></td>
 						<td style="text-align:center">Cha</td>
-						<td><input class="green" type="text" name="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" name="use-magic-device-rank" style="width:50px"/></td>
-						<td><input type="text" name="use-magic-device-class" style="width:50px"/></td>
-						<td><input type="text" name="use-magic-device-racial" style="width:50px"/></td>
-						<td><input type="text" name="use-magic-device-trait" style="width:50px"/></td>
-						<td><input type="text" name="use-magic-device-misc" style="width:260px"/></td>
+						<td><input class="green" type="text" id="cha-temp-mod" readonly="readonly" style="width:50px"/></td>
+						<td><input type="text" id="use-magic-device-rank" style="width:50px"/></td>
+						<td><input type="text" id="use-magic-device-class" style="width:50px"/></td>
+						<td><input type="text" id="use-magic-device-racial" style="width:50px"/></td>
+						<td><input type="text" id="use-magic-device-trait" style="width:50px"/></td>
+						<td><input type="text" id="use-magic-device-misc" style="width:260px"/></td>
 					</tr>
 				</table>
 				<label style="text-align:left">* Trained Only</label>
@@ -1016,7 +1016,7 @@
 					<label class="blackLabel">Modifiers</label>
 				</div>
 				<div style="width:870px;height:60px;float:left;">
-					<input type="text" name="Skill-Notes"/>
+					<input type="text" id="Skill-Notes"/>
 					<label style="font-size:12px;line-height:20px;width:80px">Other Notes</label>
 				</div>
 				
@@ -1025,7 +1025,7 @@
 					<label class="blackLabel">Known</label>
 				</div>
 				<div style="width:870px;height:60px;float:left;">
-					<input type="text" name="languages"/>
+					<input type="text" id="languages"/>
 					<label style="font-size:12px;line-height:20px;width:80px">Spoken/Written</label>
 				</div>
 			</section>
@@ -1052,27 +1052,27 @@
 					<span style="font-size:25px;">AC Items</span>
 				</div>
 				<div style="width:170px;height:60px;float:left;">
-					<input type="text" name="AC-Misc"/>
+					<input type="text" id="AC-Misc"/>
 					<label style="font-size:12px;line-height:20px;width:60px">Name</label>
 				</div>
 				<div style="width:55px;height:60px;float:left;">
-					<input type="text" name="AC-Misc"/>
+					<input type="text" id="AC-Misc"/>
 					<label style="font-size:12px;line-height:20px;width:60px">Bonus</label>
 				</div>
 				<div style="width:100px;height:60px;float:left;">
-					<input type="text" name="AC-Misc"/>
+					<input type="text" id="AC-Misc"/>
 					<label style="font-size:12px;line-height:20px;width:60px">Type</label>
 				</div>
 				<div style="width:55px;height:60px;float:left;">
-					<input type="text" name="AC-Misc"/>
+					<input type="text" id="AC-Misc"/>
 					<label style="font-size:12px;line-height:20px;width:70px">Check Penalty</label>
 				</div>
 				<div style="width:55px;height:60px;float:left;">
-					<input type="text" name="AC-Misc"/>
+					<input type="text" id="AC-Misc"/>
 					<label style="font-size:12px;line-height:20px;width:70px">Spell Failure</label>
 				</div>
 				<div style="width:350px;height:60px;float:left;">
-					<input type="text" name="AC-Misc"/>
+					<input type="text" id="AC-Misc"/>
 					<label style="font-size:12px;line-height:20px;width:70px">Notes</label>
 				</div>
 				
@@ -1081,16 +1081,16 @@
                 </button>
 				<div style="width:185px;float:left;visibility:hidden"> </div>
 				<div style="width:55px;height:60px;float:left;">
-					<input type="text" name="AC-Misc"/>
+					<input type="text" id="AC-Misc"/>
 					<label style="font-size:12px;line-height:20px;width:60px">Bonus</label>
 				</div>
 				<div style="width:100px;float:left;visibility:hidden"></div>
 				<div style="width:55px;height:60px;float:left;">
-					<input type="text" name="AC-Misc"/>
+					<input type="text" id="AC-Misc"/>
 					<label style="font-size:12px;line-height:20px;width:70px">Check Penalty</label>
 				</div>
 				<div style="width:55px;height:60px;float:left;">
-					<input type="text" name="AC-Misc"/>
+					<input type="text" id="AC-Misc"/>
 					<label style="font-size:12px;line-height:20px;width:70px">Spell Failure</label>
 				</div>
 			</section>
@@ -1103,7 +1103,7 @@
 					<label class="blackLabel">Gold</label>
 				</div>
 				<div style="width:50px;height:60px;float:left;">
-					<input type="text" name="money"/>
+					<input type="text" id="money"/>
 				</div>
 				<div class="black" style="width:50px;height:60px">
 					<span style="font-size:25px;">Gear</span>
@@ -1133,55 +1133,55 @@
 					</tr>
 					<tr>
 						<td style="text-align:center">Spells Known</td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
 					</tr>
 					<tr>
 						<td style="text-align:center">Spells DC</td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
 					</tr>
 					<tr>
 						<td style="text-align:center">Spells Per Day</td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
 					</tr>
 					<tr>
 						<td style="text-align:center">Bonus Spells</td>
-						<td><input type="text" name="Total-AC" style="width:50px;visibility:hidden"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
-						<td><input type="text" name="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px;visibility:hidden"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
+						<td><input type="text" id="Total-AC" style="width:50px"/></td>
 					</tr>
 				</table>
 				<br />
@@ -1190,7 +1190,7 @@
 					<label class="blackLabel">Modifiers</label>
 				</div>
 				<div style="width:340px;height:60px;float:left;">
-					<input type="text" name="Total-AC" />
+					<input type="text" id="Total-AC" />
 					<label style="font-size:12px;line-height:20px;width:100px">Spell DC Modifiers</label>
 				</div>
 				<div class="black" style="width:140px;height:60px;margin-right:8px">
@@ -1198,7 +1198,7 @@
 					<label class="blackLabel">Schools/Domains/Bloodlines</label>
 				</div>
 				<div style="width:340px;height:60px;float:left;">
-					<input type="text" name="Total-AC" />
+					<input type="text" id="Total-AC" />
 					<label style="font-size:12px;line-height:20px;width:300px">Specialised & Opposed Schools, Bloodlines, Domains</label>
 				</div>
 			</section>
@@ -1207,7 +1207,7 @@
 		<article id="Notes">
 			<section>
 				<h2>Notes</h2>
-					<textarea name="Notes" style="width:95%;height:500px;text-align:left"></textarea>
+					<textarea id="Notes" style="width:95%;height:500px;text-align:left"></textarea>
 			</section>
 		</article>
     </div>
