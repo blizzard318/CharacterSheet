@@ -6,6 +6,7 @@ async function LoadFromCloudFlare () {
 	const key = params.key; // "value"
 	
 	if (key === undefined || key === null) return;
+	history.pushState(null, "", location.href.split("?")[0]);
 	
 	const response = await fetch("../api/Pathfinder1/" + key);
 	const character = await response.json();
