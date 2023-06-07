@@ -44,20 +44,10 @@ function CheckURL () {
 	
 	if (key.includes("/")) LoadFromCloudFlare(); //Loading a Existing character
 	else { //Create a New character
-		let character = { };
-
-		character.name = "Unnamed Character";
-		character.player = document.getElementById("PlayerName").value = key;
+		document.getElementById("CharacterName").value = "Unnamed Character";
+		document.getElementById("PlayerName").value = key;
 		
-		const url = "../api/Pathfinder1/" + character.player;
-		fetch(url,{
-			method: "POST",
-			headers: { 
-			  'Accept': 'application/json',
-			  'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(character)
-		});
+		SaveToCloudFlare();
 	}
 }
 
