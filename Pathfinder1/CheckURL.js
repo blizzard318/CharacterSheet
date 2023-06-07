@@ -47,7 +47,7 @@ function CheckURL () {
 		document.getElementById("CharacterName").value = "Unnamed Character";
 		document.getElementById("PlayerName").value = key;
 		
-		const url = "../api/Pathfinder1/" + character.player;
+		const url = "../api/Pathfinder1/" + key;
 		fetch(url,{
 			method: "POST", //THIS IS POST, NEW CHARA. DON'T USE PUT.
 			headers: { 
