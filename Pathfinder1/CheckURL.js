@@ -44,10 +44,12 @@ function CheckURL () {
 	
 	if (key.includes("/")) LoadFromCloudFlare(); //Loading a Existing character
 	else { //Create a New character
-		document.getElementById("CharacterName").value = "Unnamed Character";
-		document.getElementById("PlayerName").value = key;
+		let character = { };
+
+		character.name = document.getElementById("CharacterName").value = "Unnamed Character";
+		character.player = document.getElementById("PlayerName").value = key;
 		
-		const url = "../api/Pathfinder1/" + key;
+		const url = "../api/Pathfinder1/" + character.player;
 		fetch(url,{
 			method: "POST", //THIS IS POST, NEW CHARA. DON'T USE PUT.
 			headers: { 
