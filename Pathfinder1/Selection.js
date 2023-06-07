@@ -24,7 +24,7 @@ async function ShowPart2(name) {
 	
 	for (let character of characters) {
 		let button = document.createElement("button");
-		button.innerText = "Name: " + character.name + "<br>Class: " + character.class;
+		button.innerText = "Name: " + character.name + "<br />Class: " + character.class;
 		
 		let a = document.createElement("a");
 		a.setAttribute("href","./?key=" + character.key);
