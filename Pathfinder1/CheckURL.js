@@ -47,6 +47,14 @@ function CheckURL () {
 		document.getElementById("CharacterName").value = "Unnamed Character";
 		document.getElementById("PlayerName").value = key;
 		
-		SaveToCloudFlare();
+		const url = "../api/Pathfinder1/" + character.player;
+		fetch(url,{
+			method: "POST", //THIS IS POST, NEW CHARA. DON'T USE PUT.
+			headers: { 
+			  'Accept': 'application/json',
+			  'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(character)
+		});
 	}
 }
