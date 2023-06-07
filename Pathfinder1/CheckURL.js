@@ -50,5 +50,3 @@ function CheckURL () {
 		SaveToCloudFlare();
 	}
 }
-
-CheckURL();
