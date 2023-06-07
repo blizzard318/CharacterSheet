@@ -1,20 +1,4 @@
-async function LoadFromCloudFlare () {
-	const params = new Proxy(new URLSearchParams(window.location.search), {
-	  get: (searchParams, prop) => searchParams.get(prop),
-	});
-	// Get the value of "some_key" in eg "https://example.com/?key=value"
-	const key = params.key; // "value"
-	
-	if (key === undefined || key === null) return;
-	document.getElementById("PlayerName").disabled = true; //Only disable if its a stranger
-	
-	history.pushState(null, "", location.href.split("?")[0]);
-	
-	if (!key.includes("/")) {
-		document.getElementById("PlayerName").value = key;
-		return;
-	}
-	
+async function LoadFromCloudFlare (key) {
 	const response = await fetch("../api/Pathfinder1/" + key);
 	const character = await response.json();
 	
@@ -42,7 +26,7 @@ function CheckURL () {
 	
 	history.pushState(null, "", location.href.split("?")[0]);
 	
-	if (key.includes("/")) LoadFromCloudFlare(); //Loading a Existing character
+	if (key.includes("/")) LoadFromCloudFlare(key); //Loading a Existing character
 	else { //Create a New character
 		let character = { };
 
