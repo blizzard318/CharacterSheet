@@ -26,9 +26,9 @@ async function ShowPart2(name) {
 		let button = document.createElement("button");
 		button.innerText = "Name: " + character.name + "\r\nClass: " + character.class;
 		button.style.textAlign = "left";
-		button.style.lineHeight  = "0.3";
+		button.style.lineHeight  = "0.5";
 		button.style.width = "300px";
-		button.style.height = "100px";
+		button.style.height = "70px";
 		
 		let delete_button = document.createElement("button");
 		delete_button.innerText = "Delete";
@@ -43,11 +43,11 @@ async function ShowPart2(name) {
 				}
 			});
 		}
+		button.appendChild(delete_button);
 		
 		let a = document.createElement("a");
 		a.setAttribute("href","./?key=" + character.key);
 		a.appendChild(button);
-		a.appendChild(delete_button);
 		
 		list.appendChild(document.createElement("br"));
 		list.appendChild(a);
