@@ -43,7 +43,7 @@ async function ShowPart2(name) {
 				}
 			});
 		}
-		button.appendChild(delete_button);
+		a.appendChild(delete_button);
 		
 		let a = document.createElement("a");
 		a.setAttribute("href","./?key=" + character.key);
