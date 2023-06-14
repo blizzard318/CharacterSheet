@@ -28,7 +28,7 @@ async function ShowPart2(name) {
 		
 		let delete_button = document.createElement("button");
 		delete_button.innerText = "Delete";
-		delete_button.onclick = function (character.key) {
+		delete_button.onclick = function () {
 			const url = "../api/Pathfinder1/" + character.key;
 			fetch(url,{
 				method: "DELETE",
