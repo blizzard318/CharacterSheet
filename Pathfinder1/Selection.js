@@ -28,24 +28,19 @@ async function ShowPart2(name) {
 		
 		let delete_button = document.createElement("button");
 		delete_button.innerText = "Delete";
+		delete_button.onclick = function (character.key) {
+			const url = "../api/Pathfinder1/" + character.key;
+			fetch(url,{
+				method: "DELETE",
+				headers: { 
+				  'Accept': 'application/json',
+				  'Content-Type': 'application/json'
+				}
+			});
+		}
 		button.appendChild(delete_button);
 		
 		let a = document.createElement("a");
-		a.setAttribute("href","./?key=" + character.key);
-		
-		const url = "../api/Pathfinder1/" + character.player;
-		fetch(url,{
-			method: "POST", //THIS IS POST, NEW CHARA. DON'T USE PUT.
-			headers: { 
-			  'Accept': 'application/json',
-			  'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(character)
-		});
-		
-		a.appendChild(delete_button);
-		
-		a = document.createElement("a");
 		a.setAttribute("href","./?key=" + character.key);
 		a.appendChild(button);
 		
