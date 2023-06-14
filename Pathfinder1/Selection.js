@@ -25,6 +25,8 @@ async function ShowPart2(name) {
 	for (let character of characters) {
 		let button = document.createElement("button");
 		button.innerText = "Name: " + character.name + "\r\nClass: " + character.class;
+		button.style.textAlign = "left";
+		button.style.width = "300px";
 		
 		let delete_button = document.createElement("button");
 		delete_button.innerText = "Delete";
