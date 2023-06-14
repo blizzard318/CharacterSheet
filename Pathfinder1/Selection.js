@@ -28,7 +28,7 @@ async function ShowPart2(name) {
 		button.style.textAlign = "left";
 		button.style.lineHeight  = "0.3";
 		button.style.width = "300px";
-		button.style.width = "100px";
+		button.style.height = "100px";
 		
 		let delete_button = document.createElement("button");
 		delete_button.innerText = "Delete";
