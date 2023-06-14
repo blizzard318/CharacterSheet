@@ -27,12 +27,13 @@ async function ShowPart2(name) {
 		button.innerText = "Name: " + character.name + "\r\nClass: " + character.class;
 		button.style.textAlign = "left";
 		button.style.lineHeight  = "0.5";
+		button.style.padding  = "0 0";
 		button.style.width = "300px";
-		button.style.height = "70px";
+		button.style.height = "60px";
 		
 		let delete_button = document.createElement("button");
 		delete_button.innerText = "Delete";
-		delete_button.style.textAlign = "right";
+		delete_button.style.float = "right";
 		delete_button.onclick = function () {
 			const url = "../api/Pathfinder1/" + character.key;
 			fetch(url,{
