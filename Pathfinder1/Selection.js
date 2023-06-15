@@ -33,7 +33,7 @@ async function ShowPart2(name) {
 		div.style.fontSize = "130%"
 		div.style.margin = "auto";
 		//div.style.lineHeight  = "1";
-		div.style.padding  = "15 5";
+		div.style.padding  = "15px 1px";
 		div.style.width = "400px";
 		//div.style.height = "70px";
 		div.style.backgroundColor = "#555";
