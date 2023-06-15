@@ -59,6 +59,7 @@ async function ShowPart2(name) {
 					}
 				});
 				CloseOverlay();
+				ShowPart2(name);
 			}
 		}
 		div.appendChild(delete_button);
