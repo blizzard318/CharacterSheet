@@ -26,22 +26,13 @@ async function ShowPart2(name) {
 		list.appendChild(document.createElement("br"));
 		
 		let div = document.createElement("div");
-		div.innerText = "Name: " + character.name + "\r\nClass: " + character.class;
+		div.innerHTML = "Name: " + character.name + "\r\nClass: " + character.class;
 		div.style.textAlign = "left";
 		//div.style.lineHeight  = "1";
 		div.style.padding  = "15 0";
 		div.style.width = "400px";
 		//div.style.height = "70px";
-		div.style.backgroundColor = "#555";
-		
-		let view_button = document.createElement("button");
-		view_button.innerText = "View";
-		view_button.style.float = "right";
-		view_button.style.verticalAlign = "middle";
-		let a = document.createElement("a");
-		a.setAttribute("href","./?key=" + character.key);
-		a.appendChild(view_button);
-		list.appendChild(a);
+		div.style.backgroundColor = "red";
 		
 		let delete_button = document.createElement("button");
 		delete_button.innerText = "Delete";
@@ -65,6 +56,16 @@ async function ShowPart2(name) {
 			}
 		}
 		list.appendChild(delete_button);
+		
+		
+		let view_button = document.createElement("button");
+		view_button.innerText = "View";
+		view_button.style.float = "right";
+		view_button.style.verticalAlign = "middle";
+		let a = document.createElement("a");
+		a.setAttribute("href","./?key=" + character.key);
+		a.appendChild(view_button);
+		list.appendChild(a);
 	}
 }
 
