@@ -26,13 +26,13 @@ async function ShowPart2(name) {
 		list.appendChild(document.createElement("br"));
 		
 		let div = document.createElement("div");
-		div.innerHTML = "Name: " + character.name + "\r\nClass: " + character.class;
-		div.style.textAlign = "left";
+		div.innerHTML = "Name: " + character.name + "<br/>Class: " + character.class;
+		//div.style.textAlign = "center";
 		//div.style.lineHeight  = "1";
 		div.style.padding  = "15 0";
 		div.style.width = "400px";
 		//div.style.height = "70px";
-		div.style.backgroundColor = "red";
+		div.style.backgroundColor = "#555";
 		list.appendChild(div);
 		
 		let delete_button = document.createElement("button");
