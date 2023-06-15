@@ -17,7 +17,8 @@ async function SaveToCloudFlare () {
 	character.size = document.getElementById("Size").value;
 	character.deity = document.getElementById("Deity").value;
 	
-	const url = "../api/Pathfinder1/" + character.player + "/2";
+	let index = document.getElementById("CharacterIndex").value;
+	const url = "../api/Pathfinder1/" + character.player + "/" + index;
 	const response = await fetch(url,{
 		method: "PUT",
 		headers: { 
