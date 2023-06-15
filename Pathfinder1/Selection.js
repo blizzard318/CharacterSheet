@@ -23,18 +23,30 @@ async function ShowPart2(name) {
 	const characters = await response.json();
 	
 	for (let character of characters) {
-		let button = document.createElement("button");
-		button.innerText = "Name: " + character.name + "\r\nClass: " + character.class;
-		button.style.textAlign = "left";
-		//button.style.lineHeight  = "1";
-		button.style.padding  = "15 0";
-		button.style.width = "400px";
-		//button.style.height = "70px";
+		list.appendChild(document.createElement("br"));
+		
+		let div = document.createElement("div");
+		div.innerText = "Name: " + character.name + "\r\nClass: " + character.class;
+		div.style.textAlign = "left";
+		//div.style.lineHeight  = "1";
+		div.style.padding  = "15 0";
+		div.style.width = "400px";
+		//div.style.height = "70px";
+		div.style.backgroundColor = "#555";
+		
+		let view_button = document.createElement("button");
+		view_button.innerText = "View";
+		view_button.style.float = "right";
+		view_button.style.verticalAlign = "middle";
+		let a = document.createElement("a");
+		a.setAttribute("href","./?key=" + character.key);
+		a.appendChild(view_button);
+		list.appendChild(a);
 		
 		let delete_button = document.createElement("button");
 		delete_button.innerText = "Delete";
 		delete_button.style.float = "right";
-		button.style.verticalAlign = "top";
+		delete_button.style.verticalAlign = "middle";
 		delete_button.onclick = function (){
 			
 			document.getElementById("overlay").style.display = "block";
@@ -52,14 +64,7 @@ async function ShowPart2(name) {
 				CloseOverlay();
 			}
 		}
-		button.appendChild(delete_button);
-		
-		let a = document.createElement("a");
-		a.setAttribute("href","./?key=" + character.key);
-		a.appendChild(button);
-		
-		list.appendChild(document.createElement("br"));
-		list.appendChild(a);
+		list.appendChild(delete_button);
 	}
 }
 
