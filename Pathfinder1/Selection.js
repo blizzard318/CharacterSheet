@@ -27,7 +27,8 @@ async function ShowPart2(name) {
 		
 		let div = document.createElement("div");
 		div.innerHTML = "Name: " + character.name + "<br/>Class: " + character.class;
-		//div.style.textAlign = "center";
+		div.style.textAlign = "left";
+		div.style.margin = "auto";
 		//div.style.lineHeight  = "1";
 		div.style.padding  = "15 0";
 		div.style.width = "400px";
