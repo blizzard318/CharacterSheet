@@ -33,6 +33,7 @@ async function ShowPart2(name) {
 		div.style.width = "400px";
 		//div.style.height = "70px";
 		div.style.backgroundColor = "red";
+		list.appendChild(div);
 		
 		let delete_button = document.createElement("button");
 		delete_button.innerText = "Delete";
@@ -55,7 +56,7 @@ async function ShowPart2(name) {
 				CloseOverlay();
 			}
 		}
-		list.appendChild(delete_button);
+		div.appendChild(delete_button);
 		
 		
 		let view_button = document.createElement("button");
@@ -65,7 +66,7 @@ async function ShowPart2(name) {
 		let a = document.createElement("a");
 		a.setAttribute("href","./?key=" + character.key);
 		a.appendChild(view_button);
-		list.appendChild(a);
+		div.appendChild(a);
 	}
 }
 
