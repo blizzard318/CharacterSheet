@@ -30,7 +30,7 @@ export async function onRequestPost (context) { //Create new character
 export async function onRequestPut (context) { //Updates existing character
 	const KVList = GetKV(context);
 	const PlayerName = context.params.params[1];
-	const CharacterIndex = context.params.params.split("/")[2];
+	const CharacterIndex = context.params.params[2];
 	
 	const key = PlayerName + "/" + CharacterIndex;
 	const value = await context.request.text();
@@ -71,7 +71,7 @@ export async function onRequestGet (context) { //Get list or single character
 export async function onRequestDelete (context) { //Deletes a character
 	const KVList = GetKV(context);
 	const PlayerName = context.params.params[1];
-	const CharacterIndex = context.params.params.split("/")[2];
+	const CharacterIndex = context.params.params[2];
 	
 	const key = PlayerName + "/" + CharacterIndex;
 	
