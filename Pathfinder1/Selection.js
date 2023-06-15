@@ -30,7 +30,7 @@ async function ShowPart2(name) {
 		div.innerHTML += "<br/>";
 		div.innerHTML += "<b>Class:</b> <i>" + character.class + "</i>";
 		div.style.textAlign = "left";
-		div.fontSize = "130%"
+		div.style.fontSize = "130%"
 		div.style.margin = "auto";
 		//div.style.lineHeight  = "1";
 		div.style.padding  = "15 5";
