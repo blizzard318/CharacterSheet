@@ -34,7 +34,7 @@ async function ShowPart2(name) {
 		div.style.margin = "auto";
 		//div.style.lineHeight  = "1";
 		div.style.padding  = "5px 10px";
-		div.style.width = "400px";
+		div.style.width = "450px";
 		//div.style.height = "70px";
 		div.style.backgroundColor = "#555";
 		div.style.border = "3px solid #666";
@@ -47,7 +47,7 @@ async function ShowPart2(name) {
 		delete_button.onclick = function (){
 			
 			document.getElementById("overlay").style.display = "block";
-			document.getElementById("CharacterName").innerHTML = "<i>" + character.name + "</i>";
+			document.getElementById("CharacterName").innerHTML = character.name;
 			
 			document.getElementById("ConfirmDelete").onclick = function () {
 				const url = "../api/Pathfinder1/" + character.key;
@@ -59,7 +59,6 @@ async function ShowPart2(name) {
 					}
 				});
 				CloseOverlay();
-				ShowPart2(name);
 			}
 		}
 		div.appendChild(delete_button);
