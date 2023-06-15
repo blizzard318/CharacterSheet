@@ -32,10 +32,20 @@
 			<div style="text-align:center;font-size:200%">
 				Hello, <div id="Name" style="display:inline">Name</div>
 			</div>
-			<button onclick="">Upload from Mottokrosh</button>
+			<button onclick="">Upload from Mottokrosh</button> <!--Doesn't do anything yet-->
 			<a id="NewCharacter"><button>Make New Character</button></a>
 			<div id="CharacterList"></div>
 		</div>
+		
+		<div id="overlay">
+			<div style="text-align:center;font-size:200%">
+				Are you sure you wish to delete: 
+				<div id="CharacterName" style="display:inline">Name</div>?
+			</div>
+			<button id="ConfirmDelete">Yes</button>
+			<button onclick="CloseOverlay()">No</button>
+		</div>
+		
     </div>
 </body>
 </html>

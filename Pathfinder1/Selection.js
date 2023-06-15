@@ -1,7 +1,7 @@
 async function ShowPart2(name) {
 	//Shows the Part2 and customize the name.
 	document.getElementById("Part2").style.display = "block";
-	document.getElementById("Name").innerHTML = name;
+	document.getElementById("Name").innerText = name;
 	
 	//Modify the new character button.
 	const NewCharBtn = document.getElementById("NewCharacter");
@@ -27,23 +27,30 @@ async function ShowPart2(name) {
 		button.innerText = "Name: " + character.name + "\r\nClass: " + character.class;
 		button.style.textAlign = "left";
 		//button.style.lineHeight  = "1";
-		button.style.padding  = "10 0";
+		button.style.padding  = "15 0";
 		button.style.width = "400px";
 		//button.style.height = "70px";
 		
 		let delete_button = document.createElement("button");
 		delete_button.innerText = "Delete";
 		delete_button.style.float = "right";
-		button.style.verticalAlign = "middle";
-		delete_button.onclick = function () {
-			const url = "../api/Pathfinder1/" + character.key;
-			fetch(url,{
-				method: "DELETE",
-				headers: { 
-				  'Accept': 'application/json',
-				  'Content-Type': 'application/json'
-				}
-			});
+		button.style.verticalAlign = "top";
+		delete_button.onclick = function (){
+			
+			document.getElementById("overlay").style.display = "block";
+			document.getElementById("CharacterName").innerText = character.name;
+			
+			document.getElementById("ConfirmDelete").onclick = function () {
+				const url = "../api/Pathfinder1/" + character.key;
+				fetch(url,{
+					method: "DELETE",
+					headers: { 
+					  'Accept': 'application/json',
+					  'Content-Type': 'application/json'
+					}
+				});
+				CloseOverlay();
+			}
 		}
 		button.appendChild(delete_button);
 		
@@ -54,4 +61,9 @@ async function ShowPart2(name) {
 		list.appendChild(document.createElement("br"));
 		list.appendChild(a);
 	}
+}
+
+function CloseOverlay() {
+	document.getElementById("ConfirmDelete").onclick = null;
+	document.getElementById("overlay").style.display = "none";
 }
