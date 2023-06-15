@@ -26,24 +26,28 @@ async function ShowPart2(name) {
 		list.appendChild(document.createElement("br"));
 		
 		let div = document.createElement("div");
-		div.innerHTML = "Name: " + character.name + "<br/>Class: " + character.class;
+		div.innerHTML  = "<b>Name:</b> <i>" + character.name + "</i>";
+		div.innerHTML += "<br/>";
+		div.innerHTML += "<b>Class:</b> <i>" + character.class + "</i>";
 		div.style.textAlign = "left";
+		div.fontSize = "130%"
 		div.style.margin = "auto";
 		//div.style.lineHeight  = "1";
-		div.style.padding  = "15 0";
+		div.style.padding  = "15 5";
 		div.style.width = "400px";
 		//div.style.height = "70px";
 		div.style.backgroundColor = "#555";
+		div.style.border = "3px solid #666;"
 		list.appendChild(div);
 		
 		let delete_button = document.createElement("button");
 		delete_button.innerText = "Delete";
 		delete_button.style.float = "right";
-		delete_button.style.verticalAlign = "middle";
+		delete_button.style.transform = "translateY(-50%)";
 		delete_button.onclick = function (){
 			
 			document.getElementById("overlay").style.display = "block";
-			document.getElementById("CharacterName").innerText = character.name;
+			document.getElementById("CharacterName").innerHTML = "<i>" + character.name + "</i>";
 			
 			document.getElementById("ConfirmDelete").onclick = function () {
 				const url = "../api/Pathfinder1/" + character.key;
@@ -63,7 +67,7 @@ async function ShowPart2(name) {
 		let view_button = document.createElement("button");
 		view_button.innerText = "View";
 		view_button.style.float = "right";
-		view_button.style.verticalAlign = "middle";
+		view_button.style.transform = "translateY(-50%)";
 		let a = document.createElement("a");
 		a.setAttribute("href","./?key=" + character.key);
 		a.appendChild(view_button);
