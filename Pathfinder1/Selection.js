@@ -33,11 +33,11 @@ async function ShowPart2(name) {
 		div.style.fontSize = "130%"
 		div.style.margin = "auto";
 		//div.style.lineHeight  = "1";
-		div.style.padding  = "15px 1px";
+		div.style.padding  = "5px 10px";
 		div.style.width = "400px";
 		//div.style.height = "70px";
 		div.style.backgroundColor = "#555";
-		div.style.border = "3px solid #666;"
+		div.style.border = "3px solid #666";
 		list.appendChild(div);
 		
 		let delete_button = document.createElement("button");
