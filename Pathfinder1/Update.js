@@ -8,7 +8,7 @@ function ModifyAbility (name) {
 	if (!name.includes("temp")) { //If original ability score
 		document.getElementById(name + "-mod").value = mod;
 		const temp_abi = parseInt(document.getElementById(name + "-temp").value);
-		if (typeof temp_abi == 'number') return; //If there's a valid number, return.
+		if (temp_abi != null && temp_abi != "" && temp_abi == typeof temp_abi == 'number') return;
 	}
 	
 	const elements = document.getElementsByClassName(name + "-temp-mod");
