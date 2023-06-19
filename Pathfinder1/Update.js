@@ -1,9 +1,10 @@
 //This code runs like an update loop.
 function ModifyAbility (name) {
-	document.getElementById("str-mod").value = "test";
 	SaveToCloudFlare();
 	const abi = document.getElementById(name).value;
+	document.getElementById("str-mod").value = abi;
 	if (typeof abi != 'number') return; //Invalid number
+	document.getElementById("str-mod").value = abi * 2;
 	const mod = Math.floor((abi - 10)/2);
 	
 	if (!name.includes("temp")) { //If original ability score
