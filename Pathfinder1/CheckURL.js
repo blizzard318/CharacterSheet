@@ -9,7 +9,7 @@ async function LoadFromCloudFlare (key) {
 	document.getElementById("Class").value = character.class;
 	
 	document.getElementById("Race").value = character.race;
-	document.getElementById("Alignment").value = character.alignment;
+	document.getElementById("Alignment").value = character.align;
 	document.getElementById("Gender").value = character.gender;
 	document.getElementById("Size").value = character.size;
 	document.getElementById("Deity").value = character.deity;
