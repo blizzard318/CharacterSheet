@@ -13,5 +13,5 @@ function ModifyAbility (name) {
 	}
 	
 	const elements = document.getElementsByClassName(name + "-temp-mod");
-	for (const element of elements) elements[i].value = mod;
+	for (const element of elements) element.value = mod;
 }
