@@ -15,3 +15,10 @@ function ModifyAbility (name) {
 	const elements = document.getElementsByClassName(name + "-temp-mod");
 	for (const element of elements) element.value = mod;
 }
+
+ModifyAbility("str");
+ModifyAbility("dex");
+ModifyAbility("cha");
+ModifyAbility("int");
+ModifyAbility("wis");
+ModifyAbility("cha");
