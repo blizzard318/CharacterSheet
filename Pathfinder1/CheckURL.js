@@ -3,6 +3,7 @@ async function LoadFromCloudFlare (key) {
 	const character = await response.json();
 	
 	document.getElementById("CharacterName").value = character.name;
+	document.getElementById("CharacterIndex").value = key.split('/')[1];
 	document.getElementById("PlayerName").value = character.player;
 	
 	document.getElementById("Class").value = character.class;
