@@ -1,5 +1,6 @@
 //This code runs like an update loop.
 function ModifyAbility (name) {
+	document.getElementById("str-mod").value = "test";
 	SaveToCloudFlare();
 	const abi = document.getElementById(name).value;
 	if (typeof abi != 'number') return; //Invalid number
