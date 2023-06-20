@@ -14,8 +14,9 @@ function ModifyAbility (name) {
 		document.getElementById(name + "-mod").value = mod;
 		mod = GetMod(name + "-temp", mod);
 	}
-	else if (mod == null){ //If temp score is invalid
-		mod = GetMod(name.slice(0,3), null);
+	else { //If temp ability score
+		name = name.slice(0,3);
+		if (mod == null) mod = GetMod(name, null);
 	}
 	
 	const elements = document.getElementsByClassName(name + "-temp-mod");
