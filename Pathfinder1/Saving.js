@@ -79,7 +79,7 @@ async function SaveToCloudFlare () {
 	character.init_total = document.getElementById("Init-Total").value;
 	character.init_misc = document.getElementById("Misc-Init").value;
 	
-	character.bab = document.getElementById("BAB").value;
+	character.bab = document.getElementsByClassName("BAB")[0].value;
 	
 	character.spd_base = document.getElementById("Base-Speed").value;
 	character.spd_amr = document.getElementById("Armor-Speed").value;

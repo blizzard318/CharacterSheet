@@ -76,7 +76,8 @@ async function LoadFromCloudFlare (key) {
 	document.getElementById("Init-Total").value = character.init_total;
 	document.getElementById("Misc-Init").value = character.init_misc;
 	
-	document.getElementById("BAB").value = character.bab;
+	const elements = document.getElementsByClassName("BAB");
+	for (const element of elements) element.value = character.bab;
 	
 	document.getElementById("Base-Speed").value   = character.spd_base;
 	document.getElementById("Armor-Speed").value  = character.spd_amr;

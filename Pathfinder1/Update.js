@@ -16,6 +16,12 @@ function ModifyAbility (name) {
 	for (const element of elements) element.value = mod;
 }
 
+function ModifyBAB (value) {
+	SaveToCloudFlare();
+	const elements = document.getElementsByClassName("BAB");
+	for (const element of elements) element.value = value;
+}
+
 ModifyAbility("str");
 ModifyAbility("dex");
 ModifyAbility("cha");
