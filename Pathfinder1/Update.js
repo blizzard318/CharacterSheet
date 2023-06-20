@@ -31,11 +31,11 @@ function ModifyBAB (value) {
 
 function ModifyHP () {
 	SaveToCloudFlare();
-	let current = document.getElementById("Current-HP").value;
+	let current = parseInt(document.getElementById("Current-HP").value);
 	current = isNaN(current) ? 0 : current;
-	let temp = document.getElementById("Temp-HP").value;
+	let temp = parseInt(document.getElementById("Temp-HP").value);
 	temp = isNaN(temp) ? 0 : temp;
-	let nonlethal = document.getElementById("Non-Lethal-Dmg").value;
+	let nonlethal = parseInt(document.getElementById("Non-Lethal-Dmg").value);
 	nonlethal = isNaN(nonlethal) ? 0 : nonlethal;
 	
 	document.getElementById("Total-HP").value = current + temp - nonlethal;
