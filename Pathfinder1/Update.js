@@ -9,13 +9,13 @@ function ModifyAbility (name) {
 	SaveToCloudFlare();
 	
 	let mod = GetMod(name, null);
-	
-	if (name.includes("temp") && mod == null) { //If temp score is invalid
-		mod = GetMod(name.slice(0,3), null);
-	}
-	else { //If original ability score
+	 
+	if (!name.includes("temp")) { //If original ability score
 		document.getElementById(name + "-mod").value = mod;
 		mod = GetMod(name + "-temp", mod);
+	}
+	else if (mod == null){ //If temp score is invalid
+		mod = GetMod(name.slice(0,3), null);
 	}
 	
 	const elements = document.getElementsByClassName(name + "-temp-mod");
