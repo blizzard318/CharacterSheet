@@ -41,7 +41,6 @@ function ModifyHP () {
 	document.getElementById("Total-HP").value = current + temp - nonlethal;
 }
 
-
 function UpdateOnStart() { //Call this on start
 	ModifyAbility("str");
 	ModifyAbility("dex");
