@@ -48,4 +48,109 @@ function UpdateOnStart() { //Call this on start
 	ModifyAbility("int");
 	ModifyAbility("wis");
 	ModifyAbility("cha");
+	ModifyHP();
 }
+
+function MakeMelee () {
+	const list = document.getElementById("MeleeList");
+	
+	let div = document.createElement("div");
+	div.setAttribute("class","black");
+	div.setAttribute("style","width:100px;height:60px;margin-right:8px");
+		let span = document.createElement("span");
+		span.innerHTML = "Melee";
+		div.appendChild(span);
+		
+		let label = document.createElement("label");
+		label.setAttribute("class","blackLabel");
+		label.innerHTML = "Melee Attack";
+		div.appendChild(label);
+	list.appendChild(div);
+	
+	div = document.createElement("div");
+	div.setAttribute("style","width:220px;height:60px;float:left");
+		let input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class","MeleeName");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+		div.appendChild(input);
+		
+		label = document.createElement("label");
+		label.setAttribute("style","font-size:12px;line-height:20px;width:80px");
+		label.innerHTML = "Weapon Name";
+		div.appendChild(label);
+	list.appendChild(div);
+	
+	div = document.createElement("div");
+	div.setAttribute("style","width:140px;height:60px;float:left");
+		input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class","MeleeAtk");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+		div.appendChild(input);
+		
+		label = document.createElement("label");
+		label.setAttribute("style","font-size:12px;line-height:20px;width:70px");
+		label.innerHTML = "Attack Bonus";
+		div.appendChild(label);
+	list.appendChild(div);
+	
+	div = document.createElement("div");
+	div.setAttribute("style","width:140px;height:60px;float:left");
+		input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class","MeleeDmg");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+		div.appendChild(input);
+		
+		label = document.createElement("label");
+		label.setAttribute("style","font-size:12px;line-height:20px;width:60px");
+		label.innerHTML = "Damage";
+		div.appendChild(label);
+	list.appendChild(div);
+	
+	div = document.createElement("div");
+	div.setAttribute("style","width:80px;height:60px;float:left");
+		input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class","MeleeCrit");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+		div.appendChild(input);
+		
+		label = document.createElement("label");
+		label.setAttribute("style","font-size:12px;line-height:20px;width:60px");
+		label.innerHTML = "Critical";
+		div.appendChild(label);
+	list.appendChild(div);
+	
+	div = document.createElement("div");
+	div.setAttribute("style","width:50px;height:60px;float:left");
+		input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class","MeleeType");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+		div.appendChild(input);
+		
+		label = document.createElement("label");
+		label.setAttribute("style","font-size:12px;line-height:20px;width:60px");
+		label.innerHTML = "Type";
+		div.appendChild(label);
+	list.appendChild(div);
+	
+	div = document.createElement("div");
+	div.setAttribute("style","width:170px;height:50px;float:left");
+		input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class","MeleeNote");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+		div.appendChild(input);
+		
+		label = document.createElement("label");
+		label.setAttribute("style","font-size:12px;line-height:20px;width:60px");
+		label.innerHTML = "Notes";
+		div.appendChild(label);
+	list.appendChild(div);
+	
+	list.appendChild(document.createElement("br"));
+}
+	//const list = document.getElementById("RangedList");
