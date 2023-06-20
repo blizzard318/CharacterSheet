@@ -1,14 +1,21 @@
 //This code runs like an update loop.
-function ModifyAbility (name) {
-	SaveToCloudFlare();
+function GetMod (name, defval) {
 	const abi = parseInt(document.getElementById(name).value);
 	const mod = Math.floor((abi - 10)/2);
+	return isNaN(mod) ? defval : mod;
+}
+
+function ModifyAbility (name) {
+	SaveToCloudFlare();
 	
-	if (!name.includes("temp")) { //If original ability score
+	let mod = GetMod(name, null);
+	
+	if (name.includes("temp") && mod == null) { //If temp score is invalid
+		mod = GetMod(name.slice(0,3), null);
+	}
+	else { //If original ability score
 		document.getElementById(name + "-mod").value = mod;
-		
-		const temp_abi = document.getElementById(name + "-temp").value;
-		if (temp_abi != "" && temp_abi != null) return;
+		mod = GetMod(name + "-temp", mod);
 	}
 	
 	const elements = document.getElementsByClassName(name + "-temp-mod");
