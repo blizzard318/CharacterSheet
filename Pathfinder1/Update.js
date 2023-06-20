@@ -29,9 +29,11 @@ function ModifyBAB (value) {
 	for (const element of elements) element.value = value;
 }
 
-ModifyAbility("str");
-ModifyAbility("dex");
-ModifyAbility("cha");
-ModifyAbility("int");
-ModifyAbility("wis");
-ModifyAbility("cha");
+function UpdateOnStart() { //Call this on start
+	ModifyAbility("str");
+	ModifyAbility("dex");
+	ModifyAbility("cha");
+	ModifyAbility("int");
+	ModifyAbility("wis");
+	ModifyAbility("cha");
+}

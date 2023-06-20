@@ -15,11 +15,11 @@ async function LoadFromCloudFlare (key) {
 	document.getElementById("Deity").value 		= character.deity;
 	
 	document.getElementById("str").value 	   = character.str;
-	 document.getElementById("str-temp").value = character.str_t;
-	 document.getElementById("dex").value      = character.dex;
-	 document.getElementById("dex-temp").value = character.dex_t;
-	 document.getElementById("con").value      = character.con;
-	 document.getElementById("con-temp").value = character.con_t;
+	document.getElementById("str-temp").value = character.str_t;
+	document.getElementById("dex").value      = character.dex;
+	document.getElementById("dex-temp").value = character.dex_t;
+	document.getElementById("con").value      = character.con;
+	document.getElementById("con-temp").value = character.con_t;
 	
 	document.getElementById("int").value      = character.int;
 	document.getElementById("int-temp").value = character.int_t;
@@ -46,7 +46,7 @@ async function LoadFromCloudFlare (key) {
 	document.getElementById("Max-HP").value 		= character.hp_max;
 	
 	document.getElementById("Damage-Reduction").value  = character.dmg_reduc;
-	 document.getElementById("Spell-Resistance").value = character.spell_resist;
+	document.getElementById("Spell-Resistance").value = character.spell_resist;
 	
 	document.getElementById("Fortitude-Total").value = character.fort_total;
 	document.getElementById("Fortitude-Base").value  = character.fort_base;
@@ -90,6 +90,8 @@ async function LoadFromCloudFlare (key) {
 	document.getElementById("Total-CMB").value = character.cmb_total;
 	document.getElementById("Size-CMB").value  = character.cmb_size;
 	document.getElementById("Misc-CMB").value  = character.cmb_misc;
+	
+	UpdateOnStart(); //Call this after everything is loaded
 }
 
 function CheckURL () {
