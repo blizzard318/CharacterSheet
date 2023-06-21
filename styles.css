@@ -22,7 +22,7 @@ article {
 }
 
 .black {
-    background: #000;
+    background: #222;
     color:#fff;
     text-align: center;
     float: left;
@@ -38,7 +38,11 @@ span {
     line-height: 40px;
 }
 
-.blackLabel { font-size: 11px; }
+.blackLabel { 
+	font-size: 11px; 
+    background-color:#333;
+}
+
 label {
     display: block;
     font-size: 18px;
@@ -82,7 +86,7 @@ textarea, input {
 
 button {
     font-size: 20px;
-    height: 50px;
+    height: 40px;
     margin: 0 3px;
     box-shadow: rgb(87 72 63) 0px -3px 0px 0px inset;
     background-image: linear-gradient(rgb(61, 50, 37) 5%, rgb(50, 42, 32) 100%);

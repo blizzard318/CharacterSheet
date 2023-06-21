@@ -104,7 +104,7 @@ function CheckURL () {
 	if (key === undefined || key === null) return; //Stranger
 	document.getElementById("PlayerName").disabled = true; //Only disable if its a stranger
 	
-	history.pushState(null, "", location.href.split("?")[0]);
+	//history.replaceState(null, "", location.href.split("?")[0]);
 	
 	if (key.includes("/")) LoadFromCloudFlare(key); //Loading a Existing character
 	else { //Create a New character

@@ -1,4 +1,10 @@
+function CloseOverlay() {
+	document.getElementById("ConfirmDelete").onclick = null;
+	document.getElementById("overlay").style.display = "none";
+}
+
 async function ShowPart2(name) {
+	localStorage.setItem("name",name);
 	//Shows the Part2 and customize the name.
 	document.getElementById("Part2").style.display = "block";
 	document.getElementById("Name").innerText = name;
@@ -75,7 +81,5 @@ async function ShowPart2(name) {
 	}
 }
 
-function CloseOverlay() {
-	document.getElementById("ConfirmDelete").onclick = null;
-	document.getElementById("overlay").style.display = "none";
-}
+const init = localStorage.getItem("name");
+if (init != null) ShowPart2(init);
