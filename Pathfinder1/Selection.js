@@ -69,7 +69,6 @@ async function ShowPart2(name) {
 		}
 		div.appendChild(delete_button);
 		
-		
 		let view_button = document.createElement("button");
 		view_button.innerText = "View";
 		view_button.style.float = "right";

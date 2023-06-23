@@ -49,96 +49,72 @@ function UpdateOnStart() { //Call this on start
 	ModifyAbility("wis");
 	ModifyAbility("cha");
 	ModifyHP();
+	AddSkill("artistry");
+	AddSkill("craft");
+	AddSkill("lore");
+	AddSkill("perform");
+	AddSkill("profession");
 }
 
 function AddSkill(type) {
-	const row = document.getElementById(type + "-row");
-	const tr = document.createElement("tr");
+	const index = document.getElementById(type + "-row").rowIndex;
+	const row = document.getElementById("Skill-Table").insertRow(index);
+	let i = 0;
 	
-	let td = document.createElement("td");
-		let input = document.createElement("input");
-		input.setAttribute("type","checkbox");
-		input.setAttribute("class",type+"-class-skill"); //Gotta edit this to be shared state
-	td.appendChild(input);
-	tr.appendChild(td);
+	let td = row.insertCell(i++); //Class Skill
+	td.innerHTML = "<input type='checkbox' id='"  + type + "-class-skill'>";
 	
-	td = document.createElement("td");
-	td.innerHTML = type;
-		input = document.createElement("input");
-		input.setAttribute("type","text");
-		input.setAttribute("class",type + "-name");
-		input.setAttribute("style","width:150px;text-align:left;display:inline");
-	td.appendChild(input);
-	tr.appendChild(td);
+	td = row.insertCell(i++); //Name of Skill
+	let removal = "'document.getElementById(\"Skill-Table\").deleteRow(this.parentElement.rowIndex);'"
 	
-	td = document.createElement("td");
-		input = document.createElement("input");
-		input.setAttribute("type","text");
-		input.setAttribute("class",type + "-total");
-		input.setAttribute("style","width:50px");
-	td.appendChild(input);
-	tr.appendChild(td);
+	let prefix = "<div style='all:unset'"
+	prefix += ">" + type.charAt(0).toUpperCase() + type.slice(1) + "</div>";
 	
-	td = document.createElement("td");
-	td.setAttribute("style","text-align:center");
+	let suffix = " <input type='text' class='" + type + "-name'";
+	suffix += "onmouseover='this.innerHTML=\"Remove?\"'";
+	suffix += "onmouseup=" + removal;
+	suffix += "style='width:150px;text-align:left;display:inline'/>";
+	td.innerHTML = prefix + suffix;
+	
+		/*div.setAttribute("onmouseover","childNodes[0].innerHTML = 'X';" + 
+						"childNodes[1].innerHTML = 'Press to Delete'");
+						
+		div.setAttribute("onmouseout","childNodes[0].innerHTML = '" + type + "';" + 
+						"childNodes[1].innerHTML = '" + type + " Attack'");
+		
+		let removal = "document.getElementById("Skill-Table").deleteRow(parentElement.rowIndex);"
+		div.setAttribute("onmouseup",removal);*/
+
+	td = row.insertCell(i++); //Total Skill Value
+	td.innerHTML = "<input type='text' class='" + type + "-total' style='width:50px'/>";
+	
+	td = row.insertCell(i++); //Ability Score Tied
+	td.style.textAlign = "center";
+	let mod = 0;
 	switch (type) {
-		case "artistry":case "craft":case "lore": td.innerHTML = "Int"; break;
-		case "perform": 						  td.innerHTML = "Cha"; break;
-		case "profession": 						  td.innerHTML = "Wis"; break;
+		case "artistry":case "craft":case "lore": mod = "int"; break;
+		case "perform": 						  mod = "cha"; break;
+		case "profession": 						  mod = "wis"; break;
 	}
-	td.appendChild(input);
-	tr.appendChild(td);
+	td.innerHTML = mod.charAt(0).toUpperCase() + mod.slice(1);
 	
-	td = document.createElement("td");
-		input = document.createElement("input");
-		input.setAttribute("type","text");
-		input.setAttribute("class","green int-temp-mod");
-		input.setAttribute("readonly","readonly");
-		input.setAttribute("style","width:50px");
-	td.appendChild(input);
-	tr.appendChild(td);
+	td = row.insertCell(i++); //Ability Modifier
+	td.innerHTML = "<input type='text' class='green " + mod + "-temp-mod' readonly='readonly' style='width:50px'/>";
 	
-	td = document.createElement("td");
-		input = document.createElement("input");
-		input.setAttribute("type","text");
-		input.setAttribute("class",type + "-rank");
-		input.setAttribute("style","width:50px");
-	td.appendChild(input);
-	tr.appendChild(td);
+	td = row.insertCell(i++); //Skill Ranks
+	td.innerHTML = "<input type='text' class='" + type + "-rank' style='width:50px'/>";
 	
-	td = document.createElement("td");
-		input = document.createElement("input");
-		input.setAttribute("type","text");
-		input.setAttribute("class",type + "-class");
-		input.setAttribute("style","width:50px");
-	td.appendChild(input);
-	tr.appendChild(td);
+	td = row.insertCell(i++); //Skill Class
+	td.innerHTML = "<input type='text' class='" + type + "-class' style='width:50px'/>";
 	
-	td = document.createElement("td");
-		input = document.createElement("input");
-		input.setAttribute("type","text");
-		input.setAttribute("class",type + "-racial");
-		input.setAttribute("style","width:50px");
-	td.appendChild(input);
-	tr.appendChild(td);
+	td = row.insertCell(i++); //Skill Racial
+	td.innerHTML = "<input type='text' class='" + type + "-racial' style='width:50px'/>";
 	
-	td = document.createElement("td");
-		input = document.createElement("input");
-		input.setAttribute("type","text");
-		input.setAttribute("class",type + "-trait");
-		input.setAttribute("style","width:50px");
-	td.appendChild(input);
-	tr.appendChild(td);
+	td = row.insertCell(i++); //Skill Trait
+	td.innerHTML = "<input type='text' class='" + type + "-trait' style='width:50px'/>";
 	
-	td = document.createElement("td");
-		input = document.createElement("input");
-		input.setAttribute("type","text");
-		input.setAttribute("class",type + "-misc");
-		input.setAttribute("style","width:260px");
-	td.appendChild(input);
-	tr.appendChild(td);
-	
-	row.appendChild(tr);
+	td = row.insertCell(i++); //Skill Misc
+	td.innerHTML = "<input type='text' class='" + type + "-misc' style='width:260px'/>";
 }
 
 function AddAttack (type) {
