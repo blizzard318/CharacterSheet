@@ -481,10 +481,9 @@
 				<div style="width:90px;height:60px;float:left;">
 					<input type="text" class="BAB" onfocusout="ModifyBAB(this.value)"/>
 				</div>
-				<div style="width:500px;height:60px;float:left;">
-				</div>
+				<div style="width:500px;height:60px;float:left;"></div>
 				
-				<div class="black" style="width:70px;height:60px;margin-right:8px">
+				<div class="black" style="width:70px;height:40px;margin-right:8px">
 					<span style="font-size:25px;">Speed</span>
 				</div>
 				<div style="width:50px;height:60px;float:left;">
@@ -1004,8 +1003,9 @@
 			</article>
         </details>
 		<br />
-		<article id="Customization">
-			<section>
+		<details open>
+			<summary>Customization</summary>
+			<article>
 				<div style="clear:both;text-align:left">
 					<button type="button" onclick="">
 						+Feat
@@ -1021,12 +1021,21 @@
 						+Trait
 					</button>
 				</div>
-			</section>
-		</article>
+			</article>
+		</details>
 		<br />
-		<article id="AC Items">
-			<section>
-				<div class="black" style="width:100px;height:60px">
+		<details open>
+			<summary>Equipment</summary>
+			<article>
+				<div class="black" style="width:40px;height:60px">
+					<span style="font-size:25px;">GP</span>
+					<label class="blackLabel">Gold</label>
+				</div>
+				<div style="width:50px;height:60px;float:left;">
+					<input type="text" id="money"/>
+				</div>
+				<div style="width:900px;height:60px;float:left;"></div>
+				<div class="black" style="width:100px;height:40px">
 					<span style="font-size:25px;">AC Items</span>
 				</div>
 				<div style="width:170px;height:60px;float:left;">
@@ -1071,26 +1080,16 @@
 					<input type="text" id="AC-Failure"/>
 					<label style="font-size:12px;line-height:20px;width:70px">Spell Failure</label>
 				</div>
-			</section>
-		</article>
-		<br />
-		<article id="Gear">
-			<section>
-				<div class="black" style="width:40px;height:60px">
-					<span style="font-size:25px;">GP</span>
-					<label class="blackLabel">Gold</label>
-				</div>
-				<div style="width:50px;height:60px;float:left;">
-					<input type="text" id="money"/>
-				</div>
-				<div class="black" style="width:50px;height:60px">
+				<div style="width:350px;height:60px;float:left;"></div>
+				
+				<div class="black" style="width:100px;height:40px">
 					<span style="font-size:25px;">Gear</span>
 				</div>
                 <button type="button" onclick="" style="float:left">
                     +Gear
                 </button>
-			</section>
-		</article>
+			</article>
+		</details>
 		<br />
 		<article id="Spells">
 			<section>
@@ -1188,6 +1187,14 @@
 					<textarea id="Notes" style="width:95%;height:500px;text-align:left"></textarea>
 			</section>
 		</article>
+		
+		<div id="overlay" style="display:hidden">
+			<div style="text-align:center;font-size:200%;background-color:DimGray;padding:5px">
+				Please confirm that you would like to remove this item.<br/>
+				<button id="ConfirmDelete">Yes</button>
+				<button onclick="CloseOverlay()">No</button>
+			</div>
+		</div>
     </div>
 </body>
 </html>

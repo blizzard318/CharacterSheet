@@ -1,4 +1,9 @@
 //This code runs like an update loop.
+function CloseOverlay() {
+	document.getElementById("ConfirmDelete").onclick = null;
+	document.getElementById("overlay").style.display = "none";
+}
+
 function GetMod (name, defval) {
 	const abi = parseInt(document.getElementById(name).value);
 	const mod = Math.floor((abi - 10)/2);
@@ -61,16 +66,17 @@ function AddSkill(type) {
 	td.innerHTML = "<input type='checkbox' id='"  + type + "-class-skill'>";
 	
 	td = row.insertCell(i++); //Name of Skill
-		let prefix = "<div style='all:unset'";
-		prefix += "onmouseover=\"innerText='Delete?'\"";
-		prefix += "onmouseout=\"innerText='" + type.charAt(0).toUpperCase() + type.slice(1) + "'\"";
-		prefix += "onmouseup=\"document.getElementById('Skill-Table').deleteRow(";
-		prefix += "document.getElementById('" + row.id  + "').rowIndex)\">";
-		prefix += type.charAt(0).toUpperCase() + type.slice(1) + "</div>";
-		
+		let div = document.createElement("div");
+		div.innerText = type.charAt(0).toUpperCase() + type.slice(1);
+		div.style = "all:unset";
+		div.setAttribute("onmouseover","innerText='Delete?'");
+		div.setAttribute("onmouseout","innerText='" + type.charAt(0).toUpperCase() + type.slice(1) + "'");
+		div.setAttribute("onclick","document.getElementById('Skill-Table').deleteRow(document.getElementById("+row.id+").rowIndex)");
+
 		let suffix = " <input type='text' class='" + type + "-name'";
 		suffix += "style='width:145px;text-align:left;display:inline'/>";
-	td.innerHTML = prefix + suffix;
+	td.innerHTML = div.outerHTML + suffix;
+	td.onmouseover = function () {"innerText='Delete?";}
 
 	td = row.insertCell(i++); //Total Skill Value
 	td.innerHTML = "<input type='text' class='" + type + "-total' style='width:50px'/>";
@@ -105,14 +111,16 @@ function AddSkill(type) {
 }
 
 function AddAttack (type) {
-	const list = document.getElementById(type + "List");
+	let span = document.createElement("span");
+	span.setAttribute("style","clear:both");
+	span.setAttribute("id","BIG DIV");
 	
 	let div = document.createElement("div");
 	div.setAttribute("class","black");
 	div.setAttribute("style","width:100px;height:50px;margin-right:8px");
-		let span = document.createElement("span");
-		span.innerHTML = type;
-		div.appendChild(span);
+		let smallSpan = document.createElement("span");
+		smallSpan.innerHTML = type;
+		div.appendChild(smallSpan);
 		
 		let label = document.createElement("label");
 		label.setAttribute("class","blackLabel");
@@ -124,11 +132,15 @@ function AddAttack (type) {
 		div.setAttribute("onmouseout","childNodes[0].innerHTML = '" + type + "';" + 
 						"childNodes[1].innerHTML = '" + type + " Attack'");
 		
-		let num = type == "Ranged" ? 7 : 6; //Disgustingly Hardcoded.
-		let removal = "nextSibling.remove();".repeat(num) + "this.remove();";
-		div.setAttribute("onmouseup",removal);
+		div.onclick = function () {
+			document.getElementById('overlay').style.display = 'block';
+			document.getElementById('ConfirmDelete').onclick = function () {
+				span.remove();
+				CloseOverlay();
+			}
+		};
 	div.appendChild(label);
-	list.appendChild(div);
+	span.appendChild(div);
 	
 	div = document.createElement("div");
 	div.setAttribute("style","width:220px;height:50px;float:left");
@@ -142,7 +154,7 @@ function AddAttack (type) {
 		label.setAttribute("style","font-size:12px;line-height:20px;width:80px");
 		label.innerHTML = "Weapon Name";
 	div.appendChild(label);
-	list.appendChild(div);
+	span.appendChild(div);
 	
 	div = document.createElement("div");
 	div.setAttribute("style","width:140px;height:50px;float:left");
@@ -156,7 +168,7 @@ function AddAttack (type) {
 		label.setAttribute("style","font-size:12px;line-height:20px;width:70px");
 		label.innerHTML = "Attack Bonus";
 	div.appendChild(label);
-	list.appendChild(div);
+	span.appendChild(div);
 	
 	div = document.createElement("div");
 	div.setAttribute("style","width:140px;height:50px;float:left");
@@ -170,7 +182,7 @@ function AddAttack (type) {
 		label.setAttribute("style","font-size:12px;line-height:20px;width:60px");
 		label.innerHTML = "Damage";
 	div.appendChild(label);
-	list.appendChild(div);
+	span.appendChild(div);
 	
 	div = document.createElement("div");
 	div.setAttribute("style","width:80px;height:50px;float:left");
@@ -184,7 +196,7 @@ function AddAttack (type) {
 		label.setAttribute("style","font-size:12px;line-height:20px;width:60px");
 		label.innerHTML = "Critical";
 	div.appendChild(label);
-	list.appendChild(div);
+	span.appendChild(div);
 	
 	div = document.createElement("div");
 	div.setAttribute("style","width:50px;height:50px;float:left");
@@ -198,7 +210,7 @@ function AddAttack (type) {
 		label.setAttribute("style","font-size:12px;line-height:20px;width:60px");
 		label.innerHTML = "Type";
 	div.appendChild(label);
-	list.appendChild(div);
+	span.appendChild(div);
 	
 	if (type == "Melee") {
 		div = document.createElement("div");
@@ -213,7 +225,7 @@ function AddAttack (type) {
 			label.setAttribute("style","font-size:12px;line-height:20px;width:60px");
 			label.innerHTML = "Notes";
 		div.appendChild(label);
-		list.appendChild(div);
+		span.appendChild(div);
 	} else if (type == "Ranged") {
 		div = document.createElement("div");
 		div.setAttribute("style","width:70px;height:50px;float:left");
@@ -227,7 +239,7 @@ function AddAttack (type) {
 			label.setAttribute("style","font-size:12px;line-height:20px;width:60px");
 			label.innerHTML = "Range";
 		div.appendChild(label);
-		list.appendChild(div);
+		span.appendChild(div);
 		
 		div = document.createElement("div");
 		div.setAttribute("style","width:80px;height:50px;float:left");
@@ -241,6 +253,7 @@ function AddAttack (type) {
 			label.setAttribute("style","font-size:12px;line-height:20px;width:60px");
 			label.innerHTML = "Ammo";
 		div.appendChild(label);
-		list.appendChild(div);
+		span.appendChild(div);
 	}
+	document.getElementById(type + "List").appendChild(span);
 }
