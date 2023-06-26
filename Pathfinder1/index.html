@@ -24,7 +24,7 @@
 		<input type="submit" onclick="LoadFromMottokrosh()"style="padding:1px">
 		</section>
 
-        <article id="General">
+        <article>
             <h2>General</h2>
             <section>
                 <div style="width:500px; float:left;">
@@ -64,7 +64,8 @@
                 </div>
             </section>
         </article>
-        <article id="AbilityScores">
+		
+        <article>
             <h2>Ability Scores</h2>
             <section>
                 <div class="black" style="width:60px;height:60px;margin-right:8px">
@@ -194,9 +195,10 @@
                 </div>
             </section>
         </article>
-        <article id="Defense">
-            <h2>Defense</h2>
-            <section>
+		<br/>
+        <details open>
+            <summary><b>Defense</b></summary>
+            <article>
                 <div class="black" style="width:60px;height:60px;margin-right:8px">
                     <span>AC</span>
                     <label class="blackLabel">Armor Class</label>
@@ -264,8 +266,8 @@
                     <label class="blackLabel">Hit Points</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" id="Current-HP" onfocusout="ModifyHP()"/>
-                    <label style="font-size:12px;line-height:15px;width:62px">Current</label>
+                    <input type="text" id="Base-HP" onfocusout="ModifyHP()"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Base</label>
                 </div>
                 <div style="width:20px;height:60px;float:left;margin-left:-5px;margin-right:5px">
                     <label style="font-size:40px;line-height:40px;height:45px;"><b>+</b></label>
@@ -285,8 +287,8 @@
                     <label style="font-size:40px;line-height:40px;height:45px;"><b>=</b></label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input class="green" type="text" id="Total-HP" readonly="readonly" />
-                    <label style="font-size:12px;line-height:20px;width:80px;text-align:center">Total</label>
+                    <input class="green" type="text" id="Current-HP" readonly="readonly" />
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:center">Current</label>
                 </div>
                 <div style="width:15px;height:60px;float:left;margin-left:-3px;margin-right:10px;">
                     <label style="font-size:80px;line-height:40px;height:45px;"><b>/</b></label>
@@ -448,112 +450,115 @@
                     <input type="text" id="Misc-CMD"/>
                     <label style="font-size:12px;line-height:20px;width:80px">Misc Modifier</label>
                 </div>
-            </section>
-        </article>
-		
-        <article id="Offense">
-		<h2>Offense</h2>
-			<div class="black" style="width:50px;height:60px;margin-left:-5px;margin-right:8px">
-				<span style="font-size:25px;">Init</span>
-				<label class="blackLabel">Initiative</label>
-			</div>
-			<div style="width:50px;height:60px;float:left;">
-				<input type="text" id="Init-Total" style="border-width:2px;" />
-				<label style="font-size:12px;line-height:15px;width:62px">Total =</label>
-			</div>
-			<div style="width:50px;height:60px;float:left;">
-				<input class="green dex-temp-mod" type="text" readonly="readonly" />
-				<label style="font-size:12px;line-height:20px;width:62px">Dex</label>
-			</div>
-			<div style="width:50px;height:60px;float:left;">
-				<input type="text" id="Misc-Init" />
-				<label style="font-size:12px;line-height:20px;width:62px">Misc</label>
-			</div>
+            </article>
+        </details>
+		<br/>
+		<details open>
+			<summary>Offense</summary>
+			<article id="Offense">
+				<div class="black" style="width:50px;height:60px;margin-left:-5px;margin-right:8px">
+					<span style="font-size:25px;">Init</span>
+					<label class="blackLabel">Initiative</label>
+				</div>
+				<div style="width:50px;height:60px;float:left;">
+					<input type="text" id="Init-Total" style="border-width:2px;" />
+					<label style="font-size:12px;line-height:15px;width:62px">Total =</label>
+				</div>
+				<div style="width:50px;height:60px;float:left;">
+					<input class="green dex-temp-mod" type="text" readonly="readonly" />
+					<label style="font-size:12px;line-height:20px;width:62px">Dex</label>
+				</div>
+				<div style="width:50px;height:60px;float:left;">
+					<input type="text" id="Misc-Init" />
+					<label style="font-size:12px;line-height:20px;width:62px">Misc</label>
+				</div>
+					
+					
+				<div class="black" style="width:90px;height:60px;margin-left:-5px;margin-right:8px">
+					<span style="font-size:25px;">BAB</span>
+					<label class="blackLabel">Base Attack Bonus</label>
+				</div>
+				<div style="width:90px;height:60px;float:left;">
+					<input type="text" class="BAB" onfocusout="ModifyBAB(this.value)"/>
+				</div>
+				<div style="width:500px;height:60px;float:left;">
+				</div>
 				
+				<div class="black" style="width:70px;height:60px;margin-right:8px">
+					<span style="font-size:25px;">Speed</span>
+				</div>
+				<div style="width:50px;height:60px;float:left;">
+					<input type="text" id="Base-Speed" />
+					<label style="font-size:12px;line-height:15px;width:62px">Base Speed</label>
+				</div>
+				<div style="width:50px;height:60px;float:left;">
+					<input type="text" id="Armor-Speed" />
+					<label style="font-size:12px;line-height:15px;width:62px">With Armor</label>
+				</div>
+				<div style="width:100px;height:60px;float:left;">
+					<input type="text" id="Fly-Speed" />
+					<label style="font-size:12px;line-height:15px;width:90px">Fly/Maneuverability</label>
+				</div>
+				<div style="width:50px;height:60px;float:left;">
+					<input type="text" id="Swim-Speed" />
+					<label style="font-size:12px;line-height:15px;width:62px">Swim</label>
+				</div>
+				<div style="width:50px;height:60px;float:left;">
+					<input type="text" id="Climb-Speed" />
+					<label style="font-size:12px;line-height:15px;width:62px">Climb</label>
+				</div>
+				<div style="width:50px;height:60px;float:left;">
+					<input type="text" id="Burrow-Speed" />
+					<label style="font-size:12px;line-height:15px;width:62px">Burrow</label>
+				</div>
+				<div style="width:460px;height:60px;float:left;">
+					<input type="text" id="Speed-Notes" />
+					<label style="font-size:12px;line-height:15px;width:100px">Modifiers & Notes</label>
+				</div>
 				
-			<div class="black" style="width:90px;height:60px;margin-left:-5px;margin-right:8px">
-				<span style="font-size:25px;">BAB</span>
-				<label class="blackLabel">Base Attack Bonus</label>
-			</div>
-			<div style="width:90px;height:60px;float:left;">
-				<input type="text" class="BAB" onfocusout="ModifyBAB(this.value)"/>
-			</div>
-			<div style="width:500px;height:60px;float:left;">
-			</div>
-			
-            <div class="black" style="width:70px;height:60px;margin-right:8px">
-                <span style="font-size:25px;">Speed</span>
-            </div>
-            <div style="width:50px;height:60px;float:left;">
-                <input type="text" id="Base-Speed" />
-                <label style="font-size:12px;line-height:15px;width:62px">Base Speed</label>
-            </div>
-            <div style="width:50px;height:60px;float:left;">
-                <input type="text" id="Armor-Speed" />
-                <label style="font-size:12px;line-height:15px;width:62px">With Armor</label>
-            </div>
-            <div style="width:100px;height:60px;float:left;">
-                <input type="text" id="Fly-Speed" />
-                <label style="font-size:12px;line-height:15px;width:90px">Fly/Maneuverability</label>
-            </div>
-            <div style="width:50px;height:60px;float:left;">
-                <input type="text" id="Swim-Speed" />
-                <label style="font-size:12px;line-height:15px;width:62px">Swim</label>
-            </div>
-            <div style="width:50px;height:60px;float:left;">
-                <input type="text" id="Climb-Speed" />
-                <label style="font-size:12px;line-height:15px;width:62px">Climb</label>
-            </div>
-            <div style="width:50px;height:60px;float:left;">
-                <input type="text" id="Burrow-Speed" />
-                <label style="font-size:12px;line-height:15px;width:62px">Burrow</label>
-            </div>
-            <div style="width:460px;height:60px;float:left;">
-                <input type="text" id="Speed-Notes" />
-                <label style="font-size:12px;line-height:15px;width:100px">Modifiers & Notes</label>
-            </div>
-			
-			<div class="black" style="width:130px;height:60px;margin-right:8px">
-				<span>CMB</span>
-				<label class="blackLabel">Combat Maneuver Bonus</label>
-			</div>
-			<div style="width:60px;height:60px;float:left;">
-				<input type="text" id="Total-CMB" style="border-width:3px;" />
-				<label style="font-size:12px;line-height:20px;width:62px">Total =</label>
-			</div>
-			<div style="width:60px;height:60px;float:left;">
-				<input class="green BAB" type="text" readonly="readonly" />
-				<label style="font-size:12px;line-height:15px;width:70px;text-align:middle">Base Attack Bonus</label>
-			</div>
-			<div style="width:60px;height:60px;float:left;">
-				<input class="green str-temp-mod" type="text" readonly="readonly" />
-				<label style="font-size:12px;line-height:20px;width:80px;text-align:left">Str Modifier</label>
-			</div>
-			<div style="width:60px;height:60px;float:left;">
-				<input type="text" id="Size-CMB" />
-				<label style="font-size:12px;line-height:20px;width:80px;text-align:left">Size Modifier</label>
-			</div>
-			<div style="width:550px;height:60px;float:left;">
-				<input type="text" id="Misc-CMB"/>
-				<label style="font-size:12px;line-height:20px;width:80px">Misc Modifier</label>
-			</div>
-			
-			<div id="MeleeList"></div>
-			<div id="RangedList"></div>
-            <div style="clear:both">
-                <button type="button" onclick="AddAttack('Melee')">
-                    +Melee Attack
-                </button>
-                <button type="button" onclick="AddAttack('Ranged')">
-                    +Ranged Attack
-                </button>
-            </div>
-        </article>
+				<div class="black" style="width:130px;height:60px;margin-right:8px">
+					<span>CMB</span>
+					<label class="blackLabel">Combat Maneuver Bonus</label>
+				</div>
+				<div style="width:60px;height:60px;float:left;">
+					<input type="text" id="Total-CMB" style="border-width:3px;" />
+					<label style="font-size:12px;line-height:20px;width:62px">Total =</label>
+				</div>
+				<div style="width:60px;height:60px;float:left;">
+					<input class="green BAB" type="text" readonly="readonly" />
+					<label style="font-size:12px;line-height:15px;width:70px;text-align:middle">Base Attack Bonus</label>
+				</div>
+				<div style="width:60px;height:60px;float:left;">
+					<input class="green str-temp-mod" type="text" readonly="readonly" />
+					<label style="font-size:12px;line-height:20px;width:80px;text-align:left">Str Modifier</label>
+				</div>
+				<div style="width:60px;height:60px;float:left;">
+					<input type="text" id="Size-CMB" />
+					<label style="font-size:12px;line-height:20px;width:80px;text-align:left">Size Modifier</label>
+				</div>
+				<div style="width:550px;height:60px;float:left;">
+					<input type="text" id="Misc-CMB"/>
+					<label style="font-size:12px;line-height:20px;width:80px">Misc Modifier</label>
+				</div>
+				
+				<div id="MeleeList"></div>
+				<div id="RangedList"></div>
+				<div style="clear:both">
+					<button type="button" onclick="AddAttack('Melee')">
+						+Melee Attack
+					</button>
+					<button type="button" onclick="AddAttack('Ranged')">
+						+Ranged Attack
+					</button>
+				</div>
+			</article>
+		</details>
 		<br />
-        <article id="Skills">
-			<section>
+        <details open>
+			<summary>Skills</summary>
+			<article>
 				<table id="Skill-Table" style="width:97%">
-				<caption style="font-size:150%"><b>Adventuring Skills<b/></caption>
+				<caption style="font-size:150%"><b><i>Adventuring Skills</i></b></caption>
 					<tr>
 						<th style="width:60px">Class Skill</th>
 						<th style="width:300px">Skill Name</th>
@@ -855,7 +860,7 @@
 						<td><input type="text" id="use-magic-device-misc" style="width:260px"/></td>
 					</tr>
 					<tr><td colspan="10" style="text-align:center">
-						<b><i>Background Skills</i></b>
+						<b><i style="font-size:150%">Background Skills</i></b>
 					</td></tr>
 					<tr>
 						<td><input type="checkbox" id="appraise-class-skill"></td>
@@ -947,18 +952,6 @@
 					<tr id="perform-row" hidden></tr>
 					<tr id="profession-row" hidden></tr>
 					<tr>
-						<td><input type="checkbox" id="profession-class-skill"></td>
-						<td><div style="all:unset">Profession </div><input type="text" id="profession-name" style="width:150px;text-align:left;display:inline"/></td>
-						<td><input type="text" id="profession-total" style="width:50px"/></td>
-						<td style="text-align:center">Wis</td>
-						<td><input type="text" class="green wis-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="profession-rank" style="width:50px"/></td>
-						<td><input type="text" id="profession-class" style="width:50px"/></td>
-						<td><input type="text" id="profession-racial" style="width:50px"/></td>
-						<td><input type="text" id="profession-trait" style="width:50px"/></td>
-						<td><input type="text" id="profession-misc" style="width:260px"/></td>
-					</tr>
-					<tr>
 						<td><input type="checkbox" id="sleight-of-hand-class-skill"></td>
 						<td>Sleight of Hand*</td>
 						<td><input type="text" id="sleight-of-hand-total" style="width:50px"/></td>
@@ -1008,8 +1001,8 @@
 					<input type="text" id="languages"/>
 					<label style="font-size:12px;line-height:20px;width:80px">Spoken/Written</label>
 				</div>
-			</section>
-        </article>
+			</article>
+        </details>
 		<br />
 		<article id="Customization">
 			<section>

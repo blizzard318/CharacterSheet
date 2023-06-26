@@ -49,53 +49,40 @@ function UpdateOnStart() { //Call this on start
 	ModifyAbility("wis");
 	ModifyAbility("cha");
 	ModifyHP();
-	AddSkill("artistry");
-	AddSkill("craft");
-	AddSkill("lore");
-	AddSkill("perform");
-	AddSkill("profession");
 }
 
 function AddSkill(type) {
 	const index = document.getElementById(type + "-row").rowIndex;
 	const row = document.getElementById("Skill-Table").insertRow(index);
+	row.id = type + index;
 	let i = 0;
 	
 	let td = row.insertCell(i++); //Class Skill
 	td.innerHTML = "<input type='checkbox' id='"  + type + "-class-skill'>";
 	
 	td = row.insertCell(i++); //Name of Skill
-	let removal = "'document.getElementById(\"Skill-Table\").deleteRow(this.parentElement.rowIndex);'"
-	
-	let prefix = "<div style='all:unset'"
-	prefix += ">" + type.charAt(0).toUpperCase() + type.slice(1) + "</div>";
-	
-	let suffix = " <input type='text' class='" + type + "-name'";
-	suffix += "onmouseover='this.innerHTML=\"Remove?\"'";
-	suffix += "onmouseup=" + removal;
-	suffix += "style='width:150px;text-align:left;display:inline'/>";
-	td.innerHTML = prefix + suffix;
-	
-		/*div.setAttribute("onmouseover","childNodes[0].innerHTML = 'X';" + 
-						"childNodes[1].innerHTML = 'Press to Delete'");
-						
-		div.setAttribute("onmouseout","childNodes[0].innerHTML = '" + type + "';" + 
-						"childNodes[1].innerHTML = '" + type + " Attack'");
+		let prefix = "<div style='all:unset'";
+		prefix += "onmouseover=\"innerText='Delete?'\"";
+		prefix += "onmouseout=\"innerText='" + type.charAt(0).toUpperCase() + type.slice(1) + "'\"";
+		prefix += "onmouseup=\"document.getElementById('Skill-Table').deleteRow(";
+		prefix += "document.getElementById('" + row.id  + "').rowIndex)\">";
+		prefix += type.charAt(0).toUpperCase() + type.slice(1) + "</div>";
 		
-		let removal = "document.getElementById("Skill-Table").deleteRow(parentElement.rowIndex);"
-		div.setAttribute("onmouseup",removal);*/
+		let suffix = " <input type='text' class='" + type + "-name'";
+		suffix += "style='width:145px;text-align:left;display:inline'/>";
+	td.innerHTML = prefix + suffix;
 
 	td = row.insertCell(i++); //Total Skill Value
 	td.innerHTML = "<input type='text' class='" + type + "-total' style='width:50px'/>";
 	
 	td = row.insertCell(i++); //Ability Score Tied
-	td.style.textAlign = "center";
-	let mod = 0;
-	switch (type) {
-		case "artistry":case "craft":case "lore": mod = "int"; break;
-		case "perform": 						  mod = "cha"; break;
-		case "profession": 						  mod = "wis"; break;
-	}
+		td.style.textAlign = "center";
+		let mod = 0;
+		switch (type) {
+			case "artistry":case "craft":case "lore": mod = "int"; break;
+			case "perform": 						  mod = "cha"; break;
+			case "profession": 						  mod = "wis"; break;
+		}
 	td.innerHTML = mod.charAt(0).toUpperCase() + mod.slice(1);
 	
 	td = row.insertCell(i++); //Ability Modifier

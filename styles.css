@@ -13,6 +13,12 @@ body {
 	line-height: 1.5;
 }
 
+summary { 
+	font-size:150%;
+	font-weight: bold;  
+    text-align: left;
+}
+
 select {
     text-align: center;
     width: 100px;

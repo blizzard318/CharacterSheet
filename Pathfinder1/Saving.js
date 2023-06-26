@@ -43,10 +43,10 @@ async function SaveToCloudFlare () {
 	character.ac_ff = document.getElementById("FlatFoot-AC").value;
 	character.ac_other = document.getElementById("Other-AC").value;
 	
-	character.hp_current = document.getElementById("Current-HP").value;
+	character.hp_current = document.getElementById("Base-HP").value;
 	character.hp_temp = document.getElementById("Temp-HP").value;
 	character.hp_nonlethal = document.getElementById("Non-Lethal-Dmg").value;
-	character.hp_max = document.getElementById("Max-HP").value;
+	character.hp_max = document.getElementById("Current-HP").value;
 	
 	character.dmg_reduc = document.getElementById("Damage-Reduction").value;
 	character.spell_resist = document.getElementById("Spell-Resistance").value;
