@@ -22,6 +22,10 @@
 		Upload it here:
 		<input type="file" id="charsheet" accept="application/json" style="padding:0px;font-size:15px" multiple>
 		<input type="submit" onclick="LoadFromMottokrosh()"style="padding:1px">
+		
+			<button type="button" onclick="SaveToJSON()">
+				Export JSON
+			</button>
 		</section>
 
         <article>
@@ -204,18 +208,18 @@
                     <label class="blackLabel">Armor Class</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" id="Total-AC" style="border-width:3px;" />
+                    <input type="text" id="Total-AC" style="border-width:3px;" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:20px;width:62px">Total =</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;margin-left:-10px;">
                     <label style="font-size:30px;line-height:40px;width:62px;height:45px">10+</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" id="Armor-Bonus" />
+                    <input type="text" id="Armor-Bonus" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Armor Bonus</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" id="Shield-Bonus" />
+                    <input type="text" id="Shield-Bonus" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Shield Bonus</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
@@ -223,19 +227,19 @@
                     <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Dex Modifier</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" id="AC-Size" />
+                    <input type="text" id="AC-Size" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Size Modifier</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" id="Natural-Armor" />
+                    <input type="text" id="Natural-Armor" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Natural Armor</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" id="Deflection"/>
+                    <input type="text" id="Deflection" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:20px;width:80px">Deflection</label>
                 </div>
                 <div style="width:320px;height:60px;float:left;">
-                    <input type="text" id="AC-Misc"/>
+                    <input type="text" id="AC-Misc" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:20px;width:80px">Misc Modifier</label>
                 </div>
 				
@@ -244,7 +248,7 @@
                     <label class="blackLabel">Armor Class</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" id="Touch-AC"/>
+                    <input type="text" id="Touch-AC" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:20px;width:60px">Touch</label>
                 </div>
 				
@@ -253,11 +257,11 @@
                     <label class="blackLabel">Armor Class</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" id="FlatFoot-AC"/>
+                    <input type="text" id="FlatFoot-AC" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:20px;width:70px">Flat-Footed</label>
                 </div>
                 <div style="width:600px;height:60px;float:left;">
-                    <input type="text" id="Other-AC"/>
+                    <input type="text" id="Other-AC" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:20px;width:120px">Other AC Modifier</label>
                 </div>
 				
@@ -294,7 +298,7 @@
                     <label style="font-size:80px;line-height:40px;height:45px;"><b>/</b></label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" id="Max-HP"/>
+                    <input type="text" id="Max-HP" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Maximum</label>
                 </div>
 
@@ -303,14 +307,14 @@
                     <label class="blackLabel">Damage Reduction</label>
                 </div>
                 <div style="width:200px;height:60px;float:left;">
-                    <input type="text" id="Damage-Reduction"/>
+                    <input type="text" id="Damage-Reduction" onfocusout="SaveToCloudFlare()"/>
                 </div>
                 <div class="black" style="width:100px;height:60px;margin-left:-5px;margin-right:8px">
                     <span style="font-size:25px;">SR</span>
                     <label class="blackLabel">Spell Resistance</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" id="Spell-Resistance"/>
+                    <input type="text" id="Spell-Resistance" onfocusout="SaveToCloudFlare()"/>
                 </div>
 
 
@@ -319,11 +323,11 @@
                     <label class="blackLabel">(Constitution)</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" id="Fortitude-Total" style="border-width:2px;" />
+                    <input type="text" id="Fortitude-Total" style="border-width:2px;" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Total =</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" id="Fortitude-Base" />
+                    <input type="text" id="Fortitude-Base" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Base</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
@@ -331,15 +335,15 @@
                     <label style="font-size:12px;line-height:20px;width:62px">Con</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" id="Fortitude-Item" />
+                    <input type="text" id="Fortitude-Item" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Item</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" id="Fortitude-Misc" />
+                    <input type="text" id="Fortitude-Misc" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Misc</label>
                 </div>
                 <div style="width:550px;height:60px;float:left;">
-                    <input type="text" id="Fortitude-Notes" />
+                    <input type="text" id="Fortitude-Notes" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Notes</label>
                 </div>
 
@@ -348,11 +352,11 @@
                     <label class="blackLabel">(Dexterity)</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" id="Reflex-Total" style="border-width:2px;" />
+                    <input type="text" id="Reflex-Total" style="border-width:2px;" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Total =</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" id="Reflex-Base" />
+                    <input type="text" id="Reflex-Base" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Base</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
@@ -360,15 +364,15 @@
                     <label style="font-size:12px;line-height:20px;width:62px">Dex</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" id="Reflex-Item" />
+                    <input type="text" id="Reflex-Item" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Item</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" id="Reflex-Misc" />
+                    <input type="text" id="Reflex-Misc" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Misc</label>
                 </div>
                 <div style="width:550px;height:60px;float:left;">
-                    <input type="text" id="Reflex-Notes" />
+                    <input type="text" id="Reflex-Notes" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Notes</label>
                 </div>
 
@@ -377,11 +381,11 @@
                     <label class="blackLabel">(Wisdom)</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" id="Will-Total" style="border-width:2px;" />
+                    <input type="text" id="Will-Total" style="border-width:2px;" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Total =</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" id="Will-Base" />
+                    <input type="text" id="Will-Base" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Base</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
@@ -389,15 +393,15 @@
                     <label style="font-size:12px;line-height:20px;width:62px">Wis</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" id="Will-Item" />
+                    <input type="text" id="Will-Item" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Item</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
-                    <input type="text" id="Will-Misc" />
+                    <input type="text" id="Will-Misc" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Misc</label>
                 </div>
                 <div style="width:550px;height:60px;float:left;">
-                    <input type="text" id="Will-Notes" />
+                    <input type="text" id="Will-Notes" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Notes</label>
                 </div>
 				
@@ -406,7 +410,7 @@
                     <label class="blackLabel">Resistances</label>
                 </div>
                 <div style="width:380px;height:60px;float:left;">
-                    <input type="text" id="Resistances" />
+                    <input type="text" id="Resistances" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Resistances</label>
                 </div>
 				
@@ -415,7 +419,7 @@
                     <label class="blackLabel">Immunities</label>
                 </div>
                 <div style="width:390px;height:60px;float:left;">
-                    <input type="text" id="Immunities" />
+                    <input type="text" id="Immunities" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Immunities</label>
                 </div>
 				
@@ -424,7 +428,7 @@
                     <label class="blackLabel">Combat Maneuver Defense</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" id="Total-CMD" style="border-width:3px;" />
+                    <input type="text" id="Total-CMD" style="border-width:3px;" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:20px;width:62px">Total =</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;margin-left:-10px;">
@@ -443,11 +447,11 @@
                     <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Dex Modifier</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
-                    <input type="text" id="Size-CMD" />
+                    <input type="text" id="Size-CMD" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Size Modifier</label>
                 </div>
                 <div style="width:410px;height:60px;float:left;">
-                    <input type="text" id="Misc-CMD"/>
+                    <input type="text" id="Misc-CMD" onfocusout="SaveToCloudFlare()"/>
                     <label style="font-size:12px;line-height:20px;width:80px">Misc Modifier</label>
                 </div>
             </article>
@@ -460,16 +464,16 @@
 					<span style="font-size:25px;">Init</span>
 					<label class="blackLabel">Initiative</label>
 				</div>
-				<div style="width:50px;height:60px;float:left;">
-					<input type="text" id="Init-Total" style="border-width:2px;" />
+				<div style="width:50px;height:60px;float:left">
+					<input type="text" id="Init-Total" style="border-width:2px;" onfocusout="SaveToCloudFlare()"/>
 					<label style="font-size:12px;line-height:15px;width:62px">Total =</label>
 				</div>
-				<div style="width:50px;height:60px;float:left;">
+				<div style="width:50px;height:60px;float:left">
 					<input class="green dex-temp-mod" type="text" readonly="readonly" />
 					<label style="font-size:12px;line-height:20px;width:62px">Dex</label>
 				</div>
-				<div style="width:50px;height:60px;float:left;">
-					<input type="text" id="Misc-Init" />
+				<div style="width:50px;height:60px;float:left">
+					<input type="text" id="Misc-Init" onfocusout="SaveToCloudFlare()"/>
 					<label style="font-size:12px;line-height:20px;width:62px">Misc</label>
 				</div>
 					
@@ -478,40 +482,40 @@
 					<span style="font-size:25px;">BAB</span>
 					<label class="blackLabel">Base Attack Bonus</label>
 				</div>
-				<div style="width:90px;height:60px;float:left;">
+				<div style="width:90px;height:60px;float:left">
 					<input type="text" class="BAB" onfocusout="ModifyBAB(this.value)"/>
 				</div>
-				<div style="width:500px;height:60px;float:left;"></div>
+				<div style="width:500px;height:60px;float:left"></div>
 				
 				<div class="black" style="width:70px;height:40px;margin-right:8px">
 					<span style="font-size:25px;">Speed</span>
 				</div>
-				<div style="width:50px;height:60px;float:left;">
-					<input type="text" id="Base-Speed" />
+				<div style="width:50px;height:60px;float:left">
+					<input type="text" id="Base-Speed" onfocusout="SaveToCloudFlare()"/>
 					<label style="font-size:12px;line-height:15px;width:62px">Base Speed</label>
 				</div>
-				<div style="width:50px;height:60px;float:left;">
-					<input type="text" id="Armor-Speed" />
+				<div style="width:50px;height:60px;float:left">
+					<input type="text" id="Armor-Speed" onfocusout="SaveToCloudFlare()"/>
 					<label style="font-size:12px;line-height:15px;width:62px">With Armor</label>
 				</div>
-				<div style="width:100px;height:60px;float:left;">
-					<input type="text" id="Fly-Speed" />
+				<div style="width:100px;height:60px;float:left">
+					<input type="text" id="Fly-Speed" onfocusout="SaveToCloudFlare()"/>
 					<label style="font-size:12px;line-height:15px;width:90px">Fly/Maneuverability</label>
 				</div>
-				<div style="width:50px;height:60px;float:left;">
-					<input type="text" id="Swim-Speed" />
+				<div style="width:50px;height:60px;float:left">
+					<input type="text" id="Swim-Speed" onfocusout="SaveToCloudFlare()"/>
 					<label style="font-size:12px;line-height:15px;width:62px">Swim</label>
 				</div>
-				<div style="width:50px;height:60px;float:left;">
-					<input type="text" id="Climb-Speed" />
+				<div style="width:50px;height:60px;float:left">
+					<input type="text" id="Climb-Speed" onfocusout="SaveToCloudFlare()"/>
 					<label style="font-size:12px;line-height:15px;width:62px">Climb</label>
 				</div>
-				<div style="width:50px;height:60px;float:left;">
-					<input type="text" id="Burrow-Speed" />
+				<div style="width:50px;height:60px;float:left">
+					<input type="text" id="Burrow-Speed" onfocusout="SaveToCloudFlare()"/>
 					<label style="font-size:12px;line-height:15px;width:62px">Burrow</label>
 				</div>
-				<div style="width:460px;height:60px;float:left;">
-					<input type="text" id="Speed-Notes" />
+				<div style="width:460px;height:60px;float:left">
+					<input type="text" id="Speed-Notes" onfocusout="SaveToCloudFlare()"/>
 					<label style="font-size:12px;line-height:15px;width:100px">Modifiers & Notes</label>
 				</div>
 				
@@ -519,24 +523,24 @@
 					<span>CMB</span>
 					<label class="blackLabel">Combat Maneuver Bonus</label>
 				</div>
-				<div style="width:60px;height:60px;float:left;">
-					<input type="text" id="Total-CMB" style="border-width:3px;" />
+				<div style="width:60px;height:60px;float:left">
+					<input type="text" id="Total-CMB" style="border-width:3px;" onfocusout="SaveToCloudFlare()"/>
 					<label style="font-size:12px;line-height:20px;width:62px">Total =</label>
 				</div>
-				<div style="width:60px;height:60px;float:left;">
+				<div style="width:60px;height:60px;float:left">
 					<input class="green BAB" type="text" readonly="readonly" />
 					<label style="font-size:12px;line-height:15px;width:70px;text-align:middle">Base Attack Bonus</label>
 				</div>
-				<div style="width:60px;height:60px;float:left;">
+				<div style="width:60px;height:60px;float:left">
 					<input class="green str-temp-mod" type="text" readonly="readonly" />
 					<label style="font-size:12px;line-height:20px;width:80px;text-align:left">Str Modifier</label>
 				</div>
-				<div style="width:60px;height:60px;float:left;">
-					<input type="text" id="Size-CMB" />
+				<div style="width:60px;height:60px;float:left">
+					<input type="text" id="Size-CMB" onfocusout="SaveToCloudFlare()"/>
 					<label style="font-size:12px;line-height:20px;width:80px;text-align:left">Size Modifier</label>
 				</div>
-				<div style="width:550px;height:60px;float:left;">
-					<input type="text" id="Misc-CMB"/>
+				<div style="width:550px;height:60px;float:left">
+					<input type="text" id="Misc-CMB" onfocusout="SaveToCloudFlare()"/>
 					<label style="font-size:12px;line-height:20px;width:80px">Misc Modifier</label>
 				</div>
 				
@@ -558,7 +562,7 @@
 			<article>
 				<table id="Skill-Table" style="width:97%">
 				<caption style="font-size:150%"><b><i>Adventuring Skills</i></b></caption>
-					<tr>
+					<tr> <!--0th row-->
 						<th style="width:60px">Class Skill</th>
 						<th style="width:300px">Skill Name</th>
 						<th>Total</th>
@@ -570,397 +574,397 @@
 						<th>Trait</th>
 						<th style="width:260px">Misc</th>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="acrobatics-class-skill"></td>
+					<tr> <!--1st row-->
+						<td><input type="checkbox" id="acrobatics-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Acrobatics</td>
-						<td><input type="text" id="acrobatics-total" style="width:50px"/></td>
+						<td><input type="text" id="acrobatics-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Dex</td>
 						<td><input type="text" class="green dex-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="acrobatics-rank" style="width:50px"/></td>
-						<td><input type="text" id="acrobatics-class" style="width:50px"/></td>
-						<td><input type="text" id="acrobatics-racial" style="width:50px"/></td>
-						<td><input type="text" id="acrobatics-trait" style="width:50px"/></td>
-						<td><input type="text" id="acrobatics-misc" style="width:260px"/></td>
+						<td><input type="text" id="acrobatics-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="acrobatics-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="acrobatics-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="acrobatics-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="acrobatics-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="bluff-class-skill"></td>
+					<tr> <!--2nd row-->
+						<td><input type="checkbox" id="bluff-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Bluff</td>
-						<td><input type="text" id="bluff-total" style="width:50px"/></td>
+						<td><input type="text" id="bluff-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Cha</td>
 						<td><input type="text" class="green cha-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="bluff-rank" style="width:50px"/></td>
-						<td><input type="text" id="bluff-class" style="width:50px"/></td>
-						<td><input type="text" id="bluff-racial" style="width:50px"/></td>
-						<td><input type="text" id="bluff-trait" style="width:50px"/></td>
-						<td><input type="text" id="bluff-misc" style="width:260px"/></td>
+						<td><input type="text" id="bluff-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="bluff-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="bluff-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="bluff-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="bluff-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="climb-class-skill"></td>
+					<tr> <!--3rd row-->
+						<td><input type="checkbox" id="climb-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Climb</td>
-						<td><input type="text" id="climb-total" style="width:50px"/></td>
+						<td><input type="text" id="climb-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Str</td>
 						<td><input type="text" class="green str-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="climb-rank" style="width:50px"/></td>
-						<td><input type="text" id="climb-class" style="width:50px"/></td>
-						<td><input type="text" id="climb-racial" style="width:50px"/></td>
-						<td><input type="text" id="climb-trait" style="width:50px"/></td>
-						<td><input type="text" id="climb-misc" style="width:260px"/></td>
+						<td><input type="text" id="climb-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="climb-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="climb-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="climb-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="climb-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="diplomacy-class-skill"></td>
+					<tr> <!--4th row-->
+						<td><input type="checkbox" id="diplomacy-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Diplomacy</td>
-						<td><input type="text" id="diplomacy-total" style="width:50px"/></td>
+						<td><input type="text" id="diplomacy-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Cha</td>
 						<td><input type="text" class="green cha-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="diplomacy-rank" style="width:50px"/></td>
-						<td><input type="text" id="diplomacy-class" style="width:50px"/></td>
-						<td><input type="text" id="diplomacy-racial" style="width:50px"/></td>
-						<td><input type="text" id="diplomacy-trait" style="width:50px"/></td>
-						<td><input type="text" id="diplomacy-misc" style="width:260px"/></td>
+						<td><input type="text" id="diplomacy-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="diplomacy-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="diplomacy-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="diplomacy-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="diplomacy-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="disable-device-class-skill"></td>
+					<tr> <!--5th row-->
+						<td><input type="checkbox" id="disable-device-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Disable Device*</td>
-						<td><input type="text" id="disable-device-total" style="width:50px"/></td>
+						<td><input type="text" id="disable-device-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Dex</td>
 						<td><input type="text" class="green dex-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="disable-device-rank" style="width:50px"/></td>
-						<td><input type="text" id="disable-device-class" style="width:50px"/></td>
-						<td><input type="text" id="disable-device-racial" style="width:50px"/></td>
-						<td><input type="text" id="disable-device-trait" style="width:50px"/></td>
-						<td><input type="text" id="disable-device-misc" style="width:260px"/></td>
+						<td><input type="text" id="disable-device-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="disable-device-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="disable-device-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="disable-device-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="disable-device-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="disguise-class-skill"></td>
+					<tr> <!--6th row-->
+						<td><input type="checkbox" id="disguise-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Disguise</td>
-						<td><input type="text" id="disguise-total" style="width:50px"/></td>
+						<td><input type="text" id="disguise-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Cha</td>
 						<td><input type="text" class="green cha-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="disguise-rank" style="width:50px"/></td>
-						<td><input type="text" id="disguise-class" style="width:50px"/></td>
-						<td><input type="text" id="disguise-racial" style="width:50px"/></td>
-						<td><input type="text" id="disguise-trait" style="width:50px"/></td>
-						<td><input type="text" id="disguise-misc" style="width:260px"/></td>
+						<td><input type="text" id="disguise-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="disguise-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="disguise-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="disguise-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="disguise-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="escape-artist-class-skill"></td>
+					<tr> <!--7th row-->
+						<td><input type="checkbox" id="escape-artist-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Escape Artist</td>
-						<td><input type="text" id="escape-artist-total" style="width:50px"/></td>
+						<td><input type="text" id="escape-artist-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Dex</td>
 						<td><input type="text" class="green dex-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="escape-artist-rank" style="width:50px"/></td>
-						<td><input type="text" id="escape-artist-class" style="width:50px"/></td>
-						<td><input type="text" id="escape-artist-racial" style="width:50px"/></td>
-						<td><input type="text" id="escape-artist-trait" style="width:50px"/></td>
-						<td><input type="text" id="escape-artist-misc" style="width:260px"/></td>
+						<td><input type="text" id="escape-artist-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="escape-artist-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="escape-artist-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="escape-artist-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="escape-artist-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="fly-class-skill"></td>
+					<tr> <!--8th row-->
+						<td><input type="checkbox" id="fly-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Fly</td>
-						<td><input type="text" id="fly-total" style="width:50px"/></td>
+						<td><input type="text" id="fly-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Dex</td>
 						<td><input type="text" class="green dex-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="fly-rank" style="width:50px"/></td>
-						<td><input type="text" id="fly-class" style="width:50px"/></td>
-						<td><input type="text" id="fly-racial" style="width:50px"/></td>
-						<td><input type="text" id="fly-trait" style="width:50px"/></td>
-						<td><input type="text" id="fly-misc" style="width:260px"/></td>
+						<td><input type="text" id="fly-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="fly-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="fly-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="fly-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="fly-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="heal-class-skill"></td>
+					<tr> <!--9th row-->
+						<td><input type="checkbox" id="heal-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Heal</td>
-						<td><input type="text" id="heal-total" style="width:50px"/></td>
+						<td><input type="text" id="heal-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Wis</td>
 						<td><input type="text" class="green wis-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="heal-rank" style="width:50px"/></td>
-						<td><input type="text" id="heal-class" style="width:50px"/></td>
-						<td><input type="text" id="heal-racial" style="width:50px"/></td>
-						<td><input type="text" id="heal-trait" style="width:50px"/></td>
-						<td><input type="text" id="heal-misc" style="width:260px"/></td>
+						<td><input type="text" id="heal-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="heal-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="heal-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="heal-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="heal-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="intimidate-class-skill"></td>
+					<tr> <!--10th row-->
+						<td><input type="checkbox" id="intimidate-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Intimidate</td>
-						<td><input type="text" id="intimidate-total" style="width:50px"/></td>
+						<td><input type="text" id="intimidate-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Cha</td>
 						<td><input type="text" class="green cha-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="intimidate-rank" style="width:50px"/></td>
-						<td><input type="text" id="intimidate-class" style="width:50px"/></td>
-						<td><input type="text" id="intimidate-racial" style="width:50px"/></td>
-						<td><input type="text" id="intimidate-trait" style="width:50px"/></td>
-						<td><input type="text" id="intimidate-misc" style="width:260px"/></td>
+						<td><input type="text" id="intimidate-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="intimidate-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="intimidate-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="intimidate-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="intimidate-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="arcana-class-skill"></td>
+					<tr> <!--11th row-->
+						<td><input type="checkbox" id="arcana-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Knowledge (Arcana)*</td>
-						<td><input type="text" id="arcana-total" style="width:50px"/></td>
+						<td><input type="text" id="arcana-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Int</td>
 						<td><input type="text" class="green int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="arcana-rank" style="width:50px"/></td>
-						<td><input type="text" id="arcana-class" style="width:50px"/></td>
-						<td><input type="text" id="arcana-racial" style="width:50px"/></td>
-						<td><input type="text" id="arcana-trait" style="width:50px"/></td>
-						<td><input type="text" id="arcana-misc" style="width:260px"/></td>
+						<td><input type="text" id="arcana-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="arcana-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="arcana-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="arcana-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="arcana-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="dungeoneering-class-skill"></td>
+					<tr> <!--12th row-->
+						<td><input type="checkbox" id="dungeoneering-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Knowledge (Dungeoneering)*</td>
-						<td><input type="text" id="dungeoneering-total" style="width:50px"/></td>
+						<td><input type="text" id="dungeoneering-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Int</td>
 						<td><input type="text" class="green int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="dungeoneering-rank" style="width:50px"/></td>
-						<td><input type="text" id="dungeoneering-class" style="width:50px"/></td>
-						<td><input type="text" id="dungeoneering-racial" style="width:50px"/></td>
-						<td><input type="text" id="dungeoneering-trait" style="width:50px"/></td>
-						<td><input type="text" id="dungeoneering-misc" style="width:260px"/></td>
+						<td><input type="text" id="dungeoneering-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="dungeoneering-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="dungeoneering-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="dungeoneering-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="dungeoneering-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="local-class-skill"></td>
+					<tr> <!--13th row-->
+						<td><input type="checkbox" id="local-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Knowledge (Local)*</td>
-						<td><input type="text" id="local-total" style="width:50px"/></td>
+						<td><input type="text" id="local-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Int</td>
 						<td><input type="text" class="green int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="local-rank" style="width:50px"/></td>
-						<td><input type="text" id="local-class" style="width:50px"/></td>
-						<td><input type="text" id="local-racial" style="width:50px"/></td>
-						<td><input type="text" id="local-trait" style="width:50px"/></td>
-						<td><input type="text" id="local-misc" style="width:260px"/></td>
+						<td><input type="text" id="local-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="local-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="local-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="local-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="local-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="nature-class-skill"></td>
+					<tr> <!--14th row-->
+						<td><input type="checkbox" id="nature-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Knowledge (Nature)*</td>
-						<td><input type="text" id="nature-total" style="width:50px"/></td>
+						<td><input type="text" id="nature-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Int</td>
 						<td><input type="text" class="green int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="nature-rank" style="width:50px"/></td>
-						<td><input type="text" id="nature-class" style="width:50px"/></td>
-						<td><input type="text" id="nature-racial" style="width:50px"/></td>
-						<td><input type="text" id="nature-trait" style="width:50px"/></td>
-						<td><input type="text" id="nature-misc" style="width:260px"/></td>
+						<td><input type="text" id="nature-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="nature-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="nature-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="nature-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="nature-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="planes-class-skill"></td>
+					<tr> <!--15th row-->
+						<td><input type="checkbox" id="planes-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Knowledge (Planes)*</td>
-						<td><input type="text" id="planes-total" style="width:50px"/></td>
+						<td><input type="text" id="planes-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Int</td>
 						<td><input type="text" class="green int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="planes-rank" style="width:50px"/></td>
-						<td><input type="text" id="planes-class" style="width:50px"/></td>
-						<td><input type="text" id="planes-racial" style="width:50px"/></td>
-						<td><input type="text" id="planes-trait" style="width:50px"/></td>
-						<td><input type="text" id="planes-misc" style="width:260px"/></td>
+						<td><input type="text" id="planes-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="planes-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="planes-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="planes-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="planes-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="religion-class-skill"></td>
+					<tr> <!--16th row-->
+						<td><input type="checkbox" id="religion-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Knowledge (Religion)*</td>
-						<td><input type="text" id="religion-total" style="width:50px"/></td>
+						<td><input type="text" id="religion-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Int</td>
 						<td><input type="text" class="green int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="religion-rank" style="width:50px"/></td>
-						<td><input type="text" id="religion-class" style="width:50px"/></td>
-						<td><input type="text" id="religion-racial" style="width:50px"/></td>
-						<td><input type="text" id="religion-trait" style="width:50px"/></td>
-						<td><input type="text" id="religion-misc" style="width:260px"/></td>
+						<td><input type="text" id="religion-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="religion-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="religion-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="religion-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="religion-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="perception-class-skill"></td>
+					<tr> <!--17th row-->
+						<td><input type="checkbox" id="perception-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Perception</td>
-						<td><input type="text" id="perception-total" style="width:50px"/></td>
+						<td><input type="text" id="perception-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Wis</td>
 						<td><input type="text" class="green wis-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="perception-rank" style="width:50px"/></td>
-						<td><input type="text" id="perception-class" style="width:50px"/></td>
-						<td><input type="text" id="perception-racial" style="width:50px"/></td>
-						<td><input type="text" id="perception-trait" style="width:50px"/></td>
-						<td><input type="text" id="perception-misc" style="width:260px"/></td>
+						<td><input type="text" id="perception-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="perception-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="perception-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="perception-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="perception-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="ride-class-skill"></td>
+					<tr> <!--18th row-->
+						<td><input type="checkbox" id="ride-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Ride</td>
-						<td><input type="text" id="ride-total" style="width:50px"/></td>
+						<td><input type="text" id="ride-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Dex</td>
 						<td><input type="text" class="green dex-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="ride-rank" style="width:50px"/></td>
-						<td><input type="text" id="ride-class" style="width:50px"/></td>
-						<td><input type="text" id="ride-racial" style="width:50px"/></td>
-						<td><input type="text" id="ride-trait" style="width:50px"/></td>
-						<td><input type="text" id="ride-misc" style="width:260px"/></td>
+						<td><input type="text" id="ride-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="ride-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="ride-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="ride-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="ride-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="sense-motive-class-skill"></td>
+					<tr> <!--19th row-->
+						<td><input type="checkbox" id="sense-motive-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Sense Motive</td>
-						<td><input type="text" id="sense-motive-total" style="width:50px"/></td>
+						<td><input type="text" id="sense-motive-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Wis</td>
 						<td><input type="text" class="green wis-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="sense-motive-rank" style="width:50px"/></td>
-						<td><input type="text" id="sense-motive-class" style="width:50px"/></td>
-						<td><input type="text" id="sense-motive-racial" style="width:50px"/></td>
-						<td><input type="text" id="sense-motive-trait" style="width:50px"/></td>
-						<td><input type="text" id="sense-motive-misc" style="width:260px"/></td>
+						<td><input type="text" id="sense-motive-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="sense-motive-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="sense-motive-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="sense-motive-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="sense-motive-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="spellcraft-class-skill"></td>
+					<tr> <!--20th row-->
+						<td><input type="checkbox" id="spellcraft-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Spellcraft*</td>
-						<td><input type="text" id="spellcraft-total" style="width:50px"/></td>
+						<td><input type="text" id="spellcraft-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Int</td>
 						<td><input type="text" class="green int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="spellcraft-rank" style="width:50px"/></td>
-						<td><input type="text" id="spellcraft-class" style="width:50px"/></td>
-						<td><input type="text" id="spellcraft-racial" style="width:50px"/></td>
-						<td><input type="text" id="spellcraft-trait" style="width:50px"/></td>
-						<td><input type="text" id="spellcraft-misc" style="width:260px"/></td>
+						<td><input type="text" id="spellcraft-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="spellcraft-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="spellcraft-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="spellcraft-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="spellcraft-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="stealth-class-skill"></td>
+					<tr> <!--21st row-->
+						<td><input type="checkbox" id="stealth-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Stealth</td>
-						<td><input type="text" id="stealth-total" style="width:50px"/></td>
+						<td><input type="text" id="stealth-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Dex</td>
 						<td><input type="text" class="green dex-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="stealth-rank" style="width:50px"/></td>
-						<td><input type="text" id="stealth-class" style="width:50px"/></td>
-						<td><input type="text" id="stealth-racial" style="width:50px"/></td>
-						<td><input type="text" id="stealth-trait" style="width:50px"/></td>
-						<td><input type="text" id="stealth-misc" style="width:260px"/></td>
+						<td><input type="text" id="stealth-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="stealth-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="stealth-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="stealth-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="stealth-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="survival-class-skill"></td>
+					<tr> <!--22nd row-->
+						<td><input type="checkbox" id="survival-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Survival</td>
-						<td><input type="text" id="survival-total" style="width:50px"/></td>
+						<td><input type="text" id="survival-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Wis</td>
 						<td><input type="text" class="green wis-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="survival-rank" style="width:50px"/></td>
-						<td><input type="text" id="survival-class" style="width:50px"/></td>
-						<td><input type="text" id="survival-racial" style="width:50px"/></td>
-						<td><input type="text" id="survival-trait" style="width:50px"/></td>
-						<td><input type="text" id="survival-misc" style="width:260px"/></td>
+						<td><input type="text" id="survival-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="survival-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="survival-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="survival-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="survival-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="swim-class-skill"></td>
+					<tr> <!--23rd row-->
+						<td><input type="checkbox" id="swim-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Swim</td>
-						<td><input type="text" id="swim-total" style="width:50px"/></td>
+						<td><input type="text" id="swim-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Str</td>
 						<td><input type="text" class="green str-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="swim-rank" style="width:50px"/></td>
-						<td><input type="text" id="swim-class" style="width:50px"/></td>
-						<td><input type="text" id="swim-racial" style="width:50px"/></td>
-						<td><input type="text" id="swim-trait" style="width:50px"/></td>
-						<td><input type="text" id="swim-misc" style="width:260px"/></td>
+						<td><input type="text" id="swim-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="swim-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="swim-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="swim-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="swim-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="use-magic-device-class-skill"></td>
+					<tr> <!--24th row-->
+						<td><input type="checkbox" id="use-magic-device-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Use Magic Device</td>
-						<td><input type="text" id="use-magic-device-total" style="width:50px"/></td>
+						<td><input type="text" id="use-magic-device-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Cha</td>
 						<td><input type="text" class="green cha-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="use-magic-device-rank" style="width:50px"/></td>
-						<td><input type="text" id="use-magic-device-class" style="width:50px"/></td>
-						<td><input type="text" id="use-magic-device-racial" style="width:50px"/></td>
-						<td><input type="text" id="use-magic-device-trait" style="width:50px"/></td>
-						<td><input type="text" id="use-magic-device-misc" style="width:260px"/></td>
+						<td><input type="text" id="use-magic-device-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="use-magic-device-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="use-magic-device-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="use-magic-device-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="use-magic-device-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr><td colspan="10" style="text-align:center">
+					<tr><!--25th row--><td colspan="10" style="text-align:center">
 						<b><i style="font-size:150%">Background Skills</i></b>
 					</td></tr>
-					<tr>
-						<td><input type="checkbox" id="appraise-class-skill"></td>
+					<tr> <!--26th row-->
+						<td><input type="checkbox" id="appraise-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Appraise</td>
-						<td><input type="text" id="appraise-total" style="width:50px"/></td>
+						<td><input type="text" id="appraise-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Int</td>
 						<td><input type="text" class="green int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="appraise-rank" style="width:50px"/></td>
-						<td><input type="text" id="appraise-class" style="width:50px"/></td>
-						<td><input type="text" id="appraise-racial" style="width:50px"/></td>
-						<td><input type="text" id="appraise-trait" style="width:50px"/></td>
-						<td><input type="text" id="appraise-misc" style="width:260px"/></td>
+						<td><input type="text" id="appraise-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="appraise-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="appraise-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="appraise-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="appraise-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr id="artistry-row" hidden></tr>
-					<tr id="craft-row" hidden></tr>
-					<tr>
-						<td><input type="checkbox" id="handle-animal-class-skill"></td>
+					<tr id="artistry-row" hidden> <!--27th row--></tr>
+					<tr id="craft-row" hidden> <!--28th row--></tr>
+					<tr> <!--29th row-->
+						<td><input type="checkbox" id="handle-animal-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Handle Animal*</td>
-						<td><input type="text" id="handle-animal-total" style="width:50px"/></td>
+						<td><input type="text" id="handle-animal-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Cha</td>
 						<td><input type="text" class="green cha-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="handle-animal-rank" style="width:50px"/></td>
-						<td><input type="text" id="handle-animal-class" style="width:50px"/></td>
-						<td><input type="text" id="handle-animal-racial" style="width:50px"/></td>
-						<td><input type="text" id="handle-animal-trait" style="width:50px"/></td>
-						<td><input type="text" id="handle-animal-misc" style="width:260px"/></td>
+						<td><input type="text" id="handle-animal-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="handle-animal-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="handle-animal-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="handle-animal-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="handle-animal-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="engineering-class-skill"></td>
+					<tr> <!--30th row-->
+						<td><input type="checkbox" id="engineering-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Knowledge (Engineering)*</td>
-						<td><input type="text" id="engineering-total" style="width:50px"/></td>
+						<td><input type="text" id="engineering-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Int</td>
 						<td><input type="text" class="green int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="engineering-rank" style="width:50px"/></td>
-						<td><input type="text" id="engineering-class" style="width:50px"/></td>
-						<td><input type="text" id="engineering-racial" style="width:50px"/></td>
-						<td><input type="text" id="engineering-trait" style="width:50px"/></td>
-						<td><input type="text" id="engineering-misc" style="width:260px"/></td>
+						<td><input type="text" id="engineering-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="engineering-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="engineering-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="engineering-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="engineering-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="geography-class-skill"></td>
+					<tr> <!--31st row-->
+						<td><input type="checkbox" id="geography-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Knowledge (Geography)*</td>
-						<td><input type="text" id="geography-total" style="width:50px"/></td>
+						<td><input type="text" id="geography-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Int</td>
 						<td><input type="text" class="green int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="geography-rank" style="width:50px"/></td>
-						<td><input type="text" id="geography-class" style="width:50px"/></td>
-						<td><input type="text" id="geography-racial" style="width:50px"/></td>
-						<td><input type="text" id="geography-trait" style="width:50px"/></td>
-						<td><input type="text" id="geography-misc" style="width:260px"/></td>
+						<td><input type="text" id="geography-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="geography-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="geography-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="geography-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="geography-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="history-class-skill"></td>
+					<tr> <!--32nd row-->
+						<td><input type="checkbox" id="history-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Knowledge (History)*</td>
-						<td><input type="text" id="history-total" style="width:50px"/></td>
+						<td><input type="text" id="history-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Int</td>
 						<td><input type="text" class="green int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="history-rank" style="width:50px"/></td>
-						<td><input type="text" id="history-class" style="width:50px"/></td>
-						<td><input type="text" id="history-racial" style="width:50px"/></td>
-						<td><input type="text" id="history-trait" style="width:50px"/></td>
-						<td><input type="text" id="history-misc" style="width:260px"/></td>
+						<td><input type="text" id="history-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="history-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="history-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="history-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="history-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="nobility-class-skill"></td>
+					<tr> <!--33rd row-->
+						<td><input type="checkbox" id="nobility-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Knowledge (Nobility)*</td>
-						<td><input type="text" id="nobility-total" style="width:50px"/></td>
+						<td><input type="text" id="nobility-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Int</td>
 						<td><input type="text" class="green int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="nobility-rank" style="width:50px"/></td>
-						<td><input type="text" id="nobility-class" style="width:50px"/></td>
-						<td><input type="text" id="nobility-racial" style="width:50px"/></td>
-						<td><input type="text" id="nobility-trait" style="width:50px"/></td>
-						<td><input type="text" id="nobility-misc" style="width:260px"/></td>
+						<td><input type="text" id="nobility-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="nobility-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="nobility-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="nobility-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="nobility-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" id="linguistics-class-skill"></td>
+					<tr> <!--34th row-->
+						<td><input type="checkbox" id="linguistics-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Linguistics*</td>
-						<td><input type="text" id="linguistics-total" style="width:50px"/></td>
+						<td><input type="text" id="linguistics-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Int</td>
 						<td><input type="text" class="green int-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="linguistics-rank" style="width:50px"/></td>
-						<td><input type="text" id="linguistics-class" style="width:50px"/></td>
-						<td><input type="text" id="linguistics-racial" style="width:50px"/></td>
-						<td><input type="text" id="linguistics-trait" style="width:50px"/></td>
-						<td><input type="text" id="linguistics-misc" style="width:260px"/></td>
+						<td><input type="text" id="linguistics-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="linguistics-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="linguistics-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="linguistics-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="linguistics-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
-					<tr id="lore-row" hidden></tr>
-					<tr id="perform-row" hidden></tr>
-					<tr id="profession-row" hidden></tr>
-					<tr>
-						<td><input type="checkbox" id="sleight-of-hand-class-skill"></td>
+					<tr id="lore-row" hidden><!--35th row--></tr>
+					<tr id="perform-row" hidden><!--36th row--></tr>
+					<tr id="profession-row" hidden><!--37th row--></tr>
+					<tr> <!--38th row-->
+						<td><input type="checkbox" id="sleight-of-hand-class-skill" onfocusout="SaveToCloudFlare()"></td>
 						<td>Sleight of Hand*</td>
-						<td><input type="text" id="sleight-of-hand-total" style="width:50px"/></td>
+						<td><input type="text" id="sleight-of-hand-total" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
 						<td style="text-align:center">Dex</td>
 						<td><input type="text" class="green dex-temp-mod" readonly="readonly" style="width:50px"/></td>
-						<td><input type="text" id="sleight-of-hand-rank" style="width:50px"/></td>
-						<td><input type="text" id="sleight-of-hand-class" style="width:50px"/></td>
-						<td><input type="text" id="sleight-of-hand-racial" style="width:50px"/></td>
-						<td><input type="text" id="sleight-of-hand-trait" style="width:50px"/></td>
-						<td><input type="text" id="sleight-of-hand-misc" style="width:260px"/></td>
+						<td><input type="text" id="sleight-of-hand-rank" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="sleight-of-hand-class" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="sleight-of-hand-racial" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="sleight-of-hand-trait" style="width:50px" onfocusout="SaveToCloudFlare()"/></td>
+						<td><input type="text" id="sleight-of-hand-misc" style="width:260px" onfocusout="SaveToCloudFlare()"/></td>
 					</tr>
 				</table>
 				<label style="text-align:left">* Trained Only</label>
@@ -983,12 +987,12 @@
 					</button>
 				</div>
 				
-				<div class="black" style="width:120px;height:60px;">
+				<div class="black" style="width:120px;height:60px">
 					<span style="font-size:25px;">Conditional</span>
 					<label class="blackLabel">Modifiers</label>
 				</div>
-				<div style="width:870px;height:60px;float:left;">
-					<input type="text" id="Skill-Notes"/>
+				<div style="width:870px;height:60px;float:left">
+					<input type="text" id="Skill-Notes" onfocusout="SaveToCloudFlare()"/>
 					<label style="font-size:12px;line-height:20px;width:80px">Other Notes</label>
 				</div>
 				
@@ -996,8 +1000,8 @@
 					<span style="font-size:25px;">Languages</span>
 					<label class="blackLabel">Known</label>
 				</div>
-				<div style="width:870px;height:60px;float:left;">
-					<input type="text" id="languages"/>
+				<div style="width:870px;height:60px;float:left">
+					<input type="text" id="languages" onfocusout="SaveToCloudFlare()"/>
 					<label style="font-size:12px;line-height:20px;width:80px">Spoken/Written</label>
 				</div>
 			</article>
@@ -1032,11 +1036,12 @@
 					<label class="blackLabel">Gold</label>
 				</div>
 				<div style="width:50px;height:60px;float:left;">
-					<input type="text" id="money"/>
+					<input type="text" id="money" onfocusout="SaveToCloudFlare()"/>
 				</div>
 				<div style="width:900px;height:60px;float:left;"></div>
+				
 				<div class="black" style="width:100px;height:40px">
-					<span style="font-size:25px;">AC Items</span>
+					<span style="font-size:25px">AC Item</span>
 				</div>
 				<div style="width:170px;height:60px;float:left;">
 					<input type="text" class="AC-Name"/>
@@ -1063,7 +1068,8 @@
 					<label style="font-size:12px;line-height:20px;width:70px">Notes</label>
 				</div>
 				
-                <button type="button" onclick="" style="width:100px;float:left">
+				<div id="ACList"></div>
+                <button type="button" onclick="AddACItem()" style="width:100px;float:left">
                     +AC Item
                 </button>
 				<div style="width:185px;float:left;visibility:hidden"> </div>
@@ -1189,11 +1195,17 @@
 					<textarea id="Notes" style="width:95%;height:500px;text-align:left"></textarea>
 			</article>
 		</details>
-		<div id="overlay" style="display:hidden">
-			<div style="text-align:center;font-size:200%;background-color:DimGray;padding:5px">
+		
+		<div id="overlay">
+			<div id="ConfirmMenu" class="menu">
 				Please confirm that you would like to remove this item.<br/>
 				<button id="ConfirmDelete">Yes</button>
 				<button onclick="CloseOverlay()">No</button>
+			</div>
+			<div id="EditMenu" class="menu">
+				EDIT THING??<br/>
+				<button onclick="CloseOverlay()">Ok</button>
+				<button id="DeleteCustom">Delete</button>
 			</div>
 		</div>
     </div>

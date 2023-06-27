@@ -1,6 +1,7 @@
 //This code runs like an update loop.
 function CloseOverlay() {
 	document.getElementById("ConfirmDelete").onclick = null;
+	document.getElementById("DeleteCustom").onclick = null;
 	document.getElementById("overlay").style.display = "none";
 }
 
@@ -58,7 +59,6 @@ function UpdateOnStart() { //Call this on start
 	//Remembers if you had the details closed or opened.
 	document.querySelectorAll('details').forEach(deet => {
 		deet.open = localStorage.getItem(deet.id) === 'true';
-		
 		deet.addEventListener('toggle', _ => localStorage.setItem(deet.id, deet.open));
 	});
 }
@@ -70,15 +70,26 @@ function AddSkill(type) {
 	let i = 0;
 	
 	let td = row.insertCell(i++); //Class Skill
-	td.innerHTML = "<input type='checkbox' id='"  + type + "-class-skill'>";
+		let input = document.createElement("input");
+		input.setAttribute("type","checkbox");
+		input.setAttribute("class",type + "-class-skill'");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Name of Skill
 		let div = document.createElement("div");
 		div.innerText = type.charAt(0).toUpperCase() + type.slice(1);
 		div.style = "all:unset";
+		div.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.setAttribute("onmouseover","innerText='Delete?'");
 		div.setAttribute("onmouseout","innerText='" + type.charAt(0).toUpperCase() + type.slice(1) + "'");
-		div.setAttribute("onclick","document.getElementById('Skill-Table').deleteRow(document.getElementById("+row.id+").rowIndex)");
+		let overlayFunc = "document.getElementById('overlay').style.display = 'block';";
+		overlayFunc += "document.getElementById('ConfirmMenu').style.display = 'block';";
+		overlayFunc += "document.getElementById('ConfirmDelete').onclick = function () {"
+		overlayFunc += "const rowIndex = document.getElementById('" + row.id + "').rowIndex;"
+		overlayFunc += "document.getElementById('Skill-Table').deleteRow(rowIndex);"
+		overlayFunc += "CloseOverlay();}"
+		div.setAttribute("onclick", overlayFunc);
 
 		let suffix = " <input type='text' class='" + type + "-name'";
 		suffix += "style='width:145px;text-align:left;display:inline'/>";
@@ -86,7 +97,12 @@ function AddSkill(type) {
 	td.onmouseover = function () {"innerText='Delete?";}
 
 	td = row.insertCell(i++); //Total Skill Value
-	td.innerHTML = "<input type='text' class='" + type + "-total' style='width:50px'/>";
+		input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class",type + "-total'");
+		input.setAttribute("style","width:50px");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Ability Score Tied
 		td.style.textAlign = "center";
@@ -99,28 +115,130 @@ function AddSkill(type) {
 	td.innerHTML = mod.charAt(0).toUpperCase() + mod.slice(1);
 	
 	td = row.insertCell(i++); //Ability Modifier
-	td.innerHTML = "<input type='text' class='green " + mod + "-temp-mod' readonly='readonly' style='width:50px'/>";
+		input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class",'green ' + mod + '-temp-mod');
+		input.setAttribute("readonly","readonly");
+		input.setAttribute("style","width:50px");
+	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Skill Ranks
-	td.innerHTML = "<input type='text' class='" + type + "-rank' style='width:50px'/>";
+		input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class",type + "-rank'");
+		input.setAttribute("style","width:50px");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Skill Class
-	td.innerHTML = "<input type='text' class='" + type + "-class' style='width:50px'/>";
+		input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class",type + "-class'");
+		input.setAttribute("style","width:50px");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Skill Racial
-	td.innerHTML = "<input type='text' class='" + type + "-racial' style='width:50px'/>";
+		input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class",type + "-racial'");
+		input.setAttribute("style","width:50px");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Skill Trait
-	td.innerHTML = "<input type='text' class='" + type + "-trait' style='width:50px'/>";
+		input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class",type + "-trait'");
+		input.setAttribute("style","width:50px");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Skill Misc
-	td.innerHTML = "<input type='text' class='" + type + "-misc' style='width:260px'/>";
+		input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class",type + "-misc'");
+		input.setAttribute("style","width:260px");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+	td.innerHTML = input.outerHTML;
+}
+
+function AddACItem () {
+	let span = document.createElement("span");
+	span.setAttribute("style","clear:both");
+	
+	let div = document.createElement("div");
+	div.setAttribute("class","black");
+	div.setAttribute("style","width:100px;height:40px");
+		let smallSpan = document.createElement("span");
+		smallSpan.setAttribute("style","font-size:25px");
+		smallSpan.innerHTML = "AC Item";
+		div.appendChild(smallSpan);
+		
+		let label = document.createElement("label");
+		label.setAttribute("class","blackLabel");
+		
+		div.setAttribute("onmouseover","childNodes[0].innerHTML = 'X';" + 
+						"childNodes[1].innerHTML = 'Press to Delete'");
+						
+		div.setAttribute("onmouseout","childNodes[0].innerHTML = 'AC Item';childNodes[1].innerHTML = null");
+		
+		div.onclick = function () {
+			document.getElementById('overlay').style.display = 'block';
+			document.getElementById('ConfirmMenu').style.display = 'block';
+			document.getElementById('ConfirmDelete').onclick = function () {
+				span.remove();
+				CloseOverlay();
+			}
+		};
+	div.appendChild(label);
+	span.appendChild(div);
+	
+	div = document.createElement("div");
+	div.setAttribute("style","width:170px;height:60px;float:left");
+		let input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class","AC-Name");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+		div.appendChild(input);
+		
+		label = document.createElement("label");
+		label.setAttribute("style","font-size:12px;line-height:20px;width:80px");
+		label.innerHTML = "Weapon Name";
+	div.appendChild(label);
+	span.appendChild(div);
+	
+	/*<div style="width:170px;height:60px;float:left">
+		<input type="text" class="AC-Name"/>
+		<label style="font-size:12px;line-height:20px;width:60px">Name</label>
+	</div>
+	<div style="width:55px;height:60px;float:left;">
+		<input type="text" class="AC-Bonus"/>
+		<label style="font-size:12px;line-height:20px;width:60px">Bonus</label>
+	</div>
+	<div style="width:100px;height:60px;float:left;">
+		<input type="text" class="AC-Type"/>
+		<label style="font-size:12px;line-height:20px;width:60px">Type</label>
+	</div>
+	<div style="width:55px;height:60px;float:left;">
+		<input type="text" class="AC-Penalty"/>
+		<label style="font-size:12px;line-height:20px;width:70px">Check Penalty</label>
+	</div>
+	<div style="width:55px;height:60px;float:left;">
+		<input type="text" class="AC-Failure"/>
+		<label style="font-size:12px;line-height:20px;width:70px">Spell Failure</label>
+	</div>
+	<div style="width:350px;height:60px;float:left;">
+		<input type="text" class="AC-Notes"/>
+		<label style="font-size:12px;line-height:20px;width:70px">Notes</label>
+	</div>*/
+	
+	document.getElementById("ACList").appendChild(span);
 }
 
 function AddAttack (type) {
 	let span = document.createElement("span");
 	span.setAttribute("style","clear:both");
-	span.setAttribute("id","BIG DIV");
 	
 	let div = document.createElement("div");
 	div.setAttribute("class","black");
@@ -141,9 +259,11 @@ function AddAttack (type) {
 		
 		div.onclick = function () {
 			document.getElementById('overlay').style.display = 'block';
+			document.getElementById('ConfirmMenu').style.display = 'block';
 			document.getElementById('ConfirmDelete').onclick = function () {
 				span.remove();
 				CloseOverlay();
+				SaveToCloudFlare();
 			}
 		};
 	div.appendChild(label);
@@ -263,4 +383,5 @@ function AddAttack (type) {
 		span.appendChild(div);
 	}
 	document.getElementById(type + "List").appendChild(span);
+	return span;
 }

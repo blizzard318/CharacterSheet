@@ -114,8 +114,14 @@ td input {
 	margin-right:auto;
 	margin-left:auto;
  }
- 
- #overlay {
+ .menu{
+	 text-align:center;
+	 font-size:200%;
+	 background-color:DimGray;
+	 padding:5px;
+	 display: none;
+ }
+#overlay {
   position: fixed; /* Sit on top of the page content */
   display: none; /* Hidden by default */
   width: 100%; /* Full width (cover the whole page) */
