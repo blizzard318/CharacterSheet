@@ -57,7 +57,8 @@ function UpdateOnStart() { //Call this on start
 	
 	//Remembers if you had the details closed or opened.
 	document.querySelectorAll('details').forEach(deet => {
-		deet.open = localStorage.getItem(deet.id);
+		deet.open = localStorage.getItem(deet.id) === 'true';
+		
 		deet.addEventListener('toggle', _ => localStorage.setItem(deet.id, deet.open));
 	});
 }
