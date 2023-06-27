@@ -36,14 +36,14 @@ function ModifyBAB (value) {
 
 function ModifyHP () {
 	SaveToCloudFlare();
-	let current = parseInt(document.getElementById("Current-HP").value);
-	current = isNaN(current) ? 0 : current;
+	let base = parseInt(document.getElementById("Base-HP").value);
+	base = isNaN(base) ? 0 : base;
 	let temp = parseInt(document.getElementById("Temp-HP").value);
 	temp = isNaN(temp) ? 0 : temp;
 	let nonlethal = parseInt(document.getElementById("Non-Lethal-Dmg").value);
 	nonlethal = isNaN(nonlethal) ? 0 : nonlethal;
 	
-	document.getElementById("Total-HP").value = current + temp - nonlethal;
+	document.getElementById("Current-HP").value = base + temp - nonlethal;
 }
 
 function UpdateOnStart() { //Call this on start
@@ -54,6 +54,12 @@ function UpdateOnStart() { //Call this on start
 	ModifyAbility("wis");
 	ModifyAbility("cha");
 	ModifyHP();
+	
+	//Remembers if you had the details closed or opened.
+	document.querySelectorAll('details').forEach(deet => {
+		deet.open = localStorage.getItem(deet.id);
+		deet.addEventListener('toggle', _ => localStorage.setItem(deet.id, deet.open));
+	});
 }
 
 function AddSkill(type) {

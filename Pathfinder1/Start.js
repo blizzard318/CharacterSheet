@@ -101,7 +101,7 @@ function CheckURL () {
 	// Get the value of "some_key" in eg "https://example.com/?key=value"
 	const key = params.key; // "value"
 	
-	if (key === undefined || key === null) return; //Stranger
+	if (key === undefined || key === null) UpdateOnStart(); //Call this after everything is loaded
 	document.getElementById("PlayerName").disabled = true; //Only disable if its a stranger
 	
 	//history.replaceState(null, "", location.href.split("?")[0]);

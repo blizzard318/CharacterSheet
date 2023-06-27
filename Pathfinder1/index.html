@@ -196,7 +196,7 @@
             </section>
         </article>
 		<br/>
-        <details open>
+        <details id="DefenseDetails">
             <summary><b>Defense</b></summary>
             <article>
                 <div class="black" style="width:60px;height:60px;margin-right:8px">
@@ -453,7 +453,7 @@
             </article>
         </details>
 		<br/>
-		<details open>
+		<details id="OffenseDetails">
 			<summary>Offense</summary>
 			<article id="Offense">
 				<div class="black" style="width:50px;height:60px;margin-left:-5px;margin-right:8px">
@@ -553,7 +553,7 @@
 			</article>
 		</details>
 		<br />
-        <details open>
+        <details id="SkillsDetails">
 			<summary>Skills</summary>
 			<article>
 				<table id="Skill-Table" style="width:97%">
@@ -1003,7 +1003,7 @@
 			</article>
         </details>
 		<br />
-		<details open>
+		<details id="CustomizationDetails">
 			<summary>Customization</summary>
 			<article>
 				<div style="clear:both;text-align:left">
@@ -1024,7 +1024,7 @@
 			</article>
 		</details>
 		<br />
-		<details open>
+		<details id="EquipmentDetails">
 			<summary>Equipment</summary>
 			<article>
 				<div class="black" style="width:40px;height:60px">
@@ -1091,10 +1091,11 @@
 			</article>
 		</details>
 		<br />
-		<article id="Spells">
-			<section>
+		<details id="SpellsDetails">
+			<summary>Spells</summary>
+			<article>
 				<table style="width:97%">
-				<caption style="font-size:150%"><b>Spells<b/></caption>
+				<caption style="font-size:150%"><b>Spells</b></caption>
 					<tr>
 						<th>Spell Level</th>
 						<th>0th</th>
@@ -1178,16 +1179,16 @@
 					<input type="text" id="Specialty" />
 					<label style="font-size:12px;line-height:20px;width:300px">Specialised & Opposed Schools, Bloodlines, Domains</label>
 				</div>
-			</section>
-		</article>
-		
-		<article id="Notes">
-			<section>
+			</article>
+		</details>
+		<br/>
+		<details id="NotesDetails">
+			<summary>Notes</summary>
+			<article>
 				<h2>Notes</h2>
 					<textarea id="Notes" style="width:95%;height:500px;text-align:left"></textarea>
-			</section>
-		</article>
-		
+			</article>
+		</details>
 		<div id="overlay" style="display:hidden">
 			<div style="text-align:center;font-size:200%;background-color:DimGray;padding:5px">
 				Please confirm that you would like to remove this item.<br/>
