@@ -52,7 +52,7 @@
                 </div>
                 <div style="width:100px; float:left;">
                     <label>Alignment</label>
-                    <input type="text" id="Alignment"/>
+                    <input type="text" id="Alignment" list="Alignment-List"/>
                 </div>
                 <div style="width: 100px; float: left;">
                     <label>Gender</label>
@@ -60,12 +60,20 @@
                 </div>
                 <div style="width: 100px; float: left;">
                     <label>Size</label>
-                    <input type="text" id="Size"/>
+                    <input type="text" id="Size" list="Size-List"/>
                 </div>
                 <div style="width: 100px; float: left;">
                     <label>Deity</label>
                     <input type="text" id="Deity"/>
                 </div>
+				<datalist id="Size-List">
+					<option value="Small"><option value="Medium"><option value="Large">
+				</datalist>
+				<datalist id="Alignment-List">
+					<option value="LG"><option value="LN"><option value="LE">
+					<option value="NG"><option value="TN"><option value="NE">
+					<option value="CG"><option value="CN"><option value="CE">
+				</datalist>
             </section>
         </article>
 		

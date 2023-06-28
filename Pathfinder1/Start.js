@@ -1,7 +1,7 @@
 function SetUpFunctions() {
 	function AbilitySetUp(name) {
-		document.getElementById(name).addEventListener('onfocusout', _ => ModifyAbility(name));
-		document.getElementById(name+"-temp").addEventListener('onfocusout', _ => ModifyAbility(name));
+		document.getElementById(name).addEventListener('focusout', _ => ModifyAbility(name));
+		document.getElementById(name+"-temp").addEventListener('focusout', _ => ModifyAbility(name));
 		ModifyAbility(name);
 	}
 	AbilitySetUp("str");
@@ -11,14 +11,16 @@ function SetUpFunctions() {
 	AbilitySetUp("wis");
 	AbilitySetUp("cha");
 	
-	document.getElementById("Base-HP").addEventListener('onfocusout', _ => ModifyHP());
-	document.getElementById("Temp-HP").addEventListener('onfocusout', _ => ModifyHP());
-	document.getElementById("Non-Lethal-Dmg").addEventListener('onfocusout', _ => ModifyHP());
+	document.getElementById("Base-HP").addEventListener('focusout', _ => ModifyHP());
+	document.getElementById("Temp-HP").addEventListener('focusout', _ => ModifyHP());
+	document.getElementById("Non-Lethal-Dmg").addEventListener('focusout', _ => ModifyHP());
 	ModifyHP();
 	
 	const BAB = document.getElementsByClassName("BAB")[0];
-	BAB.addEventListener('onfocusout', _ => ModifyBAB(BAB.value));
+	BAB.addEventListener('focusout', _ => ModifyBAB(BAB.value));
 	ModifyBAB(BAB.value);
+	
+	document.getElementById("Alignment").addEventListener('focusout', _ => ModifyHP());
 	
 	//Remembers if you had the details closed or opened.
 	document.querySelectorAll('details').forEach(deet => {
@@ -27,7 +29,7 @@ function SetUpFunctions() {
 	});
 	
 	document.querySelectorAll('input').forEach(inp => {
-		inp.addEventListener('onfocusout', _ => SaveToCloudFlare());
+		inp.addEventListener('focusout', _ => SaveToCloudFlare());
 	});
 }
 

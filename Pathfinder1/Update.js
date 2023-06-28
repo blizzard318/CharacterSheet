@@ -43,28 +43,6 @@ function ModifyHP () {
 	document.getElementById("Current-HP").value = base + temp - nonlethal;
 }
 
-function UpdateOnStart() { //Call this on start
-	document.getElementById("str").addEventListener('onfocusout', _ => ModifyAbility("str"));
-	document.getElementById("str-temp").addEventListener('onfocusout', _ => ModifyAbility("str-temp"));
-	ModifyAbility("str");
-	ModifyAbility("dex");
-	ModifyAbility("con");
-	ModifyAbility("int");
-	ModifyAbility("wis");
-	ModifyAbility("cha");
-	ModifyHP();
-	
-	//Remembers if you had the details closed or opened.
-	document.querySelectorAll('details').forEach(deet => {
-		deet.open = localStorage.getItem(deet.id) === 'true';
-		deet.addEventListener('toggle', _ => localStorage.setItem(deet.id, deet.open));
-	});
-	
-	document.querySelectorAll('input').forEach(inp => {
-		inp.addEventListener('onfocusout', _ => SaveToCloudFlare());
-	});
-}
-
 function AddSkill(type) {
 	const index = document.getElementById(type + "-row").rowIndex;
 	const row = document.getElementById("Skill-Table").insertRow(index);
