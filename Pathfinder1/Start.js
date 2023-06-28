@@ -1,3 +1,36 @@
+function SetUpFunctions() {
+	function AbilitySetUp(name) {
+		document.getElementById(name).addEventListener('onfocusout', _ => ModifyAbility(name));
+		document.getElementById(name+"-temp").addEventListener('onfocusout', _ => ModifyAbility(name));
+		ModifyAbility(name);
+	}
+	AbilitySetUp("str");
+	AbilitySetUp("dex");
+	AbilitySetUp("con");
+	AbilitySetUp("int");
+	AbilitySetUp("wis");
+	AbilitySetUp("cha");
+	
+	document.getElementById("Base-HP").addEventListener('onfocusout', _ => ModifyHP());
+	document.getElementById("Temp-HP").addEventListener('onfocusout', _ => ModifyHP());
+	document.getElementById("Non-Lethal-Dmg").addEventListener('onfocusout', _ => ModifyHP());
+	ModifyHP();
+	
+	const BAB = document.getElementsByClassName("BAB")[0];
+	BAB.addEventListener('onfocusout', _ => ModifyBAB(BAB.value));
+	ModifyBAB(BAB.value);
+	
+	//Remembers if you had the details closed or opened.
+	document.querySelectorAll('details').forEach(deet => {
+		deet.open = localStorage.getItem(deet.id) === 'true';
+		deet.addEventListener('toggle', _ => localStorage.setItem(deet.id, deet.open));
+	});
+	
+	document.querySelectorAll('input').forEach(inp => {
+		inp.addEventListener('onfocusout', _ => SaveToCloudFlare());
+	});
+}
+
 async function LoadFromCloudFlare (key) {
 	const response = await fetch("../api/Pathfinder1/" + key);
 	const character = await response.json();
@@ -367,8 +400,6 @@ async function LoadFromCloudFlare (key) {
 	document.getElementById("sleight-of-hand-racial").value        = character.soh_racial;
 	document.getElementById("sleight-of-hand-trait").value         = character.soh_trait ;
 	document.getElementById("sleight-of-hand-misc").value          = character.soh_misc  ;
-	
-	UpdateOnStart(); //Call this after everything is loaded
 }
 
 function CheckURL () {
@@ -377,27 +408,30 @@ function CheckURL () {
 	});
 	// Get the value of "some_key" in eg "https://example.com/?key=value"
 	const key = params.key; // "value"
-	if (key == null) return UpdateOnStart(); //Call this after everything is loaded
-	document.getElementById("PlayerName").disabled = true; //Only disable if its a stranger
 	
-	//history.replaceState(null, "", location.href.split("?")[0]);
-	
-	if (key.includes("/")) LoadFromCloudFlare(key); //Loading a Existing character
-	else { //Create a New character
-		let character = { };
-
-		character.name = document.getElementById("CharacterName").value = "Unnamed Character";
-		character.player = document.getElementById("PlayerName").value = key;
+	if (key != null) { //Not a stranger
+		document.getElementById("PlayerName").disabled = true; //Only enabled if its a stranger
 		
-		const url = "../api/Pathfinder1/" + character.player;
-		fetch(url,{
-			method: "POST", //THIS IS POST, NEW CHARA. DON'T USE PUT.
-			headers: { 
-			  'Accept': 'application/json',
-			  'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(character)
-		});
+		//history.replaceState(null, "", location.href.split("?")[0]);
+		
+		if (key.includes("/")) LoadFromCloudFlare(key); //Loading a Existing character
+		else { //Create a New character
+			let character = { };
+
+			character.name = document.getElementById("CharacterName").value = "Unnamed Character";
+			character.player = document.getElementById("PlayerName").value = key;
+			
+			const url = "../api/Pathfinder1/" + character.player;
+			fetch(url,{
+				method: "POST", //THIS IS POST, NEW CHARA. DON'T USE PUT.
+				headers: { 
+				  'Accept': 'application/json',
+				  'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(character)
+			});
+		}
 	}
+	SetUpFunctions(); //Load this after everything is loaded.
 }
 CheckURL ();

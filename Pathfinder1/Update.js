@@ -1,4 +1,4 @@
-//This code runs like an update loop.
+//These are functions that are called in real-time
 function CloseOverlay() {
 	document.getElementById("ConfirmDelete").onclick = null;
 	document.getElementById("DeleteCustom").onclick = null;
@@ -12,8 +12,6 @@ function GetMod (name, defval) {
 }
 
 function ModifyAbility (name) {
-	SaveToCloudFlare();
-	
 	let mod = GetMod(name, null);
 	 
 	if (!name.includes("temp")) { //If original ability score
@@ -30,13 +28,11 @@ function ModifyAbility (name) {
 }
 
 function ModifyBAB (value) {
-	SaveToCloudFlare();
 	const elements = document.getElementsByClassName("BAB");
 	for (const element of elements) element.value = value;
 }
 
 function ModifyHP () {
-	SaveToCloudFlare();
 	let base = parseInt(document.getElementById("Base-HP").value);
 	base = isNaN(base) ? 0 : base;
 	let temp = parseInt(document.getElementById("Temp-HP").value);
@@ -48,6 +44,8 @@ function ModifyHP () {
 }
 
 function UpdateOnStart() { //Call this on start
+	document.getElementById("str").addEventListener('onfocusout', _ => ModifyAbility("str"));
+	document.getElementById("str-temp").addEventListener('onfocusout', _ => ModifyAbility("str-temp"));
 	ModifyAbility("str");
 	ModifyAbility("dex");
 	ModifyAbility("con");
@@ -60,6 +58,10 @@ function UpdateOnStart() { //Call this on start
 	document.querySelectorAll('details').forEach(deet => {
 		deet.open = localStorage.getItem(deet.id) === 'true';
 		deet.addEventListener('toggle', _ => localStorage.setItem(deet.id, deet.open));
+	});
+	
+	document.querySelectorAll('input').forEach(inp => {
+		inp.addEventListener('onfocusout', _ => SaveToCloudFlare());
 	});
 }
 

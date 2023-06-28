@@ -64,6 +64,7 @@ async function ShowPart2(name) {
 					  'Content-Type': 'application/json'
 					}
 				});
+				div.remove();
 				CloseOverlay();
 			}
 		}

@@ -195,4 +195,7 @@ async function Load () {
 	const files = document.getElementById("charsheet").files;
 	const text = await files[0].text();
 	const json = JSON.parse(text);
+	
+	//if (json == mottokrosh) LoadFromMottokrosh(json);
+	//else LoadFromJSON(json);
 }
