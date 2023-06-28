@@ -3,6 +3,8 @@ function CloseOverlay() {
 	document.getElementById("ConfirmDelete").onclick = null;
 	document.getElementById("DeleteCustom").onclick = null;
 	document.getElementById("overlay").style.display = "none";
+	document.getElementById('CustomMenu').style.display = 'none';
+	document.getElementById('ConfirmMenu').style.display = 'none';
 }
 
 function GetMod (name, defval) {
@@ -41,6 +43,17 @@ function ModifyHP () {
 	nonlethal = isNaN(nonlethal) ? 0 : nonlethal;
 	
 	document.getElementById("Current-HP").value = base + temp - nonlethal;
+}
+
+function AddCustom (type){ //Feat/Special Ability/Trait
+	document.getElementById('CustomMenuName').innerText = type;
+	document.getElementById('overlay').style.display = 'block';
+	document.getElementById('CustomMenu').style.display = 'block';
+	document.getElementById('DeleteCustom').onclick = function () {
+		const rowIndex = document.getElementById('" + row.id + "').rowIndex;
+		document.getElementById('Skill-Table').deleteRow(rowIndex);
+		CloseOverlay();
+	}
 }
 
 function AddSkill(type) {
@@ -183,35 +196,80 @@ function AddACItem () {
 		div.appendChild(input);
 		
 		label = document.createElement("label");
-		label.setAttribute("style","font-size:12px;line-height:20px;width:80px");
-		label.innerHTML = "Weapon Name";
+		label.setAttribute("style","font-size:12px;line-height:20px;width:60px");
+		label.innerHTML = "Name";
 	div.appendChild(label);
 	span.appendChild(div);
 	
-	/*<div style="width:170px;height:60px;float:left">
-		<input type="text" class="AC-Name"/>
-		<label style="font-size:12px;line-height:20px;width:60px">Name</label>
-	</div>
-	<div style="width:55px;height:60px;float:left;">
-		<input type="text" class="AC-Bonus"/>
-		<label style="font-size:12px;line-height:20px;width:60px">Bonus</label>
-	</div>
-	<div style="width:100px;height:60px;float:left;">
-		<input type="text" class="AC-Type"/>
-		<label style="font-size:12px;line-height:20px;width:60px">Type</label>
-	</div>
-	<div style="width:55px;height:60px;float:left;">
-		<input type="text" class="AC-Penalty"/>
-		<label style="font-size:12px;line-height:20px;width:70px">Check Penalty</label>
-	</div>
-	<div style="width:55px;height:60px;float:left;">
-		<input type="text" class="AC-Failure"/>
-		<label style="font-size:12px;line-height:20px;width:70px">Spell Failure</label>
-	</div>
-	<div style="width:350px;height:60px;float:left;">
-		<input type="text" class="AC-Notes"/>
-		<label style="font-size:12px;line-height:20px;width:70px">Notes</label>
-	</div>*/
+	div = document.createElement("div");
+	div.setAttribute("style","width:55px;height:60px;float:left");
+		input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class","AC-Bonus");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+		div.appendChild(input);
+		
+		label = document.createElement("label");
+		label.setAttribute("style","font-size:12px;line-height:20px;width:60px");
+		label.innerHTML = "Bonus";
+	div.appendChild(label);
+	span.appendChild(div);
+	
+	div = document.createElement("div");
+	div.setAttribute("style","width:100px;height:60px;float:left");
+		input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class","AC-Type");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+		div.appendChild(input);
+		
+		label = document.createElement("label");
+		label.setAttribute("style","font-size:12px;line-height:20px;width:60px");
+		label.innerHTML = "Type";
+	div.appendChild(label);
+	span.appendChild(div);
+	
+	div = document.createElement("div");
+	div.setAttribute("style","width:55px;height:60px;float:left");
+		input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class","AC-Penalty");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+		div.appendChild(input);
+		
+		label = document.createElement("label");
+		label.setAttribute("style","font-size:12px;line-height:20px;width:70px");
+		label.innerHTML = "Check Penalty";
+	div.appendChild(label);
+	span.appendChild(div);
+	
+	div = document.createElement("div");
+	div.setAttribute("style","width:55px;height:60px;float:left");
+		input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class","AC-Failure");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+		div.appendChild(input);
+		
+		label = document.createElement("label");
+		label.setAttribute("style","font-size:12px;line-height:20px;width:70px");
+		label.innerHTML = "Spell Failure";
+	div.appendChild(label);
+	span.appendChild(div);
+	
+	div = document.createElement("div");
+	div.setAttribute("style","width:350px;height:60px;float:left");
+		input = document.createElement("input");
+		input.setAttribute("type","text");
+		input.setAttribute("class","AC-Notes");
+		input.setAttribute("onfocusout","SaveToCloudFlare()");
+		div.appendChild(input);
+		
+		label = document.createElement("label");
+		label.setAttribute("style","font-size:12px;line-height:20px;width:70px");
+		label.innerHTML = "Notes";
+	div.appendChild(label);
+	span.appendChild(div);
 	
 	document.getElementById("ACList").appendChild(span);
 }

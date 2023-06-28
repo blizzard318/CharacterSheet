@@ -1048,34 +1048,6 @@
 				</div>
 				<div style="width:900px;height:60px;float:left;"></div>
 				
-				<div class="black" style="width:100px;height:40px">
-					<span style="font-size:25px">AC Item</span>
-				</div>
-				<div style="width:170px;height:60px;float:left;">
-					<input type="text" class="AC-Name"/>
-					<label style="font-size:12px;line-height:20px;width:60px">Name</label>
-				</div>
-				<div style="width:55px;height:60px;float:left;">
-					<input type="text" class="AC-Bonus"/>
-					<label style="font-size:12px;line-height:20px;width:60px">Bonus</label>
-				</div>
-				<div style="width:100px;height:60px;float:left;">
-					<input type="text" class="AC-Type"/>
-					<label style="font-size:12px;line-height:20px;width:60px">Type</label>
-				</div>
-				<div style="width:55px;height:60px;float:left;">
-					<input type="text" class="AC-Penalty"/>
-					<label style="font-size:12px;line-height:20px;width:70px">Check Penalty</label>
-				</div>
-				<div style="width:55px;height:60px;float:left;">
-					<input type="text" class="AC-Failure"/>
-					<label style="font-size:12px;line-height:20px;width:70px">Spell Failure</label>
-				</div>
-				<div style="width:350px;height:60px;float:left;">
-					<input type="text" class="AC-Notes"/>
-					<label style="font-size:12px;line-height:20px;width:70px">Notes</label>
-				</div>
-				
 				<div id="ACList"></div>
                 <button type="button" onclick="AddACItem()" style="width:100px;float:left">
                     +AC Item
@@ -1205,13 +1177,16 @@
 		</details>
 		
 		<div id="overlay">
-			<div id="ConfirmMenu" class="menu">
+			<div id="ConfirmMenu" class="menu" style="font-size:200%">
 				Please confirm that you would like to remove this item.<br/>
 				<button id="ConfirmDelete">Yes</button>
 				<button onclick="CloseOverlay()">No</button>
 			</div>
-			<div id="EditMenu" class="menu">
-				EDIT THING??<br/>
+			<div id="CustomMenu" class="menu" style="font-size:150%">
+				New/Edit <div id="CustomMenuName" style="display:inline"></div><br/>
+				Name: <input type="text" class="CustomName" style="width:50px"/><br/>
+				Type: <input type="text" class="CustomType" style="width:50px"/><br/>
+				Notes: <input type="text" class="CustomNotes" style="width:50px;height100px"/><br/>
 				<button onclick="CloseOverlay()">Ok</button>
 				<button id="DeleteCustom">Delete</button>
 			</div>
