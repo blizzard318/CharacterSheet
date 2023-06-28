@@ -404,7 +404,7 @@ async function LoadFromCloudFlare (key) {
 	document.getElementById("sleight-of-hand-misc").value          = character.soh_misc  ;
 }
 
-function CheckURL () {
+async function CheckURL () {
 	const params = new Proxy(new URLSearchParams(window.location.search), {
 	  get: (searchParams, prop) => searchParams.get(prop),
 	});
@@ -416,7 +416,7 @@ function CheckURL () {
 		
 		//history.replaceState(null, "", location.href.split("?")[0]);
 		
-		if (key.includes("/")) LoadFromCloudFlare(key); //Loading a Existing character
+		if (key.includes("/")) await LoadFromCloudFlare(key); //Loading a Existing character
 		else { //Create a New character
 			let character = { };
 
