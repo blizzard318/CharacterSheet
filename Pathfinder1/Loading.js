@@ -88,25 +88,24 @@ function LoadFromJSON (character) {
 	document.getElementById("Size-CMB").value  = character.cmb_size;
 	document.getElementById("Misc-CMB").value  = character.cmb_misc;
 	
-	for (let i = 0; i < character.mList; i++) {
-		let span = AddAttack('Melee');
-		span.childNodes[1] = character.mList[i].name ;
-		span.childNodes[2] = character.mList[i].atk  ;
-		span.childNodes[3] = character.mList[i].dmg  ;
-		span.childNodes[4] = character.mList[i].crit ;
-		span.childNodes[5] = character.mList[i].type ;
-		span.childNodes[6] = character.mList[i].notes;
+	for (let melee of character.mList) {
+		const span = AddAttack('Melee');
+		span.childNodes[1] = melee.name ;
+		span.childNodes[2] = melee.atk  ;
+		span.childNodes[3] = melee.dmg  ;
+		span.childNodes[4] = melee.crit ;
+		span.childNodes[5] = melee.type ;
+		span.childNodes[6] = melee.notes;
 	}
-	
-	for (let i = 0; i < character.rList; i++) {
-		let span = AddAttack('Ranged');
-		span.childNodes[1] = character.rList[i].name ;
-		span.childNodes[2] = character.rList[i].atk  ;
-		span.childNodes[3] = character.rList[i].dmg  ;
-		span.childNodes[4] = character.rList[i].crit ;
-		span.childNodes[5] = character.rList[i].type ;
-		span.childNodes[6] = character.rList[i].range;
-		span.childNodes[7] = character.rList[i].ammo ;
+	for (let ranged of character.rList) {
+		const span = AddAttack('Ranged');
+		span.childNodes[1] = ranged.name ;
+		span.childNodes[2] = ranged.atk  ;
+		span.childNodes[3] = ranged.dmg  ;
+		span.childNodes[4] = ranged.crit ;
+		span.childNodes[5] = ranged.type ;
+		span.childNodes[6] = ranged.range;
+		span.childNodes[7] = ranged.ammo ;
 	}
 	
 	function LoadSkill (name, docname) {
@@ -177,7 +176,7 @@ function LoadFromJSON (character) {
 
 //Process json from CharacterSheet.co.uk to CloudFlare KV
 function LoadFromMottokrosh (json) {
-	let character = { };
+	const character = { };
 	
 	character.name = json.name;
 	character.alignment = json.alignment
@@ -225,7 +224,7 @@ function LoadFromMottokrosh (json) {
 	
 	character.gear = [];
 	for (let gear in json.gear) {
-		var newgear = {};
+		const newgear = {};
 		newgear.type = gear.type;
 		newgear.name = gear.name;
 		newgear.location = gear.location;
@@ -238,7 +237,7 @@ function LoadFromMottokrosh (json) {
 	
 	character.spellLikes = [];
 	for (let spellLike in json.spellLikes) {
-		var newspellike = {};
+		const newspellike = {};
 		newspellike.name = spellLike.name;
 		newspellike.prepared = spellLike.prepared;
 		newspellike.cast = spellLike.cast;
@@ -249,7 +248,7 @@ function LoadFromMottokrosh (json) {
 	
 	character.spells = [];
 	for (let spell in json.spells) {
-		var newspell = {};
+		const newspell = {};
 		newspell.totalKnown = spell.totalKnown;
 		newspell.dc = spell.dc;
 		newspell.totalPerDay = spell.totalPerDay;

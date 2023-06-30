@@ -2,7 +2,7 @@ function GetCharacter () {
 	function GetValue(name){
 		return document.getElementById(name).value ?? null;
 	}
-	let character = { };
+	const character = { };
 	
 	character.name = GetValue("CharacterName");
 	character.player = GetValue("PlayerName");
@@ -92,28 +92,25 @@ function GetCharacter () {
 	character.cmb_misc = GetValue("Misc-CMB");
 	
 	character.mList = [];
-	const mList = document.getElementById("MeleeList");
-	for (let i = 0; i < mList.childNodes; i++) {
-		let span = mList.childNodes[i];
-		character.mList[i].name  = span.childNodes[1] ?? null;
-		character.mList[i].atk   = span.childNodes[2] ?? null;
-		character.mList[i].dmg   = span.childNodes[3] ?? null;
-		character.mList[i].crit  = span.childNodes[4] ?? null;
-		character.mList[i].type  = span.childNodes[5] ?? null;
-		character.mList[i].notes = span.childNodes[6] ?? null;
+	const mList = document.getElementById("MeleeList").childNodes;
+	for (let i = 0; i < mList.length; i++) {
+		character.mList[i].name  = mList[i].childNodes[1] ?? null;
+		character.mList[i].atk   = mList[i].childNodes[2] ?? null;
+		character.mList[i].dmg   = mList[i].childNodes[3] ?? null;
+		character.mList[i].crit  = mList[i].childNodes[4] ?? null;
+		character.mList[i].type  = mList[i].childNodes[5] ?? null;
+		character.mList[i].notes = mList[i].childNodes[6] ?? null;
 	}	
-	
 	character.rList = [];
-	const rList = document.getElementById("RangedList");
-	for (let i = 0; i < rList.childNodes; i++) {
-		let span = rList.childNodes[i];
-		character.rList[i].name  = span.childNodes[1] ?? null;
-		character.rList[i].atk   = span.childNodes[2] ?? null;
-		character.rList[i].dmg   = span.childNodes[3] ?? null;
-		character.rList[i].crit  = span.childNodes[4] ?? null;
-		character.rList[i].type  = span.childNodes[5] ?? null;
-		character.rList[i].range = span.childNodes[6] ?? null;
-		character.rList[i].ammo  = span.childNodes[7] ?? null;
+	const rList = document.getElementById("RangedList").childNodes;
+	for (let i = 0; i < rList.length; i++) {
+		character.rList[i].name  = rList[i].childNodes[1] ?? null;
+		character.rList[i].atk   = rList[i].childNodes[2] ?? null;
+		character.rList[i].dmg   = rList[i].childNodes[3] ?? null;
+		character.rList[i].crit  = rList[i].childNodes[4] ?? null;
+		character.rList[i].type  = rList[i].childNodes[5] ?? null;
+		character.rList[i].range = rList[i].childNodes[6] ?? null;
+		character.rList[i].ammo  = rList[i].childNodes[7] ?? null;
 	}
 	
 	character.skills = [];
@@ -165,8 +162,9 @@ function GetCharacter () {
 	function SaveMultiSkull (name, oldIndex, docname) {
 		character.skills[name] = [];
 		const newIndex = document.getElementById(docname+"-row").rowIndex;
-		for (let i = oldIndex; i < newIndex; i++) {
-			let row = document.getElementById("Skill-Table").rows[i];
+		const delta = newIndex - oldIndex;
+		for (let i = 0; i < newIndex; i++) {
+			let row = document.getElementById("Skill-Table").rows[i + oldIndex];
 			character.skills[name][i].cs     = row.cells[0].children[0].checked;
 			character.skills[name][i].name   = row.cells[1].children[1].value;
 			character.skills[name][i].total  = row.cells[2].children[0].value;
@@ -200,7 +198,7 @@ async function SaveToCloudFlare () {
 	if (document.getElementById("CharacterIndex").value == null) return; //Strangers don't get to save.
 	
 	const character = GetCharacter();
-	let index = document.getElementById("CharacterIndex").value;
+	const index = document.getElementById("CharacterIndex").value;
 	const url = "../api/Pathfinder1/" + character.player + "/" + index;
 	const response = await fetch(url,{
 		method: "PUT",

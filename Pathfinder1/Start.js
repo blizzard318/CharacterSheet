@@ -35,9 +35,9 @@ function SetUpFunctions() {
 }
 
 async function LoadFromCloudFlare (key) {
+	document.getElementById("CharacterIndex").value = key.split('/')[1];
 	const response = await fetch("../api/Pathfinder1/" + key);
 	LoadFromJSON(await response.json());
-	document.getElementById("CharacterIndex").value = key.split('/')[1];
 }
 
 async function CheckURL () {
@@ -54,7 +54,7 @@ async function CheckURL () {
 		
 		if (key.includes("/")) await LoadFromCloudFlare(key); //Loading a Existing character
 		else { //Create a New character
-			let character = { };
+			const character = { };
 
 			character.name = document.getElementById("CharacterName").value = "Unnamed Character";
 			character.player = document.getElementById("PlayerName").value = key;

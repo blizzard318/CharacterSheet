@@ -81,11 +81,10 @@ function AddSkill(type) {
 		overlayFunc += "document.getElementById('Skill-Table').deleteRow(rowIndex);"
 		overlayFunc += "CloseOverlay();}"
 		div.setAttribute("onclick", overlayFunc);
-	td.innerHTML = div.outerHTML + "<input type='text' style='width:145px;text-align:left;display:inline'/>";
+	td.innerHTML = div.outerHTML + "<input style='width:145px;text-align:left;display:inline'/>";
 
 	td = row.insertCell(i++); //Total Skill Value
 		input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("style","width:50px");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
@@ -102,7 +101,6 @@ function AddSkill(type) {
 	
 	td = row.insertCell(i++); //Ability Modifier
 		input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("class",'green ' + mod + '-temp-mod');
 		input.setAttribute("readonly","readonly");
 		input.setAttribute("style","width:50px");
@@ -110,35 +108,30 @@ function AddSkill(type) {
 	
 	td = row.insertCell(i++); //Skill Ranks
 		input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("style","width:50px");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Skill Class
 		input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("style","width:50px");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Skill Racial
 		input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("style","width:50px");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Skill Trait
 		input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("style","width:50px");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Skill Misc
 		input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("style","width:260px");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
@@ -180,7 +173,6 @@ function AddACItem () {
 	div = document.createElement("div");
 	div.setAttribute("style","width:170px;height:60px;float:left");
 		let input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("class","AC-Name");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
@@ -194,7 +186,6 @@ function AddACItem () {
 	div = document.createElement("div");
 	div.setAttribute("style","width:55px;height:60px;float:left");
 		input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("class","AC-Bonus");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
@@ -208,7 +199,6 @@ function AddACItem () {
 	div = document.createElement("div");
 	div.setAttribute("style","width:100px;height:60px;float:left");
 		input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("class","AC-Type");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
@@ -222,7 +212,6 @@ function AddACItem () {
 	div = document.createElement("div");
 	div.setAttribute("style","width:55px;height:60px;float:left");
 		input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("class","AC-Penalty");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
@@ -236,7 +225,6 @@ function AddACItem () {
 	div = document.createElement("div");
 	div.setAttribute("style","width:55px;height:60px;float:left");
 		input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("class","AC-Failure");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
@@ -250,7 +238,6 @@ function AddACItem () {
 	div = document.createElement("div");
 	div.setAttribute("style","width:350px;height:60px;float:left");
 		input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("class","AC-Notes");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
@@ -300,7 +287,6 @@ function AddAttack (type) {
 	div = document.createElement("div");
 	div.setAttribute("style","width:220px;height:50px;float:left");
 		let input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("class",type + "Name");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
@@ -314,7 +300,6 @@ function AddAttack (type) {
 	div = document.createElement("div");
 	div.setAttribute("style","width:140px;height:50px;float:left");
 		input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("class",type + "Atk");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
@@ -328,7 +313,6 @@ function AddAttack (type) {
 	div = document.createElement("div");
 	div.setAttribute("style","width:140px;height:50px;float:left");
 		input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("class",type + "Dmg");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
@@ -342,7 +326,6 @@ function AddAttack (type) {
 	div = document.createElement("div");
 	div.setAttribute("style","width:80px;height:50px;float:left");
 		input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("class",type + "Crit");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
@@ -356,7 +339,6 @@ function AddAttack (type) {
 	div = document.createElement("div");
 	div.setAttribute("style","width:50px;height:50px;float:left");
 		input = document.createElement("input");
-		input.setAttribute("type","text");
 		input.setAttribute("class",type + "Type");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
@@ -371,7 +353,6 @@ function AddAttack (type) {
 		div = document.createElement("div");
 		div.setAttribute("style","width:170px;height:50px;float:left");
 			input = document.createElement("input");
-			input.setAttribute("type","text");
 			input.setAttribute("class","MeleeNote");
 			input.setAttribute("onfocusout","SaveToCloudFlare()");
 			div.appendChild(input);
@@ -385,7 +366,6 @@ function AddAttack (type) {
 		div = document.createElement("div");
 		div.setAttribute("style","width:70px;height:50px;float:left");
 			input = document.createElement("input");
-			input.setAttribute("type","text");
 			input.setAttribute("class","RangedRange");
 			input.setAttribute("onfocusout","SaveToCloudFlare()");
 			div.appendChild(input);
@@ -399,7 +379,6 @@ function AddAttack (type) {
 		div = document.createElement("div");
 		div.setAttribute("style","width:80px;height:50px;float:left");
 			input = document.createElement("input");
-			input.setAttribute("type","text");
 			input.setAttribute("class","RangedAmmo");
 			input.setAttribute("onfocusout","SaveToCloudFlare()");
 			div.appendChild(input);
