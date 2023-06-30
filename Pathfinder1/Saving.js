@@ -119,14 +119,14 @@ function GetCharacter () {
 	character.skills = [];
 	function SaveSkill (name, docname) {
 		let row = document.getElementById(docname+"-row");
-		character.artRow[name].cs 	  = row.cells[0].firstChild.checked;
-		character.artRow[name].name   = row.cells[1].firstChild.value;
-		character.artRow[name].total  = row.cells[2].firstChild.value;
-		character.artRow[name].rank   = row.cells[5].firstChild.value;
-		character.artRow[name].class  = row.cells[6].firstChild.value;
-		character.artRow[name].racial = row.cells[7].firstChild.value;
-		character.artRow[name].trait  = row.cells[8].firstChild.value;
-		character.artRow[name].misc   = row.cells[9].firstChild.value;
+		character.skills[name].cs 	  = row.cells[0].firstChild.checked;
+		character.skills[name].name   = row.cells[1].firstChild.value;
+		character.skills[name].total  = row.cells[2].firstChild.value;
+		character.skills[name].rank   = row.cells[5].firstChild.value;
+		character.skills[name].class  = row.cells[6].firstChild.value;
+		character.skills[name].racial = row.cells[7].firstChild.value;
+		character.skills[name].trait  = row.cells[8].firstChild.value;
+		character.skills[name].misc   = row.cells[9].firstChild.value;
 	}
 	SaveSkill("acro","acrobatics");
 	SaveSkill("bluff","bluff");
@@ -183,7 +183,7 @@ function GetCharacter () {
 	SaveMultiSkull("perf" ,36,"perform"	  );
 	SaveMultiSkull("prof" ,37,"profession");
 	
-	return character;
+	return character.keys(obj).forEach(k => (!obj[k] && obj[k] !== undefined) && delete obj[k]);
 }
 
 function SaveToJSON () {

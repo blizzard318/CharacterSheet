@@ -111,14 +111,14 @@ function LoadFromJSON (character) {
 	
 	function LoadSkill (name, docname) {
 		let row = document.getElementById(docname+"-row");
-		row.cells[0].firstChild.checked = character.artRow[name].cs;
-		row.cells[1].firstChild.value   = character.artRow[name].name;
-		row.cells[2].firstChild.value   = character.artRow[name].total;
-		row.cells[5].firstChild.value   = character.artRow[name].rank;
-		row.cells[6].firstChild.value   = character.artRow[name].class;
-		row.cells[7].firstChild.value   = character.artRow[name].racial;
-		row.cells[8].firstChild.value   = character.artRow[name].trait;
-		row.cells[9].firstChild.value   = character.artRow[name].misc;
+		row.cells[0].firstChild.checked = character.skills[name].cs;
+		row.cells[1].firstChild.value   = character.skills[name].name;
+		row.cells[2].firstChild.value   = character.skills[name].total;
+		row.cells[5].firstChild.value   = character.skills[name].rank;
+		row.cells[6].firstChild.value   = character.skills[name].class;
+		row.cells[7].firstChild.value   = character.skills[name].racial;
+		row.cells[8].firstChild.value   = character.skills[name].trait;
+		row.cells[9].firstChild.value   = character.skills[name].misc;
 	}
 	LoadSkill("acro","acrobatics");
 	LoadSkill("bluff","bluff");
