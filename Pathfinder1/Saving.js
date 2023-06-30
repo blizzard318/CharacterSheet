@@ -116,8 +116,8 @@ function GetCharacter () {
 	character.skills = [];
 	function SaveSkill (name, docname) {
 		let row = document.getElementById(docname+"-row");
+		character.skills[name] = {};
 		character.skills[name].cs 	  = row.cells[0].firstChild.checked;
-		character.skills[name].name   = row.cells[1].firstChild.value;
 		character.skills[name].total  = row.cells[2].firstChild.value;
 		character.skills[name].rank   = row.cells[5].firstChild.value;
 		character.skills[name].class  = row.cells[6].firstChild.value;
@@ -163,8 +163,9 @@ function GetCharacter () {
 		character.skills[name] = [];
 		const newIndex = document.getElementById(docname+"-row").rowIndex;
 		const delta = newIndex - oldIndex;
-		for (let i = 0; i < newIndex; i++) {
+		for (let i = 0; i < delta; i++) {
 			let row = document.getElementById("Skill-Table").rows[i + oldIndex];
+			character.skills[name][i]		 = {};
 			character.skills[name][i].cs     = row.cells[0].children[0].checked;
 			character.skills[name][i].name   = row.cells[1].children[1].value;
 			character.skills[name][i].total  = row.cells[2].children[0].value;
@@ -181,7 +182,8 @@ function GetCharacter () {
 	SaveMultiSkull("perf" ,36,"perform"	  );
 	SaveMultiSkull("prof" ,37,"profession");
 	
-	return character.keys(obj).forEach(k => (!obj[k] && obj[k] !== undefined) && delete obj[k]);
+	Object.keys(character).forEach(k => (!character[k] && character[k] !== undefined) && delete character[k]);
+	return character;
 }
 
 function SaveToJSON () {
