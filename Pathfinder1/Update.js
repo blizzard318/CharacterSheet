@@ -59,14 +59,12 @@ function AddCustom (type){ //Feat/Special Ability/Trait
 function AddSkill(type) {
 	const index = document.getElementById(type + "-row").rowIndex;
 	const row = document.getElementById("Skill-Table").insertRow(index);
-	row.id = type + index;
 	let i = 0;
 	
 	let td = row.insertCell(i++); //Class Skill
 		let input = document.createElement("input");
 		input.setAttribute("type","checkbox");
-		input.setAttribute("class",type + "-class-skill'");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
+		input.setAttribute("onclick","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Name of Skill
@@ -83,16 +81,11 @@ function AddSkill(type) {
 		overlayFunc += "document.getElementById('Skill-Table').deleteRow(rowIndex);"
 		overlayFunc += "CloseOverlay();}"
 		div.setAttribute("onclick", overlayFunc);
-
-		let suffix = " <input type='text' class='" + type + "-name'";
-		suffix += "style='width:145px;text-align:left;display:inline'/>";
-	td.innerHTML = div.outerHTML + suffix;
-	td.onmouseover = function () {"innerText='Delete?";}
+	td.innerHTML = div.outerHTML + "<input type='text' style='width:145px;text-align:left;display:inline'/>";
 
 	td = row.insertCell(i++); //Total Skill Value
 		input = document.createElement("input");
 		input.setAttribute("type","text");
-		input.setAttribute("class",type + "-total'");
 		input.setAttribute("style","width:50px");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
@@ -118,7 +111,6 @@ function AddSkill(type) {
 	td = row.insertCell(i++); //Skill Ranks
 		input = document.createElement("input");
 		input.setAttribute("type","text");
-		input.setAttribute("class",type + "-rank'");
 		input.setAttribute("style","width:50px");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
@@ -126,7 +118,6 @@ function AddSkill(type) {
 	td = row.insertCell(i++); //Skill Class
 		input = document.createElement("input");
 		input.setAttribute("type","text");
-		input.setAttribute("class",type + "-class'");
 		input.setAttribute("style","width:50px");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
@@ -134,7 +125,6 @@ function AddSkill(type) {
 	td = row.insertCell(i++); //Skill Racial
 		input = document.createElement("input");
 		input.setAttribute("type","text");
-		input.setAttribute("class",type + "-racial'");
 		input.setAttribute("style","width:50px");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
@@ -142,7 +132,6 @@ function AddSkill(type) {
 	td = row.insertCell(i++); //Skill Trait
 		input = document.createElement("input");
 		input.setAttribute("type","text");
-		input.setAttribute("class",type + "-trait'");
 		input.setAttribute("style","width:50px");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
@@ -150,10 +139,11 @@ function AddSkill(type) {
 	td = row.insertCell(i++); //Skill Misc
 		input = document.createElement("input");
 		input.setAttribute("type","text");
-		input.setAttribute("class",type + "-misc'");
 		input.setAttribute("style","width:260px");
 		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
+	
+	return row;
 }
 
 function AddACItem () {
