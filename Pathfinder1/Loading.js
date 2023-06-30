@@ -37,10 +37,10 @@ function LoadFromJSON (character) {
 	document.getElementById("FlatFoot-AC").value = character.ac_ff;
 	document.getElementById("Other-AC").value    = character.ac_other;
 	
-	document.getElementById("Base-HP").value 	= character.hp_current;
+	document.getElementById("Base-HP").value 		= character.hp_current;
 	document.getElementById("Temp-HP").value 		= character.hp_temp;
 	document.getElementById("Non-Lethal-Dmg").value = character.hp_nonlethal;
-	document.getElementById("Current-HP").value 		= character.hp_max;
+	document.getElementById("Max-HP").value 		= character.hp_max;
 	
 	document.getElementById("Damage-Reduction").value  = character.dmg_reduc;
 	document.getElementById("Spell-Resistance").value = character.spell_resist;

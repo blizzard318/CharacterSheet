@@ -44,7 +44,7 @@ function GetCharacter () {
 	character.hp_current = GetValue("Base-HP");
 	character.hp_temp = GetValue("Temp-HP");
 	character.hp_nonlethal = GetValue("Non-Lethal-Dmg");
-	character.hp_max = GetValue("Current-HP");
+	character.hp_max = GetValue("Max-HP");
 	
 	character.dmg_reduc = GetValue("Damage-Reduction");
 	character.spell_resist = GetValue("Spell-Resistance");
@@ -92,25 +92,28 @@ function GetCharacter () {
 	character.cmb_misc = GetValue("Misc-CMB");
 	
 	character.mList = [];
-	const mList = document.getElementById("MeleeList").childNodes;
+	const mList = document.getElementById("MeleeList").children;
 	for (let i = 0; i < mList.length; i++) {
-		character.mList[i].name  = mList[i].childNodes[1] ?? null;
-		character.mList[i].atk   = mList[i].childNodes[2] ?? null;
-		character.mList[i].dmg   = mList[i].childNodes[3] ?? null;
-		character.mList[i].crit  = mList[i].childNodes[4] ?? null;
-		character.mList[i].type  = mList[i].childNodes[5] ?? null;
-		character.mList[i].notes = mList[i].childNodes[6] ?? null;
+		character.mList[i]  	 = {};
+		alert(mList[i].children[1].firstChild.value);
+		character.mList[i].name  = mList[i].children[1].firstChild.value ?? null;
+		character.mList[i].atk   = mList[i].children[2].firstChild.value ?? null;
+		character.mList[i].dmg   = mList[i].children[3].firstChild.value ?? null;
+		character.mList[i].crit  = mList[i].children[4].firstChild.value ?? null;
+		character.mList[i].type  = mList[i].children[5].firstChild.value ?? null;
+		character.mList[i].notes = mList[i].children[6].firstChild.value ?? null;
 	}	
 	character.rList = [];
 	const rList = document.getElementById("RangedList").childNodes;
 	for (let i = 0; i < rList.length; i++) {
-		character.rList[i].name  = rList[i].childNodes[1] ?? null;
-		character.rList[i].atk   = rList[i].childNodes[2] ?? null;
-		character.rList[i].dmg   = rList[i].childNodes[3] ?? null;
-		character.rList[i].crit  = rList[i].childNodes[4] ?? null;
-		character.rList[i].type  = rList[i].childNodes[5] ?? null;
-		character.rList[i].range = rList[i].childNodes[6] ?? null;
-		character.rList[i].ammo  = rList[i].childNodes[7] ?? null;
+		character.rList[i]  	 = {};
+		character.rList[i].name  = rList[i].children[1].firstChild.value ?? null;
+		character.rList[i].atk   = rList[i].children[2].firstChild.value ?? null;
+		character.rList[i].dmg   = rList[i].children[3].firstChild.value ?? null;
+		character.rList[i].crit  = rList[i].children[4].firstChild.value ?? null;
+		character.rList[i].type  = rList[i].children[5].firstChild.value ?? null;
+		character.rList[i].range = rList[i].children[6].firstChild.value ?? null;
+		character.rList[i].ammo  = rList[i].children[7].firstChild.value ?? null;
 	}
 	
 	character.skills = [];
@@ -197,7 +200,7 @@ function SaveToJSON () {
 }
 
 async function SaveToCloudFlare () {
-	if (document.getElementById("CharacterIndex").value == null) return; //Strangers don't get to save.
+	if (document.getElementById("CharacterIndex").value == "") return; //Strangers don't get to save.
 	
 	const character = GetCharacter();
 	const index = document.getElementById("CharacterIndex").value;
