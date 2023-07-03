@@ -75,7 +75,7 @@ async function ShowPart2(name) {
 		view_button.style.float = "right";
 		view_button.style.transform = "translateY(-50%)";
 		let a = document.createElement("a");
-		a.setAttribute("href","./?key=" + character.key);
+		a.setAttribute("href","Character/?key=" + character.key);
 		a.appendChild(view_button);
 		div.appendChild(a);
 	}

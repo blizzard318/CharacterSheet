@@ -1,123 +1,127 @@
 //Process json to sheet
 function LoadFromJSON (character) {
-	document.getElementById("CharacterName").value = character.name;
-	document.getElementById("PlayerName").value = character.player;
+	function set (docname, value) {
+		document.getElementById(docname).value = value ?? "";
+	}
+	set("CharacterName", character.name);
+	set("PlayerName", character.player);
 	
-	document.getElementById("Class").value = character.class;
+	set("Class", character.class);
 	
-	document.getElementById("Race").value 	   	= character.race;
-	document.getElementById("Alignment").value 	= character.align;
-	document.getElementById("Gender").value 	= character.gender;
-	document.getElementById("Size").value  		= character.size;
-	document.getElementById("Deity").value 		= character.deity;
+	set("Race"		, character.race);
+	set("Alignment"	, character.align);
+	set("Gender"	, character.gender);
+	set("Size"		, character.size);
+	set("Deity"		, character.deity);
 	
-	document.getElementById("str").value 	   = character.str;
-	document.getElementById("str-temp").value = character.str_t;
-	document.getElementById("dex").value      = character.dex;
-	document.getElementById("dex-temp").value = character.dex_t;
-	document.getElementById("con").value      = character.con;
-	document.getElementById("con-temp").value = character.con_t;
+	set("str"	  , character.str	);
+	set("str-temp", character.str_t	);
+	set("dex"	  , character.dex	);
+	set("dex-temp", character.dex_t	);
+	set("con"	  , character.con	);
+	set("con-temp", character.con_t	);
 	
-	document.getElementById("int").value      = character.int;
-	document.getElementById("int-temp").value = character.int_t;
-	document.getElementById("wis").value      = character.wis;
-	document.getElementById("wis-temp").value = character.wis_t;
-	document.getElementById("cha").value      = character.cha;
-	document.getElementById("cha-temp").value = character.cha_t;
+	set("int"	  , character.int	);
+	set("int-temp", character.int_t	);
+	set("wis"	  , character.wis	);
+	set("wis-temp", character.wis_t	);
+	set("cha"	  , character.cha	);
+	set("cha-temp", character.cha_t	);
 	
-	document.getElementById("Total-AC").value      = character.ac_total;
-	document.getElementById("Armor-Bonus").value   = character.ac_bonus;
-	document.getElementById("Shield-Bonus").value  = character.ac_shield;
-	document.getElementById("AC-Size").value       = character.ac_size;
-	document.getElementById("Natural-Armor").value = character.ac_nat;
-	document.getElementById("Deflection").value    = character.ac_deflec;
-	document.getElementById("AC-Misc").value       = character.ac_misc;
+	set("Total-AC"     , character.ac_total	);
+	set("Armor-Bonus"  , character.ac_bonus	);
+	set("Shield-Bonus" , character.ac_shield);
+	set("AC-Size"      , character.ac_size	);
+	set("Natural-Armor", character.ac_nat	);
+	set("Deflection"   , character.ac_deflec);
+	set("AC-Misc"      , character.ac_misc	);
 	
-	document.getElementById("Touch-AC").value    = character.ac_t;
-	document.getElementById("FlatFoot-AC").value = character.ac_ff;
-	document.getElementById("Other-AC").value    = character.ac_other;
+	set("Touch-AC"		, character.ac_t	);
+	set("FlatFoot-AC"	, character.ac_ff	);
+	set("Other-AC"		, character.ac_other);
 	
-	document.getElementById("Base-HP").value 		= character.hp_current;
-	document.getElementById("Temp-HP").value 		= character.hp_temp;
-	document.getElementById("Non-Lethal-Dmg").value = character.hp_nonlethal;
-	document.getElementById("Max-HP").value 		= character.hp_max;
+	set("Base-HP"		, character.hp_current	);
+	set("Temp-HP"		, character.hp_temp		);
+	set("Non-Lethal-Dmg", character.hp_nonlethal);
+	set("Max-HP"		, character.hp_max		);
 	
-	document.getElementById("Damage-Reduction").value  = character.dmg_reduc;
-	document.getElementById("Spell-Resistance").value = character.spell_resist;
+	set("Damage-Reduction", character.dmg_reduc   );
+	set("Spell-Resistance", character.spell_resist);
 	
-	document.getElementById("Fortitude-Total").value = character.fort_total;
-	document.getElementById("Fortitude-Base").value  = character.fort_base;
-	document.getElementById("Fortitude-Item").value  = character.fort_item;
-	document.getElementById("Fortitude-Misc").value  = character.fort_misc;
-	document.getElementById("Fortitude-Notes").value = character.fort_note;
+	set("Fortitude-Total",character.fort_total);
+	set("Fortitude-Base" ,character.fort_base );
+	set("Fortitude-Item" ,character.fort_item );
+	set("Fortitude-Misc" ,character.fort_misc );
+	set("Fortitude-Notes",character.fort_note );
 	
-	document.getElementById("Reflex-Total").value = character.ref_total;
-	document.getElementById("Reflex-Base").value  = character.ref_base;
-	document.getElementById("Reflex-Item").value  = character.ref_item;
-	document.getElementById("Reflex-Misc").value  = character.ref_misc;
-	document.getElementById("Reflex-Notes").value = character.ref_note;
+	set("Reflex-Total", character.ref_total);
+	set("Reflex-Base" , character.ref_base );
+	set("Reflex-Item" , character.ref_item );
+	set("Reflex-Misc" , character.ref_misc );
+	set("Reflex-Notes", character.ref_note );
 	
-	document.getElementById("Will-Total").value = character.will_total;
-	document.getElementById("Will-Base").value  = character.will_base;
-	document.getElementById("Will-Item").value  = character.will_item;
-	document.getElementById("Will-Misc").value  = character.will_misc;
-	document.getElementById("Will-Notes").value = character.will_note;
+	set("Will-Total", character.will_total);
+	set("Will-Base" , character.will_base );
+	set("Will-Item" , character.will_item );
+	set("Will-Misc" , character.will_misc );
+	set("Will-Notes", character.will_note );
 	
-	document.getElementById("Resistances").value = character.resist;
-	document.getElementById("Immunities").value  = character.immune;
+	set("Resistances", character.resist);
+	set("Immunities" , character.immune);
 	
-	document.getElementById("Total-CMD").value = character.cmd_total;
-	document.getElementById("Size-CMD").value  = character.cmd_size;
-	document.getElementById("Misc-CMD").value  = character.cmd_misc;
+	set("Total-CMD", character.cmd_total);
+	set("Size-CMD" , character.cmd_size );
+	set("Misc-CMD" , character.cmd_misc );
 	
-	document.getElementById("Init-Total").value = character.init_total;
-	document.getElementById("Misc-Init").value = character.init_misc;
+	set("Init-Total", character.init_total);
+	set("Misc-Init" , character.init_misc );
 	
 	const elements = document.getElementsByClassName("BAB");
-	for (const element of elements) element.value = character.bab;
+	for (const element of elements) element.value = character.bab ?? "";
 	
-	document.getElementById("Base-Speed").value   = character.spd_base;
-	document.getElementById("Armor-Speed").value  = character.spd_amr;
-	document.getElementById("Fly-Speed").value    = character.spd_fly;
-	document.getElementById("Swim-Speed").value   = character.spd_swm;
-	document.getElementById("Climb-Speed").value  = character.spd_clb;
-	document.getElementById("Burrow-Speed").value = character.spd_brw;
-	document.getElementById("Speed-Notes").value  = character.spd_nts;
+	set("Base-Speed"  , character.spd_base);
+	set("Armor-Speed" , character.spd_amr );
+	set("Fly-Speed"   , character.spd_fly );
+	set("Swim-Speed"  , character.spd_swm );
+	set("Climb-Speed" , character.spd_clb );
+	set("Burrow-Speed", character.spd_brw );
+	set("Speed-Notes" , character.spd_nts );
 	
-	document.getElementById("Total-CMB").value = character.cmb_total;
-	document.getElementById("Size-CMB").value  = character.cmb_size;
-	document.getElementById("Misc-CMB").value  = character.cmb_misc;
+	set("Total-CMB", character.cmb_total);
+	set("Size-CMB" , character.cmb_size );
+	set("Misc-CMB" , character.cmb_misc );
 	
 	for (let melee of character.mList) {
 		const span = AddAttack('Melee');
-		span.childNodes[1] = melee.name ;
-		span.childNodes[2] = melee.atk  ;
-		span.childNodes[3] = melee.dmg  ;
-		span.childNodes[4] = melee.crit ;
-		span.childNodes[5] = melee.type ;
-		span.childNodes[6] = melee.notes;
+		span.childNodes[1] = melee.name  ?? "";
+		span.childNodes[2] = melee.atk   ?? "";
+		span.childNodes[3] = melee.dmg   ?? "";
+		span.childNodes[4] = melee.crit  ?? "";
+		span.childNodes[5] = melee.type  ?? "";
+		span.childNodes[6] = melee.notes ?? "";
 	}
 	for (let ranged of character.rList) {
 		const span = AddAttack('Ranged');
-		span.childNodes[1] = ranged.name ;
-		span.childNodes[2] = ranged.atk  ;
-		span.childNodes[3] = ranged.dmg  ;
-		span.childNodes[4] = ranged.crit ;
-		span.childNodes[5] = ranged.type ;
-		span.childNodes[6] = ranged.range;
-		span.childNodes[7] = ranged.ammo ;
+		span.childNodes[1] = ranged.name  ?? "";
+		span.childNodes[2] = ranged.atk   ?? "";
+		span.childNodes[3] = ranged.dmg   ?? "";
+		span.childNodes[4] = ranged.crit  ?? "";
+		span.childNodes[5] = ranged.type  ?? "";
+		span.childNodes[6] = ranged.range ?? "";
+		span.childNodes[7] = ranged.ammo  ?? "";
 	}
 	
 	function LoadSkill (name, docname) {
+		if (character.skills[name] == null) return;
 		let row = document.getElementById(docname+"-row");
 		row.cells[0].firstChild.checked = character.skills[name].cs;
-		row.cells[1].firstChild.value   = character.skills[name].name;
-		row.cells[2].firstChild.value   = character.skills[name].total;
-		row.cells[5].firstChild.value   = character.skills[name].rank;
-		row.cells[6].firstChild.value   = character.skills[name].class;
-		row.cells[7].firstChild.value   = character.skills[name].racial;
-		row.cells[8].firstChild.value   = character.skills[name].trait;
-		row.cells[9].firstChild.value   = character.skills[name].misc;
+		row.cells[1].firstChild.value   = character.skills[name].name	?? "";
+		row.cells[2].firstChild.value   = character.skills[name].total  ?? "";
+		row.cells[5].firstChild.value   = character.skills[name].rank	?? "";
+		row.cells[6].firstChild.value   = character.skills[name].class  ?? "";
+		row.cells[7].firstChild.value   = character.skills[name].racial ?? "";
+		row.cells[8].firstChild.value   = character.skills[name].trait  ?? "";
+		row.cells[9].firstChild.value   = character.skills[name].misc	?? "";
 	}
 	LoadSkill("acro","acrobatics");
 	LoadSkill("bluff","bluff");
@@ -154,17 +158,18 @@ function LoadFromJSON (character) {
 	LoadSkill("soh","sleight-of-hand");
 	
 	function LoadMultiSkull (name, docname) {
+		if (character.skills[name] == null) return;
 		const qty = character.skills[name].length;
 		for (let i = 0; i < qty; i++) {
 			let row = AddSkill(docname);
 			row.cells[0].children[0].checked = character.skills[name][i].cs;
-			row.cells[1].children[1].value   = character.skills[name][i].name;
-			row.cells[2].children[0].value   = character.skills[name][i].total;
-			row.cells[5].children[0].value   = character.skills[name][i].rank;
-			row.cells[6].children[0].value   = character.skills[name][i].class;
-			row.cells[7].children[0].value   = character.skills[name][i].racial;
-			row.cells[8].children[0].value   = character.skills[name][i].trait;
-			row.cells[9].children[0].value   = character.skills[name][i].misc;
+			row.cells[1].children[1].value   = character.skills[name][i].name	?? "";
+			row.cells[2].children[0].value   = character.skills[name][i].total  ?? "";
+			row.cells[5].children[0].value   = character.skills[name][i].rank	?? "";
+			row.cells[6].children[0].value   = character.skills[name][i].class  ?? "";
+			row.cells[7].children[0].value   = character.skills[name][i].racial ?? "";
+			row.cells[8].children[0].value   = character.skills[name][i].trait  ?? "";
+			row.cells[9].children[0].value   = character.skills[name][i].misc	?? "";
 		}
 	}
 	LoadMultiSkull("art"  ,"artistry"  );
@@ -277,4 +282,5 @@ async function Load () {
 	
 	//if (json == mottokrosh) LoadFromMottokrosh(json);
 	//else LoadFromJSON(json);
+	LoadFromJSON(json);
 }

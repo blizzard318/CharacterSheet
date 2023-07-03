@@ -1,6 +1,6 @@
 function SetUpFunctions() {
 	function AbilitySetUp(name) {
-		document.getElementById(name).addEventListener('focusout', _ => ModifyAbility(name));
+		document.getElementById(name		).addEventListener('focusout', _ => ModifyAbility(name));
 		document.getElementById(name+"-temp").addEventListener('focusout', _ => ModifyAbility(name));
 		ModifyAbility(name);
 	}
@@ -11,8 +11,8 @@ function SetUpFunctions() {
 	AbilitySetUp("wis");
 	AbilitySetUp("cha");
 	
-	document.getElementById("Base-HP").addEventListener('focusout', _ => ModifyHP());
-	document.getElementById("Temp-HP").addEventListener('focusout', _ => ModifyHP());
+	document.getElementById("Base-HP"		).addEventListener('focusout', _ => ModifyHP());
+	document.getElementById("Temp-HP"		).addEventListener('focusout', _ => ModifyHP());
 	document.getElementById("Non-Lethal-Dmg").addEventListener('focusout', _ => ModifyHP());
 	ModifyHP();
 	
@@ -28,9 +28,16 @@ function SetUpFunctions() {
 		deet.addEventListener('toggle', _ => localStorage.setItem(deet.id, deet.open));
 	});
 	
+	if (document.getElementById("CharacterIndex").value == "") return; //Strangers don't get to save.
 	document.querySelectorAll('input').forEach(inp => {
 		if (inp.type == "checkbox") inp.addEventListener('click', _ => SaveToCloudFlare());
-		else inp.addEventListener('focusout', _ => SaveToCloudFlare());
+		else {
+			inp.addEventListener('focusin', _ => inp.oldValue = inp.value);
+			inp.addEventListener('focusout', _ => {
+				if (inp.value != inp.oldValue) SaveToCloudFlare();
+				delete inp.oldValue; //Garbage Collection
+			});
+		}
 	});
 }
 

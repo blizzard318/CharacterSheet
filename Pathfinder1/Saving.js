@@ -1,4 +1,7 @@
 function GetCharacter () {
+	function Trim(obj) {
+		Object.keys(obj).forEach(k => (!obj[k] && obj[k] !== undefined) && delete obj[k]);
+	}
 	function GetValue(name){
 		return document.getElementById(name).value ?? null;
 	}
@@ -116,9 +119,9 @@ function GetCharacter () {
 		character.rList[i].ammo  = rList[i].children[7].firstChild.value ?? null;
 	}
 	
-	character.skills = [];
+	character.skills = {};
 	function SaveSkill (name, docname) {
-		let row = document.getElementById(docname+"-row");
+		const row = document.getElementById(docname+"-row");
 		character.skills[name] = {};
 		character.skills[name].cs 	  = row.cells[0].firstChild.checked;
 		character.skills[name].total  = row.cells[2].firstChild.value;
@@ -127,6 +130,7 @@ function GetCharacter () {
 		character.skills[name].racial = row.cells[7].firstChild.value;
 		character.skills[name].trait  = row.cells[8].firstChild.value;
 		character.skills[name].misc   = row.cells[9].firstChild.value;
+		Trim(character.skills[name]);
 	}
 	SaveSkill("acro","acrobatics");
 	SaveSkill("bluff","bluff");
@@ -162,12 +166,13 @@ function GetCharacter () {
 	SaveSkill("lin","linguistics");
 	SaveSkill("soh","sleight-of-hand");
 	
-	function SaveMultiSkull (name, oldIndex, docname) {
+	function SaveMultiSkull (name, docname, rowBefore) {
 		character.skills[name] = [];
-		const newIndex = document.getElementById(docname+"-row").rowIndex;
-		const delta = newIndex - oldIndex;
-		for (let i = 0; i < delta; i++) {
-			let row = document.getElementById("Skill-Table").rows[i + oldIndex];
+		const OldIndex = document.getElementById(rowBefore+"-row").rowIndex + 1;
+		const NewIndex = document.getElementById(docname+"-row").rowIndex;
+		const Offset = NewIndex - OldIndex;
+		for (let i = 0; i < Offset; i++) {
+			let row = document.getElementById("Skill-Table").rows[i + OldIndex];
 			character.skills[name][i]		 = {};
 			character.skills[name][i].cs     = row.cells[0].children[0].checked;
 			character.skills[name][i].name   = row.cells[1].children[1].value;
@@ -177,15 +182,17 @@ function GetCharacter () {
 			character.skills[name][i].racial = row.cells[7].children[0].value;
 			character.skills[name][i].trait  = row.cells[8].children[0].value;
 			character.skills[name][i].misc   = row.cells[9].children[0].value;
+			Trim(character.skills[name][i]);
 		}
 	}
-	SaveMultiSkull("art"  ,27,"artistry"  );
-	SaveMultiSkull("craft",28,"craft"	  );
-	SaveMultiSkull("lore" ,35,"lore"	  );
-	SaveMultiSkull("perf" ,36,"perform"	  );
-	SaveMultiSkull("prof" ,37,"profession");
+	SaveMultiSkull("art"  ,"artistry"	,"appraise"	  );
+	SaveMultiSkull("craft","craft"		,"artistry"	  );
+	SaveMultiSkull("lore" ,"lore"		,"linguistics");
+	SaveMultiSkull("perf" ,"perform"	,"lore"		  );
+	SaveMultiSkull("prof" ,"profession"	,"perform"	  );
+	Trim(character.skills);
 	
-	Object.keys(character).forEach(k => (!character[k] && character[k] !== undefined) && delete character[k]);
+	Trim(character);
 	return character;
 }
 
@@ -200,8 +207,6 @@ function SaveToJSON () {
 }
 
 async function SaveToCloudFlare () {
-	if (document.getElementById("CharacterIndex").value == "") return; //Strangers don't get to save.
-	
 	const character = GetCharacter();
 	const index = document.getElementById("CharacterIndex").value;
 	const url = "../api/Pathfinder1/" + character.player + "/" + index;
