@@ -177,6 +177,23 @@ function LoadFromJSON (character) {
 	LoadMultiSkull("lore" ,"lore"	   );
 	LoadMultiSkull("perf" ,"perform"   );
 	LoadMultiSkull("prof" ,"profession");
+	
+	set("Skill-Notes", character.skill_notes);
+	set("Languages"  , character.lng 		);
+	
+	
+	
+	set("money"  , character.gp);
+	for (let ranged of character.acList) {
+		const span = AddACItem();
+		span.childNodes[1] = ranged.name  ?? "";
+		span.childNodes[2] = ranged.atk   ?? "";
+		span.childNodes[3] = ranged.dmg   ?? "";
+		span.childNodes[4] = ranged.crit  ?? "";
+		span.childNodes[5] = ranged.type  ?? "";
+		span.childNodes[6] = ranged.range ?? "";
+		span.childNodes[7] = ranged.ammo  ?? "";
+	}
 }
 
 //Process json from CharacterSheet.co.uk to CloudFlare KV

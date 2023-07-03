@@ -1001,7 +1001,7 @@
 					<label class="blackLabel">Known</label>
 				</div>
 				<div style="width:870px;height:60px;float:left">
-					<input id="languages"/>
+					<input id="Languages"/>
 					<label style="font-size:12px;line-height:20px;width:80px">Spoken/Written</label>
 				</div>
 			</article>
@@ -1011,19 +1011,22 @@
 			<summary>Customization</summary>
 			<article>
 				<div style="clear:both;text-align:left">
-					<button type="button" onclick="">
+					<button type="button" onclick="AddCustom('Feat')">
 						+Feat
 					</button>
+					<div id="FeatList"></div>
 				</div>
 				<div style="clear:both;text-align:left">
-					<button type="button" onclick="">
+					<button type="button" onclick="AddCustom('Special Ability')">
 						+Special Ability
 					</button>
+					<div id="SpecialAbilityList"></div>
 				</div>
 				<div style="clear:both;text-align:left">
-					<button type="button" onclick="">
+					<button type="button" onclick="AddCustom('Trait')">
 						+Trait
 					</button>
+					<div id="TraitList"></div>
 				</div>
 			</article>
 		</details>
@@ -1032,40 +1035,42 @@
 			<summary>Equipment</summary>
 			<article>
 				<div class="black" style="width:40px;height:60px">
-					<span style="font-size:25px;">GP</span>
+					<span style="font-size:25px">GP</span>
 					<label class="blackLabel">Gold</label>
 				</div>
-				<div style="width:50px;height:60px;float:left;">
+				<div style="width:50px;height:60px;float:left">
 					<input id="money"/>
 				</div>
-				<div style="width:900px;height:60px;float:left;"></div>
+				<div style="width:900px;height:60px;float:left"></div>
 				
 				<div id="ACList"></div>
                 <button type="button" onclick="AddACItem()" style="width:100px;float:left">
                     +AC Item
                 </button>
-				<div style="width:185px;float:left;visibility:hidden"> </div>
-				<div style="width:55px;height:60px;float:left;">
+				<div style="width:185px;float:left;font-size:200%">Totals =</div>
+				<div style="width:55px;height:60px;float:left">
 					<input id="AC-Bonus"/>
 					<label style="font-size:12px;line-height:20px;width:60px">Bonus</label>
 				</div>
 				<div style="width:100px;float:left;visibility:hidden"></div>
-				<div style="width:55px;height:60px;float:left;">
+				<div style="width:55px;height:60px;float:left">
 					<input id="AC-Penalty"/>
 					<label style="font-size:12px;line-height:20px;width:70px">Check Penalty</label>
 				</div>
-				<div style="width:55px;height:60px;float:left;">
-					<input id="AC-Failure"/>
+				<div style="width:55px;height:60px;float:left">
+					<input id="AC-Spell-Failure"/>
 					<label style="font-size:12px;line-height:20px;width:70px">Spell Failure</label>
 				</div>
-				<div style="width:350px;height:60px;float:left;"></div>
+				<div style="width:350px;height:60px;float:left"></div>
 				
-				<div class="black" style="width:100px;height:40px">
-					<span style="font-size:25px;">Gear</span>
-				</div>
                 <button type="button" onclick="" style="float:left">
                     +Gear
                 </button>
+				<div style="width:55px;height:60px;float:left;padding-left:10px">
+					<input id="Total-Weight"/>
+					<label style="font-size:12px;line-height:20px;width:65px">Total Weight</label>
+				</div>
+				<div id="GearList"></div>
 			</article>
 		</details>
 		<br />
@@ -1157,6 +1162,67 @@
 					<input id="Specialty" />
 					<label style="font-size:12px;line-height:20px;width:300px">Specialised & Opposed Schools, Bloodlines, Domains</label>
 				</div>
+				
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="">
+						+Spell-Like
+					</button>
+				</div>
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="">
+						+0th Level
+					</button>
+				</div>
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="">
+						+1st Level
+					</button>
+				</div>
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="">
+						+2nd Level
+					</button>
+				</div>
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="">
+						+3rd Level
+					</button>
+				</div>
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="">
+						+4th Level
+					</button>
+				</div>
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="">
+						+5th Level
+					</button>
+				</div>
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="">
+						+6th Level
+					</button>
+				</div>
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="">
+						+7th Level
+					</button>
+				</div>
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="">
+						+8th Level
+					</button>
+				</div>
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="">
+						+9th Level
+					</button>
+				</div>
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="">
+						+Rituals
+					</button>
+				</div>
 			</article>
 		</details>
 		<br/>
@@ -1176,9 +1242,9 @@
 			</div>
 			<div id="CustomMenu" class="menu" style="font-size:150%">
 				New/Edit <div id="CustomMenuName" style="display:inline"></div><br/>
-				Name: <input class="CustomName" style="width:50px"/><br/>
-				Type: <input class="CustomType" style="width:50px"/><br/>
-				Notes: <input class="CustomNotes" style="width:50px;height100px"/><br/>
+				Name: <input class="CustomName" style="width:150px"/><br/>
+				Type: <input class="CustomType" style="width:150px"/><br/>
+				Notes: <input class="CustomNotes" style="width:150px;height100px"/><br/><br/>
 				<button onclick="CloseOverlay()">Ok</button>
 				<button id="DeleteCustom">Delete</button>
 			</div>

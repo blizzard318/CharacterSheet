@@ -59,6 +59,7 @@ function AddCustom (type){ //Feat/Special Ability/Trait
 function AddSkill(type) {
 	const index = document.getElementById(type + "-row").rowIndex;
 	const row = document.getElementById("Skill-Table").insertRow(index);
+	row.id = type + index; //Needed for deletion
 	let i = 0;
 	
 	let td = row.insertCell(i++); //Class Skill
@@ -81,7 +82,7 @@ function AddSkill(type) {
 		overlayFunc += "document.getElementById('Skill-Table').deleteRow(rowIndex);"
 		overlayFunc += "CloseOverlay();}"
 		div.setAttribute("onclick", overlayFunc);
-	td.innerHTML = div.outerHTML + "<input style='width:145px;text-align:left;display:inline'/>";
+	td.innerHTML = div.outerHTML + " <input style='width:145px;text-align:left;display:inline'/>";
 
 	td = row.insertCell(i++); //Total Skill Value
 		input = document.createElement("input");
@@ -249,6 +250,7 @@ function AddACItem () {
 	span.appendChild(div);
 	
 	document.getElementById("ACList").appendChild(span);
+	return span;
 }
 
 function AddAttack (type) {
