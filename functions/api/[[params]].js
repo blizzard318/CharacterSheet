@@ -2,7 +2,6 @@ function GetKV (ctx) {
 	switch (ctx.params.params[0]) {
 		case "Pathfinder1": return ctx.env.Pathfinder1;
 		case "Pathfinder2": return {};
-		case "Nobilis": 	return {};
 	}
 }
 
