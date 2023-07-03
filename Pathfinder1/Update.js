@@ -102,8 +102,8 @@ function AddSkill(type) {
 	td = row.insertCell(i++); //Ability Modifier
 		input = document.createElement("input");
 		input.setAttribute("class",'green ' + mod + '-temp-mod');
-		input.setAttribute("readonly","readonly");
 		input.setAttribute("style","width:50px");
+		input.setAttribute("readonly","readonly");
 	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Skill Ranks
