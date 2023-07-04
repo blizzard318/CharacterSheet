@@ -93,22 +93,22 @@ function LoadFromJSON (character) {
 	
 	for (let melee of character.mList) {
 		const span = AddAttack('Melee');
-		span.childNodes[1] = melee.name  ?? "";
-		span.childNodes[2] = melee.atk   ?? "";
-		span.childNodes[3] = melee.dmg   ?? "";
-		span.childNodes[4] = melee.crit  ?? "";
-		span.childNodes[5] = melee.type  ?? "";
-		span.childNodes[6] = melee.notes ?? "";
+		span.childNodes[1].firstChild.value = melee.name  ?? "";
+		span.childNodes[2].firstChild.value = melee.atk   ?? "";
+		span.childNodes[3].firstChild.value = melee.dmg   ?? "";
+		span.childNodes[4].firstChild.value = melee.crit  ?? "";
+		span.childNodes[5].firstChild.value = melee.type  ?? "";
+		span.childNodes[6].firstChild.value = melee.notes ?? "";
 	}
 	for (let ranged of character.rList) {
 		const span = AddAttack('Ranged');
-		span.childNodes[1] = ranged.name  ?? "";
-		span.childNodes[2] = ranged.atk   ?? "";
-		span.childNodes[3] = ranged.dmg   ?? "";
-		span.childNodes[4] = ranged.crit  ?? "";
-		span.childNodes[5] = ranged.type  ?? "";
-		span.childNodes[6] = ranged.range ?? "";
-		span.childNodes[7] = ranged.ammo  ?? "";
+		span.childNodes[1].firstChild.value = ranged.name  ?? "";
+		span.childNodes[2].firstChild.value = ranged.atk   ?? "";
+		span.childNodes[3].firstChild.value = ranged.dmg   ?? "";
+		span.childNodes[4].firstChild.value = ranged.crit  ?? "";
+		span.childNodes[5].firstChild.value = ranged.type  ?? "";
+		span.childNodes[6].firstChild.value = ranged.range ?? "";
+		span.childNodes[7].firstChild.value = ranged.ammo  ?? "";
 	}
 	
 	function LoadSkill (name, docname) {
@@ -181,18 +181,17 @@ function LoadFromJSON (character) {
 	set("Skill-Notes", character.skill_notes);
 	set("Languages"  , character.lng 		);
 	
-	
+	//Load customization here
 	
 	set("money"  , character.gp);
-	for (let ranged of character.acList) {
+	for (let armor of character.acList) {
 		const span = AddACItem();
-		span.childNodes[1] = ranged.name  ?? "";
-		span.childNodes[2] = ranged.atk   ?? "";
-		span.childNodes[3] = ranged.dmg   ?? "";
-		span.childNodes[4] = ranged.crit  ?? "";
-		span.childNodes[5] = ranged.type  ?? "";
-		span.childNodes[6] = ranged.range ?? "";
-		span.childNodes[7] = ranged.ammo  ?? "";
+		span.childNodes[1].firstChild.value = armor.name  	  ?? "";
+		span.childNodes[2].firstChild.value = armor.bonus 	  ?? "";
+		span.childNodes[3].firstChild.value = armor.type  	  ?? "";
+		span.childNodes[4].firstChild.value = armor.penalty	  ?? "";
+		span.childNodes[5].firstChild.value = armor.spellfail ?? "";
+		span.childNodes[6].firstChild.value = armor.notes 	  ?? "";
 	}
 }
 

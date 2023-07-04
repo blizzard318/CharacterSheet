@@ -200,11 +200,11 @@ function GetCharacter () {
 	character.lng = GetValue("Languages");
 	
 	//Customization items
-	character.gList = []; //Feats List
-	const gList = document.getElementById("FeatList").childNodes;
-	for (let i = 0; i < gList.length; i++) {
-		character.gList[i]  	  	 = {};
-		Trim(character.gList[i]);
+	character.fList = []; //Feats List
+	const fList = document.getElementById("FeatList").childNodes;
+	for (let i = 0; i < fList.length; i++) {
+		character.fList[i]  	  	 = {};
+		Trim(character.fList[i]);
 	}
 	
 	character.saList = []; //Special Abilities List
