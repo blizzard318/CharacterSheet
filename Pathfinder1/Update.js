@@ -46,14 +46,32 @@ function ModifyHP () {
 }
 
 function AddCustom (type){ //Feat/Special Ability/Trait
-	document.getElementById('CustomMenuName').innerText = type;
-	document.getElementById('overlay').style.display = 'block';
-	document.getElementById('CustomMenu').style.display = 'block';
-	document.getElementById('DeleteCustom').onclick = function () {
-		const rowIndex = document.getElementById('" + row.id + "').rowIndex;
-		document.getElementById('Skill-Table').deleteRow(rowIndex);
+	document.getElementById('CustomMenuName').innerHTML = "<b>New " + type + "</b>";
+	
+	let list = {};
+	switch (type) {
+		case "Feat":
+			document.getElementById('CustomType').title = "General/Combat/Metamagic/Teamwork/etc...";
+			list = document.getElementById('FeatList');
+			break;
+		case "SpecialAbility":
+			document.getElementById('CustomType').title = "Ex/Su/Sp";
+			list = document.getElementById('SpecialAbilityList');
+			break;
+		case "Trait":
+			document.getElementById('CustomType').title = "Combat/Campaign/Race/Religion/etc...";
+			list = document.getElementById('TraitList');
+			break;
+	}
+	document.getElementById('overlay').style.display = document.getElementById('CustomMenu').style.display = 'block';
+	
+	document.getElementById('CreateCustom').onclick = function () {
+		
+		SaveToCloudFlare();
 		CloseOverlay();
 	}
+	
+	document.getElementById('DeleteCustom').onclick = CloseOverlay;
 }
 
 function AddSkill(type) {
@@ -65,29 +83,26 @@ function AddSkill(type) {
 	let td = row.insertCell(i++); //Class Skill
 		let input = document.createElement("input");
 		input.setAttribute("type","checkbox");
-		input.setAttribute("onclick","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Name of Skill
 		let div = document.createElement("div");
 		div.innerText = type.charAt(0).toUpperCase() + type.slice(1);
 		div.style = "all:unset";
-		div.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.setAttribute("onmouseover","innerText='Delete?'");
 		div.setAttribute("onmouseout","innerText='" + type.charAt(0).toUpperCase() + type.slice(1) + "'");
-		let overlayFunc = "document.getElementById('overlay').style.display = 'block';";
+		let overlayFunc = "document.getElementById('overlay').style.display = ";
 		overlayFunc += "document.getElementById('ConfirmMenu').style.display = 'block';";
 		overlayFunc += "document.getElementById('ConfirmDelete').onclick = function () {"
 		overlayFunc += "const rowIndex = document.getElementById('" + row.id + "').rowIndex;"
 		overlayFunc += "document.getElementById('Skill-Table').deleteRow(rowIndex);"
-		overlayFunc += "CloseOverlay();}"
+		overlayFunc += "SaveToCloudFlare();CloseOverlay();}"
 		div.setAttribute("onclick", overlayFunc);
 	td.innerHTML = div.outerHTML + " <input style='width:145px;text-align:left;display:inline'/>";
 
 	td = row.insertCell(i++); //Total Skill Value
 		input = document.createElement("input");
 		input.setAttribute("style","width:50px");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Ability Score Tied
@@ -104,38 +119,44 @@ function AddSkill(type) {
 		input = document.createElement("input");
 		input.setAttribute("class",'green ' + mod + '-temp-mod');
 		input.setAttribute("style","width:50px");
-		input.setAttribute("readonly","readonly");
+		input.disabled = true;
+		input.setAttribute("onfocusout","alert('test')");
 	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Skill Ranks
 		input = document.createElement("input");
 		input.setAttribute("style","width:50px");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Skill Class
 		input = document.createElement("input");
 		input.setAttribute("style","width:50px");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Skill Racial
 		input = document.createElement("input");
 		input.setAttribute("style","width:50px");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Skill Trait
 		input = document.createElement("input");
 		input.setAttribute("style","width:50px");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Skill Misc
 		input = document.createElement("input");
 		input.setAttribute("style","width:260px");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
 	td.innerHTML = input.outerHTML;
+	
+	if (document.getElementById("CharacterIndex").value != "") { //Strangers don't get to save.
+		span.querySelectorAll('input').forEach(inp => {
+			inp.addEventListener('focusin', _ => inp.oldValue = inp.value);
+			inp.addEventListener('focusout', _ => {
+				if (inp.value != inp.oldValue) SaveToCloudFlare();
+				delete inp.oldValue; //Garbage Collection
+			});
+		});
+	}
 	
 	return row;
 }
@@ -161,11 +182,11 @@ function AddACItem () {
 		div.setAttribute("onmouseout","childNodes[0].innerHTML = 'AC Item';childNodes[1].innerHTML = null");
 		
 		div.onclick = function () {
-			document.getElementById('overlay').style.display = 'block';
-			document.getElementById('ConfirmMenu').style.display = 'block';
+			document.getElementById('overlay').style.display = document.getElementById('ConfirmMenu').style.display = 'block';
 			document.getElementById('ConfirmDelete').onclick = function () {
 				span.remove();
 				CloseOverlay();
+				SaveToCloudFlare();
 			}
 		};
 	div.appendChild(label);
@@ -175,7 +196,6 @@ function AddACItem () {
 	div.setAttribute("style","width:170px;height:60px;float:left");
 		let input = document.createElement("input");
 		input.setAttribute("class","AC-Name");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
 		
 		label = document.createElement("label");
@@ -188,7 +208,6 @@ function AddACItem () {
 	div.setAttribute("style","width:55px;height:60px;float:left");
 		input = document.createElement("input");
 		input.setAttribute("class","AC-Bonus");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
 		
 		label = document.createElement("label");
@@ -201,7 +220,6 @@ function AddACItem () {
 	div.setAttribute("style","width:100px;height:60px;float:left");
 		input = document.createElement("input");
 		input.setAttribute("class","AC-Type");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
 		
 		label = document.createElement("label");
@@ -214,7 +232,6 @@ function AddACItem () {
 	div.setAttribute("style","width:55px;height:60px;float:left");
 		input = document.createElement("input");
 		input.setAttribute("class","AC-Penalty");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
 		
 		label = document.createElement("label");
@@ -227,7 +244,6 @@ function AddACItem () {
 	div.setAttribute("style","width:55px;height:60px;float:left");
 		input = document.createElement("input");
 		input.setAttribute("class","AC-Failure");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
 		
 		label = document.createElement("label");
@@ -240,7 +256,6 @@ function AddACItem () {
 	div.setAttribute("style","width:350px;height:60px;float:left");
 		input = document.createElement("input");
 		input.setAttribute("class","AC-Notes");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
 		
 		label = document.createElement("label");
@@ -248,6 +263,16 @@ function AddACItem () {
 		label.innerHTML = "Notes";
 	div.appendChild(label);
 	span.appendChild(div);
+	
+	if (document.getElementById("CharacterIndex").value != "") { //Strangers don't get to save.
+		span.querySelectorAll('input').forEach(inp => {
+			inp.addEventListener('focusin', _ => inp.oldValue = inp.value);
+			inp.addEventListener('focusout', _ => {
+				if (inp.value != inp.oldValue) SaveToCloudFlare();
+				delete inp.oldValue; //Garbage Collection
+			});
+		});
+	}
 	
 	document.getElementById("ACList").appendChild(span);
 	return span;
@@ -275,8 +300,7 @@ function AddAttack (type) {
 						"childNodes[1].innerHTML = '" + type + " Attack'");
 		
 		div.onclick = function () {
-			document.getElementById('overlay').style.display = 'block';
-			document.getElementById('ConfirmMenu').style.display = 'block';
+			document.getElementById('overlay').style.display = document.getElementById('ConfirmMenu').style.display = 'block';
 			document.getElementById('ConfirmDelete').onclick = function () {
 				span.remove();
 				CloseOverlay();
@@ -290,7 +314,6 @@ function AddAttack (type) {
 	div.setAttribute("style","width:220px;height:50px;float:left");
 		let input = document.createElement("input");
 		input.setAttribute("class",type + "Name");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
 		
 		label = document.createElement("label");
@@ -303,7 +326,6 @@ function AddAttack (type) {
 	div.setAttribute("style","width:140px;height:50px;float:left");
 		input = document.createElement("input");
 		input.setAttribute("class",type + "Atk");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
 		
 		label = document.createElement("label");
@@ -316,7 +338,6 @@ function AddAttack (type) {
 	div.setAttribute("style","width:140px;height:50px;float:left");
 		input = document.createElement("input");
 		input.setAttribute("class",type + "Dmg");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
 		
 		label = document.createElement("label");
@@ -329,7 +350,6 @@ function AddAttack (type) {
 	div.setAttribute("style","width:80px;height:50px;float:left");
 		input = document.createElement("input");
 		input.setAttribute("class",type + "Crit");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
 		
 		label = document.createElement("label");
@@ -342,7 +362,6 @@ function AddAttack (type) {
 	div.setAttribute("style","width:50px;height:50px;float:left");
 		input = document.createElement("input");
 		input.setAttribute("class",type + "Type");
-		input.setAttribute("onfocusout","SaveToCloudFlare()");
 		div.appendChild(input);
 		
 		label = document.createElement("label");
@@ -356,7 +375,6 @@ function AddAttack (type) {
 		div.setAttribute("style","width:170px;height:50px;float:left");
 			input = document.createElement("input");
 			input.setAttribute("class","MeleeNote");
-			input.setAttribute("onfocusout","SaveToCloudFlare()");
 			div.appendChild(input);
 			
 			label = document.createElement("label");
@@ -369,7 +387,6 @@ function AddAttack (type) {
 		div.setAttribute("style","width:70px;height:50px;float:left");
 			input = document.createElement("input");
 			input.setAttribute("class","RangedRange");
-			input.setAttribute("onfocusout","SaveToCloudFlare()");
 			div.appendChild(input);
 			
 			label = document.createElement("label");
@@ -382,7 +399,6 @@ function AddAttack (type) {
 		div.setAttribute("style","width:80px;height:50px;float:left");
 			input = document.createElement("input");
 			input.setAttribute("class","RangedAmmo");
-			input.setAttribute("onfocusout","SaveToCloudFlare()");
 			div.appendChild(input);
 			
 			label = document.createElement("label");
@@ -391,6 +407,17 @@ function AddAttack (type) {
 		div.appendChild(label);
 		span.appendChild(div);
 	}
+	
+	if (document.getElementById("CharacterIndex").value != "") { //Strangers don't get to save.
+		span.querySelectorAll('input').forEach(inp => {
+			inp.addEventListener('focusin', _ => inp.oldValue = inp.value);
+			inp.addEventListener('focusout', _ => {
+				if (inp.value != inp.oldValue) SaveToCloudFlare();
+				delete inp.oldValue; //Garbage Collection
+			});
+		});
+	}
+	
 	document.getElementById(type + "List").appendChild(span);
 	return span;
 }

@@ -91,6 +91,7 @@ function LoadFromJSON (character) {
 	set("Size-CMB" , character.cmb_size );
 	set("Misc-CMB" , character.cmb_misc );
 	
+	document.getElementById("MeleeList").innerHTML = "";
 	for (let melee of character.mList) {
 		const span = AddAttack('Melee');
 		span.childNodes[1].firstChild.value = melee.name  ?? "";
@@ -100,6 +101,7 @@ function LoadFromJSON (character) {
 		span.childNodes[5].firstChild.value = melee.type  ?? "";
 		span.childNodes[6].firstChild.value = melee.notes ?? "";
 	}
+	document.getElementById("RangedList").innerHTML = "";
 	for (let ranged of character.rList) {
 		const span = AddAttack('Ranged');
 		span.childNodes[1].firstChild.value = ranged.name  ?? "";
@@ -159,6 +161,7 @@ function LoadFromJSON (character) {
 	
 	function LoadMultiSkull (name, docname) {
 		if (character.skills[name] == null) return;
+		document.getElementById(docname + "-row").innerHTML = "";
 		const qty = character.skills[name].length;
 		for (let i = 0; i < qty; i++) {
 			let row = AddSkill(docname);
@@ -177,13 +180,17 @@ function LoadFromJSON (character) {
 	LoadMultiSkull("lore" ,"lore"	   );
 	LoadMultiSkull("perf" ,"perform"   );
 	LoadMultiSkull("prof" ,"profession");
-	
 	set("Skill-Notes", character.skill_notes);
 	set("Languages"  , character.lng 		);
 	
 	//Load customization here
+	document.getElementById("FeatList").innerHTML = "";
+	document.getElementById("SpecialAbilityList").innerHTML = "";
+	document.getElementById("TraitList").innerHTML = "";
 	
 	set("money"  , character.gp);
+	
+	document.getElementById("ACList").innerHTML = "";
 	for (let armor of character.acList) {
 		const span = AddACItem();
 		span.childNodes[1].firstChild.value = armor.name  	  ?? "";
@@ -293,8 +300,12 @@ function LoadFromMottokrosh (json) {
 
 async function Load () {
 	const files = document.getElementById("charsheet").files;
+	if (files == null || files.length == 0) return;
+	
 	const text = await files[0].text();
 	const json = JSON.parse(text);
+	
+	document.getElementById("charsheet").value = ""; //Remove from input
 	
 	//if (json == mottokrosh) LoadFromMottokrosh(json);
 	//else LoadFromJSON(json);

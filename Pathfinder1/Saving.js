@@ -101,7 +101,6 @@ function GetCharacter () {
 	const mList = document.getElementById("MeleeList").children;
 	for (let i = 0; i < mList.length; i++) {
 		character.mList[i]  	 = {};
-		alert(mList[i].children[1].firstChild.value);
 		character.mList[i].name  = mList[i].children[1].firstChild.value ?? null;
 		character.mList[i].atk   = mList[i].children[2].firstChild.value ?? null;
 		character.mList[i].dmg   = mList[i].children[3].firstChild.value ?? null;
@@ -263,6 +262,7 @@ function SaveToJSON () {
 }
 
 async function SaveToCloudFlare () {
+	if (document.getElementById("CharacterIndex").value == "") return; //Strangers don't get to save.
 	const character = GetCharacter();
 	const index = document.getElementById("CharacterIndex").value;
 	const url = "../api/Pathfinder1/" + character.player + "/" + index;
