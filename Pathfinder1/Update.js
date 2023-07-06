@@ -217,13 +217,13 @@ function AddACItem () {
 	span.appendChild(div);
 	
 	div = document.createElement("div");
-	div.setAttribute("style","width:100px;height:60px;float:left");
+	div.setAttribute("style","width:70px;height:60px;float:left");
 		input = document.createElement("input");
 		input.setAttribute("class","AC-Type");
 		div.appendChild(input);
 		
 		label = document.createElement("label");
-		label.setAttribute("style","font-size:12px;line-height:20px;width:60px");
+		label.setAttribute("style","font-size:12px;line-height:20px;width:80px");
 		label.innerHTML = "Type";
 	div.appendChild(label);
 	span.appendChild(div);
@@ -253,14 +253,14 @@ function AddACItem () {
 	span.appendChild(div);
 	
 	div = document.createElement("div");
-	div.setAttribute("style","width:350px;height:60px;float:left");
+	div.setAttribute("style","width:380px;height:60px;float:left");
 		input = document.createElement("input");
 		input.setAttribute("class","AC-Notes");
 		div.appendChild(input);
 		
 		label = document.createElement("label");
-		label.setAttribute("style","font-size:12px;line-height:20px;width:70px");
-		label.innerHTML = "Notes";
+		label.setAttribute("style","font-size:12px;line-height:20px;width:170px");
+		label.innerHTML = "Notes & Properties";
 	div.appendChild(label);
 	span.appendChild(div);
 	

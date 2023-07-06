@@ -1,8 +1,8 @@
-function SetUpFunctions() {
+//All these functions will never be called again except once on start,
+function SetUpFunctions() { //This adds events to elements
 	function AbilitySetUp(name) {
 		document.getElementById(name		).addEventListener('focusout', _ => ModifyAbility(name));
 		document.getElementById(name+"-temp").addEventListener('focusout', _ => ModifyAbility(name));
-		ModifyAbility(name);
 	}
 	AbilitySetUp("str");
 	AbilitySetUp("dex");
@@ -14,11 +14,9 @@ function SetUpFunctions() {
 	document.getElementById("Base-HP"		).addEventListener('focusout', _ => ModifyHP());
 	document.getElementById("Temp-HP"		).addEventListener('focusout', _ => ModifyHP());
 	document.getElementById("Non-Lethal-Dmg").addEventListener('focusout', _ => ModifyHP());
-	ModifyHP();
 	
 	const BAB = document.getElementsByClassName("BAB")[0];
 	BAB.addEventListener('focusout', _ => ModifyBAB(BAB.value));
-	ModifyBAB(BAB.value);
 	
 	document.getElementById("Alignment").addEventListener('focusout', _ => ModifyHP());
 	
@@ -41,13 +39,7 @@ function SetUpFunctions() {
 	});
 }
 
-async function LoadFromCloudFlare (key) {
-	document.getElementById("CharacterIndex").value = key.split('/')[1];
-	const response = await fetch("../api/Pathfinder1/" + key);
-	LoadFromJSON(await response.json());
-}
-
-async function CheckURL () {
+async function CheckURL () { //Check if friend or stranger
 	const params = new Proxy(new URLSearchParams(window.location.search), {
 	  get: (searchParams, prop) => searchParams.get(prop),
 	});
@@ -59,7 +51,11 @@ async function CheckURL () {
 		
 		//history.replaceState(null, "", location.href.split("?")[0]);
 		
-		if (key.includes("/")) await LoadFromCloudFlare(key); //Loading a Existing character
+		if (key.includes("/")) { //Loading a Existing character
+			document.getElementById("CharacterIndex").value = key.split('/')[1];
+			const response = await fetch("../api/Pathfinder1/" + key);
+			LoadFromJSON(await response.json());
+		}
 		else { //Create a New character
 			const character = { };
 
@@ -77,6 +73,7 @@ async function CheckURL () {
 			});
 		}
 	}
+	
 	SetUpFunctions(); //Load this after everything is loaded.
 }
 CheckURL ();

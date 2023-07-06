@@ -221,7 +221,11 @@ function GetCharacter () {
 	}
 	
 	//Equipment
-	character.gp = GetValue("money");
+	character.pp = GetValue("money-pp");
+	character.gp = GetValue("money-gp");
+	character.sp = GetValue("money-sp");
+	character.cp = GetValue("money-cp");
+	character.gem = GetValue("money-misc");
 	
 	character.acList = []; //AC Items
 	const acList = document.getElementById("ACList").childNodes;
@@ -239,13 +243,13 @@ function GetCharacter () {
 	character.ac_penalty   = GetValue("AC-Penalty");
 	character.ac_spellfail = GetValue("AC-Spell-Failure");
 	
+	character.total_weight = GetValue("Total-Weight");
 	character.gList = []; //Gears List
 	const gList = document.getElementById("GearList").childNodes;
 	for (let i = 0; i < gList.length; i++) {
 		character.gList[i]  	  	 = {};
 		Trim(character.gList[i]);
 	}
-	character.total_weight = GetValue("Total-Weight");
 	
 	Trim(character);
 	return character;

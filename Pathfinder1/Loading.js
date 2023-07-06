@@ -14,19 +14,12 @@ function LoadFromJSON (character) {
 	set("Size"		, character.size);
 	set("Deity"		, character.deity);
 	
-	set("str"	  , character.str	);
-	set("str-temp", character.str_t	);
-	set("dex"	  , character.dex	);
-	set("dex-temp", character.dex_t	);
-	set("con"	  , character.con	);
-	set("con-temp", character.con_t	);
-	
-	set("int"	  , character.int	);
-	set("int-temp", character.int_t	);
-	set("wis"	  , character.wis	);
-	set("wis-temp", character.wis_t	);
-	set("cha"	  , character.cha	);
-	set("cha-temp", character.cha_t	);
+	set("str", character.str); set("str-temp", character.str_t); ModifyAbility("str");
+	set("dex", character.dex); set("dex-temp", character.dex_t); ModifyAbility("dex");
+	set("con", character.con); set("con-temp", character.con_t); ModifyAbility("con");
+	set("int", character.int); set("int-temp", character.int_t); ModifyAbility("int");
+	set("wis", character.wis); set("wis-temp", character.wis_t); ModifyAbility("wis");
+	set("cha", character.cha); set("cha-temp", character.cha_t); ModifyAbility("cha");
 	
 	set("Total-AC"     , character.ac_total	);
 	set("Armor-Bonus"  , character.ac_bonus	);
@@ -44,6 +37,7 @@ function LoadFromJSON (character) {
 	set("Temp-HP"		, character.hp_temp		);
 	set("Non-Lethal-Dmg", character.hp_nonlethal);
 	set("Max-HP"		, character.hp_max		);
+	ModifyHP();
 	
 	set("Damage-Reduction", character.dmg_reduc   );
 	set("Spell-Resistance", character.spell_resist);
@@ -78,6 +72,7 @@ function LoadFromJSON (character) {
 	
 	const elements = document.getElementsByClassName("BAB");
 	for (const element of elements) element.value = character.bab ?? "";
+	ModifyBAB(document.getElementsByClassName("BAB")[0].value);
 	
 	set("Base-Speed"  , character.spd_base);
 	set("Armor-Speed" , character.spd_amr );
@@ -117,7 +112,6 @@ function LoadFromJSON (character) {
 		if (character.skills[name] == null) return;
 		let row = document.getElementById(docname+"-row");
 		row.cells[0].firstChild.checked = character.skills[name].cs;
-		row.cells[1].firstChild.value   = character.skills[name].name	?? "";
 		row.cells[2].firstChild.value   = character.skills[name].total  ?? "";
 		row.cells[5].firstChild.value   = character.skills[name].rank	?? "";
 		row.cells[6].firstChild.value   = character.skills[name].class  ?? "";
@@ -188,7 +182,11 @@ function LoadFromJSON (character) {
 	document.getElementById("SpecialAbilityList").innerHTML = "";
 	document.getElementById("TraitList").innerHTML = "";
 	
-	set("money"  , character.gp);
+	set("money-pp"  , character.pp);
+	set("money-gp"  , character.gp);
+	set("money-sp"  , character.sp);
+	set("money-cp"  , character.cp);
+	set("money-misc", character.gem);
 	
 	document.getElementById("ACList").innerHTML = "";
 	for (let armor of character.acList) {
@@ -200,102 +198,220 @@ function LoadFromJSON (character) {
 		span.childNodes[5].firstChild.value = armor.spellfail ?? "";
 		span.childNodes[6].firstChild.value = armor.notes 	  ?? "";
 	}
+	set("AC-Bonus"		  , character.ac_bonus	  );
+	set("AC-Penalty"	  , character.ac_penalty  );
+	set("AC-Spell-Failure", character.ac_spellfail);
 }
 
 //Process json from CharacterSheet.co.uk to CloudFlare KV
-function LoadFromMottokrosh (json) {
+function ConvertFromMottokrosh (mottokrosh) {
 	const character = { };
 	
-	character.name = json.name;
-	character.alignment = json.alignment
+	character.name = mottokrosh.name;
+	if (document.getElementById("CharacterIndex").value == "") //Stranger
+		character.player = mottokrosh.user.displayName;
 	
-	character.class = json.level;
-	character.race = json.race;
-	character.size = json.size;
+	character.class = mottokrosh.level;
 	
-	character.deity = json.deity;
-	character.gender = json.gender;
+	character.race 	 = mottokrosh.race;
+	character.align  = mottokrosh.alignment
+	character.gender = mottokrosh.gender;
+	character.size 	 = mottokrosh.size;
+	character.deity  = mottokrosh.deity;
 	
-	character.abilities = json.abilities;
-	character.ac = json.ac;
+	character.str	= mottokrosh.abilities.str;
+	character.str_t	= mottokrosh.abilities.tempStr;
+	character.dex	= mottokrosh.abilities.dex;
+	character.dex_t = mottokrosh.abilities.tempDex;
+	character.con	= mottokrosh.abilities.con;
+	character.con_t = mottokrosh.abilities.tempCon;
 	
-	character.hp = {};
-	character.hp.nonLethal = json.hp.nonLethal;
-	character.hp.total = json.hp.total;
+	character.int	= mottokrosh.abilities.int;
+	character.int_t = mottokrosh.abilities.tempInt;
+	character.wis	= mottokrosh.abilities.wis;
+	character.wis_t = mottokrosh.abilities.tempWis;
+	character.cha	= mottokrosh.abilities.cha;
+	character.cha_t = mottokrosh.abilities.tempCha;
 	
-	character.damageReduction = json.damageReduction;
-	character.spellResistance = json.spellResistance;
+	character.ac_total	 = mottokrosh.ac.total;
+	character.ac_bonus	 = mottokrosh.ac.armorBonus;
+	character.ac_shield  = mottokrosh.ac.shieldBonus;
+	character.ac_size	 = mottokrosh.ac.sizeModifier;
+	character.ac_nat	 = mottokrosh.ac.naturalArmor;
+	character.ac_deflec  = mottokrosh.ac.deflectionModifier;
+	character.ac_misc	 = mottokrosh.ac.miscModifier;
+	character.ac_t       = mottokrosh.ac.touch;
+	character.ac_ff      = mottokrosh.ac.flatFooted;
+	character.ac_other   = mottokrosh.ac.otherModifiers;
 	
-	character.saves = json.saves;
-	character.resistances = json.resistances;
-	character.immunities = json.immunities;
-	character.cmd = json.cmd;
+	character.hp_current	= mottokrosh.hp.wounds;
+	character.hp_nonlethal 	= mottokrosh.hp.nonLethal;
+	character.hp_max		= mottokrosh.hp.total;
 	
-	character.initiaive = json.initiative;
-	character.bab = json.bab;
+	character.dmg_reduc    = mottokrosh.damageReduction;
+	character.spell_resist = mottokrosh.spellResistance;
 	
-	character.speed = json.speed;
-	character.cmb = json.cmb;
+	character.fort_total = mottokrosh.saves.fort.total;
+	character.fort_base  = mottokrosh.saves.fort.base;
+	character.fort_item  = mottokrosh.saves.fort.magicModifier + mottokrosh.saves.fort.tempModifier;
+	character.fort_misc  = mottokrosh.saves.fort.miscModifier;
+	character.fort_note  = mottokrosh.saves.fort.otherModifiers;
 	
-	character.melee = json.melee;
-	character.ranged = json.ranged;
+	character.ref_total = mottokrosh.saves.reflex.total;
+	character.ref_base  = mottokrosh.saves.reflex.base;
+	character.ref_item  = mottokrosh.saves.reflex.magicModifier + mottokrosh.saves.fort.tempModifier;
+	character.ref_misc  = mottokrosh.saves.reflex.miscModifier;
+	character.ref_note  = mottokrosh.saves.reflex.otherModifiers;
 	
-	character.skills = json.skills;
+	character.will_total = mottokrosh.saves.will.total;
+	character.will_base  = mottokrosh.saves.will.base;
+	character.will_item  = mottokrosh.saves.will.magicModifier + mottokrosh.saves.fort.tempModifier;
+	character.will_misc  = mottokrosh.saves.will.miscModifier;
+	character.will_note  = mottokrosh.saves.will.otherModifiers;
 	
-	character.languages = json.languages;
+	character.resist = mottokrosh.resistances;
+	character.immune = mottokrosh.immunities;
 	
-	character.feats = json.feats;
-	character.specialAbilities = json.specialAbilities;
-	character.traits = json.traits;
+	character.cmd_total = mottokrosh.cmd.total;
+	character.cmd_size  = mottokrosh.cmd.sizeModifier;
+	character.cmd_misc  = mottokrosh.cmd.miscModifiers;
 	
-	character.money = json.money;
+	character.init_total = mottokrosh.initiative.total;
+	character.init_misc  = mottokrosh.initiative.miscModifier;
 	
-	character.gear = [];
-	for (let gear in json.gear) {
-		const newgear = {};
-		newgear.type = gear.type;
-		newgear.name = gear.name;
-		newgear.location = gear.location;
-		newgear.quantity = gear.quantity;
-		newgear.notes = gear.notes;
+	character.bab = mottokrosh.bab;
+	
+	character.spd_base = mottokrosh.speed.base;
+	character.spd_amr  = mottokrosh.speed.withArmor;
+	character.spd_fly  = mottokrosh.speed.fly;
+	character.spd_swm  = mottokrosh.speed.swim;
+	character.spd_clb  = mottokrosh.speed.climb;
+	character.spd_brw  = mottokrosh.speed.burrow;
+	character.spd_nts  = mottokrosh.speed.tempModifiers;
+	
+	character.cmb_total = mottokrosh.cmb.total;
+	character.cmb_size  = mottokrosh.cmb.sizeModifier;
+	character.cmb_misc  = mottokrosh.cmb.tempModifiers + mottokrosh.cmb.miscModifiers;
+	
+	character.mList = [];
+	for (let i = 0;i < mottokrosh.melee.length; i++) {
+		character.mList[i] 		 = {};
+		character.mList[i].name  = mottokrosh.melee[i].weapon;
+		character.mList[i].atk   = mottokrosh.melee[i].attackBonus;
+		character.mList[i].dmg   = mottokrosh.melee[i].damage;
+		character.mList[i].crit  = mottokrosh.melee[i].critical;
+		character.mList[i].type  = mottokrosh.melee[i].type;
+		character.mList[i].notes = mottokrosh.melee[i].notes;
 	}
 	
-	character.spellsConditionalModifiers = json.spellsConditionalModifiers;
-	character.spellsSpeciality = json.spellsSpeciality;
-	
-	character.spellLikes = [];
-	for (let spellLike in json.spellLikes) {
-		const newspellike = {};
-		newspellike.name = spellLike.name;
-		newspellike.prepared = spellLike.prepared;
-		newspellike.cast = spellLike.cast;
-		newspellike.notes = spellLike.notes;
-		
-		character.spellLikes += newspellike;
+	character.rList = [];
+	for (let i = 0;i < mottokrosh.ranged.length; i++) {
+		character.rList[i] 		 = {};
+		character.rList[i].name  = mottokrosh.ranged[i].weapon;
+		character.rList[i].atk   = mottokrosh.ranged[i].attackBonus;
+		character.rList[i].dmg   = mottokrosh.ranged[i].damage;
+		character.rList[i].crit  = mottokrosh.ranged[i].critical;
+		character.rList[i].type  = mottokrosh.ranged[i].type;
+		character.rList[i].notes = mottokrosh.ranged[i].notes;
 	}
 	
-	character.spells = [];
-	for (let spell in json.spells) {
-		const newspell = {};
-		newspell.totalKnown = spell.totalKnown;
-		newspell.dc = spell.dc;
-		newspell.totalPerDay = spell.totalPerDay;
-		newspell.bonusSpells = spell.bonusSpells;
-		
-		newspell.slotted = [];
-		for (let slot in spell.slotted) {
-			newslot.name = slot.name;
-			newslot.prepared = slot.prepared;
-			newslot.cast = slot.cast;
-			newslot.notes = slot.notes;
-			
-			newspell.slotted += newslot;
+	character.skills = [];
+	function LoadSkill (name, skill) {
+		character.skills[name]		  = {};
+		character.skills[name].cs     = skill.cs;
+		character.skills[name].total  = skill.total;
+		character.skills[name].rank	  = skill.rank;
+		character.skills[name].class  = skill.class;
+		character.skills[name].racial = skill.racial;
+		character.skills[name].trait  = skill.trait;
+		character.skills[name].misc	  = skill.misc;
+	}
+	LoadSkill("acro",mottokrosh.skills.acrobatics);
+	LoadSkill("bluff",mottokrosh.skills.bluff);
+	LoadSkill("climb",mottokrosh.skills.climb);
+	LoadSkill("dip",mottokrosh.skills.diplomacy);
+	LoadSkill("dd",mottokrosh.skills.disableDevice);
+	LoadSkill("dis",mottokrosh.skills.disguise);
+	LoadSkill("ea",mottokrosh.skills.escapeArtist);
+	LoadSkill("fly",mottokrosh.skills.fly);
+	LoadSkill("heal",mottokrosh.skills.heal);
+	LoadSkill("inti",mottokrosh.skills.intimidate);
+	LoadSkill("arc",mottokrosh.skills.knowledgeArcana);
+	LoadSkill("dun",mottokrosh.skills.knowledgeDungeoneering);
+	LoadSkill("loc",mottokrosh.skills.knowledgeLocal);
+	LoadSkill("nat",mottokrosh.skills.knowledgeNature);
+	LoadSkill("pla",mottokrosh.skills.knowledgePlanes);
+	LoadSkill("rel",mottokrosh.skills.knowledgeReligion);
+	LoadSkill("per",mottokrosh.skills.perception);
+	LoadSkill("ride",mottokrosh.skills.ride);
+	LoadSkill("sm",mottokrosh.skills.senseMotive);
+	LoadSkill("sc",mottokrosh.skills.spellcraft);
+	LoadSkill("ste",mottokrosh.skills.stealth);
+	LoadSkill("surv",mottokrosh.skills.survival);
+	LoadSkill("swim",mottokrosh.skills.swim);
+	LoadSkill("umd",mottokrosh.skills.useMagicDevice);
+	//Background skills
+	LoadSkill("app",mottokrosh.skills.appraise);
+	LoadSkill("ha",mottokrosh.skills.handleAnimal);
+	LoadSkill("eng",mottokrosh.skills.knowledgeEngineering);
+	LoadSkill("geo",mottokrosh.skills.knowledgeGeography);
+	LoadSkill("his",mottokrosh.skills.knowledgeHistory);
+	LoadSkill("nob",mottokrosh.skills.knowledgeNobility);
+	LoadSkill("lin",mottokrosh.skills.linguistics);
+	LoadSkill("soh",mottokrosh.skills.sleightOfHand);
+	
+	function LoadMultiSkull (name, ...skills) {
+		character.skills[name] = [];
+		for (let i = 0; i < skills.length; i++) {
+			character.skills[name][i]		 = {};
+			character.skills[name][i].cs     = skills[i].classSkill;
+			character.skills[name][i].name	 = skills[i].name;
+			character.skills[name][i].total  = skills[i].total;
+			character.skills[name][i].rank	 = skills[i].rank;
+			character.skills[name][i].class  = skills[i].class;
+			character.skills[name][i].racial = skills[i].racial;
+			character.skills[name][i].trait  = skills[i].trait;
+			character.skills[name][i].misc	 = skills[i].misc;
 		}
-		
-		character.spells += newspell;
 	}
+	LoadMultiSkull("craft",mottokrosh.skills.craft1, mottokrosh.skills.craft2,mottokrosh.skills.craft3);
+	LoadMultiSkull("perf" ,mottokrosh.skills.perform1, mottokrosh.skills.perform2);
+	LoadMultiSkull("prof" ,mottokrosh.skills.profession1, mottokrosh.skills.profession2);
 	
-	console.log(JSON.stringify(character));
+	character.skill_notes = mottokrosh.skills.conditionalModifiers;
+	character.lng = mottokrosh.languages;
+	
+	//Load customization here
+	//document.getElementById("FeatList").innerHTML = "";
+	//document.getElementById("SpecialAbilityList").innerHTML = "";
+	//document.getElementById("TraitList").innerHTML = "";
+	
+	character.pp  = mottokrosh.money.pp;
+	character.gp  = mottokrosh.money.gp;
+	character.sp  = mottokrosh.money.sp;
+	character.cp  = mottokrosh.money.cp;
+	character.gem = mottokrosh.money.gems + " " + mottokrosh.money.other;
+	
+	character.acList = [];
+	for (let i = 0;i < mottokrosh.ac.items.length; i++) {
+		character.acList[i] 	  	  = {};
+		character.acList[i].name  	  = mottokrosh.ac.items[i].name;
+		character.acList[i].bonus 	  = mottokrosh.ac.items[i].bonus;
+		character.acList[i].type  	  = mottokrosh.ac.items[i].type;
+		character.acList[i].penalty	  = mottokrosh.ac.items[i].armorCheckPenalty;
+		character.acList[i].spellfail = mottokrosh.ac.items[i].spellFailure;
+		character.acList[i].notes 	  = mottokrosh.ac.items[i].properties;
+	}
+	character.ac_bonus 	   = mottokrosh.ac.itemTotals.bonus;
+	character.ac_penalty   = mottokrosh.ac.itemTotals.armorCheckPenalty;
+	character.ac_spellfail = mottokrosh.ac.itemTotals.spellFailure;
+	
+	/*character.gList = []; //Gears List
+	for (let i = 0; i < gList.length; i++) {
+		character.gList[i]  	  	 = {};
+	}*/
+	
+	return character;
 }
 
 async function Load () {
@@ -303,11 +419,10 @@ async function Load () {
 	if (files == null || files.length == 0) return;
 	
 	const text = await files[0].text();
-	const json = JSON.parse(text);
+	let json = JSON.parse(text);
 	
 	document.getElementById("charsheet").value = ""; //Remove from input
 	
-	//if (json == mottokrosh) LoadFromMottokrosh(json);
-	//else LoadFromJSON(json);
+	if (json._id != null) json = ConvertFromMottokrosh(json);
 	LoadFromJSON(json);
 }

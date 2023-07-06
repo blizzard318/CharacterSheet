@@ -1034,14 +1034,46 @@
 		<details id="EquipmentDetails">
 			<summary>Equipment</summary>
 			<article>
-				<div class="black" style="width:40px;height:60px">
+				<div class="black" style="width:50px;height:60px">
+					<span style="font-size:px">PP</span>
+					<label class="blackLabel">Platinum</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="money-pp"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Pieces</label>
+				</div>
+				<div class="black" style="width:50px;height:60px">
 					<span style="font-size:25px">GP</span>
 					<label class="blackLabel">Gold</label>
 				</div>
 				<div style="width:50px;height:60px;float:left">
-					<input id="money"/>
+					<input id="money-gp"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Pieces</label>
 				</div>
-				<div style="width:900px;height:60px;float:left"></div>
+				<div class="black" style="width:50px;height:60px">
+					<span style="font-size:25px">SP</span>
+					<label class="blackLabel">Silver</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="money-sp"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Pieces</label>
+				</div>
+				<div class="black" style="width:50px;height:60px">
+					<span style="font-size:25px">CP</span>
+					<label class="blackLabel">Copper</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="money-cp"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Pieces</label>
+				</div>
+				<div class="black" style="width:50px;height:60px">
+					<span style="font-size:25px">Art</span>
+					<label class="blackLabel">& Gems</label>
+				</div>
+				<div style="width:375px;height:60px;float:left">
+					<input id="money-misc"/>
+					<label style="font-size:12px;line-height:20px;width:120px">Miscellaneous Treasures</label>
+				</div>
 				
 				<div id="ACList"></div>
                 <button type="button" onclick="AddACItem()" style="width:100px;float:left">
@@ -1052,7 +1084,7 @@
 					<input id="AC-Bonus"/>
 					<label style="font-size:12px;line-height:20px;width:60px">Bonus</label>
 				</div>
-				<div style="width:100px;float:left;visibility:hidden"></div>
+				<div style="width:70px;float:left;visibility:hidden"></div>
 				<div style="width:55px;height:60px;float:left">
 					<input id="AC-Penalty"/>
 					<label style="font-size:12px;line-height:20px;width:70px">Check Penalty</label>
@@ -1061,7 +1093,7 @@
 					<input id="AC-Spell-Failure"/>
 					<label style="font-size:12px;line-height:20px;width:70px">Spell Failure</label>
 				</div>
-				<div style="width:350px;height:60px;float:left"></div>
+				<div style="width:380px;height:60px;float:left"></div>
 				
                 <button type="button" onclick="" style="float:left">
                     +Gear
