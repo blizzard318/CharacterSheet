@@ -200,24 +200,21 @@ function GetCharacter () {
 	
 	//Customization items
 	character.fList = []; //Feats List
-	const fList = document.getElementById("FeatList").childNodes;
-	for (let i = 0; i < fList.length; i++) {
-		character.fList[i]  	  	 = {};
-		Trim(character.fList[i]);
-	}
-	
 	character.saList = []; //Special Abilities List
-	const saList = document.getElementById("SpecialAbilityList").childNodes;
-	for (let i = 0; i < saList.length; i++) {
-		character.saList[i]  	  	 = {};
-		Trim(character.saList[i]);
-	}
-	
 	character.tList = []; //Traits List
-	const tList = document.getElementById("TraitList").childNodes;
-	for (let i = 0; i < tList.length; i++) {
-		character.tList[i]  	  	 = {};
-		Trim(character.tList[i]);
+
+	charlists = Array(character.fList, character.saList, character.tList);
+	listnames = Array("FeatList", "SpecialAbilityList", "TraitList");
+	for (let i = 0; i < 3; i++) {
+		const charlist = charlists[i];
+		const list = document.getElementById(listnames[i]).childNodes;
+		for (let j = 0; j < list.length; j++) {
+			charlist[j]  	  = {};
+			charlist[j].name  = list[j].dataset.name 
+			charlist[j].type  = list[j].dataset.type 
+			charlist[j].notes = list[j].dataset.notes
+			Trim(character.fList[j]);
+		}
 	}
 	
 	//Equipment

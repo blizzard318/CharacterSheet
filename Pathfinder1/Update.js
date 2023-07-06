@@ -45,31 +45,77 @@ function ModifyHP () {
 	document.getElementById("Current-HP").value = base + temp - nonlethal;
 }
 
-function AddCustom (type){ //Feat/Special Ability/Trait
-	document.getElementById('CustomMenuName').innerHTML = "<b>New " + type + "</b>";
-	
-	let list = {};
+function GetListByType (type) {
+	document.getElementById('overlay').style.display = document.getElementById('CustomMenu').style.display = 'block';
 	switch (type) {
 		case "Feat":
 			document.getElementById('CustomType').title = "General/Combat/Metamagic/Teamwork/etc...";
-			list = document.getElementById('FeatList');
-			break;
-		case "SpecialAbility":
+			return document.getElementById('FeatList');
+		case "Special Ability":
 			document.getElementById('CustomType').title = "Ex/Su/Sp";
-			list = document.getElementById('SpecialAbilityList');
-			break;
+			return document.getElementById('SpecialAbilityList');
 		case "Trait":
 			document.getElementById('CustomType').title = "Combat/Campaign/Race/Religion/etc...";
-			list = document.getElementById('TraitList');
-			break;
+			return document.getElementById('TraitList');
 	}
-	document.getElementById('overlay').style.display = document.getElementById('CustomMenu').style.display = 'block';
+}
+
+function EditCustom (button, type) { //Feat/Special Ability/Trait
+	document.getElementById('CustomMenuName').innerHTML = "<b>Edit " + type + "</b>";
+	document.getElementById('CreateCustom').innerText = "Ok";
+	document.getElementById('DeleteCustom').innerText = "Delete";
+	document.getElementById('CustomName' ).value = button.dataset.name;
+	document.getElementById('CustomType' ).value = button.dataset.type;
+	document.getElementById('CustomNotes').value = button.dataset.notes;
+	const list = GetListByType(type);
 	
-	document.getElementById('CreateCustom').onclick = function () {
+	document.getElementById('CreateCustom').onclick = () => {
+		const name = document.getElementById('CustomName').value;
+		const type = document.getElementById('CustomType').value;
+		button.innerHTML = "<b>" + name + "</b> <i>(" + type + ")</i>";
+		button.dataset.name  = name;
+		button.dataset.type  = type;
+		button.dataset.notes = document.getElementById('CustomNotes').value;
+		SaveToCloudFlare();
+		CloseOverlay();
+	};
+	
+	document.getElementById('DeleteCustom').onclick = () => {
+		button.remove();
+		SaveToCloudFlare();
+		CloseOverlay;
+	};
+}
+
+function AddCustomButton (list, name, type, notes) {
+	const button = document.createElement("button");
+		button.onclick = () => EditCustom(button, type);
+		button.style = "font-size:50%";
+		button.innerHTML = "<b>" + name + "</b> <i>(" + type + ")</i>";
+		button.dataset.name  = name;
+		button.dataset.type  = type;
+		button.dataset.notes = notes;
+	list.appendChild(button);
+}
+
+function AddCustom (type){ //Feat/Special Ability/Trait
+	document.getElementById('CustomMenuName').innerHTML = "<b>New " + type + "</b>";
+	document.getElementById('CreateCustom').innerText = "Create";
+	document.getElementById('DeleteCustom').innerText = "Cancel";
+	document.getElementById('CustomName' ).value = "";
+	document.getElementById('CustomType' ).value = "";
+	document.getElementById('CustomNotes').value = "";
+	const list = GetListByType(type);
+	
+	document.getElementById('CreateCustom').onclick = () => {
+		const name = document.getElementById('CustomName').value;
+		const type = document.getElementById('CustomType').value;
+		const notes = document.getElementById('CustomNotes').value;
+		AddCustomButton(list, name, type, notes);
 		
 		SaveToCloudFlare();
 		CloseOverlay();
-	}
+	};
 	
 	document.getElementById('DeleteCustom').onclick = CloseOverlay;
 }
@@ -181,7 +227,7 @@ function AddACItem () {
 						
 		div.setAttribute("onmouseout","childNodes[0].innerHTML = 'AC Item';childNodes[1].innerHTML = null");
 		
-		div.onclick = function () {
+		div.onclick = () => {
 			document.getElementById('overlay').style.display = document.getElementById('ConfirmMenu').style.display = 'block';
 			document.getElementById('ConfirmDelete').onclick = function () {
 				span.remove();
@@ -299,7 +345,7 @@ function AddAttack (type) {
 		div.setAttribute("onmouseout","childNodes[0].innerHTML = '" + type + "';" + 
 						"childNodes[1].innerHTML = '" + type + " Attack'");
 		
-		div.onclick = function () {
+		div.onclick = () => {
 			document.getElementById('overlay').style.display = document.getElementById('ConfirmMenu').style.display = 'block';
 			document.getElementById('ConfirmDelete').onclick = function () {
 				span.remove();

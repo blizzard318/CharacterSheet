@@ -158,7 +158,7 @@ function LoadFromJSON (character) {
 		document.getElementById(docname + "-row").innerHTML = "";
 		const qty = character.skills[name].length;
 		for (let i = 0; i < qty; i++) {
-			let row = AddSkill(docname);
+			const row = AddSkill(docname);
 			row.cells[0].children[0].checked = character.skills[name][i].cs;
 			row.cells[1].children[1].value   = character.skills[name][i].name	?? "";
 			row.cells[2].children[0].value   = character.skills[name][i].total  ?? "";
@@ -178,9 +178,20 @@ function LoadFromJSON (character) {
 	set("Languages"  , character.lng 		);
 	
 	//Load customization here
-	document.getElementById("FeatList").innerHTML = "";
-	document.getElementById("SpecialAbilityList").innerHTML = "";
-	document.getElementById("TraitList").innerHTML = "";
+	charlists = Array(character.fList, character.saList, character.tList);
+	listnames = Array("FeatList", "SpecialAbilityList", "TraitList");
+	for (let i = 0; i < 3; i++) {
+		const charlist = charlists[i];
+		const list = document.getElementById(listnames[i]);
+		list.innerHTML = "";
+		
+		for (let j = 0; j < charlist.length; j++) {
+			const name = charlist[j].name ?? "";
+			const type = charlist[j].type ?? "";
+			const notes = charlist[j].notes ?? "";
+			AddCustomButton(list, name, type, notes);
+		}
+	}
 	
 	set("money-pp"  , character.pp);
 	set("money-gp"  , character.gp);
@@ -382,9 +393,19 @@ function ConvertFromMottokrosh (mottokrosh) {
 	character.lng = mottokrosh.languages;
 	
 	//Load customization here
-	//document.getElementById("FeatList").innerHTML = "";
-	//document.getElementById("SpecialAbilityList").innerHTML = "";
-	//document.getElementById("TraitList").innerHTML = "";
+	character.fList = []; character.saList = []; character.tList = [];
+	charlists = Array(character.fList, character.saList, character.tList);
+	mottolists = Array(mottokrosh.feats, mottokrosh.specialAbilities, mottokrosh.traits);
+	for (let i = 0; i < 3; i++) {
+		const mottolist = mottolists[i];
+		const charlist = charlists[i];
+		for (let j = 0; j < mottolist.length; j++) {
+			charlist[j] = {};
+			charlist[j].name = mottolist[j].name;
+			charlist[j].type = mottolist[j].type;
+			charlist[j].notes = mottolist[j].notes;
+		}
+	}
 	
 	character.pp  = mottokrosh.money.pp;
 	character.gp  = mottokrosh.money.gp;
