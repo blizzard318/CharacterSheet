@@ -14,7 +14,7 @@
 	<script defer src="Start.js" charset="utf-8"></script>
 </head>
 <body>
-    <div id="wrapper">
+    <div id="wrapper" style="width: 1050px">
         <h1><u>Pathfinder 1e Character Sheet</u></h1>
 
 		<section>
@@ -68,7 +68,7 @@
         <article>
             <h2>Ability Scores</h2>
             <section>
-                <div class="black" style="width:60px;height:60px;margin-right:8px">
+                <div class="black" style="width:60px;height:60px">
                     <span>Str</span>
                     <label class="blackLabel">Strength</label>
                 </div>
@@ -89,7 +89,7 @@
                     <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
                 </div>
 
-                <div class="black" style="width:60px;height:60px;margin-right:8px">
+                <div class="black" style="width:60px;height:60px">
                     <span>Dex</span>
                     <label class="blackLabel">Dexterity</label>
                 </div>
@@ -110,7 +110,7 @@
                     <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
                 </div>
 
-                <div class="black" style="width:60px;height:60px;margin-right:8px">
+                <div class="black" style="width:60px;height:60px">
                     <span>Con</span>
                     <label class="blackLabel">Constitution</label>
                 </div>
@@ -131,7 +131,7 @@
                     <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
                 </div>
 
-                <div class="black" style="width:60px;height:60px;margin-right:8px">
+                <div class="black" style="width:60px;height:60px">
                     <span>Int</span>
                     <label class="blackLabel">Intelligence</label>
                 </div>
@@ -152,7 +152,7 @@
                     <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
                 </div>
 
-                <div class="black" style="width:60px;height:60px;margin-right:8px">
+                <div class="black" style="width:60px;height:60px">
                     <span>Wis</span>
                     <label class="blackLabel">Wisdom</label>
                 </div>
@@ -173,7 +173,7 @@
                     <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
                 </div>
 
-                <div class="black" style="width:60px;height:60px;margin-right:8px">
+                <div class="black" style="width:60px;height:60px">
                     <span>Cha</span>
                     <label class="blackLabel">Charisma</label>
                 </div>
@@ -199,7 +199,7 @@
         <details id="DefenseDetails">
             <summary><b>Defense</b></summary>
             <article>
-                <div class="black" style="width:60px;height:60px;margin-right:8px">
+                <div class="black" style="width:60px;height:60px">
                     <span>AC</span>
                     <label class="blackLabel">Armor Class</label>
                 </div>
@@ -228,7 +228,7 @@
                 </div>
                 <div style="width:60px;height:60px;float:left;">
                     <input id="Natural-Armor"/>
-                    <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Natural Armor</label>
+                    <label style="font-size:12px;line-height:20px;width:90px;text-align:left">Natural Armor</label>
                 </div>
                 <div style="width:60px;height:60px;float:left;">
                     <input id="Deflection"/>
@@ -239,7 +239,7 @@
                     <label style="font-size:12px;line-height:20px;width:80px">Misc Modifier</label>
                 </div>
 				
-                <div class="black" style="width:80px;height:60px;margin-right:8px">
+                <div class="black" style="width:70px;height:60px">
                     <span>Touch</span>
                     <label class="blackLabel">Armor Class</label>
                 </div>
@@ -248,7 +248,7 @@
                     <label style="font-size:12px;line-height:20px;width:60px">Touch</label>
                 </div>
 				
-                <div class="black" style="width:150px;height:60px;margin-right:8px">
+                <div class="black" style="width:130px;height:60px">
                     <span>Flat-Footed</span>
                     <label class="blackLabel">Armor Class</label>
                 </div>
@@ -256,13 +256,13 @@
                     <input id="FlatFoot-AC"/>
                     <label style="font-size:12px;line-height:20px;width:70px">Flat-Footed</label>
                 </div>
-                <div style="width:600px;height:60px;float:left;">
+                <div style="width:630px;height:60px;float:left;">
                     <input id="Other-AC"/>
                     <label style="font-size:12px;line-height:20px;width:120px">Other AC Modifier</label>
                 </div>
 				
-                <div class="black" style="width:60px;height:60px;margin-left:-5px;margin-right:8px">
-                    <span style="font-size:25px;">HP</span>
+                <div class="black" style="width:60px;height:60px;margin-left:-5px">
+                    <span>HP</span>
                     <label class="blackLabel">Hit Points</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
@@ -298,24 +298,26 @@
                     <label style="font-size:12px;line-height:15px;width:62px">Maximum</label>
                 </div>
 
-                <div class="black" style="width:120px;height:60px;margin-left:-5px;margin-right:8px">
-                    <span style="font-size:25px;">DR</span>
+                <div class="black" style="width:100px;height:60px;margin-left:-5px">
+                    <span>DR</span>
                     <label class="blackLabel">Damage Reduction</label>
                 </div>
-                <div style="width:200px;height:60px;float:left;">
+                <div style="width:240px;height:60px;float:left;">
                     <input id="Damage-Reduction"/>
+                    <label style="font-size:12px;line-height:15px;width:200px">Damage Reduction</label>
                 </div>
-                <div class="black" style="width:100px;height:60px;margin-left:-5px;margin-right:8px">
-                    <span style="font-size:25px;">SR</span>
+                <div class="black" style="width:80px;height:60px;margin-left:-5px">
+                    <span>SR</span>
                     <label class="blackLabel">Spell Resistance</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
                     <input id="Spell-Resistance"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Spell Res</label>
                 </div>
 
 
-                <div class="black" style="width:100px;height:60px;margin-left:-5px;margin-right:8px">
-                    <span style="font-size:25px;">Fortitude</span>
+                <div class="black" style="width:110px;height:60px;margin-left:-5px">
+                    <span>Fortitude</span>
                     <label class="blackLabel">(Constitution)</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
@@ -338,13 +340,13 @@
                     <input id="Fortitude-Misc"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Misc</label>
                 </div>
-                <div style="width:550px;height:60px;float:left;">
+                <div style="width:540px;height:60px;float:left;">
                     <input id="Fortitude-Notes"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Notes</label>
                 </div>
 
-                <div class="black" style="width:100px;height:60px;margin-left:-5px;margin-right:8px">
-                    <span style="font-size:25px;">Reflex</span>
+                <div class="black" style="width:110px;height:60px;margin-left:-5px">
+                    <span>Reflex</span>
                     <label class="blackLabel">(Dexterity)</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
@@ -367,13 +369,13 @@
                     <input id="Reflex-Misc"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Misc</label>
                 </div>
-                <div style="width:550px;height:60px;float:left;">
+                <div style="width:540px;height:60px;float:left;">
                     <input id="Reflex-Notes"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Notes</label>
                 </div>
 
-                <div class="black" style="width:100px;height:60px;margin-left:-5px;margin-right:8px">
-                    <span style="font-size:25px;">Will</span>
+                <div class="black" style="width:110px;height:60px;margin-left:-5px">
+                    <span>Will</span>
                     <label class="blackLabel">(Wisdom)</label>
                 </div>
                 <div style="width:50px;height:60px;float:left;">
@@ -396,30 +398,30 @@
                     <input id="Will-Misc"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Misc</label>
                 </div>
-                <div style="width:550px;height:60px;float:left;">
+                <div style="width:540px;height:60px;float:left;">
                     <input id="Will-Notes"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Notes</label>
                 </div>
 				
-                <div class="black" style="width:100px;height:60px;margin-right:8px">
+                <div class="black" style="width:70px;height:60px">
                     <span>Resist</span>
                     <label class="blackLabel">Resistances</label>
                 </div>
-                <div style="width:380px;height:60px;float:left;">
+                <div style="width:405px;height:60px;float:left;">
                     <input id="Resistances"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Resistances</label>
                 </div>
 				
-                <div class="black" style="width:100px;height:60px;margin-right:8px">
+                <div class="black" style="width:90px;height:60px">
                     <span>Immune</span>
                     <label class="blackLabel">Immunities</label>
                 </div>
-                <div style="width:390px;height:60px;float:left;">
+                <div style="width:405px;height:60px;float:left;">
                     <input id="Immunities"/>
                     <label style="font-size:12px;line-height:15px;width:62px">Immunities</label>
                 </div>
 				
-                <div class="black" style="width:130px;height:60px;margin-right:8px">
+                <div class="black" style="width:130px;height:60px">
                     <span>CMD</span>
                     <label class="blackLabel">Combat Maneuver Defense</label>
                 </div>
@@ -456,8 +458,8 @@
 		<details id="OffenseDetails">
 			<summary>Offense</summary>
 			<article id="Offense">
-				<div class="black" style="width:50px;height:60px;margin-left:-5px;margin-right:8px">
-					<span style="font-size:25px;">Init</span>
+				<div class="black" style="width:50px;height:60px;margin-left:-5px">
+					<span>Init</span>
 					<label class="blackLabel">Initiative</label>
 				</div>
 				<div style="width:50px;height:60px;float:left">
@@ -472,19 +474,26 @@
 					<input id="Misc-Init"/>
 					<label style="font-size:12px;line-height:20px;width:62px">Misc</label>
 				</div>
-					
-					
-				<div class="black" style="width:90px;height:60px;margin-left:-5px;margin-right:8px">
-					<span style="font-size:25px;">BAB</span>
+				<div class="black" style="width:90px;height:60px;margin-left:-5px">
+					<span>BAB</span>
 					<label class="blackLabel">Base Attack Bonus</label>
 				</div>
-				<div style="width:90px;height:60px;float:left">
+				<div style="width:100px;height:60px;float:left">
 					<input class="BAB"/>
+					<label style="font-size:12px;line-height:20px;width:100px">Base Attack Bonus</label>
 				</div>
-				<div style="width:500px;height:60px;float:left"></div>
+				<div class="black" style="width:60px;height:60px;margin-left:-5px">
+					<span>Hero</span>
+					<label class="blackLabel">Points</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input class="HeroPoint"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Hero Points</label>
+				</div>
+				<div style="width:350px;height:60px;float:left"></div>
 				
-				<div class="black" style="width:70px;height:40px;margin-right:8px">
-					<span style="font-size:25px;">Speed</span>
+				<div class="black" style="width:70px;height:40px">
+					<span>Speed</span>
 				</div>
 				<div style="width:50px;height:60px;float:left">
 					<input id="Base-Speed"/>
@@ -515,7 +524,7 @@
 					<label style="font-size:12px;line-height:15px;width:100px">Modifiers & Notes</label>
 				</div>
 				
-				<div class="black" style="width:130px;height:60px;margin-right:8px">
+				<div class="black" style="width:120px;height:60px">
 					<span>CMB</span>
 					<label class="blackLabel">Combat Maneuver Bonus</label>
 				</div>
@@ -535,7 +544,7 @@
 					<input id="Size-CMB"/>
 					<label style="font-size:12px;line-height:20px;width:80px;text-align:left">Size Modifier</label>
 				</div>
-				<div style="width:550px;height:60px;float:left">
+				<div style="width:560px;height:60px;float:left">
 					<input id="Misc-CMB"/>
 					<label style="font-size:12px;line-height:20px;width:80px">Misc Modifier</label>
 				</div>
@@ -557,7 +566,9 @@
 			<summary>Skills</summary>
 			<article>
 				<table id="Skill-Table" style="width:97%">
-				<caption style="font-size:150%"><b><i>Adventuring Skills</i></b></caption>
+					<caption style="font-size:150%">
+						<b><i>Adventuring Skills</i></b>
+					</caption>
 					<tr> <!--0th row-->
 						<th style="width:60px">Class Skill</th>
 						<th style="width:300px">Skill Name</th>
@@ -858,8 +869,9 @@
 						<td><input style="width:50px"/></td>
 						<td><input style="width:260px"/></td>
 					</tr>
-					<tr><!--25th row--><td colspan="10" style="text-align:center">
+					<tr><td colspan="10" style="text-align:center"><!--25th row-->
 						<b><i style="font-size:150%">Background Skills</i></b>
+						<i style="color:grey">(2 skill ranks / level)</i>
 					</td></tr>
 					<tr id="appraise-row"> <!--26th row-->
 						<td><input type="checkbox"></td>
@@ -972,31 +984,44 @@
 					<button type="button" style="height:35px" onclick="AddSkill('craft')">
 						+Craft
 					</button>
-					<button type="button" style="height:35px" onclick="AddSkill('lore')">
+					<button type="button" style="height:35px" onclick="AddSkill('lore*')">
 						+Lore
 					</button>
 					<button type="button" style="height:35px" onclick="AddSkill('perform')">
 						+Perform
 					</button>
-					<button type="button" style="height:35px" onclick="AddSkill('profession')">
+					<button type="button" style="height:35px" onclick="AddSkill('profession*')">
 						+Profession
 					</button>
 				</div>
 				
+				<div class="black" style="width:70px;height:60px">
+					<span>Ranks</span>
+					<label class="blackLabel">Allocated</label>
+				</div>
+                <div style="width:50px;height:60px;float:left;">
+					<input style="width:50px" class="green" id="AdventuringSkillRanksAllocated" disabled/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Adventuring<br/>Skills</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+					<input style="width:50px" class="green" id="BackgroundSkillRanksAllocated" disabled/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Background<br/>Skills</label>
+                </div>
+				
 				<div class="black" style="width:120px;height:60px">
-					<span style="font-size:25px;">Conditional</span>
+					<span>Conditional</span>
 					<label class="blackLabel">Modifiers</label>
 				</div>
-				<div style="width:870px;height:60px;float:left">
+				<div style="width:660px;height:60px;float:left">
 					<input id="Skill-Notes"/>
 					<label style="font-size:12px;line-height:20px;width:80px">Other Notes</label>
 				</div>
 				
 				<div class="black" style="width:120px;height:60px">
-					<span style="font-size:25px;">Languages</span>
+					<span>Languages</span>
 					<label class="blackLabel">Known</label>
 				</div>
-				<div style="width:870px;height:60px;float:left">
+				<div style="width:880px;height:60px;float:left">
 					<input id="Languages"/>
 					<label style="font-size:12px;line-height:20px;width:80px">Spoken/Written</label>
 				</div>
@@ -1024,6 +1049,23 @@
 					</button>
 					<span id="TraitList"></span>
 				</div>
+				
+				<div class="black" style="width:100px;height:60px">
+					<span>FCB</span>
+					<label class="blackLabel">Favored Class Bonus</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="fcb-hp"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Hit Points</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="fcb-sr"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Skill Ranks</label>
+				</div>
+				<div style="width:750px;height:60px;float:left">
+					<input id="fcb-rac"/>
+					<label style="font-size:12px;line-height:20px;width:200px">Racial Favored Class Benefits</label>
+				</div>
 			</article>
 		</details>
 		<br />
@@ -1031,7 +1073,7 @@
 			<summary>Equipment</summary>
 			<article>
 				<div class="black" style="width:50px;height:60px">
-					<span style="font-size:px">PP</span>
+					<span>PP</span>
 					<label class="blackLabel">Platinum</label>
 				</div>
 				<div style="width:50px;height:60px;float:left">
@@ -1039,7 +1081,7 @@
 					<label style="font-size:12px;line-height:20px;width:60px">Pieces</label>
 				</div>
 				<div class="black" style="width:50px;height:60px">
-					<span style="font-size:25px">GP</span>
+					<span>GP</span>
 					<label class="blackLabel">Gold</label>
 				</div>
 				<div style="width:50px;height:60px;float:left">
@@ -1047,7 +1089,7 @@
 					<label style="font-size:12px;line-height:20px;width:60px">Pieces</label>
 				</div>
 				<div class="black" style="width:50px;height:60px">
-					<span style="font-size:25px">SP</span>
+					<span>SP</span>
 					<label class="blackLabel">Silver</label>
 				</div>
 				<div style="width:50px;height:60px;float:left">
@@ -1055,7 +1097,7 @@
 					<label style="font-size:12px;line-height:20px;width:60px">Pieces</label>
 				</div>
 				<div class="black" style="width:50px;height:60px">
-					<span style="font-size:25px">CP</span>
+					<span>CP</span>
 					<label class="blackLabel">Copper</label>
 				</div>
 				<div style="width:50px;height:60px;float:left">
@@ -1063,10 +1105,10 @@
 					<label style="font-size:12px;line-height:20px;width:60px">Pieces</label>
 				</div>
 				<div class="black" style="width:50px;height:60px">
-					<span style="font-size:25px">Art</span>
+					<span>Art</span>
 					<label class="blackLabel">& Gems</label>
 				</div>
-				<div style="width:375px;height:60px;float:left">
+				<div style="width:430px;height:60px;float:left">
 					<input id="money-misc"/>
 					<label style="font-size:12px;line-height:20px;width:120px">Miscellaneous Treasures</label>
 				</div>
@@ -1091,14 +1133,18 @@
 				</div>
 				<div style="width:380px;height:60px;float:left"></div>
 				
-                <button type="button" onclick="" style="float:left">
-                    +Gear
-                </button>
-				<div style="width:55px;height:60px;float:left;padding-left:10px">
-					<input id="Total-Weight"/>
-					<label style="font-size:12px;line-height:20px;width:65px">Total Weight</label>
-				</div>
-				<div id="GearList"></div>
+				<details>
+					<summary style="float:left;font-size:120%;padding-left:15px">Base Inventory</summary>
+				<div style="width:1000px;height:0px;float:left"></div>
+					<button type="button" onclick="" style="float:left">
+						+Gear
+					</button>
+					<div style="width:55px;height:60px;float:left;padding-left:10px">
+						<input id="Total-Weight"/>
+						<label style="font-size:12px;line-height:20px;width:65px">Total Weight</label>
+					</div>
+					<div id="GearList"></div>
+				</details>
 			</article>
 		</details>
 		<br />
@@ -1174,7 +1220,7 @@
 					</tr>
 				</table>
 				<br />
-				<div class="black" style="width:140px;height:60px;margin-right:8px">
+				<div class="black" style="width:140px;height:60px">
 					<span>Conditional</span>
 					<label class="blackLabel">Modifiers</label>
 				</div>
@@ -1182,7 +1228,7 @@
 					<input id="Spell-DC-Mod" />
 					<label style="font-size:12px;line-height:20px;width:100px">Spell DC Modifiers</label>
 				</div>
-				<div class="black" style="width:140px;height:60px;margin-right:8px">
+				<div class="black" style="width:140px;height:60px">
 					<span>Specialty</span>
 					<label class="blackLabel">Schools/Domains/Bloodlines</label>
 				</div>

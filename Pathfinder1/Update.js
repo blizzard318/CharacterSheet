@@ -90,7 +90,8 @@ function EditCustom (button, type) { //Feat/Special Ability/Trait
 function AddCustomButton (list, name, type, notes) {
 	const button = document.createElement("button");
 		button.onclick = () => EditCustom(button, type);
-		button.style = "font-size:50%";
+		button.style = "font-size:50%"
+		button.className = "custom";
 		button.innerHTML = "<b>" + name + "</b> <i>(" + type + ")</i>";
 		button.dataset.name  = name;
 		button.dataset.type  = type;
@@ -121,6 +122,9 @@ function AddCustom (type){ //Feat/Special Ability/Trait
 }
 
 function AddSkill(type) {
+	const AdjustedName = type.charAt(0).toUpperCase() + type.slice(1);
+	type = type.replace('*','');
+	
 	const index = document.getElementById(type + "-row").rowIndex;
 	const row = document.getElementById("Skill-Table").insertRow(index);
 	row.id = type + index; //Needed for deletion
@@ -133,10 +137,10 @@ function AddSkill(type) {
 	
 	td = row.insertCell(i++); //Name of Skill
 		let div = document.createElement("div");
-		div.innerText = type.charAt(0).toUpperCase() + type.slice(1);
+		div.innerText = AdjustedName;
 		div.style = "all:unset";
 		div.setAttribute("onmouseover","innerText='Delete?'");
-		div.setAttribute("onmouseout","innerText='" + type.charAt(0).toUpperCase() + type.slice(1) + "'");
+		div.setAttribute("onmouseout","innerText='" + AdjustedName + "'");
 		let overlayFunc = "document.getElementById('overlay').style.display = ";
 		overlayFunc += "document.getElementById('ConfirmMenu').style.display = 'block';";
 		overlayFunc += "document.getElementById('ConfirmDelete').onclick = function () {"
@@ -156,8 +160,8 @@ function AddSkill(type) {
 		let mod = 0;
 		switch (type) {
 			case "artistry":case "craft":case "lore": mod = "int"; break;
-			case "perform": 						  mod = "cha"; break;
-			case "profession": 						  mod = "wis"; break;
+			case "perform": 						   mod = "cha"; break;
+			case "profession":						   mod = "wis"; break;
 		}
 	td.innerHTML = mod.charAt(0).toUpperCase() + mod.slice(1);
 	
@@ -213,7 +217,7 @@ function AddACItem () {
 	
 	let div = document.createElement("div");
 	div.setAttribute("class","black");
-	div.setAttribute("style","width:100px;height:40px");
+	div.setAttribute("style","width:110px;height:40px");
 		let smallSpan = document.createElement("span");
 		smallSpan.setAttribute("style","font-size:25px");
 		smallSpan.innerHTML = "AC Item";

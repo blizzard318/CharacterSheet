@@ -32,6 +32,7 @@ article {
     color:#fff;
     text-align: center;
     float: left;
+	margin-right:8px;
 }
 .green {
     background-color:#333333;
@@ -40,7 +41,7 @@ article {
 }
 
 span {
-    font-size: 30px;
+    font-size: 25px;
     line-height: 40px;
 }
 
@@ -63,7 +64,6 @@ label {
 	background-color:  #0a0a0a;     
     box-shadow: 0 0 30px rgb(84 75 49 / 70%);
     float: none;
-    width: 1050px;
     margin: 0 auto;
     padding: 10px 0 65px 10px;
 }
@@ -94,12 +94,16 @@ button {
     height: 40px;
     margin: 0 3px;
     box-shadow: rgb(87 72 63) 0px -3px 0px 0px inset;
-    background-image: linear-gradient(rgb(61, 50, 37) 5%, rgb(50, 42, 32) 100%);
     background-color: rgb(61, 50, 37);
     border-color: rgb(137, 127, 112);
     color: rgb(234, 229, 221);
     text-decoration-color: initial;
     text-shadow: rgb(66 48 47) 0px 1px 0px;
+}
+.custom{
+    height: 35px;
+    box-shadow: none;
+    background-color: gray;
 }
 
 td {text-align:left}

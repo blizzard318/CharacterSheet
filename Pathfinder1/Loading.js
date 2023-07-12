@@ -74,6 +74,8 @@ function LoadFromJSON (character) {
 	for (const element of elements) element.value = character.bab ?? "";
 	ModifyBAB(document.getElementsByClassName("BAB")[0].value);
 	
+	set("HeroPoint", character.heropoint);
+	
 	set("Base-Speed"  , character.spd_base);
 	set("Armor-Speed" , character.spd_amr );
 	set("Fly-Speed"   , character.spd_fly );
@@ -143,6 +145,7 @@ function LoadFromJSON (character) {
 	LoadSkill("surv","survival");
 	LoadSkill("swim","swim");
 	LoadSkill("umd","use-magic-device");
+	UpdateSkillRanksAllocated('Adventuring');
 	//Background skills
 	LoadSkill("app","appraise");
 	LoadSkill("ha","handle-animal");
@@ -174,6 +177,8 @@ function LoadFromJSON (character) {
 	LoadMultiSkull("lore" ,"lore"	   );
 	LoadMultiSkull("perf" ,"perform"   );
 	LoadMultiSkull("prof" ,"profession");
+	UpdateSkillRanksAllocated('Background');
+	
 	set("Skill-Notes", character.skill_notes);
 	set("Languages"  , character.lng 		);
 	
@@ -192,6 +197,9 @@ function LoadFromJSON (character) {
 			AddCustomButton(list, name, type, notes);
 		}
 	}
+	set("fcb-hp"  , character.fcb_hp);
+	set("fcb-sr"  , character.fcb_sr);
+	set("fcb-rb"  , character.fcb_rb);
 	
 	set("money-pp"  , character.pp);
 	set("money-gp"  , character.gp);

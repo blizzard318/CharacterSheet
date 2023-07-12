@@ -26,8 +26,18 @@ function SetUpFunctions() { //This adds events to elements
 		deet.addEventListener('toggle', _ => localStorage.setItem(deet.id, deet.open));
 	});
 	
+	const Rows = document.getElementById("Skill-Table").rows;
+	for (let i = 1; i < 25; i++) {//Adventuring Skills
+		Rows[i].cells[5].firstChild.addEventListener('focusout', _ => UpdateSkillRanksAllocated('Adventuring'));
+	}
+	for (let i = 26; i < Rows.length - 1; i++) {//Background Skills
+		if (Rows[i].cells.length == 0) continue;
+		Rows[i].cells[5].firstChild.addEventListener('focusout', _ => UpdateSkillRanksAllocated('Background'));
+	}
+	
 	if (document.getElementById("CharacterIndex").value == "") return; //Strangers don't get to save.
 	document.querySelectorAll('input').forEach(inp => {
+		if (inp.disabled) return;
 		if (inp.type == "checkbox") inp.addEventListener('click', _ => SaveToCloudFlare());
 		else {
 			inp.addEventListener('focusin', _ => inp.oldValue = inp.value);
@@ -37,6 +47,21 @@ function SetUpFunctions() { //This adds events to elements
 			});
 		}
 	});
+}
+function UpdateSkillRanksAllocated(type) {
+	const Adventuring = type == "Adventuring";
+	let totalvalue = 0;
+	const Rows = document.getElementById("Skill-Table").rows;
+	
+	const start = Adventuring ? 1 : 26;
+	const end = Adventuring ? 25 : Rows.length - 1;
+	for (let i = start; i < end; i++) {//Background Skills
+		if (Rows[i].cells.length == 0) continue;
+		const val = parseInt(Rows[i].cells[5].firstChild.value);
+		if (!isNaN(val)) totalvalue += val;
+	}
+	const id = Adventuring ? "AdventuringSkillRanksAllocated" : "BackgroundSkillRanksAllocated";
+	document.getElementById(id).value = totalvalue;
 }
 
 async function CheckURL () { //Check if friend or stranger

@@ -84,6 +84,7 @@ function GetCharacter () {
 	character.init_misc = GetValue("Misc-Init");
 	
 	character.bab = document.getElementsByClassName("BAB")[0].value ?? null; //BAB
+	character.heropoint = GetValue("HeroPoint");
 	
 	character.spd_base = GetValue("Base-Speed"); //Speeds
 	character.spd_amr = GetValue("Armor-Speed");
@@ -216,6 +217,9 @@ function GetCharacter () {
 			Trim(character.fList[j]);
 		}
 	}
+	character.fcb_hp = GetValue("fcb-hp");
+	character.fcb_sr = GetValue("fcb-sr");
+	character.fcb_rb = GetValue("fcb-rb");
 	
 	//Equipment
 	character.pp = GetValue("money-pp");
