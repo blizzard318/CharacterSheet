@@ -186,8 +186,8 @@ function LoadFromJSON (character) {
 		list.innerHTML = "";
 		
 		for (let j = 0; j < charlist.length; j++) {
-			const name = charlist[j].name ?? "";
-			const type = charlist[j].type ?? "";
+			const name  = charlist[j].name  ?? "";
+			const type  = charlist[j].type  ?? "";
 			const notes = charlist[j].notes ?? "";
 			AddCustomButton(list, name, type, notes);
 		}
