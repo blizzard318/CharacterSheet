@@ -125,9 +125,13 @@ function AddSkill(type) {
 	const AdjustedName = type.charAt(0).toUpperCase() + type.slice(1);
 	type = type.replace('*','');
 	
-	const index = document.getElementById(type + "-row").rowIndex;
+	const SkillRow = document.getElementById(type + "-row");
+	const index = SkillRow.rowIndex;
+	let uid = parseInt(SkillRow.dataset.index);
+	if (isNaN(uid)) uid = 0;
 	const row = document.getElementById("Skill-Table").insertRow(index);
-	row.id = type + index; //Needed for deletion
+	row.id = type + uid; //Needed for deletion
+	SkillRow.dataset.index = uid + 1;
 	let i = 0;
 	
 	let td = row.insertCell(i++); //Class Skill
@@ -137,16 +141,16 @@ function AddSkill(type) {
 	
 	td = row.insertCell(i++); //Name of Skill
 		let div = document.createElement("div");
-		div.innerText = AdjustedName;
-		div.style = "all:unset";
-		div.setAttribute("onmouseover","innerText='Delete?'");
-		div.setAttribute("onmouseout","innerText='" + AdjustedName + "'");
-		let overlayFunc = "document.getElementById('overlay').style.display = ";
-		overlayFunc += "document.getElementById('ConfirmMenu').style.display = 'block';";
-		overlayFunc += "document.getElementById('ConfirmDelete').onclick = function () {"
-		overlayFunc += "const rowIndex = document.getElementById('" + row.id + "').rowIndex;"
-		overlayFunc += "document.getElementById('Skill-Table').deleteRow(rowIndex);"
-		overlayFunc += "SaveToCloudFlare();CloseOverlay();}"
+			div.innerText = AdjustedName;
+			div.style = "all:unset";
+			div.setAttribute("onmouseover","innerText='Delete?'");
+			div.setAttribute("onmouseout","innerText='" + AdjustedName + "'");
+			let overlayFunc = "document.getElementById('overlay').style.display = ";
+				overlayFunc += "document.getElementById('ConfirmMenu').style.display = 'block';";
+				overlayFunc += "document.getElementById('ConfirmDelete').onclick = function () {"
+				overlayFunc += "const rowIndex = document.getElementById('" + row.id + "').rowIndex;"
+				overlayFunc += "document.getElementById('Skill-Table').deleteRow(rowIndex);"
+				overlayFunc += "SaveToCloudFlare();CloseOverlay();}"
 		div.setAttribute("onclick", overlayFunc);
 	td.innerHTML = div.outerHTML + " <input style='width:145px;text-align:left;display:inline'/>";
 
@@ -212,7 +216,7 @@ function AddSkill(type) {
 }
 
 function AddACItem () {
-	let span = document.createElement("span");
+	const span = document.createElement("span");
 	span.setAttribute("style","clear:both");
 	
 	let div = document.createElement("div");
@@ -329,8 +333,8 @@ function AddACItem () {
 }
 
 function AddAttack (type) {
-	let span = document.createElement("span");
-	span.setAttribute("style","clear:both");
+	const span = document.createElement("span");
+		span.setAttribute("style","clear:both");
 	
 	let div = document.createElement("div");
 	div.setAttribute("class","black");
@@ -470,4 +474,71 @@ function AddAttack (type) {
 	
 	document.getElementById(type + "List").appendChild(span);
 	return span;
+}
+
+function AddInventory () {
+	const list = document.getElementById("InventoryList");
+		const special_div = document.createElement("div");
+			special_div.setAttribute("style","width:1000px;height:0px;float:left");
+	list.appendChild(special_div);
+	
+	const details = document.createElement("details");
+		details.setAttribute("style","padding-left:15px");
+		details.open = true;
+		
+		const summary = document.createElement("summary");
+			summary.setAttribute("style","float:left;font-size:120%;font-weight:normal");
+			
+			const a = document.createElement("a");
+				a.contentEditable = true;
+				a.innerText = "Change My Name";
+				a.setAttribute("style","background-color:#333333;padding:3px 5px");
+			summary.appendChild(a);
+			
+			let button = document.createElement("button");
+				button.type = "button";
+				button.className = "custom";
+				button.setAttribute("style","background-color:dimgray;font-size:60%;height:auto;margin-left:5px");
+				button.innerText = "X";
+				button.onclick = () => {
+					document.getElementById('overlay').style.display = document.getElementById('ConfirmMenu').style.display = 'block';
+					document.getElementById('ConfirmDelete').onclick = function () {
+						details.remove();
+						special_div.remove();
+						CloseOverlay();
+						SaveToCloudFlare();
+					}
+				};
+			summary.appendChild(button);
+	details.appendChild(summary);
+		
+		let div = document.createElement("div");
+			div.setAttribute("style","width:1000px;height:0px;float:left");
+	details.appendChild(div);
+	
+		div = document.createElement("div");
+			div.setAttribute("style","width:55px;height:60px;float:left;padding-left:20px");
+			
+			const input = document.createElement("input");
+				input.disabled = true;
+				input.className = "green weight";
+			div.appendChild(input);
+			
+			const label = document.createElement("label");
+				label.setAttribute("style","font-size:12px;line-height:20px;width:65px");
+				label.innerText = "Weight";
+			div.appendChild(label);
+	details.appendChild(div);
+	
+		button = document.createElement("button");
+			button.setAttribute("style","float:left");
+			button.innerText = "+Gear";
+	details.appendChild(button);
+	
+		div = document.createElement("div");
+			div.className = "GearList";
+	details.appendChild(div);
+	
+	list.appendChild(details);
+	return details;
 }
