@@ -245,12 +245,13 @@ function GetCharacter () {
 	character.ac_spellfail = GetValue("AC-Spell-Failure");
 	
 	character.total_weight = GetValue("Total-Weight");
-	character.gList = []; //Gears List
+	
+	/*character.gList = []; //Gears List
 	const gList = document.getElementById("GearList").childNodes;
 	for (let i = 0; i < gList.length; i++) {
 		character.gList[i]  	  	 = {};
 		Trim(character.gList[i]);
-	}
+	}*/
 	
 	Trim(character);
 	return character;
