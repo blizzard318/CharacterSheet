@@ -5,6 +5,7 @@ function CloseOverlay() {
 	document.getElementById("overlay").style.display = "none";
 	document.getElementById('CustomMenu').style.display = 'none';
 	document.getElementById('ConfirmMenu').style.display = 'none';
+	document.getElementById('GearMenu').style.display = 'none';
 }
 
 function GetMod (name, defval) {
@@ -81,9 +82,20 @@ function EditCustom (button, type) { //Feat/Special Ability/Trait
 	};
 	
 	document.getElementById('DeleteCustom').onclick = () => {
-		button.remove();
-		SaveToCloudFlare();
-		CloseOverlay;
+		document.getElementById('CustomMenu').style.display = 'none';
+		document.getElementById('ConfirmMenu').style.display = 'block';
+		
+		document.getElementById('ConfirmDelete').onclick = () => {
+			document.getElementById("ConfirmCancel").onclick = CloseOverlay;
+			button.remove();
+			CloseOverlay();
+			SaveToCloudFlare();
+		};
+		document.getElementById("ConfirmCancel").onclick = () => {
+			document.getElementById("ConfirmCancel").onclick = CloseOverlay;
+			document.getElementById('CustomMenu').style.display = 'block';
+			document.getElementById('ConfirmMenu').style.display = 'none';
+		};
 	};
 }
 
@@ -117,8 +129,93 @@ function AddCustom (type){ //Feat/Special Ability/Trait
 		SaveToCloudFlare();
 		CloseOverlay();
 	};
-	
 	document.getElementById('DeleteCustom').onclick = CloseOverlay;
+}
+
+function EditGear (button) {
+	document.getElementById('GearMenuName').innerHTML = "<b>Edit Gear</b>";
+	document.getElementById('CreateGear').innerText = "Ok";
+	document.getElementById('DeleteGear').innerText = "Delete";
+	document.getElementById('GearName'		).value = button.dataset.name;
+	document.getElementById('GearType'		).value = button.dataset.type;
+	document.getElementById('GearLocation'	).value	= button.dataset.loc;
+	document.getElementById('GearQuantity'	).value	= button.dataset.qty;
+	document.getElementById('GearWeight'	).value = button.dataset.wt;
+	document.getElementById('GearNotes'		).value = button.dataset.notes;
+	document.getElementById('overlay').style.display = document.getElementById('GearMenu').style.display = 'block';
+	
+	document.getElementById('CreateGear').onclick = () => {
+		const name  = document.getElementById('GearName').value;
+		const type  = document.getElementById('GearType').value;
+		button.innerHTML = "<b>" + name + "</b> <i>(" + type + ")</i>";
+		button.dataset.name  = name;
+		button.dataset.type  = type;
+		button.dataset.loc   = document.getElementById('GearLocation').value;
+		button.dataset.qty   = document.getElementById('GearQuantity').value;
+		button.dataset.wt    = document.getElementById('GearWeight').value;
+		button.dataset.notes = document.getElementById('GearNotes').value;
+		SaveToCloudFlare();
+		CloseOverlay();
+	};
+	
+	document.getElementById('DeleteGear').onclick = () => {
+		document.getElementById('GearMenu').style.display = 'none';
+		document.getElementById('ConfirmMenu').style.display = 'block';
+		
+		document.getElementById('ConfirmDelete').onclick = () => {
+			document.getElementById("ConfirmCancel").onclick = CloseOverlay;
+			button.remove();
+			CloseOverlay();
+			SaveToCloudFlare();
+		};
+		document.getElementById("ConfirmCancel").onclick = () => {
+			document.getElementById("ConfirmCancel").onclick = CloseOverlay;
+			document.getElementById('GearMenu').style.display = 'block';
+			document.getElementById('ConfirmMenu').style.display = 'none';
+		};
+	};
+}
+
+function AddGearButton (list, name, type, loc, qty, wt, notes){
+	const button = document.createElement("button");
+		button.onclick = () => EditGear(button);
+		button.style = "font-size:90%;float:left"
+		button.className = "custom";
+		button.innerHTML = "<b>" + name + "</b> <i>(" + type + ")</i>";
+		button.dataset.name  = name;
+		button.dataset.type  = type;
+		button.dataset.loc   = loc;
+		button.dataset.qty   = qty;
+		button.dataset.wt    = wt;
+		button.dataset.notes = notes;
+	list.appendChild(button);
+}
+
+function AddGear (list){
+	document.getElementById('GearMenuName').innerHTML = "<b>New Gear</b>";
+	document.getElementById('CreateGear').innerText = "Create";
+	document.getElementById('DeleteGear').innerText = "Cancel";
+	document.getElementById('GearName').value = "";
+	document.getElementById('GearType').value = "";
+	document.getElementById('GearLocation').value = "";
+	document.getElementById('GearQuantity').value = "";
+	document.getElementById('GearWeight').value = "";
+	document.getElementById('GearNotes').value = "";
+	document.getElementById('overlay').style.display = document.getElementById('GearMenu').style.display = 'block';
+	
+	document.getElementById('CreateGear').onclick = () => {
+		const name  = document.getElementById('GearName').value;
+		const type  = document.getElementById('GearType').value;
+		const loc   = document.getElementById('GearLocation').value;
+		const qty   = document.getElementById('GearQuantity').value;
+		const wt    = document.getElementById('GearWeight').value;
+		const notes = document.getElementById('GearNotes').value;
+		AddGearButton(list, name, type, loc, qty, wt, notes);
+		
+		SaveToCloudFlare();
+		CloseOverlay();
+	};
+	document.getElementById('DeleteGear').onclick = CloseOverlay;
 }
 
 function AddSkill(type) {
@@ -489,16 +586,16 @@ function AddInventory () {
 		const summary = document.createElement("summary");
 			summary.setAttribute("style","float:left;font-size:120%;font-weight:normal");
 			
-			const a = document.createElement("a");
-				a.contentEditable = true;
-				a.innerText = "Change My Name";
-				a.setAttribute("style","background-color:#333333;padding:3px 5px");
-			summary.appendChild(a);
+			const i = document.createElement("span");
+				i.contentEditable = true;
+				i.innerText = "Name of Container";
+				i.setAttribute("style","font-size:100%;background-color:#333333;padding:3px 5px");
+			summary.appendChild(i);
 			
-			let button = document.createElement("button");
+			let button = document.createElement("button"); //Delete Button
 				button.type = "button";
 				button.className = "custom";
-				button.setAttribute("style","background-color:dimgray;font-size:60%;height:auto;margin-left:5px");
+				button.setAttribute("style","background-color:dimgray;font-size:60%;height:auto;margin-left:8px");
 				button.innerText = "X";
 				button.onclick = () => {
 					document.getElementById('overlay').style.display = document.getElementById('ConfirmMenu').style.display = 'block';
@@ -537,6 +634,7 @@ function AddInventory () {
 	
 		div = document.createElement("div");
 			div.className = "GearList";
+			button.onclick = () => AddGear(div);
 	details.appendChild(div);
 	
 	list.appendChild(details);

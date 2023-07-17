@@ -1,5 +1,7 @@
 //All these functions will never be called again except once on start,
 function SetUpFunctions() { //This adds events to elements
+	document.getElementById("ConfirmCancel").onclick = CloseOverlay;
+	
 	function AbilitySetUp(name) {
 		document.getElementById(name		).addEventListener('focusout', _ => ModifyAbility(name));
 		document.getElementById(name+"-temp").addEventListener('focusout', _ => ModifyAbility(name));

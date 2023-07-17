@@ -1313,45 +1313,49 @@
 			<span id="ConfirmMenu" class="menu" style="width:800px;font-size:200%">
 				Please confirm that you would like to remove this item.<br/>
 				<button id="ConfirmDelete">Yes</button>
-				<button onclick="CloseOverlay()">No</button>
+				<button id="ConfirmCancel">No</button>
 			</span>
 			<span id="CustomMenu" class="menu" style="width:min-content;font-size:130%">
 				<div id="CustomMenuName" style="display:inline"></div><hr/>
 				<table style="margin-left:auto;margin-right:auto">
 					<tr>
 						<td>Name:</td>
-						<td><input id="CustomName" style="font-size:80%;width:98%;text-align:left"/></td>
-					</tr>
-					<tr>
-						<td>Type:</td>
-						<td><input id="CustomType" style="font-size:80%;width:98%;text-align:left"/></td>
+						<td colspan="3"><input id="CustomName" style="font-size:80%;width:97%;text-align:left"/></td>
+						<td style="padding-right:0px 0px 0px 3px">Type:</td>
+						<td><input id="CustomType" style="font-size:80%;width:95%;text-align:left"/></td>
 					</tr>
 					<tr>
 						<td>Notes:</td>
-						<td><textarea id="CustomNotes" style="font-size:80%;min-width:400px;height:100px;text-align:left"></textarea></td>
+						<td colspan="5"><textarea id="CustomNotes" style="font-size:80%;min-width:400px;height:100px;text-align:left"></textarea></td>
 					</tr>
 				</table><hr/>
 				<button id="CreateCustom"></button>
 				<button id="DeleteCustom"></button>
 			</span>
 			<span id="GearMenu" class="menu" style="width:min-content;font-size:130%">
-				<div id="GearName" style="display:inline"></div>Gear<hr/>
+				<div id="GearMenuName" style="display:inline"></div><hr/>
 				<table style="margin-left:auto;margin-right:auto">
 					<tr>
 						<td>Name:</td>
-						<td><input id="CustomName" style="font-size:80%;width:98%;text-align:left"/></td>
+						<td colspan="3"><input id="GearName" style="font-size:80%;width:97%;text-align:left"/></td>
+						<td style="padding:0px 0px 0px 3px">Type:</td>
+						<td><input id="GearType" style="font-size:80%;width:95%;text-align:left"/></td>
 					</tr>
 					<tr>
-						<td>Type:</td>
-						<td><input id="CustomType" style="font-size:80%;width:98%;text-align:left"/></td>
+						<td>Location:</td>
+						<td><input id="GearLocation" style="font-size:80%;width:93%;text-align:left"/></td>
+						<td style="padding:0px 0px 0px 3px">Quantity:</td>
+						<td><input id="GearQuantity" style="font-size:80%;width:93%;text-align:left"/></td>
+						<td style="padding:0px 0px 0px 3px">Weight:</td>
+						<td><input id="GearWeight" style="font-size:80%;width:93%;text-align:left"/></td>
 					</tr>
 					<tr>
 						<td>Notes:</td>
-						<td><textarea id="CustomNotes" style="font-size:80%;min-width:400px;height:100px;text-align:left"></textarea></td>
+						<td colspan="5"><textarea id="GearNotes" style="font-size:80%;min-width:400px;height:100px;text-align:left"></textarea></td>
 					</tr>
 				</table><hr/>
-				<button id="CreateCustom"></button>
-				<button id="DeleteCustom"></button>
+				<button id="CreateGear"></button>
+				<button id="DeleteGear"></button>
 			</span>
 		</div>
     </div>
