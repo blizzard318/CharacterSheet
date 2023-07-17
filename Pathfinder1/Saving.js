@@ -246,12 +246,25 @@ function GetCharacter () {
 	
 	character.total_weight = GetValue("Total-Weight");
 	
-	/*character.gList = []; //Gears List
-	const gList = document.getElementById("GearList").childNodes;
-	for (let i = 0; i < gList.length; i++) {
-		character.gList[i]  	  	 = {};
-		Trim(character.gList[i]);
-	}*/
+	character.iList = [];
+	const iList = document.getElementById("InventoryList").childNodes;
+	for (let i = 0; i*2+1 < iList.length; i++) {
+		character.iList[i]  	  = {};
+		character.iList[i].name   = iList[i*2+1].firstChild.firstChild.innerText;
+		character.iList[i].gList  = [];
+		const gList = iList[i*2+1].children[4].childNodes;
+		for (let j = 0; j < gList.length; j++) {
+			character.iList[i].gList[j] 		= {};
+			character.iList[i].gList[j].name	= gList[i].dataset.name;
+			character.iList[i].gList[j].type	= gList[i].dataset.type;
+			character.iList[i].gList[j].loc		= gList[i].dataset.loc;
+			character.iList[i].gList[j].qty		= gList[i].dataset.qty;
+			character.iList[i].gList[j].wt		= gList[i].dataset.wt;
+			character.iList[i].gList[j].notes	= gList[i].dataset.notes;
+			Trim(character.iList[i].gList[j]);
+		}
+		Trim(character.iList[i]);
+	}
 	
 	Trim(character);
 	return character;

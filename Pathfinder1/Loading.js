@@ -220,6 +220,21 @@ function LoadFromJSON (character) {
 	set("AC-Bonus"		  , character.ac_bonus	  );
 	set("AC-Penalty"	  , character.ac_penalty  );
 	set("AC-Spell-Failure", character.ac_spellfail);
+	
+	for (let inventory of character.iList) {
+		const details = AddInventory();
+		details.firstChild.firstChild.innerText = inventory.name ?? "";
+		
+		for (let gear of inventory.gList) {
+			const name  = gear.name  ?? "";
+			const type  = gear.type  ?? "";
+			const loc   = gear.loc	 ?? "";
+			const qty   = gear.qty	 ?? "";
+			const wt    = gear.wt	 ?? "";
+			const notes = gear.notes ?? "";
+			AddGearButton(details.children[4], name, type, loc, qty, wt, notes);
+		}
+	}
 }
 
 //Process json from CharacterSheet.co.uk to CloudFlare KV
@@ -414,7 +429,6 @@ function ConvertFromMottokrosh (mottokrosh) {
 			charlist[j].notes = mottolist[j].notes;
 		}
 	}
-	
 	character.pp  = mottokrosh.money.pp;
 	character.gp  = mottokrosh.money.gp;
 	character.sp  = mottokrosh.money.sp;
@@ -435,10 +449,19 @@ function ConvertFromMottokrosh (mottokrosh) {
 	character.ac_penalty   = mottokrosh.ac.itemTotals.armorCheckPenalty;
 	character.ac_spellfail = mottokrosh.ac.itemTotals.spellFailure;
 	
-	/*character.gList = []; //Gears List
-	for (let i = 0; i < gList.length; i++) {
-		character.gList[i]  	  	 = {};
-	}*/
+	character.iList			 = [];
+	character.iList[0]		 = {};
+	character.iList[0].name  = "Mottokrosh";
+	character.iList[0].gList = [];
+	for (let i = 0; i < mottokrosh.gear.length; i++) {
+		character.iList[0].gList[i]		  = {};
+		character.iList[0].gList[i].name  = mottokrosh.gear[i].name;
+		character.iList[0].gList[i].type  = mottokrosh.gear[i].type;
+		character.iList[0].gList[i].loc	  = mottokrosh.gear[i].location;	 
+		character.iList[0].gList[i].qty	  = mottokrosh.gear[i].quantity; 
+		character.iList[0].gList[i].wt	  = mottokrosh.gear[i].weight;	 
+		character.iList[0].gList[i].notes = mottokrosh.gear[i].notes;
+	}
 	
 	return character;
 }

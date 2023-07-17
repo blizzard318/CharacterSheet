@@ -633,7 +633,6 @@ function AddInventory () {
 	details.appendChild(button);
 	
 		div = document.createElement("div");
-			div.className = "GearList";
 			button.onclick = () => AddGear(div);
 	details.appendChild(div);
 	
