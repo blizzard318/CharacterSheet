@@ -232,8 +232,9 @@ function LoadFromJSON (character) {
 			const qty   = gear.qty	 ?? "";
 			const wt    = gear.wt	 ?? "";
 			const notes = gear.notes ?? "";
-			AddGearButton(details.children[4], name, type, loc, qty, wt, notes);
+			AddGearButton(details.lastChild, name, type, loc, qty, wt, notes);
 		}
+		GetLocalWeight(details.lastChild);
 	}
 }
 

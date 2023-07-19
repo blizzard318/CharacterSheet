@@ -8,44 +8,6 @@ function CloseOverlay() {
 	document.getElementById('GearMenu').style.display = 'none';
 }
 
-function GetMod (name, defval) {
-	const abi = parseInt(document.getElementById(name).value);
-	const mod = Math.floor((abi - 10)/2);
-	return isNaN(mod) ? defval : mod;
-}
-
-function ModifyAbility (name) {
-	let mod = GetMod(name, null);
-	 
-	if (!name.includes("temp")) { //If original ability score
-		document.getElementById(name + "-mod").value = mod;
-		mod = GetMod(name + "-temp", mod);
-	}
-	else { //If temp ability score
-		name = name.slice(0,3);
-		if (mod == null) mod = GetMod(name, null);
-	}
-	
-	const elements = document.getElementsByClassName(name + "-temp-mod");
-	for (const element of elements) element.value = mod;
-}
-
-function ModifyBAB (value) {
-	const elements = document.getElementsByClassName("BAB");
-	for (const element of elements) element.value = value;
-}
-
-function ModifyHP () {
-	let base = parseInt(document.getElementById("Base-HP").value);
-	base = isNaN(base) ? 0 : base;
-	let temp = parseInt(document.getElementById("Temp-HP").value);
-	temp = isNaN(temp) ? 0 : temp;
-	let nonlethal = parseInt(document.getElementById("Non-Lethal-Dmg").value);
-	nonlethal = isNaN(nonlethal) ? 0 : nonlethal;
-	
-	document.getElementById("Current-HP").value = base + temp - nonlethal;
-}
-
 function GetListByType (type) {
 	document.getElementById('overlay').style.display = document.getElementById('CustomMenu').style.display = 'block';
 	switch (type) {
@@ -156,6 +118,7 @@ function EditGear (button) {
 		button.dataset.notes = document.getElementById('GearNotes').value;
 		SaveToCloudFlare();
 		CloseOverlay();
+		GetLocalWeight(button.parentElement);
 	};
 	
 	document.getElementById('DeleteGear').onclick = () => {
@@ -164,9 +127,11 @@ function EditGear (button) {
 		
 		document.getElementById('ConfirmDelete').onclick = () => {
 			document.getElementById("ConfirmCancel").onclick = CloseOverlay;
+			const list = button.parentElement;
 			button.remove();
 			CloseOverlay();
 			SaveToCloudFlare();
+			GetLocalWeight(list);
 		};
 		document.getElementById("ConfirmCancel").onclick = () => {
 			document.getElementById("ConfirmCancel").onclick = CloseOverlay;
@@ -189,6 +154,21 @@ function AddGearButton (list, name, type, loc, qty, wt, notes){
 		button.dataset.wt    = wt;
 		button.dataset.notes = notes;
 	list.appendChild(button);
+}
+
+function GetLocalWeight (list) {
+	let locval = 0;
+	
+	const Gears = list.childNodes;
+	for (let Gear of Gears) {
+		let weight = parseInt(Gear.dataset.wt);
+		let quantity = parseInt(Gear.dataset.qty);
+		if (isNaN(weight) || isNaN(quantity)) continue;
+		locval += weight * quantity;
+	}
+	
+	list.parentElement.getElementsByClassName("GearWeight")[0].value = locval;
+	ModifyTotalWeight();
 }
 
 function AddGear (list){
@@ -214,6 +194,7 @@ function AddGear (list){
 		
 		SaveToCloudFlare();
 		CloseOverlay();
+		GetLocalWeight(list);
 	};
 	document.getElementById('DeleteGear').onclick = CloseOverlay;
 }
@@ -277,6 +258,7 @@ function AddSkill(type) {
 	td = row.insertCell(i++); //Skill Ranks
 		input = document.createElement("input");
 		input.setAttribute("style","width:50px");
+		input.setAttribute('onfocusout', "UpdateSkillRanksAllocated('Background')");
 	td.innerHTML = input.outerHTML;
 	
 	td = row.insertCell(i++); //Skill Class
@@ -586,16 +568,38 @@ function AddInventory () {
 		const summary = document.createElement("summary");
 			summary.setAttribute("style","float:left;font-size:120%;font-weight:normal");
 			
-			const i = document.createElement("span");
-				i.contentEditable = true;
-				i.innerText = "Name of Container";
-				i.setAttribute("style","font-size:100%;background-color:#333333;padding:3px 5px");
-			summary.appendChild(i);
+			const span = document.createElement("span");
+				span.innerText = "Name of Container";
+				span.setAttribute("style","font-size:100%;background-color:#333333;padding:3px 5px");
+			summary.appendChild(span);
+			
+			let rbutton = document.createElement("button"); //Rename Button
+				rbutton.type = "button";
+				rbutton.className = "custom";
+				rbutton.setAttribute("style","background-color:dimgray;font-size:70%;height:auto;margin-left:5px");
+				rbutton.innerText = "Rename";
+				rbutton.onclick = () => {
+					if (!span.isContentEditable) {
+						span.dataset.previousName = span.innerText;
+						span.contentEditable = true;
+						rbutton.innerText = "Complete";
+						span.focus();
+						window.getSelection().selectAllChildren(span);
+					}
+					else {
+						if (span.dataset.previousName != span.innerText) SaveToCloudFlare();
+						delete span.dataset.previousName;
+						span.contentEditable = false;
+						rbutton.innerText = "Rename";
+						window.getSelection().removeAllRanges();
+					}
+				};
+			summary.appendChild(rbutton);
 			
 			let button = document.createElement("button"); //Delete Button
 				button.type = "button";
 				button.className = "custom";
-				button.setAttribute("style","background-color:dimgray;font-size:60%;height:auto;margin-left:8px");
+				button.setAttribute("style","background-color:dimgray;font-size:60%;height:auto;margin-left:5px");
 				button.innerText = "X";
 				button.onclick = () => {
 					document.getElementById('overlay').style.display = document.getElementById('ConfirmMenu').style.display = 'block';
@@ -604,6 +608,7 @@ function AddInventory () {
 						special_div.remove();
 						CloseOverlay();
 						SaveToCloudFlare();
+						ModifyTotalWeight();
 					}
 				};
 			summary.appendChild(button);
@@ -618,7 +623,7 @@ function AddInventory () {
 			
 			const input = document.createElement("input");
 				input.disabled = true;
-				input.className = "green weight";
+				input.className = "green GearWeight";
 			div.appendChild(input);
 			
 			const label = document.createElement("label");
@@ -632,7 +637,7 @@ function AddInventory () {
 			button.innerText = "+Gear";
 	details.appendChild(button);
 	
-		div = document.createElement("div");
+		div = document.createElement("div"); //List of Gear
 			button.onclick = () => AddGear(div);
 	details.appendChild(div);
 	

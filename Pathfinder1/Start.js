@@ -1,4 +1,68 @@
 //All these functions will never be called again except once on start,
+function ModifyTotalWeight (){
+	let totval = 0;
+	const elements = document.getElementsByClassName("GearWeight");
+	for (const element of elements) {
+		const val = parseInt(element.value);
+		if (!isNaN(val)) totval += val;
+	}
+	document.getElementById("Total-Weight").value = totval;
+}
+
+function GetMod (name, defval) {
+	const abi = parseInt(document.getElementById(name).value);
+	const mod = Math.floor((abi - 10)/2);
+	return isNaN(mod) ? defval : mod;
+}
+
+function ModifyAbility (name) {
+	let mod = GetMod(name, null);
+	 
+	if (!name.includes("temp")) { //If original ability score
+		document.getElementById(name + "-mod").value = mod;
+		mod = GetMod(name + "-temp", mod);
+	}
+	else { //If temp ability score
+		name = name.slice(0,3);
+		if (mod == null) mod = GetMod(name, null);
+	}
+	
+	const elements = document.getElementsByClassName(name + "-temp-mod");
+	for (const element of elements) element.value = mod;
+}
+
+function ModifyBAB (value) {
+	const elements = document.getElementsByClassName("BAB");
+	for (const element of elements) element.value = value;
+}
+
+function ModifyHP () {
+	let base = parseInt(document.getElementById("Base-HP").value);
+	base = isNaN(base) ? 0 : base;
+	let temp = parseInt(document.getElementById("Temp-HP").value);
+	temp = isNaN(temp) ? 0 : temp;
+	let nonlethal = parseInt(document.getElementById("Non-Lethal-Dmg").value);
+	nonlethal = isNaN(nonlethal) ? 0 : nonlethal;
+	
+	document.getElementById("Current-HP").value = base + temp - nonlethal;
+}
+
+function UpdateSkillRanksAllocated(type) {
+	const Adventuring = type == "Adventuring";
+	let totalvalue = 0;
+	const Rows = document.getElementById("Skill-Table").rows;
+	
+	const start = Adventuring ? 1 : 26;
+	const end = Adventuring ? 25 : Rows.length - 1;
+	for (let i = start; i < end; i++) {//Background Skills
+		if (Rows[i].cells.length == 0) continue;
+		const val = parseInt(Rows[i].cells[5].firstChild.value);
+		if (!isNaN(val)) totalvalue += val;
+	}
+	const id = Adventuring ? "AdventuringSkillRanksAllocated" : "BackgroundSkillRanksAllocated";
+	document.getElementById(id).value = totalvalue;
+}
+
 function SetUpFunctions() { //This adds events to elements
 	document.getElementById("ConfirmCancel").onclick = CloseOverlay;
 	
@@ -49,21 +113,6 @@ function SetUpFunctions() { //This adds events to elements
 			});
 		}
 	});
-}
-function UpdateSkillRanksAllocated(type) {
-	const Adventuring = type == "Adventuring";
-	let totalvalue = 0;
-	const Rows = document.getElementById("Skill-Table").rows;
-	
-	const start = Adventuring ? 1 : 26;
-	const end = Adventuring ? 25 : Rows.length - 1;
-	for (let i = start; i < end; i++) {//Background Skills
-		if (Rows[i].cells.length == 0) continue;
-		const val = parseInt(Rows[i].cells[5].firstChild.value);
-		if (!isNaN(val)) totalvalue += val;
-	}
-	const id = Adventuring ? "AdventuringSkillRanksAllocated" : "BackgroundSkillRanksAllocated";
-	document.getElementById(id).value = totalvalue;
 }
 
 async function CheckURL () { //Check if friend or stranger
