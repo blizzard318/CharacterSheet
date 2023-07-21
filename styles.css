@@ -20,8 +20,9 @@ summary {
 }
 
 select {
-    text-align: center;
-    width: 100px;
+    border: 3px solid rgba(84,75,49,.7);
+    background-color: #787878;
+	color: #EAEAEA;
 }
 article {
     overflow: auto;

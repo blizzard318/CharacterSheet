@@ -1152,6 +1152,11 @@
 		<details id="SpellsDetails">
 			<summary>Spells</summary>
 			<article>
+				<button type="button" onclick="AddSpellList()" style="float:left">
+					+Spell List
+				</button>
+				<div id="SpellListList"></div>
+				
 				<table style="width:97%">
 				<caption style="font-size:150%"><b>Spells</b></caption>
 					<tr>
@@ -1293,6 +1298,7 @@
 						+9th Level
 					</button>
 				</div>
+				
 				<div style="clear:both;text-align:left">
 					<button type="button" onclick="">
 						+Rituals
@@ -1354,8 +1360,43 @@
 						<td colspan="5"><textarea id="GearNotes" style="font-size:80%;min-width:400px;height:100px;text-align:left"></textarea></td>
 					</tr>
 				</table><hr/>
+				
+				<span style="display:none">
+					Move to different inventory: <select id="GearTransfer"></select>
+					<hr/>
+				</span>
+				
 				<button id="CreateGear"></button>
 				<button id="DeleteGear"></button>
+			</span>			
+			<span id="SpellListMenu" class="menu" style="width:300px;font-size:130%">
+				Customize your new spell list.<br/>
+				These choices are final.<br/>
+				<hr/><table style="margin-left:auto;margin-right:auto">
+					<tr>
+						<td>Class:</td>
+						<td colspan="3"><input id="SpellListName" style="font-size:80%;width:97%;text-align:left"/></td>
+					</tr>
+					<tr>
+						<td style="padding:0px 0px 0px 3px">Type:</td>
+						<td colspan="3"><select id="SpellListType" style="font-size:80%"/>
+							<option value="0">Spontaenous</option>
+							<option value="1">Prepared</option>
+						</select></td>
+					</tr>
+					<tr><td colspan="4" style="text-align:center"><b>Spell Levels</b></td></tr>
+					<tr>
+						<td>Lowest</td>
+						<td><input id="LowestSpellLevel" value="0" type="number" min="0" max="9" style="width:20px"></td>
+						<td>Highest</td>
+						<td><input id="HighestSpellLevel" value="9" type="number" min="0" max="9" style="width:20px"></td>
+					</tr>
+				</table><hr/>
+				
+				<span style="text-align:center">
+					<button id="CreateSpellList">Create</button>
+					<button onclick="CloseOverlay()">Cancel</button>
+				</span>
 			</span>
 		</div>
     </div>

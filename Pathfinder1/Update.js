@@ -106,7 +106,19 @@ function EditGear (button) {
 	document.getElementById('GearNotes'		).value = button.dataset.notes;
 	document.getElementById('overlay').style.display = document.getElementById('GearMenu').style.display = 'block';
 	
+	const inventories = document.getElementById("InventoryList").children;
+	const select = document.getElementById('GearTransfer');
+	select.parentElement.style.display = inventories.length > 0 ? 'block' : 'none';
+	select.innerHTML = '';
+	const exclude = Array.from(inventories).indexOf(button.parentNode.parentNode);
+	
+	select.add(new Option()); //Blank option do nothing.
+	for (let i = 1; i < inventories.length; i += 2) {
+		if (i != exclude) select.add(new Option(inventories[i].firstChild.firstChild.innerText, i));
+	}
+	
 	document.getElementById('CreateGear').onclick = () => {
+		if (select.value != '') inventories[select.value].lastChild.appendChild(button);
 		const name  = document.getElementById('GearName').value;
 		const type  = document.getElementById('GearType').value;
 		button.innerHTML = "<b>" + name + "</b> <i>(" + type + ")</i>";
@@ -579,19 +591,20 @@ function AddInventory () {
 				rbutton.setAttribute("style","background-color:dimgray;font-size:70%;height:auto;margin-left:5px");
 				rbutton.innerText = "Rename";
 				rbutton.onclick = () => {
-					if (!span.isContentEditable) {
+					span.contentEditable = !span.isContentEditable;
+					if (span.isContentEditable) { //Make it edittable.
 						span.dataset.previousName = span.innerText;
-						span.contentEditable = true;
 						rbutton.innerText = "Complete";
-						span.focus();
 						window.getSelection().selectAllChildren(span);
+						span.focus();
+						span.onblur = () => rbutton.click();
 					}
-					else {
+					else { //Make it not-edittable.
 						if (span.dataset.previousName != span.innerText) SaveToCloudFlare();
 						delete span.dataset.previousName;
-						span.contentEditable = false;
 						rbutton.innerText = "Rename";
 						window.getSelection().removeAllRanges();
+						span.onblur = null;
 					}
 				};
 			summary.appendChild(rbutton);
@@ -641,6 +654,46 @@ function AddInventory () {
 			button.onclick = () => AddGear(div);
 	details.appendChild(div);
 	
+	list.appendChild(details);
+	return details;
+}
+
+function AddSpellList(){
+	document.getElementById('SpellListName').value = "";
+	document.getElementById('LowestSpellLevel').value = "";
+	document.getElementById('HighestSpellLevel').value = "";
+	document.getElementById('overlay').style.display = document.getElementById('SpellListMenu').style.display = 'block';
+	
+	document.getElementById('CreateSpellList').onclick = () => {
+		const name  = document.getElementById('SpellListName').value;
+		const type  = document.getElementById('SpellListType').value;
+		const min   = document.getElementById('LowestSpellLevel').value;
+		const max   = document.getElementById('HighestSpellLevel').value;
+		AddSpellListTable(list, name, type, loc, qty, wt, notes);
+		
+		SaveToCloudFlare();
+		CloseOverlay();
+	};
+}
+
+function AddSpellListTable(name,type,min,max) {
+	const list = document.getElementById("SpellListList");
+		const special_div = document.createElement("div");
+			special_div.setAttribute("style","width:1000px;height:0px;float:left");
+	list.appendChild(special_div);
+	
+	const details = document.createElement("details");
+		details.setAttribute("style","padding-left:15px");
+		details.open = true;
+		
+		const table = document.getElementById("table");
+			table.dataset.type = type;
+			table.setAttribute("style","width:97%");
+			table.createCaption();
+			table.innerHTML = "<b>Spells</b>";
+			table.caption.style = "font-size:150%";
+			
+			let row = table.insertRow(-1);
 	list.appendChild(details);
 	return details;
 }
