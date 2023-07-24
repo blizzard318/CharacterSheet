@@ -63,6 +63,18 @@ function UpdateSkillRanksAllocated(type) {
 	document.getElementById(id).value = totalvalue;
 }
 
+function ModifySpellLevel() {
+	const low  = document.getElementById('LowestSpellLevel');
+	const high  = document.getElementById('HighestSpellLevel');
+	const lowval = low.value;
+	const highval = high.value;
+	low.innerHTML = high.innerHTML = '';
+	for (let i = 0; i <= highval; i++) low.add(new Option(i));
+	for (let i = lowval; i <= 9; i++) high.add(new Option(i));
+	low.value = lowval;
+	high.value = highval;
+}
+
 function SetUpFunctions() { //This adds events to elements
 	document.getElementById("ConfirmCancel").onclick = CloseOverlay;
 	
@@ -100,6 +112,10 @@ function SetUpFunctions() { //This adds events to elements
 		if (Rows[i].cells.length == 0) continue;
 		Rows[i].cells[5].firstChild.addEventListener('focusout', _ => UpdateSkillRanksAllocated('Background'));
 	}
+	
+	document.getElementById('LowestSpellLevel').addEventListener('focusout', _ => ModifySpellLevel());
+	document.getElementById('HighestSpellLevel').addEventListener('focusout', _ => ModifySpellLevel());
+	ModifySpellLevel();
 	
 	if (document.getElementById("CharacterIndex").value == "") return; //Strangers don't get to save.
 	document.querySelectorAll('input').forEach(inp => {

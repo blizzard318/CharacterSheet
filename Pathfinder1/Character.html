@@ -1152,158 +1152,24 @@
 		<details id="SpellsDetails">
 			<summary>Spells</summary>
 			<article>
-				<button type="button" onclick="AddSpellList()" style="float:left">
-					+Spell List
-				</button>
-				<div id="SpellListList"></div>
-				
-				<table style="width:97%">
-				<caption style="font-size:150%"><b>Spells</b></caption>
-					<tr>
-						<th>Spell Level</th>
-						<th>0th</th>
-						<th>1st</th>
-						<th>2nd</th>
-						<th>3rd</th>
-						<th>4th</th>
-						<th>5th</th>
-						<th>6th</th>
-						<th>7th</th>
-						<th>8th</th>
-						<th>9th</th>
-					</tr>
-					<tr>
-						<td style="text-align:center">Spells Known</td>
-						<td><input id="Know0" style="width:50px"/></td>
-						<td><input id="Know1" style="width:50px"/></td>
-						<td><input id="Know2" style="width:50px"/></td>
-						<td><input id="Know3" style="width:50px"/></td>
-						<td><input id="Know4" style="width:50px"/></td>
-						<td><input id="Know5" style="width:50px"/></td>
-						<td><input id="Know6" style="width:50px"/></td>
-						<td><input id="Know7" style="width:50px"/></td>
-						<td><input id="Know8" style="width:50px"/></td>
-						<td><input id="Know9" style="width:50px"/></td>
-					</tr>
-					<tr>
-						<td style="text-align:center">Spells DC</td>
-						<td><input id="SpellDC0" style="width:50px"/></td>
-						<td><input id="SpellDC1" style="width:50px"/></td>
-						<td><input id="SpellDC2" style="width:50px"/></td>
-						<td><input id="SpellDC3" style="width:50px"/></td>
-						<td><input id="SpellDC4" style="width:50px"/></td>
-						<td><input id="SpellDC5" style="width:50px"/></td>
-						<td><input id="SpellDC6" style="width:50px"/></td>
-						<td><input id="SpellDC7" style="width:50px"/></td>
-						<td><input id="SpellDC8" style="width:50px"/></td>
-						<td><input id="SpellDC9" style="width:50px"/></td>
-					</tr>
-					<tr>
-						<td style="text-align:center">Spells Per Day</td>
-						<td><input id="SpellDay0" style="width:50px"/></td>
-						<td><input id="SpellDay1" style="width:50px"/></td>
-						<td><input id="SpellDay2" style="width:50px"/></td>
-						<td><input id="SpellDay3" style="width:50px"/></td>
-						<td><input id="SpellDay4" style="width:50px"/></td>
-						<td><input id="SpellDay5" style="width:50px"/></td>
-						<td><input id="SpellDay6" style="width:50px"/></td>
-						<td><input id="SpellDay7" style="width:50px"/></td>
-						<td><input id="SpellDay8" style="width:50px"/></td>
-						<td><input id="SpellDay9" style="width:50px"/></td>
-					</tr>
-					<tr>
-						<td style="text-align:center">Bonus Spells</td>
-						<td><input style="width:50px;visibility:hidden"/></td>
-						<td><input id="SpellBonus1" style="width:50px"/></td>
-						<td><input id="SpellBonus2" style="width:50px"/></td>
-						<td><input id="SpellBonus3" style="width:50px"/></td>
-						<td><input id="SpellBonus4" style="width:50px"/></td>
-						<td><input id="SpellBonus5" style="width:50px"/></td>
-						<td><input id="SpellBonus6" style="width:50px"/></td>
-						<td><input id="SpellBonus7" style="width:50px"/></td>
-						<td><input id="SpellBonus8" style="width:50px"/></td>
-						<td><input id="SpellBonus9" style="width:50px"/></td>
-					</tr>
-				</table>
-				<br />
-				<div class="black" style="width:140px;height:60px">
-					<span>Conditional</span>
-					<label class="blackLabel">Modifiers</label>
-				</div>
-				<div style="width:340px;height:60px;float:left;">
-					<input id="Spell-DC-Mod" />
-					<label style="font-size:12px;line-height:20px;width:100px">Spell DC Modifiers</label>
-				</div>
-				<div class="black" style="width:140px;height:60px">
-					<span>Specialty</span>
-					<label class="blackLabel">Schools/Domains/Bloodlines</label>
-				</div>
-				<div style="width:340px;height:60px;float:left;">
-					<input id="Specialty" />
-					<label style="font-size:12px;line-height:20px;width:300px">Specialised & Opposed Schools, Bloodlines, Domains</label>
-				</div>
-				
 				<div style="clear:both;text-align:left">
 					<button type="button" onclick="">
 						+Spell-Like
 					</button>
+					<div id="SpellLikeList"></div>
 				</div>
-				<div style="clear:both;text-align:left">
-					<button type="button" onclick="">
-						+0th Level
-					</button>
-				</div>
-				<div style="clear:both;text-align:left">
-					<button type="button" onclick="">
-						+1st Level
-					</button>
-				</div>
-				<div style="clear:both;text-align:left">
-					<button type="button" onclick="">
-						+2nd Level
-					</button>
-				</div>
-				<div style="clear:both;text-align:left">
-					<button type="button" onclick="">
-						+3rd Level
-					</button>
-				</div>
-				<div style="clear:both;text-align:left">
-					<button type="button" onclick="">
-						+4th Level
-					</button>
-				</div>
-				<div style="clear:both;text-align:left">
-					<button type="button" onclick="">
-						+5th Level
-					</button>
-				</div>
-				<div style="clear:both;text-align:left">
-					<button type="button" onclick="">
-						+6th Level
-					</button>
-				</div>
-				<div style="clear:both;text-align:left">
-					<button type="button" onclick="">
-						+7th Level
-					</button>
-				</div>
-				<div style="clear:both;text-align:left">
-					<button type="button" onclick="">
-						+8th Level
-					</button>
-				</div>
-				<div style="clear:both;text-align:left">
-					<button type="button" onclick="">
-						+9th Level
-					</button>
-				</div>
-				
 				<div style="clear:both;text-align:left">
 					<button type="button" onclick="">
 						+Rituals
 					</button>
+					<div id="RitualList"></div>
 				</div>
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="AddSpellList()">
+						+Class Spell List
+					</button>
+				</div>
+				<div id="SpellListList"></div>
 			</article>
 		</details>
 		<br/>
@@ -1380,16 +1246,20 @@
 					<tr>
 						<td style="padding:0px 0px 0px 3px">Type:</td>
 						<td colspan="3"><select id="SpellListType" style="font-size:80%"/>
-							<option value="0">Spontaenous</option>
-							<option value="1">Prepared</option>
+							<option value="s">Spontaenous</option>
+							<option value="p">Prepared</option>
 						</select></td>
 					</tr>
 					<tr><td colspan="4" style="text-align:center"><b>Spell Levels</b></td></tr>
 					<tr>
-						<td>Lowest</td>
-						<td><input id="LowestSpellLevel" value="0" type="number" min="0" max="9" style="width:20px"></td>
-						<td>Highest</td>
-						<td><input id="HighestSpellLevel" value="9" type="number" min="0" max="9" style="width:20px"></td>
+						<td title="Inclusive">Lowest</td>
+						<td><select id="LowestSpellLevel" style="font-size:80%"/>
+							<option value="0">0</option>
+						</select></td>
+						<td title="Inclusive">Highest</td>
+						<td><select id="HighestSpellLevel" style="font-size:80%"/>
+							<option value="9">9</option>
+						</select></td>
 					</tr>
 				</table><hr/>
 				

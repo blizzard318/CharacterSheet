@@ -612,8 +612,8 @@ function AddInventory () {
 			let button = document.createElement("button"); //Delete Button
 				button.type = "button";
 				button.className = "custom";
-				button.setAttribute("style","background-color:dimgray;font-size:60%;height:auto;margin-left:5px");
-				button.innerText = "X";
+				button.setAttribute("style","background-color:dimgray;font-size:70%;height:auto;margin-left:5px");
+				button.innerText = "Delete";
 				button.onclick = () => {
 					document.getElementById('overlay').style.display = document.getElementById('ConfirmMenu').style.display = 'block';
 					document.getElementById('ConfirmDelete').onclick = function () {
@@ -660,16 +660,14 @@ function AddInventory () {
 
 function AddSpellList(){
 	document.getElementById('SpellListName').value = "";
-	document.getElementById('LowestSpellLevel').value = "";
-	document.getElementById('HighestSpellLevel').value = "";
 	document.getElementById('overlay').style.display = document.getElementById('SpellListMenu').style.display = 'block';
 	
 	document.getElementById('CreateSpellList').onclick = () => {
-		const name  = document.getElementById('SpellListName').value;
-		const type  = document.getElementById('SpellListType').value;
-		const min   = document.getElementById('LowestSpellLevel').value;
-		const max   = document.getElementById('HighestSpellLevel').value;
-		AddSpellListTable(list, name, type, loc, qty, wt, notes);
+		const name = document.getElementById('SpellListName').value;
+		const type = document.getElementById('SpellListType').value;
+		const min  = document.getElementById('LowestSpellLevel').value;
+		const max  = document.getElementById('HighestSpellLevel').value;
+		AddSpellListTable(name,type,parseInt(min),parseInt(max));
 		
 		SaveToCloudFlare();
 		CloseOverlay();
@@ -683,17 +681,171 @@ function AddSpellListTable(name,type,min,max) {
 	list.appendChild(special_div);
 	
 	const details = document.createElement("details");
-		details.setAttribute("style","padding-left:15px");
+		details.setAttribute("style","padding-left:10px");
 		details.open = true;
 		
-		const table = document.getElementById("table");
+		const summary = document.createElement("summary");
+		summary.setAttribute("style","float:left;font-size:150%;font-weight:bold");
+		summary.innerText = name + " Spells";
+		details.appendChild(summary);
+		
+		const table = document.createElement("table");
 			table.dataset.type = type;
 			table.setAttribute("style","width:97%");
-			table.createCaption();
-			table.innerHTML = "<b>Spells</b>";
-			table.caption.style = "font-size:150%";
 			
 			let row = table.insertRow(-1);
+				let td = document.createElement("th");
+				td.innerHTML = "Spell Level";
+			row.appendChild(td);
+			
+			for (let i = 0,j = min; i <= 9; i++,j++) {
+				td = document.createElement("th");
+				if (j <= max) {
+					switch (j) {
+						case 1:  td.innerHTML = "1st"; break;
+						case 2:  td.innerHTML = "2nd"; break;
+						case 3:  td.innerHTML = "3rd"; break;
+						default: td.innerHTML = j + "th"; break;
+					}
+				}
+				row.appendChild(td);
+			}
+			
+			const ColumnCount = max - min;
+			if (type == 's') { //Only spontaneous casters have Spells Known
+				row = table.insertRow(-1);
+				td = row.insertCell();
+				td.style.textAlign = 'center';
+				td.innerHTML = "Spell Known";
+				
+				for (let i = 0; i <= 9; i++) {
+					td = row.insertCell();
+						input = document.createElement("input");
+						if (i > ColumnCount)
+							input.setAttribute("style","width:50px;visibility:hidden");
+						else input.setAttribute("style","width:50px");
+					td.innerHTML = input.outerHTML;
+				}
+			}
+			
+			row = table.insertRow(-1);
+			td = row.insertCell();
+			td.style.textAlign = 'center';
+			td.innerHTML = "Spell DC";
+			
+			for (let i = 0; i <= 9; i++) {
+				let td = row.insertCell();
+					input = document.createElement("input");
+					if (i > ColumnCount)
+						input.setAttribute("style","width:50px;visibility:hidden");
+					else input.setAttribute("style","width:50px");
+				td.innerHTML = input.outerHTML;
+			}
+			
+			row = table.insertRow(-1);
+			td = row.insertCell();
+			td.style.textAlign = 'center';
+			td.innerHTML = "Spell Per Day";
+			
+			for (let i = 0; i <= 9; i++) {
+				td = row.insertCell();
+					input = document.createElement("input");
+					if (i > ColumnCount)
+						input.setAttribute("style","width:50px;visibility:hidden");
+					else input.setAttribute("style","width:50px");
+				td.innerHTML = input.outerHTML;
+			}
+			
+			row = table.insertRow(-1);
+			td = row.insertCell();
+			td.style.textAlign = 'center';
+			td.innerHTML = "Bonus Spells";
+			
+			for (let i = 0; i <= 9; i++) {
+				td = row.insertCell();
+					input = document.createElement("input");
+					if (i == 0 || i > ColumnCount)
+						input.setAttribute("style","width:50px;visibility:hidden");
+					else input.setAttribute("style","width:50px");
+				td.innerHTML = input.outerHTML;
+			}
+		details.appendChild(table);
+		
+		details.appendChild(document.createElement("br"));
+		
+		let div = document.createElement("div");
+			div.className = 'black';
+			div.style = "width:130px;height:60px";
+			
+			let span = document.createElement("span");
+				span.innerText = 'Conditional';
+			div.appendChild(span);
+			
+			let label = document.createElement("label");
+				label.className = 'blackLabel';
+				label.innerText = 'Modifiers';
+			div.appendChild(label);
+		details.appendChild(div);
+			
+			
+		div = document.createElement("div");
+			div.style = "width:340px;height:60px;float:left";
+			
+			div.appendChild(document.createElement("input"));
+			
+			label = document.createElement("label");
+				label.style = 'font-size:12px;line-height:20px;width:300px';
+				label.innerText = 'Spell DC Modifiers';
+			div.appendChild(label);
+		details.appendChild(div);
+		
+		
+		div = document.createElement("div");
+			div.className = 'black';
+			div.style = "width:130px;height:60px";
+			
+			span = document.createElement("span");
+				span.innerText = 'Specialty';
+			div.appendChild(span);
+			
+			label = document.createElement("label");
+				label.className = 'blackLabel';
+				label.innerText = 'School/Domain/Bloodline';
+			div.appendChild(label);
+		details.appendChild(div);
+			
+			
+		div = document.createElement("div");
+			div.style = "width:340px;height:60px;float:left";
+			
+			div.appendChild(document.createElement("input"));
+			
+			label = document.createElement("label");
+				label.style = 'font-size:12px;line-height:20px;width:300px';
+				label.innerText = 'Specialised & Opposed Schools, Bloodlines, Domains';
+			div.appendChild(label);
+		details.appendChild(div);
+		
+		
+		for (let i = min; i <= max; i++) {
+			div = document.createElement("div");
+				div.style = "clear:both;text-align:left";
+				
+				const button = document.createElement("button");
+					button.type = "button";
+					button.onclick = () => {};
+					switch (i) {
+						case 1:  button.innerText = "+1st Level"; break;
+						case 2:  button.innerText = "+2nd Level"; break;
+						case 3:  button.innerText = "+3rd Level"; break;
+						default: button.innerText = "+" + i + "th Level"; break;
+					}
+				div.appendChild(button);
+				
+				div.appendChild(document.createElement("div")); //List of spells
+			details.appendChild(div);
+		}
+		
 	list.appendChild(details);
 	return details;
 }
