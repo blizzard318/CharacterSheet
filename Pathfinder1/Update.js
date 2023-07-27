@@ -764,7 +764,7 @@ function AddSpellListTable(name,type,min,max) {
 			for (let i = 0; i <= 9; i++) {
 				td = row.insertCell();
 					input = document.createElement("input");
-					if (i == 0 || i > ColumnCount)
+					if ((min == 0 && i == 0) || i > ColumnCount)
 						input.setAttribute("style","width:50px;visibility:hidden");
 					else input.setAttribute("style","width:50px");
 				td.innerHTML = input.outerHTML;
