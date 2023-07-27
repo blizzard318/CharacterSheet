@@ -1238,14 +1238,15 @@
 			<span id="SpellListMenu" class="menu" style="width:300px;font-size:130%">
 				Customize your new spell list.<br/>
 				These choices are final.<br/>
-				<hr/><table style="margin-left:auto;margin-right:auto">
+				<hr/>
+				<table style="margin-left:auto;margin-right:auto">
 					<tr>
 						<td>Class:</td>
 						<td colspan="3"><input id="SpellListName" style="font-size:80%;width:97%;text-align:left"/></td>
 					</tr>
 					<tr>
 						<td style="padding:0px 0px 0px 3px">Type:</td>
-						<td colspan="3"><select id="SpellListType" style="font-size:80%"/>
+						<td colspan="3"><select id="SpellListType" style="font-size:80%">
 							<option value="s">Spontaenous</option>
 							<option value="p">Prepared</option>
 						</select></td>
@@ -1253,20 +1254,29 @@
 					<tr><td colspan="4" style="text-align:center"><b>Spell Levels</b></td></tr>
 					<tr>
 						<td title="Inclusive">Lowest</td>
-						<td><select id="LowestSpellLevel" style="font-size:80%"/>
+						<td><select id="LowestSpellLevel" style="font-size:80%">
 							<option value="0">0</option>
 						</select></td>
 						<td title="Inclusive">Highest</td>
-						<td><select id="HighestSpellLevel" style="font-size:80%"/>
+						<td><select id="HighestSpellLevel" style="font-size:80%">
 							<option value="9">9</option>
 						</select></td>
 					</tr>
-				</table><hr/>
+				</table>
+				<hr/>
 				
 				<span style="text-align:center">
 					<button id="CreateSpellList">Create</button>
 					<button onclick="CloseOverlay()">Cancel</button>
 				</span>
+			</span>
+			<span id="SpellMenu" class="menu" style="width:300px;font-size:130%">
+				<div id="SpellMenuName" style="display:inline"></div><hr/>
+				<table style="margin-left:auto;margin-right:auto">
+					<tr>
+						<td>Name</td>
+					</tr>
+				</table>
 			</span>
 		</div>
     </div>
