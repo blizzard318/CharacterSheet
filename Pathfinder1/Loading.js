@@ -236,6 +236,8 @@ function LoadFromJSON (character) {
 		}
 		GetLocalWeight(details.lastChild);
 	}
+	
+	set("Notes", character.notes);
 }
 
 //Process json from CharacterSheet.co.uk to CloudFlare KV
@@ -463,6 +465,8 @@ function ConvertFromMottokrosh (mottokrosh) {
 		character.iList[0].gList[i].wt	  = mottokrosh.gear[i].weight;	 
 		character.iList[0].gList[i].notes = mottokrosh.gear[i].notes;
 	}
+	
+	character.notes = mottokrosh.notes;
 	
 	return character;
 }

@@ -265,6 +265,7 @@ function GetCharacter () {
 		}
 		Trim(character.iList[i]);
 	}
+	character.notes = GetValue("Notes");
 	
 	Trim(character);
 	return character;

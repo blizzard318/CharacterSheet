@@ -1270,13 +1270,27 @@
 					<button onclick="CloseOverlay()">Cancel</button>
 				</span>
 			</span>
-			<span id="SpellMenu" class="menu" style="width:300px;font-size:130%">
+			<span id="SpellMenu" class="menu" style="width:800px;font-size:110%;line-height:1.1">
 				<div id="SpellMenuName" style="display:inline"></div><hr/>
 				<table style="margin-left:auto;margin-right:auto">
 					<tr>
-						<td>Name</td>
+						<td colspan="3">Name<input id="SpellName" style="width:95%;text-align:left"/></td>
+						<td rowspan ="4">Description<textarea id="SpellDescription" style="min-width:400px;min-height:200px;text-align:left;resize:vertical"></textarea></td>
 					</tr>
+					<tr>
+						<td>Level<input id="SpellLevel" style="width:80%"/></td>
+						<td>Used<input id="SpellUsed" style="width:80%"/></td>
+						<td>Per Day<input id="SpellPerDay" style="width:80%"/></td>
+					</tr>
+					<tr><td colspan="3">School<input id="SpellSchool" style="width:95%;text-align:left"/></td></tr>
+					<tr><td colspan="3">Subschool<input id="SpellSubschool" style="width:95%;text-align:left"/></td></tr>
 				</table>
+				<hr/>
+				
+				<span style="text-align:center">
+					<button id="CreateSpell"></button>
+					<button onclick="DeleteSpell"></button>
+				</span>
 			</span>
 		</div>
     </div>

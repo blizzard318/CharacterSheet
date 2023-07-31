@@ -75,13 +75,12 @@ function AddCustomButton (list, name, type, notes) {
 
 function AddCustom (type){ //Feat/Special Ability/Trait
 	document.getElementById('CustomMenuName').innerHTML = "<b>New " + type + "</b>";
-	document.getElementById('CreateCustom').innerText = "Create";
-	document.getElementById('DeleteCustom').innerText = "Cancel";
 	document.getElementById('CustomName' ).value = "";
 	document.getElementById('CustomType' ).value = "";
 	document.getElementById('CustomNotes').value = "";
 	const list = GetListByType(type);
 	
+	document.getElementById('CreateCustom').innerText = "Create";
 	document.getElementById('CreateCustom').onclick = () => {
 		const name = document.getElementById('CustomName').value;
 		const type = document.getElementById('CustomType').value;
@@ -91,6 +90,7 @@ function AddCustom (type){ //Feat/Special Ability/Trait
 		SaveToCloudFlare();
 		CloseOverlay();
 	};
+	document.getElementById('DeleteCustom').innerText = "Cancel";
 	document.getElementById('DeleteCustom').onclick = CloseOverlay;
 }
 
@@ -826,14 +826,29 @@ function AddSpellListTable(name,type,min,max) {
 			div.appendChild(label);
 		details.appendChild(div);
 		
+		if (type == 's') { //Only spontaneous casters have spell cast tracker
+			let u = document.createElement("u");
+				u.style = 'clear:both;text-align:left;float:left;font-size:150%';
+				u.innerText = 'Spells Cast:';
+			details.appendChild(u);
+		}
 		
 		for (let i = min; i <= max; i++) {
 			div = document.createElement("div");
 				div.style = "clear:both;text-align:left";
 				
+				if (type == 's') { //Only spontaneous casters have spell cast tracker
+					input = document.createElement('input');
+						input.type = 'number';
+						if (i == 0) input.setAttribute("style","width:40px;margin-right:3px;visibility:hidden");
+						else input.setAttribute("style","width:40px;margin-right:3px;margin-bottom:8px");
+						input.setAttribute("min","0");
+					div.appendChild(input);
+				}
+				
 				const button = document.createElement("button");
 					button.type = "button";
-					button.onclick = () => {};
+					button.onclick = () => { AddSpell() }; //EDIT FROM HERE ON
 					switch (i) {
 						case 1:  button.innerText = "+1st Level"; break;
 						case 2:  button.innerText = "+2nd Level"; break;
@@ -848,4 +863,54 @@ function AddSpellListTable(name,type,min,max) {
 		
 	list.appendChild(details);
 	return details;
+}
+
+function EditSpell(button){
+	document.getElementById('SpellMenuName').innerHTML = "<b>Edit Gear</b>";
+	document.getElementById('CreateSpell').innerText = "Ok";
+	document.getElementById('DeleteSpell').innerText = "Delete";
+}
+
+function AddSpellButton(list, name, description, level, used, perday, school, sub){
+	const button = document.createElement("button");
+		button.onclick = () => EditSpell(button);
+		button.style = "font-size:90%;float:left"
+		button.className = "custom";
+		button.innerHTML = "<b>" + name + "</b> <i>[" + used + "/" + perday + "]</i>";
+		button.dataset.name  		= name;
+		button.dataset.description  = description;
+		button.dataset.level   		= level;
+		button.dataset.used   		= used;
+		button.dataset.perday    	= perday;
+		button.dataset.school 		= school;
+		button.dataset.sub 			= sub;
+	list.appendChild(button);
+}
+
+function AddSpell(type, list) {
+	document.getElementById('SpellMenuName').innerHTML = "<b>New " + type + "</b>";
+	document.getElementById('SpellName' ).value = "";
+	document.getElementById('SpellDescription' ).value = "";
+	document.getElementById('SpellLevel').value = "";
+	document.getElementById('SpellUsed').value = "";
+	document.getElementById('SpellPerDay').value = "";
+	document.getElementById('SpellSchool').value = "";
+	document.getElementById('SpellSubschool').value = "";
+	
+	document.getElementById('CreateSpell').innerText = "Create";
+	document.getElementById('CreateSpell').onclick = () => {
+		const name 		  = document.getElementById('SpellName').value;
+		const description = document.getElementById('SpellDescription').value;
+		const level 	  = document.getElementById('SpellLevel').value;
+		const used 		  = document.getElementById('SpellUsed').value;
+		const perday 	  = document.getElementById('SpellPerDay').value;
+		const school 	  = document.getElementById('SpellSchool').value;
+		const sub		  = document.getElementById('SpellSubschool').value;
+		AddSpellButton(list, name, description, level, used, perday, school, sub);
+		
+		SaveToCloudFlare();
+		CloseOverlay();
+	};
+	document.getElementById('DeleteSpell').innerText = "Cancel";
+	document.getElementById('DeleteSpell').onclick = CloseOverlay;
 }
