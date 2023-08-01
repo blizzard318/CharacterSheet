@@ -117,6 +117,14 @@ function SetUpFunctions() { //This adds events to elements
 	document.getElementById('HighestSpellLevel').addEventListener('focusout', _ => ModifySpellLevel());
 	ModifySpellLevel();
 	
+	let list = document.getElementById('SpellLikeList');
+	document.getElementById('SpellLikeBtn').dataset.type = "Spell-Like";
+	document.getElementById('SpellLikeBtn').onclick = () => { AddSpell("Spell-Like", list); };
+	
+	list = document.getElementById('RitualList');
+	document.getElementById('RitualBtn').dataset.type = "Ritual Spell";
+	document.getElementById('RitualBtn').onclick = () => { AddSpell("Ritual Spell", list); };
+	
 	if (document.getElementById("CharacterIndex").value == "") return; //Strangers don't get to save.
 	document.querySelectorAll('input').forEach(inp => {
 		if (inp.disabled) return;

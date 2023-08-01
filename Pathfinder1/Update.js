@@ -6,6 +6,8 @@ function CloseOverlay() {
 	document.getElementById('CustomMenu').style.display = 'none';
 	document.getElementById('ConfirmMenu').style.display = 'none';
 	document.getElementById('GearMenu').style.display = 'none';
+	document.getElementById('SpellListMenu').style.display = 'none';
+	document.getElementById('SpellMenu').style.display = 'none';
 }
 
 function GetListByType (type) {
@@ -745,7 +747,7 @@ function AddSpellListTable(name,type,min,max) {
 			row = table.insertRow(-1);
 			td = row.insertCell();
 			td.style.textAlign = 'center';
-			td.innerHTML = "Spell Per Day";
+			td.innerHTML = "Spells Per Day";
 			
 			for (let i = 0; i <= 9; i++) {
 				td = row.insertCell();
@@ -848,16 +850,19 @@ function AddSpellListTable(name,type,min,max) {
 				
 				const button = document.createElement("button");
 					button.type = "button";
-					button.onclick = () => { AddSpell() }; //EDIT FROM HERE ON
 					switch (i) {
-						case 1:  button.innerText = "+1st Level"; break;
-						case 2:  button.innerText = "+2nd Level"; break;
-						case 3:  button.innerText = "+3rd Level"; break;
-						default: button.innerText = "+" + i + "th Level"; break;
+						case 1:  button.dataset.type = "1st Level"; break;
+						case 2:  button.dataset.type = "2nd Level"; break;
+						case 3:  button.dataset.type = "3rd Level"; break;
+						default: button.dataset.type = i + "th Level"; break;
 					}
+					button.innerText = '+' + button.dataset.type;
+					button.dataset.type += " Spell";
 				div.appendChild(button);
 				
-				div.appendChild(document.createElement("div")); //List of spells
+				const list = document.createElement("div"); //List of spells
+					button.onclick = () => { AddSpell(button.dataset.type, list); };
+				div.appendChild(list); 
 			details.appendChild(div);
 		}
 		
@@ -866,6 +871,7 @@ function AddSpellListTable(name,type,min,max) {
 }
 
 function EditSpell(button){
+	const type = button.dataset.type;
 	document.getElementById('SpellMenuName').innerHTML = "<b>Edit Gear</b>";
 	document.getElementById('CreateSpell').innerText = "Ok";
 	document.getElementById('DeleteSpell').innerText = "Delete";
@@ -896,6 +902,7 @@ function AddSpell(type, list) {
 	document.getElementById('SpellPerDay').value = "";
 	document.getElementById('SpellSchool').value = "";
 	document.getElementById('SpellSubschool').value = "";
+	document.getElementById('overlay').style.display = document.getElementById('SpellMenu').style.display = 'block';
 	
 	document.getElementById('CreateSpell').innerText = "Create";
 	document.getElementById('CreateSpell').onclick = () => {
