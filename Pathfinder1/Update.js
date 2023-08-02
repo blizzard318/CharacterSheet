@@ -860,7 +860,7 @@ function AddSpellListTable(name,type,min,max) {
 					button.dataset.type += " Spell";
 				div.appendChild(button);
 				
-				const list = document.createElement("div"); //List of spells
+				const list = document.createElement("span"); //List of spells
 					button.onclick = () => { AddSpell(button.dataset.type, list); };
 				div.appendChild(list); 
 			details.appendChild(div);
@@ -880,7 +880,7 @@ function EditSpell(button){
 function AddSpellButton(list, name, description, level, used, perday, school, sub){
 	const button = document.createElement("button");
 		button.onclick = () => EditSpell(button);
-		button.style = "font-size:90%;float:left"
+		button.style = "font-size:70%"
 		button.className = "custom";
 		button.innerHTML = "<b>" + name + "</b> <i>[" + used + "/" + perday + "]</i>";
 		button.dataset.name  		= name;
