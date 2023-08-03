@@ -37,7 +37,8 @@ function EditCustom (button, type) { //Feat/Special Ability/Trait
 	document.getElementById('CreateCustom').onclick = () => {
 		const name = document.getElementById('CustomName').value;
 		const type = document.getElementById('CustomType').value;
-		button.innerHTML = "<b>" + name + "</b> <i>(" + type + ")</i>";
+		button.innerHTML = "<b>" + name + "</b>";
+		if (type != "") button.innerHTML +=  " <i>(" + type + ")</i>";
 		button.dataset.name  = name;
 		button.dataset.type  = type;
 		button.dataset.notes = document.getElementById('CustomNotes').value;
@@ -68,7 +69,8 @@ function AddCustomButton (list, name, type, notes) {
 		button.onclick = () => EditCustom(button, type);
 		button.style = "font-size:50%"
 		button.className = "custom";
-		button.innerHTML = "<b>" + name + "</b> <i>(" + type + ")</i>";
+		button.innerHTML = "<b>" + name + "</b>";
+		if (type != "") button.innerHTML +=  " <i>(" + type + ")</i>";
 		button.dataset.name  = name;
 		button.dataset.type  = type;
 		button.dataset.notes = notes;
@@ -123,7 +125,8 @@ function EditGear (button) {
 		if (select.value != '') inventories[select.value].lastChild.appendChild(button);
 		const name  = document.getElementById('GearName').value;
 		const type  = document.getElementById('GearType').value;
-		button.innerHTML = "<b>" + name + "</b> <i>(" + type + ")</i>";
+		button.innerHTML = "<b>" + name + "</b>";
+		if (type != "") button.innerHTML +=  " <i>(" + type + ")</i>";
 		button.dataset.name  = name;
 		button.dataset.type  = type;
 		button.dataset.loc   = document.getElementById('GearLocation').value;
@@ -160,7 +163,8 @@ function AddGearButton (list, name, type, loc, qty, wt, notes){
 		button.onclick = () => EditGear(button);
 		button.style = "font-size:90%;float:left"
 		button.className = "custom";
-		button.innerHTML = "<b>" + name + "</b> <i>(" + type + ")</i>";
+		button.innerHTML = "<b>" + name + "</b>";
+		if (type != "") button.innerHTML +=  " <i>(" + type + ")</i>";
 		button.dataset.name  = name;
 		button.dataset.type  = type;
 		button.dataset.loc   = loc;
@@ -683,16 +687,19 @@ function AddSpellListTable(name,type,min,max) {
 	list.appendChild(special_div);
 	
 	const details = document.createElement("details");
+		details.dataset.name = name;
+		details.dataset.type = type;
+		details.dataset.min = min;
+		details.dataset.max = max;
 		details.setAttribute("style","padding-left:10px");
 		details.open = true;
 		
 		const summary = document.createElement("summary");
 		summary.setAttribute("style","float:left;font-size:150%;font-weight:bold");
-		summary.innerText = name + " Spells";
+		summary.innerText = name + " Class Spells";
 		details.appendChild(summary);
 		
 		const table = document.createElement("table");
-			table.dataset.type = type;
 			table.setAttribute("style","width:97%");
 			
 			let row = table.insertRow(-1);
@@ -829,9 +836,9 @@ function AddSpellListTable(name,type,min,max) {
 		details.appendChild(div);
 		
 		if (type == 's') { //Only spontaneous casters have spell cast tracker
-			let u = document.createElement("u");
+			let u = document.createElement("b");
 				u.style = 'clear:both;text-align:left;float:left;font-size:150%';
-				u.innerText = 'Spells Cast:';
+				u.innerText = 'Cast';
 			details.appendChild(u);
 		}
 		
@@ -848,20 +855,20 @@ function AddSpellListTable(name,type,min,max) {
 					div.appendChild(input);
 				}
 				
+				const list = document.createElement("span"); //List of spells
+					switch (i) {
+						case 1:  list.dataset.type = "1st Level"; break;
+						case 2:  list.dataset.type = "2nd Level"; break;
+						case 3:  list.dataset.type = "3rd Level"; break;
+						default: list.dataset.type = i + "th Level"; break;
+					}
 				const button = document.createElement("button");
 					button.type = "button";
-					switch (i) {
-						case 1:  button.dataset.type = "1st Level"; break;
-						case 2:  button.dataset.type = "2nd Level"; break;
-						case 3:  button.dataset.type = "3rd Level"; break;
-						default: button.dataset.type = i + "th Level"; break;
-					}
-					button.innerText = '+' + button.dataset.type;
-					button.dataset.type += " Spell";
+					button.innerText = '+' + list.dataset.type;
+					list.dataset.type += " Spell";
 				div.appendChild(button);
 				
-				const list = document.createElement("span"); //List of spells
-					button.onclick = () => { AddSpell(button.dataset.type, list); };
+					button.onclick = () => { AddSpell(list.dataset.type, list, i); };
 				div.appendChild(list); 
 			details.appendChild(div);
 		}
@@ -871,10 +878,57 @@ function AddSpellListTable(name,type,min,max) {
 }
 
 function EditSpell(button){
-	const type = button.dataset.type;
-	document.getElementById('SpellMenuName').innerHTML = "<b>Edit Gear</b>";
+	const type = button.parentNode.dataset.type ?? button.parentNode.parentNode.firstElementChild .dataset.type;
+	document.getElementById('SpellMenuName').innerHTML = "<b>Edit " + type + "</b>";
+	document.getElementById('SpellName').value = button.dataset.name;
+	document.getElementById('SpellDescription').value = button.dataset.description;
+	document.getElementById('SpellLevel').value = button.dataset.level;
+	document.getElementById('SpellUsed').value = button.dataset.used;
+	document.getElementById('SpellPerDay').value = button.dataset.perday;
+	document.getElementById('SpellSchool').value = button.dataset.school;
+	document.getElementById('SpellSubschool').value = button.dataset.sub;
+	document.getElementById('overlay').style.display = document.getElementById('SpellMenu').style.display = 'block';
+	
 	document.getElementById('CreateSpell').innerText = "Ok";
+	document.getElementById('CreateSpell').onclick = () => {
+		const name = document.getElementById('SpellName').value;
+		const used = document.getElementById('SpellUsed').value;
+		const perday = document.getElementById('SpellPerDay').value;
+		
+		button.innerHTML = "<b>" + name + "</b>";
+		if (used != "") {
+			button.innerHTML += " <i>[" + used;
+			if (perday != "") button.innerHTML += "/" + perday;
+			button.innerHTML += "]</i>";
+		} else if (perday != "") button.innerHTML += " <i>[0/" + perday + "]</i>";
+		
+		button.dataset.name  		= name;
+		button.dataset.description  = document.getElementById('SpellDescription').value;
+		button.dataset.level   		= document.getElementById('SpellLevel').value;
+		button.dataset.used   		= used;
+		button.dataset.perday    	= perday;
+		button.dataset.school 		= document.getElementById('SpellSchool').value;
+		button.dataset.sub 			= document.getElementById('SpellSubschool').value;
+		SaveToCloudFlare();
+		CloseOverlay();
+	};
 	document.getElementById('DeleteSpell').innerText = "Delete";
+	document.getElementById('DeleteSpell').onclick = () => {
+		document.getElementById('SpellMenu').style.display = 'none';
+		document.getElementById('ConfirmMenu').style.display = 'block';
+		
+		document.getElementById('ConfirmDelete').onclick = () => {
+			document.getElementById("ConfirmCancel").onclick = CloseOverlay;
+			button.remove();
+			CloseOverlay();
+			SaveToCloudFlare();
+		};
+		document.getElementById("ConfirmCancel").onclick = () => {
+			document.getElementById("ConfirmCancel").onclick = CloseOverlay;
+			document.getElementById('SpellMenu').style.display = 'block';
+			document.getElementById('ConfirmMenu').style.display = 'none';
+		};
+	};
 }
 
 function AddSpellButton(list, name, description, level, used, perday, school, sub){
@@ -882,7 +936,14 @@ function AddSpellButton(list, name, description, level, used, perday, school, su
 		button.onclick = () => EditSpell(button);
 		button.style = "font-size:70%"
 		button.className = "custom";
-		button.innerHTML = "<b>" + name + "</b> <i>[" + used + "/" + perday + "]</i>";
+		
+		button.innerHTML = "<b>" + name + "</b>";
+		if (used != "") {
+			button.innerHTML += " <i>[" + used;
+			if (perday != "") button.innerHTML += "/" + perday;
+			button.innerHTML += "]</i>";
+		} else if (perday != "") button.innerHTML += " <i>[0/" + perday + "]</i>";
+		
 		button.dataset.name  		= name;
 		button.dataset.description  = description;
 		button.dataset.level   		= level;
@@ -893,9 +954,9 @@ function AddSpellButton(list, name, description, level, used, perday, school, su
 	list.appendChild(button);
 }
 
-function AddSpell(type, list) {
+function AddSpell(type, list, defaultLevel) {
 	document.getElementById('SpellMenuName').innerHTML = "<b>New " + type + "</b>";
-	document.getElementById('SpellName' ).value = "";
+	document.getElementById('SpellName').value = "";
 	document.getElementById('SpellDescription' ).value = "";
 	document.getElementById('SpellLevel').value = "";
 	document.getElementById('SpellUsed').value = "";
@@ -903,6 +964,12 @@ function AddSpell(type, list) {
 	document.getElementById('SpellSchool').value = "";
 	document.getElementById('SpellSubschool').value = "";
 	document.getElementById('overlay').style.display = document.getElementById('SpellMenu').style.display = 'block';
+	
+	let casterType = list.parentNode.parentNode.dataset.type;
+	document.getElementById('SpellLevel').parentNode.style.visibility = casterType == undefined ? "visible" : "hidden";
+	casterType ??= list.dataset.type;
+	document.getElementById('SpellUsed').parentNode.style.visibility  = casterType != 's' ? "visible" : "hidden";
+	document.getElementById('SpellPerDay').parentNode.style.visibility = casterType != 's' ? "visible" : "hidden";
 	
 	document.getElementById('CreateSpell').innerText = "Create";
 	document.getElementById('CreateSpell').onclick = () => {

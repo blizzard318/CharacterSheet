@@ -1153,16 +1153,16 @@
 			<summary>Spells</summary>
 			<article>
 				<div style="clear:both;text-align:left">
-					<button id="SpellLikeBtn" type="button">
+					<button id="SpellLikeBtn" type="button" data-type="Spell-Like">
 						+Spell-Like
 					</button>
 					<span id="SpellLikeList"></span>
 				</div>
 				<div style="clear:both;text-align:left">
-					<button id="RitualBtn" type="button">
+					<button id="RitualBtn" type="button" data-type="Ritual Spell">
 						+Rituals
 					</button>
-					<span id="RitualList"></span>
+					<span id="RitualList" data-type="s"></span>
 				</div>
 				<div style="clear:both;text-align:left">
 					<button type="button" onclick="AddSpellList()">
@@ -1279,8 +1279,8 @@
 					</tr>
 					<tr>
 						<td>Level<input id="SpellLevel" style="width:80%"/></td>
-						<td>Used<input id="SpellUsed" style="width:80%"/></td>
-						<td>Per Day<input id="SpellPerDay" style="width:80%"/></td>
+						<td>Used<input id="SpellUsed" type="number" style="width:80%"/></td>
+						<td>Per Day<input id="SpellPerDay" type="number" style="width:80%"/></td>
 					</tr>
 					<tr><td colspan="3">School<input id="SpellSchool" style="width:95%;text-align:left"/></td></tr>
 					<tr><td colspan="3">Subschool<input id="SpellSubschool" style="width:95%;text-align:left"/></td></tr>

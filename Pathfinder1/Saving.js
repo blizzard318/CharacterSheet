@@ -126,7 +126,7 @@ function GetCharacter () {
 	character.skills = {}; //Skills
 	function SaveSkill (name, docname) {
 		const row = document.getElementById(docname+"-row");
-		character.skills[name] = {};
+		character.skills[name] 		  = {};
 		character.skills[name].cs 	  = row.cells[0].firstChild.checked;
 		character.skills[name].total  = row.cells[2].firstChild.value ?? null;
 		character.skills[name].rank   = row.cells[5].firstChild.value ?? null;
@@ -265,6 +265,53 @@ function GetCharacter () {
 		}
 		Trim(character.iList[i]);
 	}
+	
+	character.spelllikes = []; //spell-like list
+	const spelllikes = document.getElementById("SpellLikeList").childNodes;
+	for (let i = 0; i < spelllikes.length; i++) {
+		character.spelllikes[i] 			= {};
+		character.spelllikes[i].name 		= spelllikes[i].dataset.name;
+		character.spelllikes[i].description = spelllikes[i].dataset.description;
+		character.spelllikes[i].level 		= spelllikes[i].dataset.level;
+		character.spelllikes[i].used 		= spelllikes[i].dataset.used;
+		character.spelllikes[i].perday 		= spelllikes[i].dataset.perday;
+		character.spelllikes[i].school 		= spelllikes[i].dataset.school;
+		character.spelllikes[i].sub 		= spelllikes[i].dataset.sub;
+		Trim(character.spelllikes[i]);
+	}
+	
+	character.rituals = []; //ritual list
+	const rituals = document.getElementById("RitualList").childNodes;
+	for (let i = 0; i < rituals.length; i++) {
+		character.rituals[i] 			 = {};
+		character.rituals[i].name 		 = rituals[i].dataset.name;
+		character.rituals[i].description = rituals[i].dataset.description;
+		character.rituals[i].level 		 = rituals[i].dataset.level;
+		character.rituals[i].school 	 = rituals[i].dataset.school;
+		character.rituals[i].sub 		 = rituals[i].dataset.sub;
+		Trim(character.rituals[i]);
+	}
+	
+	character.spelllistlist = []; //spell list list
+	const spelllistlist = document.getElementById("SpellListList").childNodes;
+	for (let i = 1; i*2 < spelllistlist.length; i++) {
+		character.spelllistlist[i] 		 = {};
+		character.spelllistlist[i].name  = spelllistlist.dataset.name;
+		character.spelllistlist[i].type  = spelllistlist.dataset.type;
+		character.spelllistlist[i].min   = spelllistlist.dataset.min;
+		character.spelllistlist[i].max   = spelllistlist.dataset.max;
+		
+		for (let j = 0; j < max - min; j++) {
+			if (type == 's') spelllistlist.querySelector("table")
+		}
+		
+		character.spelllistlist[i].slist = [];
+		for (let j = min; j < max; j++) {
+			character.spelllistlist[i].slist[j] = [];
+		}
+		Trim(character.spelllistlist[i]);
+	}
+	
 	character.notes = GetValue("Notes");
 	
 	Trim(character);
