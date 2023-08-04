@@ -237,6 +237,60 @@ function LoadFromJSON (character) {
 		GetLocalWeight(details.lastChild);
 	}
 	
+	for (let spelllike of character.spelllikes){
+		const list	 = document.getElementById('SpellLikeList');
+		const name	 = spelllike.name;	
+		const desc	 = spelllike.desc;
+		const level	 = spelllike.lvl;
+		const used	 = spelllike.used;
+		const perday = spelllike.perday;
+		const school = spelllike.school;
+		const sub	 = spelllike.sub;
+		AddSpellButton(list, name, desc, level, used, perday, school, sub);
+	}
+	
+	for (let ritual of character.rituals){
+		const list	 = document.getElementById('RitualList');
+		const name	 = ritual.name;	
+		const desc	 = ritual.desc;
+		const level	 = ritual.lvl;
+		const school = ritual.school;
+		const sub	 = ritual.sub;
+		AddSpellButton(list, name, desc, level, "", "", school, sub);
+	}
+	
+	for (let spelllist of character.spelllist){
+		const name = spelllist[i].name;
+		const type = spelllist[i].type;
+		const min  = spelllist[i].min;
+		const max  = spelllist[i].max;
+		const list = AddSpellListTable(name,type,min,max);
+		list.children[4].firstChild.value = spelllist[i].cond;
+		list.children[6].firstChild.value = spelllist[i].spec;
+		
+		const table = list.querySelector("table");
+		for (let i = 0; i < list.lvl.length; i++) {
+			let row = 0;
+		if (type == 's')
+			table.rows[row++].cells[i + 1].firstChild.value = list.lvl[i].known;
+			table.rows[row++].cells[i + 1].firstChild.value = list.lvl[i].dc;
+		if (type == 's')
+			table.rows[row++].cells[i + 1].firstChild.value = list.lvl[i].cast;
+			table.rows[row++].cells[i + 1].firstChild.value = list.lvl[i].perday;
+			table.rows[row++].cells[i + 1].firstChild.value = list.lvl[i].bonus;
+			
+			for (let spell of list.lvl.spells){
+				const name	= spell.name;
+				const desc	= spell.desc;
+				const lvl	= spell.lvl;
+				const school= spell.school;
+				const sub	= spell.sub;
+				AddSpellButton(name, desc, lvl, school, sub);
+			}
+			AddSpellButton();
+		}
+	}
+	
 	set("Notes", character.notes);
 }
 
@@ -464,6 +518,38 @@ function ConvertFromMottokrosh (mottokrosh) {
 		character.iList[0].gList[i].qty	  = mottokrosh.gear[i].quantity; 
 		character.iList[0].gList[i].wt	  = mottokrosh.gear[i].weight;	 
 		character.iList[0].gList[i].notes = mottokrosh.gear[i].notes;
+	}
+	
+	character.spelllikes = [];
+	for (let i = 0; i < mottokrosh.spellLikes.length; i++){
+		character.spelllikes[i]			= {};
+		character.spelllikes[i].name	= mottokrosh.spellLikes[i].name;
+		character.spelllikes[i].desc	= mottokrosh.spellLikes[i].notes;
+		character.spelllikes[i].lvl		= mottokrosh.spellLikes[i].level;
+		character.spelllikes[i].used	= mottokrosh.spellLikes[i].cast;
+		character.spelllikes[i].perday	= mottokrosh.spellLikes[i].prepared;
+		character.spelllikes[i].school	= mottokrosh.spellLikes[i].school;
+		character.spelllikes[i].sub		= mottokrosh.spellLikes[i].subschool;
+	}
+	
+	character.spelllist			= []; //spell list list
+	character.spelllist[0]		= {};
+	character.spelllist[0].name = "Mottokrosh";
+	character.spelllist[0].type = "s";
+	character.spelllist[0].min  = "0";
+	character.spelllist[0].max  = "9";
+	character.spelllist[0].cond = mottokrosh.spellsConditionalModifiers;
+	character.spelllist[0].spec = mottokrosh.spellsSpeciality;
+	character.spelllist[0].lvl  = [];
+	for (let i = 0; i < mottokrosh.spells.length; i++){
+		character.spelllist[0].lvl[i]		 = {};
+		character.spelllist[0].lvl[i].name	 = mottokrosh.spells[i].name;
+		character.spelllist[0].lvl[i].desc	 = mottokrosh.spells[i].notes;
+		character.spelllist[0].lvl[i].lvl	 = mottokrosh.spells[i].level;
+		character.spelllist[0].lvl[i].used	 = mottokrosh.spells[i].cast;
+		character.spelllist[0].lvl[i].perday = mottokrosh.spells[i].prepared;
+		character.spelllist[0].lvl[i].school = mottokrosh.spells[i].school;
+		character.spelllist[0].lvl[i].sub	 = mottokrosh.spells[i].subschool;
 	}
 	
 	character.notes = mottokrosh.notes;

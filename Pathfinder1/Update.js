@@ -730,9 +730,10 @@ function AddSpellListTable(name,type,min,max) {
 				for (let i = 0; i <= 9; i++) {
 					td = row.insertCell();
 						input = document.createElement("input");
-						if (i > ColumnCount)
+						if (i > ColumnCount){
 							input.setAttribute("style","width:50px;visibility:hidden");
-						else input.setAttribute("style","width:50px");
+							input.disabled = true;
+						}else input.setAttribute("style","width:50px");
 					td.innerHTML = input.outerHTML;
 				}
 			}
@@ -745,10 +746,28 @@ function AddSpellListTable(name,type,min,max) {
 			for (let i = 0; i <= 9; i++) {
 				let td = row.insertCell();
 					input = document.createElement("input");
-					if (i > ColumnCount)
+					if (i > ColumnCount){
 						input.setAttribute("style","width:50px;visibility:hidden");
-					else input.setAttribute("style","width:50px");
+						input.disabled = true;
+					}else input.setAttribute("style","width:50px");
 				td.innerHTML = input.outerHTML;
+			}
+			
+			if (type == 's') { //Only spontaneous casters have Spells Casted
+				row = table.insertRow(-1);
+				td = row.insertCell();
+				td.style.textAlign = 'center';
+				td.innerHTML = "Spells Cast";
+				
+				for (let i = 0; i <= 9; i++) {
+					td = row.insertCell();
+						input = document.createElement("input");
+						if ((min == 0 && i == 0) || i > ColumnCount){
+							input.setAttribute("style","width:50px;visibility:hidden");
+							input.disabled = true;
+						}else input.setAttribute("style","width:50px");
+					td.innerHTML = input.outerHTML;
+				}
 			}
 			
 			row = table.insertRow(-1);
@@ -759,9 +778,10 @@ function AddSpellListTable(name,type,min,max) {
 			for (let i = 0; i <= 9; i++) {
 				td = row.insertCell();
 					input = document.createElement("input");
-					if (i > ColumnCount)
+					if ((type == 's' && min == 0 && i == 0) || i > ColumnCount){
 						input.setAttribute("style","width:50px;visibility:hidden");
-					else input.setAttribute("style","width:50px");
+						input.disabled = true;
+					}else input.setAttribute("style","width:50px");
 				td.innerHTML = input.outerHTML;
 			}
 			
@@ -773,9 +793,10 @@ function AddSpellListTable(name,type,min,max) {
 			for (let i = 0; i <= 9; i++) {
 				td = row.insertCell();
 					input = document.createElement("input");
-					if ((min == 0 && i == 0) || i > ColumnCount)
+					if ((min == 0 && i == 0) || i > ColumnCount){
 						input.setAttribute("style","width:50px;visibility:hidden");
-					else input.setAttribute("style","width:50px");
+						input.disabled = true;
+					}else input.setAttribute("style","width:50px");
 				td.innerHTML = input.outerHTML;
 			}
 		details.appendChild(table);
@@ -835,25 +856,9 @@ function AddSpellListTable(name,type,min,max) {
 			div.appendChild(label);
 		details.appendChild(div);
 		
-		if (type == 's') { //Only spontaneous casters have spell cast tracker
-			let u = document.createElement("b");
-				u.style = 'clear:both;text-align:left;float:left;font-size:150%';
-				u.innerText = 'Cast';
-			details.appendChild(u);
-		}
-		
 		for (let i = min; i <= max; i++) {
 			div = document.createElement("div");
 				div.style = "clear:both;text-align:left";
-				
-				if (type == 's') { //Only spontaneous casters have spell cast tracker
-					input = document.createElement('input');
-						input.type = 'number';
-						if (i == 0) input.setAttribute("style","width:40px;margin-right:3px;visibility:hidden");
-						else input.setAttribute("style","width:40px;margin-right:3px;margin-bottom:8px");
-						input.setAttribute("min","0");
-					div.appendChild(input);
-				}
 				
 				const list = document.createElement("span"); //List of spells
 					switch (i) {

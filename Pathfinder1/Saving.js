@@ -271,8 +271,8 @@ function GetCharacter () {
 	for (let i = 0; i < spelllikes.length; i++) {
 		character.spelllikes[i] 			= {};
 		character.spelllikes[i].name 		= spelllikes[i].dataset.name;
-		character.spelllikes[i].description = spelllikes[i].dataset.description;
-		character.spelllikes[i].level 		= spelllikes[i].dataset.level;
+		character.spelllikes[i].desc		= spelllikes[i].dataset.description;
+		character.spelllikes[i].lvl 		= spelllikes[i].dataset.level;
 		character.spelllikes[i].used 		= spelllikes[i].dataset.used;
 		character.spelllikes[i].perday 		= spelllikes[i].dataset.perday;
 		character.spelllikes[i].school 		= spelllikes[i].dataset.school;
@@ -285,31 +285,54 @@ function GetCharacter () {
 	for (let i = 0; i < rituals.length; i++) {
 		character.rituals[i] 			 = {};
 		character.rituals[i].name 		 = rituals[i].dataset.name;
-		character.rituals[i].description = rituals[i].dataset.description;
-		character.rituals[i].level 		 = rituals[i].dataset.level;
+		character.rituals[i].desc		 = rituals[i].dataset.description;
+		character.rituals[i].lvl 		 = rituals[i].dataset.level;
 		character.rituals[i].school 	 = rituals[i].dataset.school;
 		character.rituals[i].sub 		 = rituals[i].dataset.sub;
 		Trim(character.rituals[i]);
 	}
 	
-	character.spelllistlist = []; //spell list list
-	const spelllistlist = document.getElementById("SpellListList").childNodes;
+	character.spelllist = []; //spell list list
+	const spelllist = document.getElementById("SpellListList").childNodes;
 	for (let i = 1; i*2 < spelllistlist.length; i++) {
-		character.spelllistlist[i] 		 = {};
-		character.spelllistlist[i].name  = spelllistlist.dataset.name;
-		character.spelllistlist[i].type  = spelllistlist.dataset.type;
-		character.spelllistlist[i].min   = spelllistlist.dataset.min;
-		character.spelllistlist[i].max   = spelllistlist.dataset.max;
+		const list = character.spelllist;
+		list[i]	   	 = {};
+		list[i].name = spelllist[i].dataset.name;
+		list[i].type = spelllist[i].dataset.type;
+		list[i].min  = spelllist[i].dataset.min;
+		list[i].max  = spelllist[i].dataset.max;
+		list[i].cond = spelllist[i].children[4].firstChild.value;
+		list[i].spec = spelllist[i].children[6].firstChild.value;
+		list[i].lvl  = [];
 		
+		const table = spelllist[i].querySelector("table");
 		for (let j = 0; j < max - min; j++) {
-			if (type == 's') spelllistlist.querySelector("table")
+			let row = 0;
+			const level = list[i].lvl;
+			level[j] = {};
+		if (type == 's')
+			level[j].known	= table.rows[row++].cells[j + 1].firstChild.value;
+			level[j].dc		= table.rows[row++].cells[j + 1].firstChild.value;
+		if (type == 's')
+			level[j].cast	= table.rows[row++].cells[j + 1].firstChild.value;
+			level[j].perday	= table.rows[row++].cells[j + 1].firstChild.value;
+			level[j].bonus	= table.rows[row++].cells[j + 1].firstChild.value;
+			
+			level[j].spells	= [];
+			const spells = spelllist[i].children[7].children[1].children;
+			for (let k = 0; k < children.length; k++) {
+				const spell = level[j].spells;
+				spell[k] 		= {};
+				spell[k].name 	= spells[k].dataset.name;
+				spell[k].desc	= spells[k].dataset.description;
+				spell[k].lvl	= spells[k].dataset.lvl;
+				spell[k].school = spells[k].dataset.school;
+				spell[k].sub 	= spells[k].dataset.sub;
+				Trim(spell[i]);
+			}
+			Trim(level[j]);
 		}
-		
-		character.spelllistlist[i].slist = [];
-		for (let j = min; j < max; j++) {
-			character.spelllistlist[i].slist[j] = [];
-		}
-		Trim(character.spelllistlist[i]);
+		Trim(list[i]);
 	}
 	
 	character.notes = GetValue("Notes");
