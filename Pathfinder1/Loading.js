@@ -239,55 +239,55 @@ function LoadFromJSON (character) {
 	
 	for (let spelllike of character.spelllikes){
 		const list	 = document.getElementById('SpellLikeList');
-		const name	 = spelllike.name;	
-		const desc	 = spelllike.desc;
-		const level	 = spelllike.lvl;
-		const used	 = spelllike.used;
-		const perday = spelllike.perday;
-		const school = spelllike.school;
-		const sub	 = spelllike.sub;
+		const name	 = spelllike.name   ?? "";
+		const desc	 = spelllike.desc   ?? "";
+		const level	 = spelllike.lvl    ?? "";
+		const used	 = spelllike.used   ?? "";
+		const perday = spelllike.perday ?? "";
+		const school = spelllike.school ?? "";
+		const sub	 = spelllike.sub	?? "";
 		AddSpellButton(list, name, desc, level, used, perday, school, sub);
 	}
 	
 	for (let ritual of character.rituals){
 		const list	 = document.getElementById('RitualList');
-		const name	 = ritual.name;	
-		const desc	 = ritual.desc;
-		const level	 = ritual.lvl;
-		const school = ritual.school;
-		const sub	 = ritual.sub;
+		const name	 = ritual.name   ?? "";
+		const desc	 = ritual.desc   ?? "";
+		const level	 = ritual.lvl    ?? "";
+		const school = ritual.school ?? "";
+		const sub	 = ritual.sub    ?? "";
 		AddSpellButton(list, name, desc, level, "", "", school, sub);
 	}
 	
 	for (let spelllist of character.spelllist){
-		const name = spelllist[i].name;
-		const type = spelllist[i].type;
-		const min  = spelllist[i].min;
-		const max  = spelllist[i].max;
+		const name = spelllist.name ?? "";
+		const type = spelllist.type ?? "";
+		const min  = spelllist.min  ?? "";
+		const max  = spelllist.max  ?? "";
 		const list = AddSpellListTable(name,type,min,max);
-		list.children[4].firstChild.value = spelllist[i].cond;
-		list.children[6].firstChild.value = spelllist[i].spec;
+		list.children[4].firstChild.value = spelllist.cond ?? "";
+		list.children[6].firstChild.value = spelllist.spec ?? "";
 		
 		const table = list.querySelector("table");
-		for (let i = 0; i < list.lvl.length; i++) {
+		for (let i = 0; i < spelllist.lvl.length; i++) {
 			let row = 0;
 		if (type == 's')
-			table.rows[row++].cells[i + 1].firstChild.value = list.lvl[i].known;
-			table.rows[row++].cells[i + 1].firstChild.value = list.lvl[i].dc;
+			table.rows[row++].cells[i + 1].firstChild.value = spelllist.lvl[i].known ?? "";
+			table.rows[row++].cells[i + 1].firstChild.value = spelllist.lvl[i].dc ?? "";
 		if (type == 's')
-			table.rows[row++].cells[i + 1].firstChild.value = list.lvl[i].cast;
-			table.rows[row++].cells[i + 1].firstChild.value = list.lvl[i].perday;
-			table.rows[row++].cells[i + 1].firstChild.value = list.lvl[i].bonus;
+			table.rows[row++].cells[i + 1].firstChild.value = spelllist.lvl[i].cast ?? "";
+			table.rows[row++].cells[i + 1].firstChild.value = spelllist.lvl[i].perday ?? "";
+			table.rows[row++].cells[i + 1].firstChild.value = spelllist.lvl[i].bonus ?? "";
 			
-			for (let spell of list.lvl.spells){
-				const name	= spell.name;
-				const desc	= spell.desc;
-				const lvl	= spell.lvl;
-				const school= spell.school;
-				const sub	= spell.sub;
-				AddSpellButton(name, desc, lvl, school, sub);
+			for (let spell of spelllist.lvl[i].spells){
+				const name	 = spell.name ?? "";
+				const desc	 = spell.desc ?? "";
+				const used	 = spell.used ?? "";
+				const perday = spell.perday ?? "";
+				const school = spell.school ?? "";
+				const sub	 = spell.sub ?? "";
+				AddSpellButton(list.children[7 + i].lastChild, name, desc, "", used, perday, school, sub)
 			}
-			AddSpellButton();
 		}
 	}
 	
@@ -531,6 +531,7 @@ function ConvertFromMottokrosh (mottokrosh) {
 		character.spelllikes[i].school	= mottokrosh.spellLikes[i].school;
 		character.spelllikes[i].sub		= mottokrosh.spellLikes[i].subschool;
 	}
+	character.rituals = [];
 	
 	character.spelllist			= []; //spell list list
 	character.spelllist[0]		= {};
@@ -550,6 +551,16 @@ function ConvertFromMottokrosh (mottokrosh) {
 		character.spelllist[0].lvl[i].perday = mottokrosh.spells[i].prepared;
 		character.spelllist[0].lvl[i].school = mottokrosh.spells[i].school;
 		character.spelllist[0].lvl[i].sub	 = mottokrosh.spells[i].subschool;
+		character.spelllist[0].lvl[i].spells = [];
+		for (let j = 0; j < mottokrosh.spells[i].slotted.length; j++) {
+			character.spelllist[0].lvl[i].spells[j] = {};
+			character.spelllist[0].lvl[i].spells[j].name   = mottokrosh.spells[i].slotted[j].name;
+			character.spelllist[0].lvl[i].spells[j].desc   = mottokrosh.spells[i].slotted[j].notes;
+			character.spelllist[0].lvl[i].spells[j].school = mottokrosh.spells[i].slotted[j].school;
+			character.spelllist[0].lvl[i].spells[j].sub	   = mottokrosh.spells[i].slotted[j].subschool;
+			character.spelllist[0].lvl[i].spells[j].used   = mottokrosh.spells[i].slotted[j].cast;
+			character.spelllist[0].lvl[i].spells[j].perday = mottokrosh.spells[i].slotted[j].prepared;
+		}
 	}
 	
 	character.notes = mottokrosh.notes;

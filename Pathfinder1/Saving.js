@@ -294,7 +294,7 @@ function GetCharacter () {
 	
 	character.spelllist = []; //spell list list
 	const spelllist = document.getElementById("SpellListList").childNodes;
-	for (let i = 1; i*2 < spelllistlist.length; i++) {
+	for (let i = 1; i*2 < spelllist.length; i++) {
 		const list = character.spelllist;
 		list[i]	   	 = {};
 		list[i].name = spelllist[i].dataset.name;
@@ -325,9 +325,10 @@ function GetCharacter () {
 				spell[k] 		= {};
 				spell[k].name 	= spells[k].dataset.name;
 				spell[k].desc	= spells[k].dataset.description;
-				spell[k].lvl	= spells[k].dataset.lvl;
 				spell[k].school = spells[k].dataset.school;
 				spell[k].sub 	= spells[k].dataset.sub;
+				spell[k].used 	= spells[k].dataset.used;
+				spell[k].perday = spells[k].dataset.perday;
 				Trim(spell[i]);
 			}
 			Trim(level[j]);
