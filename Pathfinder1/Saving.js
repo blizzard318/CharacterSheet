@@ -3,7 +3,7 @@ function GetCharacter () {
 		Object.keys(obj).forEach(k => (!obj[k] && obj[k] !== undefined) && delete obj[k]);
 	}
 	function GetValue(name){
-		return document.getElementById(name).value ?? null;
+		return document.getElementById(name)?.value ?? null;
 	}
 	const character = {};
 	
@@ -83,7 +83,7 @@ function GetCharacter () {
 	character.init_total = GetValue("Init-Total");
 	character.init_misc = GetValue("Misc-Init");
 	
-	character.bab = document.getElementsByClassName("BAB")[0].value ?? null; //BAB
+	character.bab = document.getElementsByClassName("BAB")[0]?.value ?? null; //BAB
 	character.heropoint = GetValue("HeroPoint");
 	
 	character.spd_base = GetValue("Base-Speed"); //Speeds
@@ -99,7 +99,7 @@ function GetCharacter () {
 	character.cmb_misc = GetValue("Misc-CMB");
 	
 	character.mList = []; //Melee Attacks
-	const mList = document.getElementById("MeleeList").children;
+	const mList = document.getElementById("MeleeList")?.children ?? [];
 	for (let i = 0; i < mList.length; i++) {
 		character.mList[i]  	 = {};
 		character.mList[i].name  = mList[i].children[1].firstChild.value ?? null;
@@ -111,7 +111,7 @@ function GetCharacter () {
 		Trim(character.mList[i]);
 	}
 	character.rList = []; //Ranged Attacks
-	const rList = document.getElementById("RangedList").childNodes;
+	const rList = document.getElementById("RangedList")?.children ?? [];
 	for (let i = 0; i < rList.length; i++) {
 		character.rList[i]  	 = {};
 		character.rList[i].name  = rList[i].children[1].firstChild.value ?? null;
@@ -127,13 +127,13 @@ function GetCharacter () {
 	function SaveSkill (name, docname) {
 		const row = document.getElementById(docname+"-row");
 		character.skills[name] 		  = {};
-		character.skills[name].cs 	  = row.cells[0].firstChild.checked;
-		character.skills[name].total  = row.cells[2].firstChild.value ?? null;
-		character.skills[name].rank   = row.cells[5].firstChild.value ?? null;
-		character.skills[name].class  = row.cells[6].firstChild.value ?? null;
-		character.skills[name].racial = row.cells[7].firstChild.value ?? null;
-		character.skills[name].trait  = row.cells[8].firstChild.value ?? null;
-		character.skills[name].misc   = row.cells[9].firstChild.value ?? null;
+		character.skills[name].cs 	  = row?.cells[0].firstChild.checked;
+		character.skills[name].total  = row?.cells[2].firstChild.value ?? null;
+		character.skills[name].rank   = row?.cells[5].firstChild.value ?? null;
+		character.skills[name].class  = row?.cells[6].firstChild.value ?? null;
+		character.skills[name].racial = row?.cells[7].firstChild.value ?? null;
+		character.skills[name].trait  = row?.cells[8].firstChild.value ?? null;
+		character.skills[name].misc   = row?.cells[9].firstChild.value ?? null;
 		Trim(character.skills[name]);
 	}
 	SaveSkill("acro","acrobatics");
@@ -172,20 +172,20 @@ function GetCharacter () {
 	
 	function SaveMultiSkull (name, docname, rowBefore) {
 		character.skills[name] = [];
-		const OldIndex = document.getElementById(rowBefore+"-row").rowIndex + 1;
-		const NewIndex = document.getElementById(docname+"-row").rowIndex;
+		const OldIndex = document.getElementById(rowBefore+"-row")?.rowIndex + 1;
+		const NewIndex = document.getElementById(docname+"-row")?.rowIndex;
 		const Offset = NewIndex - OldIndex;
 		for (let i = 0; i < Offset; i++) {
 			let row = document.getElementById("Skill-Table").rows[i + OldIndex];
 			character.skills[name][i]		 = {};
-			character.skills[name][i].cs     = row.cells[0].children[0].checked;
-			character.skills[name][i].name   = row.cells[1].children[1].value ?? null;
-			character.skills[name][i].total  = row.cells[2].children[0].value ?? null;
-			character.skills[name][i].rank   = row.cells[5].children[0].value ?? null;
-			character.skills[name][i].class  = row.cells[6].children[0].value ?? null;
-			character.skills[name][i].racial = row.cells[7].children[0].value ?? null;
-			character.skills[name][i].trait  = row.cells[8].children[0].value ?? null;
-			character.skills[name][i].misc   = row.cells[9].children[0].value ?? null;
+			character.skills[name][i].cs     = row?.cells[0].children[0].checked;
+			character.skills[name][i].name   = row?.cells[1].children[1].value ?? null;
+			character.skills[name][i].total  = row?.cells[2].children[0].value ?? null;
+			character.skills[name][i].rank   = row?.cells[5].children[0].value ?? null;
+			character.skills[name][i].class  = row?.cells[6].children[0].value ?? null;
+			character.skills[name][i].racial = row?.cells[7].children[0].value ?? null;
+			character.skills[name][i].trait  = row?.cells[8].children[0].value ?? null;
+			character.skills[name][i].misc   = row?.cells[9].children[0].value ?? null;
 			Trim(character.skills[name][i]);
 		}
 	}
@@ -207,13 +207,12 @@ function GetCharacter () {
 	charlists = Array(character.fList, character.saList, character.tList);
 	listnames = Array("FeatList", "SpecialAbilityList", "TraitList");
 	for (let i = 0; i < 3; i++) {
-		const charlist = charlists[i];
-		const list = document.getElementById(listnames[i]).childNodes;
+		const list = document.getElementById(listnames[i])?.childNodes ?? [];
 		for (let j = 0; j < list.length; j++) {
-			charlist[j]  	  = {};
-			charlist[j].name  = list[j].dataset.name 
-			charlist[j].type  = list[j].dataset.type 
-			charlist[j].notes = list[j].dataset.notes
+			charlists[i][j]  	  = {};
+			charlists[i][j].name  = list[j].dataset.name 
+			charlists[i][j].type  = list[j].dataset.type 
+			charlists[i][j].notes = list[j].dataset.notes
 			Trim(character.fList[j]);
 		}
 	}
@@ -229,7 +228,7 @@ function GetCharacter () {
 	character.gem = GetValue("money-misc");
 	
 	character.acList = []; //AC Items
-	const acList = document.getElementById("ACList").childNodes;
+	const acList = document.getElementById("ACList")?.childNodes ?? [];
 	for (let i = 0; i < acList.length; i++) {
 		character.acList[i]  	  	  = {};
 		character.acList[i].name  	  = acList[i].children[1].firstChild.value ?? null;
@@ -247,7 +246,7 @@ function GetCharacter () {
 	character.total_weight = GetValue("Total-Weight");
 	
 	character.iList = [];
-	const iList = document.getElementById("InventoryList").childNodes;
+	const iList = document.getElementById("InventoryList")?.childNodes ?? [];
 	for (let i = 0; i*2+1 < iList.length; i++) {
 		character.iList[i]  	  = {};
 		character.iList[i].name   = iList[i*2+1].firstChild.firstChild.innerText;
@@ -267,7 +266,7 @@ function GetCharacter () {
 	}
 	
 	character.spelllikes = []; //spell-like list
-	const spelllikes = document.getElementById("SpellLikeList").childNodes;
+	const spelllikes = document.getElementById("SpellLikeList")?.childNodes ?? [];
 	for (let i = 0; i < spelllikes.length; i++) {
 		character.spelllikes[i] 			= {};
 		character.spelllikes[i].name 		= spelllikes[i].dataset.name;
@@ -281,7 +280,7 @@ function GetCharacter () {
 	}
 	
 	character.rituals = []; //ritual list
-	const rituals = document.getElementById("RitualList").childNodes;
+	const rituals = document.getElementById("RitualList")?.childNodes ?? [];
 	for (let i = 0; i < rituals.length; i++) {
 		character.rituals[i] 			 = {};
 		character.rituals[i].name 		 = rituals[i].dataset.name;
@@ -293,7 +292,7 @@ function GetCharacter () {
 	}
 	
 	character.spelllist = []; //spell list list
-	const spelllist = document.getElementById("SpellListList").childNodes;
+	const spelllist = document.getElementById("SpellListList")?.childNodes ?? [];
 	for (let i = 1; i*2 < spelllist.length; i++) {
 		const list = character.spelllist;
 		list[i]	   	 = {};
@@ -354,10 +353,9 @@ function SaveToJSON () {
 
 async function SaveToCloudFlare () {
 	if (document.getElementById("CharacterIndex").value == "") return; //Strangers don't get to save.
-	const character = GetCharacter();
 	const index = document.getElementById("CharacterIndex").value;
 	const url = "../api/Pathfinder1/" + character.player + "/" + index;
-	const response = await fetch(url,{
+	fetch(url,{
 		method: "PUT",
 		headers: { 
 		  'Accept': 'application/json',

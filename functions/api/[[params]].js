@@ -20,8 +20,8 @@ export async function onRequestPost (context) { //Create new character
 		const lastKey = characters.keys[lastIndex].name;
 		key += Number(lastKey.split("/")[1]) + 1;
 	}
-	
 	const value = await context.request.text();
+	
 	await KVList.put(key, value);
 	return new Response("Created");
 }

@@ -152,7 +152,7 @@ async function CheckURL () { //Check if friend or stranger
 			LoadFromJSON(await response.json());
 		}
 		else { //Create a New character
-			const character = { };
+			const character = GetCharacter();
 
 			character.name = document.getElementById("CharacterName").value = "Unnamed Character";
 			character.player = document.getElementById("PlayerName").value = key;

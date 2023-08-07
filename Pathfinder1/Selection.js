@@ -20,6 +20,32 @@ async function ShowPart2(name) {
 	}
 	//Disable clicked button
 	document.getElementById(name).disabled = true;
+	
+	document.getElementById('charsheet').onclick = async () => {
+		const files = document.getElementById("charsheet").files;
+		if (files == null || files.length == 0) return;
+		
+		const text = await files[0].text();
+		let json = JSON.parse(text);
+		
+		document.getElementById("charsheet").value = ""; //Clear from input
+		
+		if (json._id != null) {
+			json = ConvertFromMottokrosh(json);
+			json.player = name;
+		}
+		
+		const url = "../api/Pathfinder1/" + name;
+		fetch(url,{
+			method: "POST", //THIS IS POST, NEW CHARA. DON'T USE PUT.
+			headers: { 
+			  'Accept': 'application/json',
+			  'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(json)
+		});
+		location.reload();
+	};
   
 	const list = document.getElementById("CharacterList");
 	list.innerHTML = ""; //Clear previous elements
@@ -83,3 +109,7 @@ async function ShowPart2(name) {
 
 const init = localStorage.getItem("name");
 if (init != null) ShowPart2(init);
+
+document.getElementById('charsheetbtn').onclick = () => {
+	document.getElementById('charsheet').click();
+};

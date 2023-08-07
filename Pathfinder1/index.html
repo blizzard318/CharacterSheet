@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../styles.css" />
 	<link rel="shortcut icon" href="../favicon.ico">
 	<script defer src="Selection.js" charset="utf-8"></script>
+	<script src="Loading.js" charset="utf-8"></script>
+	<script src="Saving.js" charset="utf-8"></script>
 </head>
 <body>
     <div id="wrapper" style="width:auto">
@@ -23,14 +25,16 @@
 			<button onclick="ShowPart2(this.id)" id="Jordan">Jordan</button>
 			<button onclick="ShowPart2(this.id)" id="Laurence">Laurence</button>
 			<button onclick="ShowPart2(this.id)" id="Samuel">Samuel</button>
-			<a href="./"><button>Other User <i>(No Auto-Save)</i></button></a>
+			<a href="./Character"><button>Other User <i>(No Auto-Save)</i></button></a>
 		</div>
 		
 		<div id="Part2" style="display:none">
+			<input type="hidden" id="CharacterIndex"/> <!--Need this for loading from Mottokrosh-->
 			<div style="text-align:center;font-size:200%">
 				Hello, <i><div id="Name" style="display:inline">Name</div></i>
 			</div>
-			<button onclick="">Upload from Mottokrosh</button> <!--Doesn't do anything yet-->
+			<input type="file" id="charsheet" onchange="Load()" accept="application/json" style="display:none">
+			<button id="charsheetbtn">Upload from Mottokrosh</button> <!--Doesn't do anything yet-->
 			<a id="NewCharacter"><button>Make New Character</button></a>
 			<div id="CharacterList"></div>
 		</div>
