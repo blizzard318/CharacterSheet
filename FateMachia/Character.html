@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>Fate/Machia Character Sheet</title>
+	<meta name="theme-color" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Homebrew for Fate/Machia">
+    <link rel="stylesheet" href="../styles.css" />
+	<link rel="shortcut icon" href="../favicon.ico">
+	<script src="Loading.js" charset="utf-8"></script>
+	<script src="Saving.js" charset="utf-8"></script>
+	<script src="Update.js" charset="utf-8"></script>
+	<script defer src="Start.js" charset="utf-8"></script>
+</head>
+<body>
+    <div id="wrapper" style="width: 1050px">
+        <h1><u>Fate/Machia Character Sheet</u></h1>
+
+		<section>
+			Have existing character sheets from here or <u><a href="https://charactersheet.co.uk/">charactersheet.co.uk</a></u>?<br />
+			Upload it here:
+			<input type="file" id="charsheet" onchange="Load()" accept="application/json" style="padding:0px;font-size:15px">
+			<button type="button" onclick="SaveToJSON()">Export JSON</button>
+		</section>
+
+        <article>
+            <h2>General</h2>
+            <section>
+                <div style="width:500px; float:left;">
+                    <label>Character Name</label>
+                    <input id="CharacterName"/>
+                </div>
+                <div style="width: 500px; float: left;">
+                    <label>Player Name</label>
+                    <input id="PlayerName"/>
+                    <input type="hidden" id="CharacterIndex"/>
+                </div>
+				
+                <div style="width: 1020px; float: left;">
+                    <label>Character Class/Archetype & Levels</label>
+                    <input id="Class"/>
+                </div>
+				
+                <div style="width:540px; float:left;">
+                    <label>Race/Subrace</label>
+                    <input id="Race"/>
+                </div>
+                <div style="width:100px; float:left;">
+                    <label>Alignment</label>
+                    <input id="Alignment"/>
+                </div>
+                <div style="width: 100px; float: left;">
+                    <label>Gender</label>
+                    <input id="Gender"/>
+                </div>
+                <div style="width: 100px; float: left;">
+                    <label>Size</label>
+                    <input id="Size"/>
+                </div>
+                <div style="width: 100px; float: left;">
+                    <label>Deity</label>
+                    <input id="Deity"/>
+                </div>
+            </section>
+        </article>
+		
+        <article>
+            <h2>Ability Scores</h2>
+            <section>
+                <div class="black" style="width:60px;height:60px">
+                    <span>Str</span>
+                    <label class="blackLabel">Strength</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="str"/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" id="str-mod" disabled/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="str-temp"/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green str-temp-mod" disabled/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
+                </div>
+
+                <div class="black" style="width:60px;height:60px">
+                    <span>Dex</span>
+                    <label class="blackLabel">Dexterity</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="dex"/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" id="dex-mod" disabled/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="dex-temp"/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green dex-temp-mod" disabled/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
+                </div>
+
+                <div class="black" style="width:60px;height:60px">
+                    <span>Con</span>
+                    <label class="blackLabel">Constitution</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="con"/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" id="con-mod" disabled/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="con-temp"/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green con-temp-mod" disabled/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
+                </div>
+
+                <div class="black" style="width:60px;height:60px">
+                    <span>Int</span>
+                    <label class="blackLabel">Intelligence</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="int"/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" id="int-mod" disabled/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="int-temp"/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green int-temp-mod" disabled/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
+                </div>
+
+                <div class="black" style="width:60px;height:60px">
+                    <span>Wis</span>
+                    <label class="blackLabel">Wisdom</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="wis"/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" id="wis-mod" disabled/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="wis-temp"/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green wis-temp-mod" disabled/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
+                </div>
+
+                <div class="black" style="width:60px;height:60px">
+                    <span>Cha</span>
+                    <label class="blackLabel">Charisma</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="cha"/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green" id="cha-mod" disabled/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Ability<br />Modifier</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="cha-temp"/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Score</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green cha-temp-mod" disabled/>
+                    <label style="font-size:12px;line-height:10px;width:62px">Temp<br />Modifier</label>
+                </div>
+            </section>
+        </article>
+		<br/>
+        <details id="DefenseDetails">
+            <summary><b>Defense</b></summary>
+            <article>
+                <div class="black" style="width:60px;height:60px">
+                    <span>AC</span>
+                    <label class="blackLabel">Armor Class</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input id="Total-AC" style="border-width:3px;"/>
+                    <label style="font-size:12px;line-height:20px;width:62px">Total =</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;margin-left:-10px;">
+                    <label style="font-size:30px;line-height:40px;width:62px;height:45px">10+</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input id="Armor-Bonus"/>
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Armor Bonus</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input id="Shield-Bonus"/>
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Shield Bonus</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input class="green dex-temp-mod" disabled/>
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Dex Modifier</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input id="AC-Size"/>
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Size Modifier</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input id="Natural-Armor"/>
+                    <label style="font-size:12px;line-height:20px;width:90px;text-align:left">Natural Armor</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input id="Deflection"/>
+                    <label style="font-size:12px;line-height:20px;width:80px">Deflection</label>
+                </div>
+                <div style="width:320px;height:60px;float:left;">
+                    <input id="AC-Misc"/>
+                    <label style="font-size:12px;line-height:20px;width:80px">Misc Modifier</label>
+                </div>
+				
+                <div class="black" style="width:70px;height:60px">
+                    <span>Touch</span>
+                    <label class="blackLabel">Armor Class</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input id="Touch-AC"/>
+                    <label style="font-size:12px;line-height:20px;width:60px">Touch</label>
+                </div>
+				
+                <div class="black" style="width:130px;height:60px">
+                    <span>Flat-Footed</span>
+                    <label class="blackLabel">Armor Class</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input id="FlatFoot-AC"/>
+                    <label style="font-size:12px;line-height:20px;width:70px">Flat-Footed</label>
+                </div>
+                <div style="width:630px;height:60px;float:left;">
+                    <input id="Other-AC"/>
+                    <label style="font-size:12px;line-height:20px;width:120px">Other AC Modifier</label>
+                </div>
+				
+                <div class="black" style="width:60px;height:60px;margin-left:-5px">
+                    <span>HP</span>
+                    <label class="blackLabel">Hit Points</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="Base-HP"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Base</label>
+                </div>
+                <div style="width:20px;height:60px;float:left;margin-left:-5px;margin-right:5px">
+                    <label style="font-size:40px;line-height:40px;height:45px;"><b>+</b></label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="Temp-HP"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Temp</label>
+                </div>
+                <div style="width:20px;height:60px;float:left;margin-left:-5px;margin-right:5px">
+                    <label style="font-size:40px;line-height:40px;height:45px;"><b>-</b></label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="Non-Lethal-Dmg"/>
+                    <label style="font-size:12px;line-height:12px;width:62px">Non-Lethal Damage</label>
+                </div>
+                <div style="width:20px;height:60px;float:left;margin-left:-5px;margin-right:10px">
+                    <label style="font-size:40px;line-height:40px;height:45px;"><b>=</b></label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input class="green" id="Current-HP" disabled/>
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:center">Current</label>
+                </div>
+                <div style="width:15px;height:60px;float:left;margin-left:-3px;margin-right:10px;">
+                    <label style="font-size:80px;line-height:40px;height:45px;"><b>/</b></label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="Max-HP"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Maximum</label>
+                </div>
+
+                <div class="black" style="width:100px;height:60px;margin-left:-5px">
+                    <span>DR</span>
+                    <label class="blackLabel">Damage Reduction</label>
+                </div>
+                <div style="width:240px;height:60px;float:left;">
+                    <input id="Damage-Reduction"/>
+                    <label style="font-size:12px;line-height:15px;width:200px">Damage Reduction</label>
+                </div>
+                <div class="black" style="width:80px;height:60px;margin-left:-5px">
+                    <span>SR</span>
+                    <label class="blackLabel">Spell Resistance</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="Spell-Resistance"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Spell Res</label>
+                </div>
+
+
+                <div class="black" style="width:110px;height:60px;margin-left:-5px">
+                    <span>Fortitude</span>
+                    <label class="blackLabel">(Constitution)</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="Fortitude-Total" style="border-width:2px;"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Total =</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="Fortitude-Base"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Base</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green con-temp-mod" disabled/>
+                    <label style="font-size:12px;line-height:20px;width:62px">Con</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="Fortitude-Item"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Item</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="Fortitude-Misc"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Misc</label>
+                </div>
+                <div style="width:540px;height:60px;float:left;">
+                    <input id="Fortitude-Notes"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Notes</label>
+                </div>
+
+                <div class="black" style="width:110px;height:60px;margin-left:-5px">
+                    <span>Reflex</span>
+                    <label class="blackLabel">(Dexterity)</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="Reflex-Total" style="border-width:2px;"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Total =</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="Reflex-Base"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Base</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green dex-temp-mod" disabled/>
+                    <label style="font-size:12px;line-height:20px;width:62px">Dex</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="Reflex-Item"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Item</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="Reflex-Misc"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Misc</label>
+                </div>
+                <div style="width:540px;height:60px;float:left;">
+                    <input id="Reflex-Notes"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Notes</label>
+                </div>
+
+                <div class="black" style="width:110px;height:60px;margin-left:-5px">
+                    <span>Will</span>
+                    <label class="blackLabel">(Wisdom)</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="Will-Total" style="border-width:2px;"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Total =</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="Will-Base"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Base</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input class="green wis-temp-mod" disabled/>
+                    <label style="font-size:12px;line-height:20px;width:62px">Wis</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="Will-Item"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Item</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+                    <input id="Will-Misc"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Misc</label>
+                </div>
+                <div style="width:540px;height:60px;float:left;">
+                    <input id="Will-Notes"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Notes</label>
+                </div>
+				
+                <div class="black" style="width:70px;height:60px">
+                    <span>Resist</span>
+                    <label class="blackLabel">Resistances</label>
+                </div>
+                <div style="width:405px;height:60px;float:left;">
+                    <input id="Resistances"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Resistances</label>
+                </div>
+				
+                <div class="black" style="width:90px;height:60px">
+                    <span>Immune</span>
+                    <label class="blackLabel">Immunities</label>
+                </div>
+                <div style="width:405px;height:60px;float:left;">
+                    <input id="Immunities"/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Immunities</label>
+                </div>
+				
+                <div class="black" style="width:130px;height:60px">
+                    <span>CMD</span>
+                    <label class="blackLabel">Combat Maneuver Defense</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input id="Total-CMD" style="border-width:3px;"/>
+                    <label style="font-size:12px;line-height:20px;width:62px">Total =</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;margin-left:-10px;">
+                    <label style="font-size:30px;line-height:40px;width:72px;height:45px">10+</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input class="green BAB" disabled/>
+                    <label style="font-size:12px;line-height:15px;width:70px;text-align:middle">Base Attack Bonus</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input class="green str-temp-mod" disabled/>
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Str Modifier</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input class="green dex-temp-mod" disabled/>
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Dex Modifier</label>
+                </div>
+                <div style="width:60px;height:60px;float:left;">
+                    <input id="Size-CMD"/>
+                    <label style="font-size:12px;line-height:20px;width:80px;text-align:left">Size Modifier</label>
+                </div>
+                <div style="width:410px;height:60px;float:left;">
+                    <input id="Misc-CMD"/>
+                    <label style="font-size:12px;line-height:20px;width:80px">Misc Modifier</label>
+                </div>
+            </article>
+        </details>
+		<br/>
+		<details id="OffenseDetails">
+			<summary>Offense</summary>
+			<article id="Offense">
+				<div class="black" style="width:50px;height:60px;margin-left:-5px">
+					<span>Init</span>
+					<label class="blackLabel">Initiative</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="Init-Total" style="border-width:2px;"/>
+					<label style="font-size:12px;line-height:15px;width:62px">Total =</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input class="green dex-temp-mod" disabled/>
+					<label style="font-size:12px;line-height:20px;width:62px">Dex</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="Misc-Init"/>
+					<label style="font-size:12px;line-height:20px;width:62px">Misc</label>
+				</div>
+				<div class="black" style="width:90px;height:60px;margin-left:-5px">
+					<span>BAB</span>
+					<label class="blackLabel">Base Attack Bonus</label>
+				</div>
+				<div style="width:100px;height:60px;float:left">
+					<input class="BAB"/>
+					<label style="font-size:12px;line-height:20px;width:100px">Base Attack Bonus</label>
+				</div>
+				<div class="black" style="width:60px;height:60px;margin-left:-5px">
+					<span>Fate</span>
+					<label class="blackLabel">Points</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="FatePoint"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Fate Points</label>
+				</div>
+				<div style="width:350px;height:60px;float:left"></div>
+				
+				<div class="black" style="width:70px;height:40px">
+					<span>Speed</span>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="Base-Speed"/>
+					<label style="font-size:12px;line-height:15px;width:62px">Base Speed</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="Armor-Speed"/>
+					<label style="font-size:12px;line-height:15px;width:62px">With Armor</label>
+				</div>
+				<div style="width:100px;height:60px;float:left">
+					<input id="Fly-Speed"/>
+					<label style="font-size:12px;line-height:15px;width:90px">Fly/Maneuverability</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="Swim-Speed"/>
+					<label style="font-size:12px;line-height:15px;width:62px">Swim</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="Climb-Speed"/>
+					<label style="font-size:12px;line-height:15px;width:62px">Climb</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="Burrow-Speed"/>
+					<label style="font-size:12px;line-height:15px;width:62px">Burrow</label>
+				</div>
+				<div style="width:460px;height:60px;float:left">
+					<input id="Speed-Notes"/>
+					<label style="font-size:12px;line-height:20px;width:200px">Modifiers & Notes</label>
+				</div>
+				
+				<div class="black" style="width:120px;height:60px">
+					<span>CMB</span>
+					<label class="blackLabel">Combat Maneuver Bonus</label>
+				</div>
+				<div style="width:60px;height:60px;float:left">
+					<input id="Total-CMB" style="border-width:3px;"/>
+					<label style="font-size:12px;line-height:20px;width:62px">Total =</label>
+				</div>
+				<div style="width:60px;height:60px;float:left">
+					<input class="green BAB" disabled/>
+					<label style="font-size:12px;line-height:15px;width:70px;text-align:middle">Base Attack Bonus</label>
+				</div>
+				<div style="width:60px;height:60px;float:left">
+					<input class="green str-temp-mod" disabled/>
+					<label style="font-size:12px;line-height:20px;width:80px;text-align:left">Str Modifier</label>
+				</div>
+				<div style="width:60px;height:60px;float:left">
+					<input id="Size-CMB"/>
+					<label style="font-size:12px;line-height:20px;width:80px;text-align:left">Size Modifier</label>
+				</div>
+				<div style="width:560px;height:60px;float:left">
+					<input id="Misc-CMB"/>
+					<label style="font-size:12px;line-height:20px;width:80px">Misc Modifier</label>
+				</div>
+				
+				<div id="MeleeList"></div>
+				<div id="RangedList"></div>
+				<div style="clear:both">
+					<button type="button" onclick="AddAttack('Melee')">
+						+Melee Attack
+					</button>
+					<button type="button" onclick="AddAttack('Ranged')">
+						+Ranged Attack
+					</button>
+				</div>
+			</article>
+		</details>
+		<br />
+        <details id="SkillsDetails">
+			<summary>Skills</summary>
+			<article>
+				<table id="Skill-Table" style="width:97%">
+					<caption style="font-size:150%">
+						<b><i>Adventuring Skills</i></b>
+					</caption>
+					<tr> <!--0th row-->
+						<th style="width:60px">Class Skill</th>
+						<th style="width:300px">Skill Name</th>
+						<th>Total</th>
+						<th style="width:60px">Ability</th>
+						<th>Modifier</th>
+						<th>Ranks</th>
+						<th>Class</th>
+						<th>Racial</th>
+						<th>Trait</th>
+						<th style="width:260px">Misc</th>
+					</tr>
+					<tr id="acrobatics-row"> <!--1st row-->
+						<td><input type="checkbox"></td>
+						<td>Acrobatics</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Dex</td>
+						<td><input class="green dex-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="bluff-row"> <!--2nd row-->
+						<td><input type="checkbox"></td>
+						<td>Bluff</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Cha</td>
+						<td><input class="green cha-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="climb-row"> <!--3rd row-->
+						<td><input type="checkbox"></td>
+						<td>Climb</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Str</td>
+						<td><input class="green str-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="diplomacy-row"> <!--4th row-->
+						<td><input type="checkbox"></td>
+						<td>Diplomacy</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Cha</td>
+						<td><input class="green cha-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="disable-device-row"> <!--5th row-->
+						<td><input type="checkbox"></td>
+						<td>Disable Device*</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Dex</td>
+						<td><input class="green dex-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="disguise-row"> <!--6th row-->
+						<td><input type="checkbox"></td>
+						<td>Disguise</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Cha</td>
+						<td><input class="green cha-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="escape-artist-row"> <!--7th row-->
+						<td><input type="checkbox"></td>
+						<td>Escape Artist</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Dex</td>
+						<td><input class="green dex-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="fly-row"> <!--8th row-->
+						<td><input type="checkbox"></td>
+						<td>Fly</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Dex</td>
+						<td><input class="green dex-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="heal-row"> <!--9th row-->
+						<td><input type="checkbox"></td>
+						<td>Heal</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Wis</td>
+						<td><input class="green wis-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="intimidate-row"> <!--10th row-->
+						<td><input type="checkbox"></td>
+						<td>Intimidate</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Cha</td>
+						<td><input class="green cha-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="arcana-row"> <!--11th row-->
+						<td><input type="checkbox"></td>
+						<td>Knowledge (Arcana)*</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
+						<td><input class="green int-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="dungeoneering-row"> <!--12th row-->
+						<td><input type="checkbox"></td>
+						<td>Knowledge (Dungeoneering)*</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
+						<td><input class="green int-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="local-row"> <!--13th row-->
+						<td><input type="checkbox"></td>
+						<td>Knowledge (Local)*</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
+						<td><input class="green int-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="nature-row"> <!--14th row-->
+						<td><input type="checkbox"></td>
+						<td>Knowledge (Nature)*</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
+						<td><input class="green int-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="planes-row"> <!--15th row-->
+						<td><input type="checkbox"></td>
+						<td>Knowledge (Planes)*</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
+						<td><input class="green int-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="religion-row"> <!--16th row-->
+						<td><input type="checkbox"></td>
+						<td>Knowledge (Religion)*</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
+						<td><input class="green int-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="perception-row"> <!--17th row-->
+						<td><input type="checkbox"></td>
+						<td>Perception</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Wis</td>
+						<td><input class="green wis-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="ride-row"> <!--18th row-->
+						<td><input type="checkbox"></td>
+						<td>Ride</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Dex</td>
+						<td><input class="green dex-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="sense-motive-row"> <!--19th row-->
+						<td><input type="checkbox"></td>
+						<td>Sense Motive</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Wis</td>
+						<td><input class="green wis-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="spellcraft-row"> <!--20th row-->
+						<td><input type="checkbox"></td>
+						<td>Spellcraft*</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
+						<td><input class="green int-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="stealth-row"> <!--21st row-->
+						<td><input type="checkbox"></td>
+						<td>Stealth</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Dex</td>
+						<td><input class="green dex-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="survival-row"> <!--22nd row-->
+						<td><input type="checkbox"></td>
+						<td>Survival</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Wis</td>
+						<td><input class="green wis-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="swim-row"> <!--23rd row-->
+						<td><input type="checkbox"></td>
+						<td>Swim</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Str</td>
+						<td><input class="green str-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="use-magic-device-row"> <!--24th row-->
+						<td><input type="checkbox" ></td>
+						<td>Use Magic Device</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Cha</td>
+						<td><input class="green cha-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr><td colspan="10" style="text-align:center"><!--25th row-->
+						<b><i style="font-size:150%">Background Skills</i></b>
+						<i style="color:grey">(2 skill ranks / level)</i>
+					</td></tr>
+					<tr id="appraise-row"> <!--26th row-->
+						<td><input type="checkbox"></td>
+						<td>Appraise</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
+						<td><input class="green int-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="artistry-row" hidden> <!--27th row--></tr>
+					<tr id="craft-row" hidden> <!--28th row--></tr>
+					<tr id="handle-animal-row"> <!--29th row-->
+						<td><input type="checkbox"></td>
+						<td>Handle Animal*</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Cha</td>
+						<td><input class="green cha-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="engineering-row"> <!--30th row-->
+						<td><input type="checkbox"></td>
+						<td>Knowledge (Engineering)*</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
+						<td><input class="green int-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="geography-row"> <!--31st row-->
+						<td><input type="checkbox"></td>
+						<td>Knowledge (Geography)*</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
+						<td><input class="green int-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="history-row"> <!--32nd row-->
+						<td><input type="checkbox"></td>
+						<td>Knowledge (History)*</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
+						<td><input class="green int-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="nobility-row"> <!--33rd row-->
+						<td><input type="checkbox"></td>
+						<td>Knowledge (Nobility)*</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
+						<td><input class="green int-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="linguistics-row"> <!--34th row-->
+						<td><input type="checkbox"></td>
+						<td>Linguistics*</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Int</td>
+						<td><input class="green int-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+					<tr id="lore-row" hidden><!--35th row--></tr>
+					<tr id="perform-row" hidden><!--36th row--></tr>
+					<tr id="profession-row" hidden><!--37th row--></tr>
+					<tr id="sleight-of-hand-row"> <!--38th row-->
+						<td><input type="checkbox"></td>
+						<td>Sleight of Hand*</td>
+						<td><input style="width:50px"/></td>
+						<td style="text-align:center">Dex</td>
+						<td><input class="green dex-temp-mod" disabled style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:50px"/></td>
+						<td><input style="width:260px"/></td>
+					</tr>
+				</table>
+				<label style="text-align:left">* Trained Only</label>
+				
+				<div style="clear:both">
+					<button type="button" style="height:35px" onclick="AddSkill('artistry')">
+						+Artistry
+					</button>
+					<button type="button" style="height:35px" onclick="AddSkill('craft')">
+						+Craft
+					</button>
+					<button type="button" style="height:35px" onclick="AddSkill('lore*')">
+						+Lore
+					</button>
+					<button type="button" style="height:35px" onclick="AddSkill('perform')">
+						+Perform
+					</button>
+					<button type="button" style="height:35px" onclick="AddSkill('profession*')">
+						+Profession
+					</button>
+				</div>
+				
+				<div class="black" style="width:70px;height:60px">
+					<span>Ranks</span>
+					<label class="blackLabel">Allocated</label>
+				</div>
+                <div style="width:50px;height:60px;float:left;">
+					<input style="width:50px" class="green" id="AdventuringSkillRanksAllocated" disabled/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Adventuring<br/>Skills</label>
+                </div>
+                <div style="width:50px;height:60px;float:left;">
+					<input style="width:50px" class="green" id="BackgroundSkillRanksAllocated" disabled/>
+                    <label style="font-size:12px;line-height:15px;width:62px">Background<br/>Skills</label>
+                </div>
+				
+				<div class="black" style="width:120px;height:60px">
+					<span>Conditional</span>
+					<label class="blackLabel">Modifiers</label>
+				</div>
+				<div style="width:660px;height:60px;float:left">
+					<input id="Skill-Notes"/>
+					<label style="font-size:12px;line-height:20px;width:80px">Other Notes</label>
+				</div>
+				
+				<div class="black" style="width:120px;height:60px">
+					<span>Languages</span>
+					<label class="blackLabel">Known</label>
+				</div>
+				<div style="width:880px;height:60px;float:left">
+					<input id="Languages"/>
+					<label style="font-size:12px;line-height:20px;width:80px">Spoken/Written</label>
+				</div>
+			</article>
+        </details>
+		<br />
+		<details id="CustomizationDetails">
+			<summary>Customization</summary>
+			<article>
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="AddCustom('Feat')">
+						+Feat
+					</button>
+					<span id="FeatList"></span>
+				</div>
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="AddCustom('Special Ability')">
+						+Special Ability
+					</button>
+					<span id="SpecialAbilityList"></span>
+				</div>
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="AddCustom('Trait')">
+						+Trait
+					</button>
+					<span id="TraitList"></span>
+				</div>
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="AddCustom('Quality')">
+						+Quality
+					</button>
+					<span id="QualityList"></span>
+				</div>
+				
+				<div class="black" style="width:110px;height:60px">
+					<span>MAP</span>
+					<label class="blackLabel">Magus Ancestry Points</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="MagusAncestryPoints"/>
+					<label style="font-size:12px;line-height:15px;width:60px">Points</label>
+				</div>
+				<div class="black" style="width:80px;height:60px">
+					<span>SP</span>
+					<label class="blackLabel">Servant Potential</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="ServantPotential"/>
+					<label style="font-size:12px;line-height:13px;width:60px">Servant Potential</label>
+				</div>
+				<div class="black" style="width:80px;height:60px">
+					<span>TP</span>
+					<label class="blackLabel">Influence Points</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="InfluencePoints"/>
+					<label style="font-size:12px;line-height:13px;width:60px">Influence Points</label>
+				</div>
+				<div style="width:450px;height:60px;float:left"></div>
+				
+				<div class="black" style="width:100px;height:60px">
+					<span>FCB</span>
+					<label class="blackLabel">Favored Class Bonus</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="fcb-hp"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Hit Points</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="fcb-sr"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Skill Ranks</label>
+				</div>
+				<div style="width:750px;height:60px;float:left">
+					<input id="fcb-rb"/>
+					<label style="font-size:12px;line-height:20px;width:200px">Racial Favored Class Benefits</label>
+				</div>
+			</article>
+		</details>
+		<br />
+		<details id="EquipmentDetails">
+			<summary>Equipment</summary>
+			<article>
+				<div class="black" style="width:50px;height:60px">
+					<span>PP</span>
+					<label class="blackLabel">Platinum</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="money-pp"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Pieces</label>
+				</div>
+				<div class="black" style="width:50px;height:60px">
+					<span>GP</span>
+					<label class="blackLabel">Gold</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="money-gp"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Pieces</label>
+				</div>
+				<div class="black" style="width:50px;height:60px">
+					<span>SP</span>
+					<label class="blackLabel">Silver</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="money-sp"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Pieces</label>
+				</div>
+				<div class="black" style="width:50px;height:60px">
+					<span>CP</span>
+					<label class="blackLabel">Copper</label>
+				</div>
+				<div style="width:50px;height:60px;float:left">
+					<input id="money-cp"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Pieces</label>
+				</div>
+				<div class="black" style="width:50px;height:60px">
+					<span>Art</span>
+					<label class="blackLabel">& Gems</label>
+				</div>
+				<div style="width:430px;height:60px;float:left">
+					<input id="money-misc"/>
+					<label style="font-size:12px;line-height:20px;width:120px">Miscellaneous Treasures</label>
+				</div>
+				
+				<div id="ACList"></div>
+                <button type="button" onclick="AddACItem()" style="width:100px;float:left">
+                    +AC Item
+                </button>
+				<div style="width:185px;float:left;font-size:200%">Totals =</div>
+				<div style="width:55px;height:60px;float:left">
+					<input id="AC-Bonus"/>
+					<label style="font-size:12px;line-height:20px;width:60px">Bonus</label>
+				</div>
+				<div style="width:70px;float:left;visibility:hidden"></div>
+				<div style="width:55px;height:60px;float:left">
+					<input id="AC-Penalty"/>
+					<label style="font-size:12px;line-height:20px;width:70px">Check Penalty</label>
+				</div>
+				<div style="width:55px;height:60px;float:left">
+					<input id="AC-Spell-Failure"/>
+					<label style="font-size:12px;line-height:20px;width:70px">Spell Failure</label>
+				</div>
+				<div style="width:380px;height:60px;float:left"></div>
+				
+				<div class="black" style="width:80px;height:60px">
+					<span>Weight</span>
+					<label class="blackLabel">Total Amount</label>
+				</div>
+				<div style="width:55px;height:40px;float:left">
+					<input disabled class="green" id="Total-Weight"/>
+					<label style="font-size:12px;line-height:20px;width:65px">Total Weight</label>
+				</div>
+				<button type="button" onclick="AddInventory()" style="float:left">
+					+Inventory Container
+				</button>
+				
+				<div id="InventoryList"></div>
+			</article>
+		</details>
+		<br />
+		<details id="SpellsDetails">
+			<summary>Spells</summary>
+			<article>
+				<div style="clear:both;text-align:left">
+					<button id="SpellLikeBtn" type="button" data-type="Spell-Like">
+						+Spell-Like
+					</button>
+					<span id="SpellLikeList"></span>
+				</div>
+				<div style="clear:both;text-align:left">
+					<button id="RitualBtn" type="button" data-type="Ritual Spell">
+						+Rituals
+					</button>
+					<span id="RitualList" data-type="s"></span>
+				</div>
+				<div style="clear:both;text-align:left">
+					<button type="button" onclick="AddSpellList()">
+						+Class Spell List
+					</button>
+				</div>
+				<div id="SpellListList"></div>
+			</article>
+		</details>
+		<br/>
+		<details id="NotesDetails">
+			<summary>Notes</summary>
+			<article>
+				<h2>Notes</h2>
+					<textarea id="Notes" style="width:95%;height:500px;text-align:left"></textarea>
+			</article>
+		</details>
+		
+		<div id="overlay">
+			<span id="ConfirmMenu" class="menu" style="width:800px;font-size:200%">
+				Please confirm that you would like to remove this item.<br/>
+				<button id="ConfirmDelete">Yes</button>
+				<button id="ConfirmCancel">No</button>
+			</span>
+			<span id="CustomMenu" class="menu" style="width:min-content;font-size:130%">
+				<div id="CustomMenuName" style="display:inline"></div><hr/>
+				<table style="margin-left:auto;margin-right:auto">
+					<tr>
+						<td>Name:</td>
+						<td colspan="3"><input id="CustomName" style="font-size:80%;width:97%;text-align:left"/></td>
+						<td style="padding-right:0px 0px 0px 3px">Type:</td>
+						<td><input id="CustomType" style="font-size:80%;width:95%;text-align:left"/></td>
+					</tr>
+					<tr>
+						<td>Notes:</td>
+						<td colspan="5"><textarea id="CustomNotes" style="font-size:80%;min-width:400px;height:100px;text-align:left"></textarea></td>
+					</tr>
+				</table><hr/>
+				<button id="CreateCustom"></button>
+				<button id="DeleteCustom"></button>
+			</span>
+			<span id="GearMenu" class="menu" style="width:min-content;font-size:130%">
+				<div id="GearMenuName" style="display:inline"></div><hr/>
+				<table style="margin-left:auto;margin-right:auto">
+					<tr>
+						<td>Name:</td>
+						<td colspan="3"><input id="GearName" style="font-size:80%;width:97%;text-align:left"/></td>
+						<td style="padding:0px 0px 0px 3px">Type:</td>
+						<td><input id="GearType" style="font-size:80%;width:95%;text-align:left"/></td>
+					</tr>
+					<tr>
+						<td>Location:</td>
+						<td><input id="GearLocation" style="font-size:80%;width:93%;text-align:left"/></td>
+						<td style="padding:0px 0px 0px 3px">Quantity:</td>
+						<td><input id="GearQuantity" style="font-size:80%;width:93%;text-align:left"/></td>
+						<td style="padding:0px 0px 0px 3px">Weight:</td>
+						<td><input id="GearWeight" style="font-size:80%;width:93%;text-align:left"/></td>
+					</tr>
+					<tr>
+						<td>Notes:</td>
+						<td colspan="5"><textarea id="GearNotes" style="font-size:80%;min-width:400px;height:100px;text-align:left"></textarea></td>
+					</tr>
+				</table><hr/>
+				
+				<span style="display:none">
+					Move to different inventory: <select id="GearTransfer"></select>
+					<hr/>
+				</span>
+				
+				<button id="CreateGear"></button>
+				<button id="DeleteGear"></button>
+			</span>			
+			<span id="SpellListMenu" class="menu" style="width:300px;font-size:130%">
+				Customize your new spell list.<br/>
+				These choices are final.<br/>
+				<hr/>
+				<table style="margin-left:auto;margin-right:auto">
+					<tr>
+						<td>Class:</td>
+						<td colspan="3"><input id="SpellListName" style="font-size:80%;width:97%;text-align:left"/></td>
+					</tr>
+					<tr>
+						<td style="padding:0px 0px 0px 3px">Type:</td>
+						<td colspan="3"><select id="SpellListType" style="font-size:80%">
+							<option value="s">Spontaenous</option>
+							<option value="p">Prepared</option>
+						</select></td>
+					</tr>
+					<tr><td colspan="4" style="text-align:center"><b>Spell Levels</b></td></tr>
+					<tr>
+						<td title="Inclusive">Lowest</td>
+						<td><select id="LowestSpellLevel" style="font-size:80%">
+							<option value="0">0</option>
+						</select></td>
+						<td title="Inclusive">Highest</td>
+						<td><select id="HighestSpellLevel" style="font-size:80%">
+							<option value="9">9</option>
+						</select></td>
+					</tr>
+				</table>
+				<hr/>
+				
+				<span style="text-align:center">
+					<button id="CreateSpellList">Create</button>
+					<button onclick="CloseOverlay()">Cancel</button>
+				</span>
+			</span>
+			<span id="SpellMenu" class="menu" style="width:800px;font-size:110%;line-height:1.1">
+				<div id="SpellMenuName" style="display:inline"></div><hr/>
+				<table style="margin-left:auto;margin-right:auto">
+					<tr>
+						<td colspan="3">Name<input id="SpellName" style="width:95%;text-align:left"/></td>
+						<td rowspan ="4">Description<textarea id="SpellDescription" style="min-width:400px;min-height:200px;text-align:left;resize:vertical"></textarea></td>
+					</tr>
+					<tr>
+						<td>Level<input id="SpellLevel" style="width:80%"/></td>
+						<td>Used<input id="SpellUsed" type="number" style="width:80%"/></td>
+						<td>Per Day<input id="SpellPerDay" type="number" style="width:80%"/></td>
+					</tr>
+					<tr><td colspan="3">School<input id="SpellSchool" style="width:95%;text-align:left"/></td></tr>
+					<tr><td colspan="3">Subschool<input id="SpellSubschool" style="width:95%;text-align:left"/></td></tr>
+				</table>
+				<hr/>
+				
+				<span style="text-align:center">
+					<button id="CreateSpell"></button>
+					<button id="DeleteSpell"></button>
+				</span>
+			</span>
+		</div>
+    </div>
+</body>
+</html>

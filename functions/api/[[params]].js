@@ -1,6 +1,7 @@
 function GetKV (ctx) {
 	switch (ctx.params.params[0]) {
 		case "Pathfinder1": return ctx.env.Pathfinder1;
+		case "FateMachia": return ctx.env.FateMachia;
 		case "Pathfinder2": return {};
 	}
 }
