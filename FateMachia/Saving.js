@@ -360,7 +360,8 @@ function SaveToJSON () {
 async function SaveToCloudFlare () {
 	if (document.getElementById("CharacterIndex").value == "") return; //Strangers don't get to save.
 	const index = document.getElementById("CharacterIndex").value;
-	const url = "../api/FateMachia/" + character.player + "/" + index;
+	const player = document.getElementById("PlayerName").value;
+	const url = "../api/FateMachia/" + player + "/" + index;
 	fetch(url,{
 		method: "PUT",
 		headers: { 
