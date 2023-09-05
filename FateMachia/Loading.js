@@ -6,6 +6,7 @@ function LoadFromJSON (character) {
 	set("CharacterName", character.name);
 	set("PlayerName", character.player);
 	
+	set("Path", character.path);
 	set("Class", character.class);
 	
 	set("Race"		, character.race);

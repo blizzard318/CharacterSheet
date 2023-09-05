@@ -10,6 +10,7 @@ function GetCharacter () {
 	character.name = GetValue("CharacterName");
 	character.player = GetValue("PlayerName");
 	
+	character.path = GetValue("Path");
 	character.class = GetValue("Class");
 	
 	character.race = GetValue("Race");

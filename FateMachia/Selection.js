@@ -60,6 +60,8 @@ async function ShowPart2(name) {
 		let div = document.createElement("div");
 		div.innerHTML  = "<b>Name:</b> <i>" + character.name + "</i>";
 		div.innerHTML += "<br/>";
+		div.innerHTML += "<b>Path:</b> <i>" + character.path + "</i>";
+		div.innerHTML += "<br/>";
 		div.innerHTML += "<b>Class:</b> <i>" + character.class + "</i>";
 		div.style.textAlign = "left";
 		div.style.fontSize = "130%"
