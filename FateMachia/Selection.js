@@ -11,7 +11,7 @@ async function ShowPart2(name) {
 	
 	//Modify the new character button.
 	const NewCharBtn = document.getElementById("NewCharacter");
-	NewCharBtn.setAttribute("href","./?key=" + name);
+	NewCharBtn.setAttribute("href","Character/?key=" + name);
 	
 	//Re-enable all the buttons.
 	const buttons = document.getElementsByTagName("button");
