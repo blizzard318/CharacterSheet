@@ -353,9 +353,10 @@ function SaveToJSON () {
 
 async function SaveToCloudFlare () {
 	if (document.getElementById("CharacterIndex").value == "") return; //Strangers don't get to save.
+	
+	const character = GetCharacter();
 	const index = document.getElementById("CharacterIndex").value;
-	const player = document.getElementById("PlayerName").value;
-	const url = "../api/Pathfinder1/" + player + "/" + index;
+	const url = "../api/Pathfinder1/" + character.player + "/" + index;
 	fetch(url,{
 		method: "PUT",
 		headers: { 
