@@ -53,6 +53,7 @@ export async function onRequestGet (context) { //Get list or single character
 			let input = {};
 			input.key = key.name;
 			input.name = character.name;
+			input.path = character.path;
 			input.class = character.class;
 			retval.push(input);
 		}
